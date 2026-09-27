@@ -40,3 +40,14 @@ Real model/harness credentials and quotas, workload-specific held-out evaluation
 - Browser: selected candidates across orchestration and retrieval categories; verified eight retrieval cards and eight bottleneck entries; switching workload updated control baseline/metrics; an active-worker value of 300 displayed a constraint error and disabled export. Filling all design fields displayed “References still need verification; execution remains disabled.” No console errors.
 - Desktop layout and 390px mobile comparison/bottleneck views checked. Mobile document width and scroll width both measured 390px; viewport override reset and temporary test inputs cleared by reload.
 - Source symbol references render as code rather than invalid HTTP links. Published methodology, third-party reports, feature documentation and absent benchmark evidence are labeled separately. No new framework/database performance measurements, installs, provider calls or cloud deployments were made.
+
+
+## Specialist design and identity contracts — 2026-09-27
+
+- Python regression suite: 31/31 passed in 6.268 seconds. No Python runtime changes or new dependencies.
+- Web suite: 101/101 passed in 0.886 seconds, including bounded import validation, exact team/resource assignments, approval previews, rejected privileged actions, TTL, malformed URLs, and unconnected infrastructure nodes.
+- Production build includes `/teams`. The designer stores only design metadata; custom team execution and IAM enforcement are not connected.
+- Browser: custom team membership and node assignment, pinned skill references, exact MCP tool/gateway references, read-request eligibility, denied actuation, stale-preview invalidation, hierarchy drilldown/zoom/search, and Graph Studio node attachment verified. A clean starter draft reloads from browser storage; synthetic test grants were not saved.
+- Source reviews of both identity projects are pinned in `specialist-identity-integrations.md`. Their tests were inspected, not executed. No external IAM credentials, model calls, MCP tool execution or physical commands were performed.
+- Final responsive graph fix: ResizeObserver chooses one to five readable card columns and centers the focus node. Browser verification at 390px measured 390px document/scroll width, a 320px SVG viewBox, and the focused node fully inside its viewport. Zoom to 115% remained usable; viewport override reset. No console errors or warnings.
+- Final TypeScript check and Next.js production build passed after the responsive correction.

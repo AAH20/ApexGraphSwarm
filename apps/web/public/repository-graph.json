@@ -7,7 +7,7 @@
       "name": "ApexGraphSwarm",
       "kind": "module",
       "path": ".",
-      "summary": "Directory grouping 133 indexed files, 370 functions and 24 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 145 indexed files, 419 functions and 24 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -125,7 +125,7 @@
       "name": "apps",
       "kind": "module",
       "path": "apps",
-      "summary": "Directory grouping 92 indexed files, 240 functions and 3 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 101 indexed files, 289 functions and 3 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -134,7 +134,7 @@
       "name": "web",
       "kind": "module",
       "path": "apps/web",
-      "summary": "Directory grouping 92 indexed files, 240 functions and 3 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 101 indexed files, 289 functions and 3 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -233,7 +233,7 @@
       "name": "app",
       "kind": "module",
       "path": "apps/web/app",
-      "summary": "Directory grouping 17 indexed files, 27 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 18 indexed files, 28 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -822,11 +822,40 @@
       "connections": 0
     },
     {
+      "id": "module:apps/web/app/teams",
+      "name": "teams",
+      "kind": "module",
+      "path": "apps/web/app/teams",
+      "summary": "Directory grouping 1 indexed files, 1 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/app/teams/page.tsx",
+      "name": "page.tsx",
+      "kind": "file",
+      "path": "apps/web/app/teams/page.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:apps/web/app/teams/page.tsx:Page@3",
+      "name": "Page",
+      "kind": "function",
+      "path": "apps/web/app/teams/page.tsx",
+      "line": 3,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
       "id": "module:apps/web/components",
       "name": "components",
       "kind": "module",
       "path": "apps/web/components",
-      "summary": "Directory grouping 17 indexed files, 60 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 22 indexed files, 87 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -1358,21 +1387,11 @@
       "line": 1,
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 5 indexed functions and 0 classes.",
       "confidence": "observed",
-      "connections": 10
+      "connections": 11
     },
     {
-      "id": "symbol:apps/web/components/GraphWorkspace.tsx:NodeIcon@15",
+      "id": "symbol:apps/web/components/GraphWorkspace.tsx:NodeIcon@16",
       "name": "NodeIcon",
-      "kind": "function",
-      "path": "apps/web/components/GraphWorkspace.tsx",
-      "line": 15,
-      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
-      "confidence": "inferred",
-      "connections": 0
-    },
-    {
-      "id": "symbol:apps/web/components/GraphWorkspace.tsx:GraphWorkspace@16",
-      "name": "GraphWorkspace",
       "kind": "function",
       "path": "apps/web/components/GraphWorkspace.tsx",
       "line": 16,
@@ -1381,31 +1400,41 @@
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/GraphWorkspace.tsx:receive@23",
+      "id": "symbol:apps/web/components/GraphWorkspace.tsx:GraphWorkspace@17",
+      "name": "GraphWorkspace",
+      "kind": "function",
+      "path": "apps/web/components/GraphWorkspace.tsx",
+      "line": 17,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/GraphWorkspace.tsx:receive@24",
       "name": "receive",
       "kind": "function",
       "path": "apps/web/components/GraphWorkspace.tsx",
-      "line": 23,
+      "line": 24,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/GraphWorkspace.tsx:importFile@35",
+      "id": "symbol:apps/web/components/GraphWorkspace.tsx:importFile@36",
       "name": "importFile",
       "kind": "function",
       "path": "apps/web/components/GraphWorkspace.tsx",
-      "line": 35,
+      "line": 36,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/GraphWorkspace.tsx:trace@37",
+      "id": "symbol:apps/web/components/GraphWorkspace.tsx:trace@38",
       "name": "trace",
       "kind": "function",
       "path": "apps/web/components/GraphWorkspace.tsx",
-      "line": 37,
+      "line": 38,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -1476,6 +1505,326 @@
       "kind": "function",
       "path": "apps/web/components/IntegrationsPanel.tsx",
       "line": 46,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/components/ScopeTopology.module.css",
+      "name": "ScopeTopology.module.css",
+      "kind": "file",
+      "path": "apps/web/components/ScopeTopology.module.css",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 1
+    },
+    {
+      "id": "file:apps/web/components/ScopeTopology.tsx",
+      "name": "ScopeTopology.tsx",
+      "kind": "file",
+      "path": "apps/web/components/ScopeTopology.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 8 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:apps/web/components/ScopeTopology.tsx:colorFor@35",
+      "name": "colorFor",
+      "kind": "function",
+      "path": "apps/web/components/ScopeTopology.tsx",
+      "line": 35,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ScopeTopology.tsx:compact@36",
+      "name": "compact",
+      "kind": "function",
+      "path": "apps/web/components/ScopeTopology.tsx",
+      "line": 36,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ScopeTopology.tsx:compareNodes@37",
+      "name": "compareNodes",
+      "kind": "function",
+      "path": "apps/web/components/ScopeTopology.tsx",
+      "line": 37,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ScopeTopology.tsx:ScopeTopology@40",
+      "name": "ScopeTopology",
+      "kind": "function",
+      "path": "apps/web/components/ScopeTopology.tsx",
+      "line": 40,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ScopeTopology.tsx:updateWidth@60",
+      "name": "updateWidth",
+      "kind": "function",
+      "path": "apps/web/components/ScopeTopology.tsx",
+      "line": 60,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ScopeTopology.tsx:select@109",
+      "name": "select",
+      "kind": "function",
+      "path": "apps/web/components/ScopeTopology.tsx",
+      "line": 109,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ScopeTopology.tsx:adjustZoom@110",
+      "name": "adjustZoom",
+      "kind": "function",
+      "path": "apps/web/components/ScopeTopology.tsx",
+      "line": 110,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ScopeTopology.tsx:activateByKey@111",
+      "name": "activateByKey",
+      "kind": "function",
+      "path": "apps/web/components/ScopeTopology.tsx",
+      "line": 111,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/components/SpecialistDesigner.module.css",
+      "name": "SpecialistDesigner.module.css",
+      "kind": "file",
+      "path": "apps/web/components/SpecialistDesigner.module.css",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 2
+    },
+    {
+      "id": "file:apps/web/components/SpecialistDesigner.tsx",
+      "name": "SpecialistDesigner.tsx",
+      "kind": "file",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 17 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 8
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:newId@12",
+      "name": "newId",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 12,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:exportJSON@13",
+      "name": "exportJSON",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 13,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:SpecialistDesigner@14",
+      "name": "SpecialistDesigner",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 14,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:replaceDesign@31",
+      "name": "replaceDesign",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 31,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:importText@32",
+      "name": "importText",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 32,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:loadSaved@33",
+      "name": "loadSaved",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 33,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:save@34",
+      "name": "save",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 34,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:changeAgent@35",
+      "name": "changeAgent",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 35,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:structuralChange@36",
+      "name": "structuralChange",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 36,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:addNode@37",
+      "name": "addNode",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 37,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:addTemplate@38",
+      "name": "addTemplate",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 38,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:removeNode@45",
+      "name": "removeNode",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 45,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:removeAgent@46",
+      "name": "removeAgent",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 46,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:removeTeam@47",
+      "name": "removeTeam",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 47,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:addAgent@48",
+      "name": "addAgent",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 48,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:addTeam@49",
+      "name": "addTeam",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 49,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistDesigner.tsx:simulate@50",
+      "name": "simulate",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistDesigner.tsx",
+      "line": 50,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/components/SpecialistEditor.tsx",
+      "name": "SpecialistEditor.tsx",
+      "kind": "file",
+      "path": "apps/web/components/SpecialistEditor.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 2 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 6
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistEditor.tsx:SpecialistEditor@9",
+      "name": "SpecialistEditor",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistEditor.tsx",
+      "line": 9,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/SpecialistEditor.tsx:loadProfiles@13",
+      "name": "loadProfiles",
+      "kind": "function",
+      "path": "apps/web/components/SpecialistEditor.tsx",
+      "line": 13,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -1624,7 +1973,7 @@
       "name": "lib",
       "kind": "module",
       "path": "apps/web/lib",
-      "summary": "Directory grouping 25 indexed files, 132 functions and 2 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 27 indexed files, 151 functions and 2 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -2216,6 +2565,16 @@
       "line": 21,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/lib/identity-evidence.ts",
+      "name": "identity-evidence.ts",
+      "kind": "file",
+      "path": "apps/web/lib/identity-evidence.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
+      "confidence": "observed",
       "connections": 0
     },
     {
@@ -3219,6 +3578,206 @@
       "connections": 0
     },
     {
+      "id": "file:apps/web/lib/specialist-design.ts",
+      "name": "specialist-design.ts",
+      "kind": "file",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 19 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:plainRecord@56",
+      "name": "plainRecord",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 56,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:ownArray@79",
+      "name": "ownArray",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 79,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:copyBoundedJson@102",
+      "name": "copyBoundedJson",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 102,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:text@146",
+      "name": "text",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 146,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:identifier@155",
+      "name": "identifier",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 155,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:stringList@163",
+      "name": "stringList",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 163,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:parseSkill@176",
+      "name": "parseSkill",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 176,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:parseTool@195",
+      "name": "parseTool",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 195,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:parsePolicy@205",
+      "name": "parsePolicy",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 205,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:parseAgent@233",
+      "name": "parseAgent",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 233,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:emptyPolicy@255",
+      "name": "emptyPolicy",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 255,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:parseTeam@259",
+      "name": "parseTeam",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 259,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:parseNode@266",
+      "name": "parseNode",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 266,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:validateHierarchy@296",
+      "name": "validateHierarchy",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 296,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:validateSpecialistDesign@317",
+      "name": "validateSpecialistDesign",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 317,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:privilegedAction@359",
+      "name": "privilegedAction",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 359,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:denied@363",
+      "name": "denied",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 363,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:previewSpecialistAccess@367",
+      "name": "previewSpecialistAccess",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 367,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/specialist-design.ts:createStarterDesign@412",
+      "name": "createStarterDesign",
+      "kind": "function",
+      "path": "apps/web/lib/specialist-design.ts",
+      "line": 412,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
       "id": "module:apps/web/public",
       "name": "public",
       "kind": "module",
@@ -3330,7 +3889,7 @@
       "name": "tests",
       "kind": "module",
       "path": "apps/web/tests",
-      "summary": "Directory grouping 17 indexed files, 14 functions and 1 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 18 indexed files, 16 functions and 1 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -3655,11 +4214,41 @@
       "connections": 4
     },
     {
+      "id": "file:apps/web/tests/specialist-design.test.ts",
+      "name": "specialist-design.test.ts",
+      "kind": "file",
+      "path": "apps/web/tests/specialist-design.test.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 2 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:apps/web/tests/specialist-design.test.ts:copyStarter@11",
+      "name": "copyStarter",
+      "kind": "function",
+      "path": "apps/web/tests/specialist-design.test.ts",
+      "line": 11,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/tests/specialist-design.test.ts:grantStarterRead@15",
+      "name": "grantStarterRead",
+      "kind": "function",
+      "path": "apps/web/tests/specialist-design.test.ts",
+      "line": 15,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
       "id": "module:docs",
       "name": "docs",
       "kind": "module",
       "path": "docs",
-      "summary": "Directory grouping 19 indexed files, 0 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 22 indexed files, 0 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -3838,6 +4427,36 @@
       "name": "skills-interoperability.md",
       "kind": "file",
       "path": "docs/skills-interoperability.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:docs/specialist-design-contract.md",
+      "name": "specialist-design-contract.md",
+      "kind": "file",
+      "path": "docs/specialist-design-contract.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:docs/specialist-identity-integrations.md",
+      "name": "specialist-identity-integrations.md",
+      "kind": "file",
+      "path": "docs/specialist-identity-integrations.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:docs/specialist-teams.md",
+      "name": "specialist-teams.md",
+      "kind": "file",
+      "path": "docs/specialist-teams.md",
       "line": 1,
       "summary": "File inventory; source semantics not parsed for this language.",
       "confidence": "observed",
@@ -5732,7 +6351,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 7
+      "connections": 10
     },
     {
       "id": "external:lucide-react",
@@ -5741,7 +6360,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 9
+      "connections": 10
     },
     {
       "id": "external:@/components/AppShell",
@@ -5750,7 +6369,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 6
+      "connections": 7
     },
     {
       "id": "external:@/lib/control-client",
@@ -5843,13 +6462,22 @@
       "connections": 1
     },
     {
+      "id": "external:@/components/SpecialistDesigner",
+      "name": "@/components/SpecialistDesigner",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
       "id": "external:react",
       "name": "react",
       "kind": "external",
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 12
+      "connections": 15
     },
     {
       "id": "external:@/lib/orchestration-evidence",
@@ -5903,7 +6531,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 3
+      "connections": 4
     },
     {
       "id": "external:@/lib/ecosystem-catalog",
@@ -5989,6 +6617,24 @@
     {
       "id": "external:@/lib/integration-catalog",
       "name": "@/lib/integration-catalog",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:@/lib/specialist-design",
+      "name": "@/lib/specialist-design",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 2
+    },
+    {
+      "id": "external:@/lib/identity-evidence",
+      "name": "@/lib/identity-evidence",
       "kind": "external",
       "path": "",
       "summary": "External package import hint",
@@ -6110,7 +6756,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 19
+      "connections": 20
     },
     {
       "id": "external:node:test",
@@ -6119,7 +6765,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 17
+      "connections": 18
     },
     {
       "id": "external:node:os",
@@ -7343,6 +7989,27 @@
       "line": 4
     },
     {
+      "source": "file:apps/web/app/teams/page.tsx",
+      "target": "external:@/components/AppShell",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/app/teams/page.tsx",
+      "target": "external:@/components/SpecialistDesigner",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/app/teams/page.tsx",
+      "target": "symbol:apps/web/app/teams/page.tsx:Page@3",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
       "source": "file:apps/web/components/AppShell.tsx",
       "target": "external:lucide-react",
       "relation": "imports",
@@ -7872,25 +8539,32 @@
       "target": "external:@/lib/graph",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 10
+      "line": 11
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
       "target": "external:@/lib/neo4j-export",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 11
+      "line": 12
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
       "target": "external:lucide-react",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 4
+      "line": 5
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
       "target": "external:next/dynamic",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/components/GraphWorkspace.tsx",
+      "target": "external:next/link",
       "relation": "imports",
       "confidence": "inferred",
       "line": 3
@@ -7907,70 +8581,70 @@
       "target": "file:apps/web/components/AppShell.tsx",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 5
+      "line": 6
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
       "target": "file:apps/web/components/GraphStorePanel.tsx",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 9
+      "line": 10
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
       "target": "file:apps/web/components/IntegrationsPanel.tsx",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 7
+      "line": 8
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
       "target": "file:apps/web/components/SwarmPanel.tsx",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 6
+      "line": 7
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
       "target": "file:apps/web/components/useGraphFullscreen.ts",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 8
+      "line": 9
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
-      "target": "symbol:apps/web/components/GraphWorkspace.tsx:GraphWorkspace@16",
+      "target": "symbol:apps/web/components/GraphWorkspace.tsx:GraphWorkspace@17",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 17
+    },
+    {
+      "source": "file:apps/web/components/GraphWorkspace.tsx",
+      "target": "symbol:apps/web/components/GraphWorkspace.tsx:NodeIcon@16",
       "relation": "defines",
       "confidence": "inferred",
       "line": 16
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
-      "target": "symbol:apps/web/components/GraphWorkspace.tsx:NodeIcon@15",
+      "target": "symbol:apps/web/components/GraphWorkspace.tsx:importFile@36",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 15
+      "line": 36
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
-      "target": "symbol:apps/web/components/GraphWorkspace.tsx:importFile@35",
+      "target": "symbol:apps/web/components/GraphWorkspace.tsx:receive@24",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 35
+      "line": 24
     },
     {
       "source": "file:apps/web/components/GraphWorkspace.tsx",
-      "target": "symbol:apps/web/components/GraphWorkspace.tsx:receive@23",
+      "target": "symbol:apps/web/components/GraphWorkspace.tsx:trace@38",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 23
-    },
-    {
-      "source": "file:apps/web/components/GraphWorkspace.tsx",
-      "target": "symbol:apps/web/components/GraphWorkspace.tsx:trace@37",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 37
+      "line": 38
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
@@ -8062,6 +8736,300 @@
       "relation": "defines",
       "confidence": "inferred",
       "line": 37
+    },
+    {
+      "source": "file:apps/web/components/ScopeTopology.tsx",
+      "target": "external:react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/components/ScopeTopology.tsx",
+      "target": "file:apps/web/components/ScopeTopology.module.css",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/components/ScopeTopology.tsx",
+      "target": "symbol:apps/web/components/ScopeTopology.tsx:ScopeTopology@40",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 40
+    },
+    {
+      "source": "file:apps/web/components/ScopeTopology.tsx",
+      "target": "symbol:apps/web/components/ScopeTopology.tsx:activateByKey@111",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 111
+    },
+    {
+      "source": "file:apps/web/components/ScopeTopology.tsx",
+      "target": "symbol:apps/web/components/ScopeTopology.tsx:adjustZoom@110",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 110
+    },
+    {
+      "source": "file:apps/web/components/ScopeTopology.tsx",
+      "target": "symbol:apps/web/components/ScopeTopology.tsx:colorFor@35",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 35
+    },
+    {
+      "source": "file:apps/web/components/ScopeTopology.tsx",
+      "target": "symbol:apps/web/components/ScopeTopology.tsx:compact@36",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 36
+    },
+    {
+      "source": "file:apps/web/components/ScopeTopology.tsx",
+      "target": "symbol:apps/web/components/ScopeTopology.tsx:compareNodes@37",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 37
+    },
+    {
+      "source": "file:apps/web/components/ScopeTopology.tsx",
+      "target": "symbol:apps/web/components/ScopeTopology.tsx:select@109",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 109
+    },
+    {
+      "source": "file:apps/web/components/ScopeTopology.tsx",
+      "target": "symbol:apps/web/components/ScopeTopology.tsx:updateWidth@60",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 60
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "external:@/lib/identity-evidence",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 8
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "external:@/lib/specialist-design",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 7
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "external:lucide-react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "external:next/link",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "external:react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "file:apps/web/components/ScopeTopology.tsx",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 5
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "file:apps/web/components/SpecialistDesigner.module.css",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 9
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "file:apps/web/components/SpecialistEditor.tsx",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 6
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:SpecialistDesigner@14",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 14
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:addAgent@48",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 48
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:addNode@37",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 37
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:addTeam@49",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 49
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:addTemplate@38",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 38
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:changeAgent@35",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 35
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:exportJSON@13",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 13
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:importText@32",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 32
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:loadSaved@33",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 33
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:newId@12",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 12
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:removeAgent@46",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 46
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:removeNode@45",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 45
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:removeTeam@47",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 47
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:replaceDesign@31",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 31
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:save@34",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 34
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:simulate@50",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 50
+    },
+    {
+      "source": "file:apps/web/components/SpecialistDesigner.tsx",
+      "target": "symbol:apps/web/components/SpecialistDesigner.tsx:structuralChange@36",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 36
+    },
+    {
+      "source": "file:apps/web/components/SpecialistEditor.tsx",
+      "target": "external:@/lib/harness-catalog",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 5
+    },
+    {
+      "source": "file:apps/web/components/SpecialistEditor.tsx",
+      "target": "external:@/lib/specialist-design",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/components/SpecialistEditor.tsx",
+      "target": "external:next/link",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/components/SpecialistEditor.tsx",
+      "target": "external:react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/components/SpecialistEditor.tsx",
+      "target": "file:apps/web/components/SpecialistDesigner.module.css",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 6
+    },
+    {
+      "source": "file:apps/web/components/SpecialistEditor.tsx",
+      "target": "symbol:apps/web/components/SpecialistEditor.tsx:SpecialistEditor@9",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 9
+    },
+    {
+      "source": "file:apps/web/components/SpecialistEditor.tsx",
+      "target": "symbol:apps/web/components/SpecialistEditor.tsx:loadProfiles@13",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 13
     },
     {
       "source": "file:apps/web/components/SwarmControl.tsx",
@@ -9485,6 +10453,139 @@
       "line": 176
     },
     {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:copyBoundedJson@102",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 102
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:createStarterDesign@412",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 412
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:denied@363",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 363
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:emptyPolicy@255",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 255
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:identifier@155",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 155
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:ownArray@79",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 79
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:parseAgent@233",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 233
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:parseNode@266",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 266
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:parsePolicy@205",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 205
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:parseSkill@176",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 176
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:parseTeam@259",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 259
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:parseTool@195",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 195
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:plainRecord@56",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 56
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:previewSpecialistAccess@367",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 367
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:privilegedAction@359",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 359
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:stringList@163",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 163
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:text@146",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 146
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:validateHierarchy@296",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 296
+    },
+    {
+      "source": "file:apps/web/lib/specialist-design.ts",
+      "target": "symbol:apps/web/lib/specialist-design.ts:validateSpecialistDesign@317",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 317
+    },
+    {
       "source": "file:apps/web/next.config.ts",
       "target": "external:next",
       "relation": "imports",
@@ -10148,6 +11249,41 @@
       "relation": "imports",
       "confidence": "inferred",
       "line": 4
+    },
+    {
+      "source": "file:apps/web/tests/specialist-design.test.ts",
+      "target": "external:node:assert/strict",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/tests/specialist-design.test.ts",
+      "target": "external:node:test",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/tests/specialist-design.test.ts",
+      "target": "file:apps/web/lib/specialist-design.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 9
+    },
+    {
+      "source": "file:apps/web/tests/specialist-design.test.ts",
+      "target": "symbol:apps/web/tests/specialist-design.test.ts:copyStarter@11",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 11
+    },
+    {
+      "source": "file:apps/web/tests/specialist-design.test.ts",
+      "target": "symbol:apps/web/tests/specialist-design.test.ts:grantStarterRead@15",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 15
     },
     {
       "source": "file:integrations/harness_runner.py",
@@ -11375,6 +12511,13 @@
       "line": 0
     },
     {
+      "source": "module:apps/web/app",
+      "target": "module:apps/web/app/teams",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
       "source": "module:apps/web/app/api",
       "target": "module:apps/web/app/api/control",
       "relation": "contains",
@@ -11536,6 +12679,13 @@
       "line": 0
     },
     {
+      "source": "module:apps/web/app/teams",
+      "target": "file:apps/web/app/teams/page.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
       "source": "module:apps/web/components",
       "target": "file:apps/web/components/AppShell.tsx",
       "relation": "contains",
@@ -11629,6 +12779,41 @@
     {
       "source": "module:apps/web/components",
       "target": "file:apps/web/components/IntegrationsPanel.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/ScopeTopology.module.css",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/ScopeTopology.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/SpecialistDesigner.module.css",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/SpecialistDesigner.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/SpecialistEditor.tsx",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -11740,6 +12925,13 @@
     },
     {
       "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/identity-evidence.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
       "target": "file:apps/web/lib/integration-catalog.ts",
       "relation": "contains",
       "confidence": "observed",
@@ -11832,6 +13024,13 @@
     {
       "source": "module:apps/web/lib",
       "target": "file:apps/web/lib/skill-manifest.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/specialist-design.ts",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -12005,6 +13204,13 @@
       "line": 0
     },
     {
+      "source": "module:apps/web/tests",
+      "target": "file:apps/web/tests/specialist-design.test.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
       "source": "module:docs",
       "target": "file:docs/agent-integrations.md",
       "relation": "contains",
@@ -12126,6 +13332,27 @@
     {
       "source": "module:docs",
       "target": "file:docs/skills-interoperability.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
+      "target": "file:docs/specialist-design-contract.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
+      "target": "file:docs/specialist-identity-integrations.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
+      "target": "file:docs/specialist-teams.md",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -15513,11 +16740,11 @@
     }
   ],
   "summary": {
-    "files": 133,
-    "modules": 32,
-    "functions": 370,
+    "files": 145,
+    "modules": 33,
+    "functions": 419,
     "classes": 24,
-    "relationships": 1282,
+    "relationships": 1365,
     "unresolved": 1308,
     "hubs": [
       "ControlError",

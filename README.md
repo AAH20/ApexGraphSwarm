@@ -17,6 +17,7 @@ Open **http://127.0.0.1:3010**. Play Anything remains on its original port. Kern
 ## Workspaces
 
 - **Graph Studio** — fullscreen graph exploration, source evidence, search, filtering, paths, optional Neo4j storage and framework integrations.
+- **Specialist teams** — `/teams` configures precise skill/tool/gateway references, IAM/PAM policy intent, dedicated scope assignments and zoomable planned fleet/data-center hierarchies. Design-only access previews and validated JSON import/export; see [team design and future adapters](docs/specialist-teams.md).
 - **Swarm control** — SQLite-backed task DAGs, transactional leases, fenced completion, recovery and integer micro-USD accounting. The UI executor runs deterministic fixtures only; actual framework executions remain in their separate adapter runtime.
 - **Delegation & cost** — extensible model/harness candidates, eligibility constraints, dated/editable rate assumptions and cost per successful result. Unknown costs remain unknown. Exported plans do not execute models.
 - **Architecture lab** — `/ecosystem/research` compares established orchestration frameworks, GraphRAG pipelines and vector stores, audits the original optimization kernels, and exports benchmark designs with explicit quality/latency/cost gates. See [adoption plan](docs/architecture-comparison.md).
