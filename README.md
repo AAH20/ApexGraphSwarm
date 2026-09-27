@@ -8,8 +8,36 @@ The project was extracted from [Play Anything](https://github.com/AAH20/play-any
 
 > **Status:** local engineering foundation. Repository exploration, deterministic scheduling, design tools, and configured integration adapters are available. Specialist-team designs do not yet dispatch custom teams or enforce IAM/PAM. Data-center, Physical AI, and IoT nodes are planning scopes, not connected infrastructure controllers. See [capabilities and boundaries](#capabilities-and-boundaries).
 
+## Visual walkthrough
+
+![ApexGraphSwarm graph walkthrough: fullscreen exploration, symbols, filtering, dependency inspection, local specialists, integrations, economics and scope hierarchies](docs/media/apexgraphswarm-walkthrough.gif)
+
+**17 actual UI captures · 68-second loop · 1280 × 900 · approximately 1.7 MB.** This is an edited, captioned walkthrough, not real-time execution footage. It covers module/file/symbol views, search, force layout, dependency neighborhoods, evidence and direction filters, constraints, path tracing, local analysis, export/Neo4j controls, integration setup, economics, and specialist scope assignment/drilldown.
+
+[Open the full-resolution screenshot gallery](docs/media/README.md) · [View a static poster](docs/media/walkthrough-poster.png) · [Capture provenance](docs/media/capture-manifest.json)
+
+<details>
+<summary>View selected still screenshots</summary>
+
+### Function relationships and source evidence
+
+![Focused ControlStore.claim neighborhood with source summary and incoming/outgoing relationships](docs/media/screenshots/07-function-neighborhood.png)
+
+### Local analysis and cited findings
+
+![Three completed local analysis specialists with reconciled evidence-linked findings](docs/media/screenshots/11-local-specialists.png)
+
+### Dedicated specialist scopes
+
+![Planned data-center, Physical AI fleet and IoT branches in the specialist scope graph](docs/media/screenshots/15-scope-hierarchy.png)
+
+The scope examples are unsaved design demonstrations. They do not represent connected infrastructure, live IAM grants, or dispatched custom teams. External framework controls are shown in their actual configuration state; no paid model or remote framework run was performed for these captures.
+
+</details>
+
 ## Contents
 
+- [Visual walkthrough](#visual-walkthrough)
 - [Quick start](#quick-start)
 - [Workspaces](#workspaces)
 - [Suggested workflow](#suggested-workflow)
