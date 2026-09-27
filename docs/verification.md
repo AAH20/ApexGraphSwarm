@@ -22,3 +22,12 @@ These results measure local SQLite orchestration of harmless fixed tasks. They d
 ## Remaining deployment gates
 
 Real model/harness credentials and quotas, workload-specific held-out evaluations, provider usage/invoice reconciliation, isolated workers, multi-tenant authorization and distributed deployment remain separate activation/production work. The native external framework adapters have contract tests, not live service certification. The existing integration job registry is still process-local and is not automatically made durable by the new control-plane database.
+
+## Ecosystem interoperability — 2026-09-27
+
+- Python regression suite: 31/31 passed in 5.378 seconds; no Python runtime dependencies or Python source changes introduced.
+- Web suite: 86/86 passed in 0.891 seconds. Includes cost unknown-value propagation, skill exact-content hashing and malformed metadata rejection, MCP handshake/version/session/pagination/SSE limits, cancellation, schema bounds, protected route validation and an actual loopback HTTP MCP fixture. No paid model calls or external MCP tools were invoked.
+- TypeScript and Next.js production build pass with the new `/ecosystem` and `/api/ecosystem/mcp` routes.
+- Production API smoke on port 3010 passed for empty configuration, absent bearer authentication, cross-origin access and arbitrary endpoint rejection.
+- Browser verification: connection filtering; empty MCP configuration state; successful pending-review skill manifest; rejected unsupported YAML; live cost subtotal with incomplete totals remaining unavailable; no browser console errors. At 390px width, page scroll width remains 390px and all six navigation destinations remain available. Temporary viewport override was reset.
+- AX documentation is a pinned source assessment only. AX was not installed or benchmarked. MCP discovery supports its documented handshake/HTTP subset, not every protocol revision/auth mode. Skill review does not fetch, install or execute skill packages.

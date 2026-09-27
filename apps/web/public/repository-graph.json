@@ -7,7 +7,7 @@
       "name": "ApexGraphSwarm",
       "kind": "module",
       "path": ".",
-      "summary": "Directory grouping 106 indexed files, 324 functions and 23 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 121 indexed files, 364 functions and 24 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -125,7 +125,7 @@
       "name": "apps",
       "kind": "module",
       "path": "apps",
-      "summary": "Directory grouping 73 indexed files, 194 functions and 2 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 84 indexed files, 234 functions and 3 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -134,7 +134,7 @@
       "name": "web",
       "kind": "module",
       "path": "apps/web",
-      "summary": "Directory grouping 73 indexed files, 194 functions and 2 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 84 indexed files, 234 functions and 3 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -233,7 +233,7 @@
       "name": "app",
       "kind": "module",
       "path": "apps/web/app",
-      "summary": "Directory grouping 14 indexed files, 23 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 16 indexed files, 26 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -312,7 +312,7 @@
       "name": "api",
       "kind": "module",
       "path": "apps/web/app/api",
-      "summary": "Directory grouping 6 indexed files, 16 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 7 indexed files, 18 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -341,6 +341,54 @@
       "kind": "function",
       "path": "apps/web/app/api/control/route.ts",
       "line": 6,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "module:apps/web/app/api/ecosystem",
+      "name": "ecosystem",
+      "kind": "module",
+      "path": "apps/web/app/api/ecosystem",
+      "summary": "Directory grouping 1 indexed files, 2 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "module:apps/web/app/api/ecosystem/mcp",
+      "name": "mcp",
+      "kind": "module",
+      "path": "apps/web/app/api/ecosystem/mcp",
+      "summary": "Directory grouping 1 indexed files, 2 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/app/api/ecosystem/mcp/route.ts",
+      "name": "route.ts",
+      "kind": "file",
+      "path": "apps/web/app/api/ecosystem/mcp/route.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 2 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:apps/web/app/api/ecosystem/mcp/route.ts:GET@10",
+      "name": "GET",
+      "kind": "function",
+      "path": "apps/web/app/api/ecosystem/mcp/route.ts",
+      "line": 10,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/app/api/ecosystem/mcp/route.ts:POST@14",
+      "name": "POST",
+      "kind": "function",
+      "path": "apps/web/app/api/ecosystem/mcp/route.ts",
+      "line": 14,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -629,6 +677,35 @@
       "connections": 0
     },
     {
+      "id": "module:apps/web/app/ecosystem",
+      "name": "ecosystem",
+      "kind": "module",
+      "path": "apps/web/app/ecosystem",
+      "summary": "Directory grouping 1 indexed files, 1 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/app/ecosystem/page.tsx",
+      "name": "page.tsx",
+      "kind": "file",
+      "path": "apps/web/app/ecosystem/page.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:apps/web/app/ecosystem/page.tsx:Page@3",
+      "name": "Page",
+      "kind": "function",
+      "path": "apps/web/app/ecosystem/page.tsx",
+      "line": 3,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
       "id": "module:apps/web/app/evaluations",
       "name": "evaluations",
       "kind": "module",
@@ -720,7 +797,7 @@
       "name": "components",
       "kind": "module",
       "path": "apps/web/components",
-      "summary": "Directory grouping 13 indexed files, 49 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 15 indexed files, 56 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -860,6 +937,96 @@
       "kind": "function",
       "path": "apps/web/components/DelegationPlanner.tsx",
       "line": 120,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/components/EcosystemWorkspace.module.css",
+      "name": "EcosystemWorkspace.module.css",
+      "kind": "file",
+      "path": "apps/web/components/EcosystemWorkspace.module.css",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 1
+    },
+    {
+      "id": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "name": "EcosystemWorkspace.tsx",
+      "kind": "file",
+      "path": "apps/web/components/EcosystemWorkspace.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 7 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 6
+    },
+    {
+      "id": "symbol:apps/web/components/EcosystemWorkspace.tsx:download@11",
+      "name": "download",
+      "kind": "function",
+      "path": "apps/web/components/EcosystemWorkspace.tsx",
+      "line": 11,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/EcosystemWorkspace.tsx:numberOrNull@12",
+      "name": "numberOrNull",
+      "kind": "function",
+      "path": "apps/web/components/EcosystemWorkspace.tsx",
+      "line": 12,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/EcosystemWorkspace.tsx:EcosystemWorkspace@14",
+      "name": "EcosystemWorkspace",
+      "kind": "function",
+      "path": "apps/web/components/EcosystemWorkspace.tsx",
+      "line": 14,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/EcosystemWorkspace.tsx:loadServers@23",
+      "name": "loadServers",
+      "kind": "function",
+      "path": "apps/web/components/EcosystemWorkspace.tsx",
+      "line": 23,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/EcosystemWorkspace.tsx:discover@24",
+      "name": "discover",
+      "kind": "function",
+      "path": "apps/web/components/EcosystemWorkspace.tsx",
+      "line": 24,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/EcosystemWorkspace.tsx:reviewSkill@25",
+      "name": "reviewSkill",
+      "kind": "function",
+      "path": "apps/web/components/EcosystemWorkspace.tsx",
+      "line": 25,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/EcosystemWorkspace.tsx:exportPlan@26",
+      "name": "exportPlan",
+      "kind": "function",
+      "path": "apps/web/components/EcosystemWorkspace.tsx",
+      "line": 26,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -1368,7 +1535,7 @@
       "name": "lib",
       "kind": "module",
       "path": "apps/web/lib",
-      "summary": "Directory grouping 18 indexed files, 105 functions and 1 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 21 indexed files, 131 functions and 2 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -1518,6 +1685,26 @@
       "kind": "function",
       "path": "apps/web/lib/delegation-planner.ts",
       "line": 249,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/lib/ecosystem-catalog.ts",
+      "name": "ecosystem-catalog.ts",
+      "kind": "file",
+      "path": "apps/web/lib/ecosystem-catalog.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:apps/web/lib/ecosystem-catalog.ts:estimateEcosystemCost@22",
+      "name": "estimateEcosystemCost",
+      "kind": "function",
+      "path": "apps/web/lib/ecosystem-catalog.ts",
+      "line": 22,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -1960,7 +2147,7 @@
       "line": 1,
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 23 indexed functions and 1 classes.",
       "confidence": "observed",
-      "connections": 12
+      "connections": 13
     },
     {
       "id": "symbol:apps/web/lib/integration-runtime.ts:configuredDirectory@39",
@@ -2198,6 +2385,196 @@
       "kind": "function",
       "path": "apps/web/lib/integration-runtime.ts",
       "line": 117,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/lib/mcp-discovery.ts",
+      "name": "mcp-discovery.ts",
+      "kind": "file",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 17 indexed functions and 1 classes.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:McpDiscoveryError@27",
+      "name": "McpDiscoveryError",
+      "kind": "class",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 27,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:plainRecord@34",
+      "name": "plainRecord",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 34,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:validId@38",
+      "name": "validId",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 38,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:endpoint@42",
+      "name": "endpoint",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 42,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:loadProfiles@56",
+      "name": "loadProfiles",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 56,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:getMcpDiscoveryCatalog@90",
+      "name": "getMcpDiscoveryCatalog",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 90,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:discoverMcpTools@107",
+      "name": "discoverMcpTools",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 107,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:abortFromCaller@124",
+      "name": "abortFromCaller",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 124,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:send@143",
+      "name": "send",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 143,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:request@179",
+      "name": "request",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 179,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:readRpc@275",
+      "name": "readRpc",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 275,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:validateRpc@289",
+      "name": "validateRpc",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 289,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:readBoundedText@300",
+      "name": "readBoundedText",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 300,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:readSseRpc@325",
+      "name": "readSseRpc",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 325,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:safeServerInfo@366",
+      "name": "safeServerInfo",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 366,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:sanitizeCapabilities@375",
+      "name": "sanitizeCapabilities",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 375,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:sanitizeSchema@381",
+      "name": "sanitizeSchema",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 381,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/mcp-discovery.ts:sanitizeTool@416",
+      "name": "sanitizeTool",
+      "kind": "function",
+      "path": "apps/web/lib/mcp-discovery.ts",
+      "line": 416,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -2613,6 +2990,96 @@
       "connections": 0
     },
     {
+      "id": "file:apps/web/lib/skill-manifest.ts",
+      "name": "skill-manifest.ts",
+      "kind": "file",
+      "path": "apps/web/lib/skill-manifest.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 8 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:apps/web/lib/skill-manifest.ts:utf8Size@46",
+      "name": "utf8Size",
+      "kind": "function",
+      "path": "apps/web/lib/skill-manifest.ts",
+      "line": 46,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/skill-manifest.ts:parseScalar@50",
+      "name": "parseScalar",
+      "kind": "function",
+      "path": "apps/web/lib/skill-manifest.ts",
+      "line": 50,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/skill-manifest.ts:parseFrontmatter@86",
+      "name": "parseFrontmatter",
+      "kind": "function",
+      "path": "apps/web/lib/skill-manifest.ts",
+      "line": 86,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/skill-manifest.ts:listFrom@171",
+      "name": "listFrom",
+      "kind": "function",
+      "path": "apps/web/lib/skill-manifest.ts",
+      "line": 171,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/skill-manifest.ts:validateSourceUrl@176",
+      "name": "validateSourceUrl",
+      "kind": "function",
+      "path": "apps/web/lib/skill-manifest.ts",
+      "line": 176,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/skill-manifest.ts:sha256Hex@198",
+      "name": "sha256Hex",
+      "kind": "function",
+      "path": "apps/web/lib/skill-manifest.ts",
+      "line": 198,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/skill-manifest.ts:uniqueStrings@203",
+      "name": "uniqueStrings",
+      "kind": "function",
+      "path": "apps/web/lib/skill-manifest.ts",
+      "line": 203,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/skill-manifest.ts:reviewSkillImport@216",
+      "name": "reviewSkillImport",
+      "kind": "function",
+      "path": "apps/web/lib/skill-manifest.ts",
+      "line": 216,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
       "id": "module:apps/web/public",
       "name": "public",
       "kind": "module",
@@ -2724,7 +3191,7 @@
       "name": "tests",
       "kind": "module",
       "path": "apps/web/tests",
-      "summary": "Directory grouping 12 indexed files, 10 functions and 1 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 16 indexed files, 14 functions and 1 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -2733,6 +3200,16 @@
       "name": "delegation-planner.test.ts",
       "kind": "file",
       "path": "apps/web/tests/delegation-planner.test.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "file:apps/web/tests/ecosystem-catalog.test.ts",
+      "name": "ecosystem-catalog.test.ts",
+      "kind": "file",
+      "path": "apps/web/tests/ecosystem-catalog.test.ts",
       "line": 1,
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
       "confidence": "observed",
@@ -2824,6 +3301,66 @@
       "kind": "function",
       "path": "apps/web/tests/integration-runtime.test.ts",
       "line": 12,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/tests/mcp-discovery.test.ts",
+      "name": "mcp-discovery.test.ts",
+      "kind": "file",
+      "path": "apps/web/tests/mcp-discovery.test.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 2 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:apps/web/tests/mcp-discovery.test.ts:rpc@10",
+      "name": "rpc",
+      "kind": "function",
+      "path": "apps/web/tests/mcp-discovery.test.ts",
+      "line": 10,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/tests/mcp-discovery.test.ts:tool@16",
+      "name": "tool",
+      "kind": "function",
+      "path": "apps/web/tests/mcp-discovery.test.ts",
+      "line": 16,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/tests/mcp-route.test.ts",
+      "name": "mcp-route.test.ts",
+      "kind": "file",
+      "path": "apps/web/tests/mcp-route.test.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 2 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 4
+    },
+    {
+      "id": "symbol:apps/web/tests/mcp-route.test.ts:readBody@6",
+      "name": "readBody",
+      "kind": "function",
+      "path": "apps/web/tests/mcp-route.test.ts",
+      "line": 6,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/tests/mcp-route.test.ts:sendJson@16",
+      "name": "sendJson",
+      "kind": "function",
+      "path": "apps/web/tests/mcp-route.test.ts",
+      "line": 16,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -2959,11 +3496,21 @@
       "connections": 0
     },
     {
+      "id": "file:apps/web/tests/skill-manifest.test.ts",
+      "name": "skill-manifest.test.ts",
+      "kind": "file",
+      "path": "apps/web/tests/skill-manifest.test.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
+      "confidence": "observed",
+      "connections": 4
+    },
+    {
       "id": "module:docs",
       "name": "docs",
       "kind": "module",
       "path": "docs",
-      "summary": "Directory grouping 11 indexed files, 0 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 15 indexed files, 0 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -3018,6 +3565,26 @@
       "connections": 0
     },
     {
+      "id": "file:docs/ecosystem-interoperability.md",
+      "name": "ecosystem-interoperability.md",
+      "kind": "file",
+      "path": "docs/ecosystem-interoperability.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:docs/google-ax-assessment.md",
+      "name": "google-ax-assessment.md",
+      "kind": "file",
+      "path": "docs/google-ax-assessment.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
       "id": "file:docs/harness-costs.md",
       "name": "harness-costs.md",
       "kind": "file",
@@ -3058,10 +3625,30 @@
       "connections": 0
     },
     {
+      "id": "file:docs/mcp-interoperability.md",
+      "name": "mcp-interoperability.md",
+      "kind": "file",
+      "path": "docs/mcp-interoperability.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
       "id": "file:docs/neo4j-store-setup.cypher",
       "name": "neo4j-store-setup.cypher",
       "kind": "file",
       "path": "docs/neo4j-store-setup.cypher",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:docs/skills-interoperability.md",
+      "name": "skills-interoperability.md",
+      "kind": "file",
+      "path": "docs/skills-interoperability.md",
       "line": 1,
       "summary": "File inventory; source semantics not parsed for this language.",
       "confidence": "observed",
@@ -4956,7 +5543,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 2
+      "connections": 3
     },
     {
       "id": "external:lucide-react",
@@ -4965,7 +5552,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 7
+      "connections": 8
     },
     {
       "id": "external:@/components/AppShell",
@@ -4974,7 +5561,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 4
+      "connections": 5
     },
     {
       "id": "external:@/lib/control-client",
@@ -5022,6 +5609,15 @@
       "connections": 1
     },
     {
+      "id": "external:@/components/EcosystemWorkspace",
+      "name": "@/components/EcosystemWorkspace",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
       "id": "external:@/components/EvaluationLab",
       "name": "@/components/EvaluationLab",
       "kind": "external",
@@ -5055,7 +5651,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 10
+      "connections": 11
     },
     {
       "id": "external:@/lib/delegation-planner",
@@ -5074,6 +5670,24 @@
       "summary": "External package import hint",
       "confidence": "inferred",
       "connections": 3
+    },
+    {
+      "id": "external:@/lib/ecosystem-catalog",
+      "name": "@/lib/ecosystem-catalog",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:@/lib/skill-manifest",
+      "name": "@/lib/skill-manifest",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
     },
     {
       "id": "external:@/lib/execution-economics",
@@ -5199,7 +5813,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 4
+      "connections": 5
     },
     {
       "id": "external:node:fs",
@@ -5209,6 +5823,15 @@
       "summary": "External package import hint",
       "confidence": "inferred",
       "connections": 5
+    },
+    {
+      "id": "external:node:net",
+      "name": "node:net",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
     },
     {
       "id": "external:ai",
@@ -5253,7 +5876,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 14
+      "connections": 18
     },
     {
       "id": "external:node:test",
@@ -5262,11 +5885,20 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 12
+      "connections": 16
     },
     {
       "id": "external:node:os",
       "name": "node:os",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:node:http",
+      "name": "node:http",
       "kind": "external",
       "path": "",
       "summary": "External package import hint",
@@ -6057,6 +6689,34 @@
       "line": 6
     },
     {
+      "source": "file:apps/web/app/api/ecosystem/mcp/route.ts",
+      "target": "file:apps/web/lib/integration-runtime.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/app/api/ecosystem/mcp/route.ts",
+      "target": "file:apps/web/lib/mcp-discovery.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/app/api/ecosystem/mcp/route.ts",
+      "target": "symbol:apps/web/app/api/ecosystem/mcp/route.ts:GET@10",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 10
+    },
+    {
+      "source": "file:apps/web/app/api/ecosystem/mcp/route.ts",
+      "target": "symbol:apps/web/app/api/ecosystem/mcp/route.ts:POST@14",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 14
+    },
+    {
       "source": "file:apps/web/app/api/graph-store/route.ts",
       "target": "external:next/server",
       "relation": "imports",
@@ -6269,6 +6929,27 @@
     {
       "source": "file:apps/web/app/delegation/page.tsx",
       "target": "symbol:apps/web/app/delegation/page.tsx:Page@3",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/app/ecosystem/page.tsx",
+      "target": "external:@/components/AppShell",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/app/ecosystem/page.tsx",
+      "target": "external:@/components/EcosystemWorkspace",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/app/ecosystem/page.tsx",
+      "target": "symbol:apps/web/app/ecosystem/page.tsx:Page@3",
       "relation": "defines",
       "confidence": "inferred",
       "line": 3
@@ -6503,6 +7184,97 @@
       "relation": "defines",
       "confidence": "inferred",
       "line": 9
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "external:@/lib/ecosystem-catalog",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 5
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "external:@/lib/skill-manifest",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 6
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "external:lucide-react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "external:next/link",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "external:react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "file:apps/web/components/EcosystemWorkspace.module.css",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 7
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "symbol:apps/web/components/EcosystemWorkspace.tsx:EcosystemWorkspace@14",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 14
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "symbol:apps/web/components/EcosystemWorkspace.tsx:discover@24",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 24
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "symbol:apps/web/components/EcosystemWorkspace.tsx:download@11",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 11
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "symbol:apps/web/components/EcosystemWorkspace.tsx:exportPlan@26",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 26
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "symbol:apps/web/components/EcosystemWorkspace.tsx:loadServers@23",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 23
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "symbol:apps/web/components/EcosystemWorkspace.tsx:numberOrNull@12",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 12
+    },
+    {
+      "source": "file:apps/web/components/EcosystemWorkspace.tsx",
+      "target": "symbol:apps/web/components/EcosystemWorkspace.tsx:reviewSkill@25",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 25
     },
     {
       "source": "file:apps/web/components/EvaluationLab.tsx",
@@ -7317,6 +8089,13 @@
       "line": 200
     },
     {
+      "source": "file:apps/web/lib/ecosystem-catalog.ts",
+      "target": "symbol:apps/web/lib/ecosystem-catalog.ts:estimateEcosystemCost@22",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 22
+    },
+    {
       "source": "file:apps/web/lib/execution-economics.ts",
       "target": "file:apps/web/lib/harness-catalog.ts",
       "relation": "imports",
@@ -7814,6 +8593,139 @@
       "line": 103
     },
     {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "external:node:net",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:McpDiscoveryError@27",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 27
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:abortFromCaller@124",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 124
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:discoverMcpTools@107",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 107
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:endpoint@42",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 42
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:getMcpDiscoveryCatalog@90",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 90
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:loadProfiles@56",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 56
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:plainRecord@34",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 34
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:readBoundedText@300",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 300
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:readRpc@275",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 275
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:readSseRpc@325",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 325
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:request@179",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 179
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:safeServerInfo@366",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 366
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:sanitizeCapabilities@375",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 375
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:sanitizeSchema@381",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 381
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:sanitizeTool@416",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 416
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:send@143",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 143
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:validId@38",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 38
+    },
+    {
+      "source": "file:apps/web/lib/mcp-discovery.ts",
+      "target": "symbol:apps/web/lib/mcp-discovery.ts:validateRpc@289",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 289
+    },
+    {
       "source": "file:apps/web/lib/model-review.ts",
       "target": "external:ai",
       "relation": "imports",
@@ -8150,6 +9062,62 @@
       "line": 10
     },
     {
+      "source": "file:apps/web/lib/skill-manifest.ts",
+      "target": "symbol:apps/web/lib/skill-manifest.ts:listFrom@171",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 171
+    },
+    {
+      "source": "file:apps/web/lib/skill-manifest.ts",
+      "target": "symbol:apps/web/lib/skill-manifest.ts:parseFrontmatter@86",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 86
+    },
+    {
+      "source": "file:apps/web/lib/skill-manifest.ts",
+      "target": "symbol:apps/web/lib/skill-manifest.ts:parseScalar@50",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 50
+    },
+    {
+      "source": "file:apps/web/lib/skill-manifest.ts",
+      "target": "symbol:apps/web/lib/skill-manifest.ts:reviewSkillImport@216",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 216
+    },
+    {
+      "source": "file:apps/web/lib/skill-manifest.ts",
+      "target": "symbol:apps/web/lib/skill-manifest.ts:sha256Hex@198",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 198
+    },
+    {
+      "source": "file:apps/web/lib/skill-manifest.ts",
+      "target": "symbol:apps/web/lib/skill-manifest.ts:uniqueStrings@203",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 203
+    },
+    {
+      "source": "file:apps/web/lib/skill-manifest.ts",
+      "target": "symbol:apps/web/lib/skill-manifest.ts:utf8Size@46",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 46
+    },
+    {
+      "source": "file:apps/web/lib/skill-manifest.ts",
+      "target": "symbol:apps/web/lib/skill-manifest.ts:validateSourceUrl@176",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 176
+    },
+    {
       "source": "file:apps/web/next.config.ts",
       "target": "external:next",
       "relation": "imports",
@@ -8278,6 +9246,27 @@
     {
       "source": "file:apps/web/tests/delegation-planner.test.ts",
       "target": "file:apps/web/lib/delegation-planner.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/tests/ecosystem-catalog.test.ts",
+      "target": "external:node:assert/strict",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/tests/ecosystem-catalog.test.ts",
+      "target": "external:node:test",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/tests/ecosystem-catalog.test.ts",
+      "target": "file:apps/web/lib/ecosystem-catalog.ts",
       "relation": "imports",
       "confidence": "inferred",
       "line": 3
@@ -8470,6 +9459,83 @@
       "relation": "defines",
       "confidence": "inferred",
       "line": 12
+    },
+    {
+      "source": "file:apps/web/tests/mcp-discovery.test.ts",
+      "target": "external:node:assert/strict",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/tests/mcp-discovery.test.ts",
+      "target": "external:node:test",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/tests/mcp-discovery.test.ts",
+      "target": "file:apps/web/lib/mcp-discovery.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/tests/mcp-discovery.test.ts",
+      "target": "symbol:apps/web/tests/mcp-discovery.test.ts:rpc@10",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 10
+    },
+    {
+      "source": "file:apps/web/tests/mcp-discovery.test.ts",
+      "target": "symbol:apps/web/tests/mcp-discovery.test.ts:tool@16",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 16
+    },
+    {
+      "source": "file:apps/web/tests/mcp-route.test.ts",
+      "target": "external:node:assert/strict",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/tests/mcp-route.test.ts",
+      "target": "external:node:http",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/tests/mcp-route.test.ts",
+      "target": "external:node:test",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/tests/mcp-route.test.ts",
+      "target": "file:apps/web/app/api/ecosystem/mcp/route.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/tests/mcp-route.test.ts",
+      "target": "symbol:apps/web/tests/mcp-route.test.ts:readBody@6",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 6
+    },
+    {
+      "source": "file:apps/web/tests/mcp-route.test.ts",
+      "target": "symbol:apps/web/tests/mcp-route.test.ts:sendJson@16",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 16
     },
     {
       "source": "file:apps/web/tests/model-review.test.ts",
@@ -8666,6 +9732,34 @@
       "relation": "defines",
       "confidence": "inferred",
       "line": 9
+    },
+    {
+      "source": "file:apps/web/tests/skill-manifest.test.ts",
+      "target": "external:node:assert/strict",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/tests/skill-manifest.test.ts",
+      "target": "external:node:crypto",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/tests/skill-manifest.test.ts",
+      "target": "external:node:test",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/tests/skill-manifest.test.ts",
+      "target": "file:apps/web/lib/skill-manifest.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
     },
     {
       "source": "file:integrations/harness_runner.py",
@@ -9866,6 +10960,13 @@
     },
     {
       "source": "module:apps/web/app",
+      "target": "module:apps/web/app/ecosystem",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app",
       "target": "module:apps/web/app/evaluations",
       "relation": "contains",
       "confidence": "observed",
@@ -9888,6 +10989,13 @@
     {
       "source": "module:apps/web/app/api",
       "target": "module:apps/web/app/api/control",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app/api",
+      "target": "module:apps/web/app/api/ecosystem",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -9923,6 +11031,20 @@
     {
       "source": "module:apps/web/app/api/control",
       "target": "file:apps/web/app/api/control/route.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app/api/ecosystem",
+      "target": "module:apps/web/app/api/ecosystem/mcp",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app/api/ecosystem/mcp",
+      "target": "file:apps/web/app/api/ecosystem/mcp/route.ts",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -9984,6 +11106,13 @@
       "line": 0
     },
     {
+      "source": "module:apps/web/app/ecosystem",
+      "target": "file:apps/web/app/ecosystem/page.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
       "source": "module:apps/web/app/evaluations",
       "target": "file:apps/web/app/evaluations/page.tsx",
       "relation": "contains",
@@ -10021,6 +11150,20 @@
     {
       "source": "module:apps/web/components",
       "target": "file:apps/web/components/DelegationPlanner.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/EcosystemWorkspace.module.css",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/EcosystemWorkspace.tsx",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -10132,6 +11275,13 @@
     },
     {
       "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/ecosystem-catalog.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
       "target": "file:apps/web/lib/execution-economics.ts",
       "relation": "contains",
       "confidence": "observed",
@@ -10188,6 +11338,13 @@
     },
     {
       "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/mcp-discovery.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
       "target": "file:apps/web/lib/model-review.ts",
       "relation": "contains",
       "confidence": "observed",
@@ -10224,6 +11381,13 @@
     {
       "source": "module:apps/web/lib",
       "target": "file:apps/web/lib/renderer-lifecycle.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/skill-manifest.ts",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -10286,6 +11450,13 @@
     },
     {
       "source": "module:apps/web/tests",
+      "target": "file:apps/web/tests/ecosystem-catalog.test.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/tests",
       "target": "file:apps/web/tests/execution-economics.test.ts",
       "relation": "contains",
       "confidence": "observed",
@@ -10328,6 +11499,20 @@
     },
     {
       "source": "module:apps/web/tests",
+      "target": "file:apps/web/tests/mcp-discovery.test.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/tests",
+      "target": "file:apps/web/tests/mcp-route.test.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/tests",
       "target": "file:apps/web/tests/model-review.test.ts",
       "relation": "contains",
       "confidence": "observed",
@@ -10357,6 +11542,13 @@
     {
       "source": "module:apps/web/tests",
       "target": "file:apps/web/tests/renderer-lifecycle.test.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/tests",
+      "target": "file:apps/web/tests/skill-manifest.test.ts",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -10398,6 +11590,20 @@
     },
     {
       "source": "module:docs",
+      "target": "file:docs/ecosystem-interoperability.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
+      "target": "file:docs/google-ax-assessment.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
       "target": "file:docs/harness-costs.md",
       "relation": "contains",
       "confidence": "observed",
@@ -10426,7 +11632,21 @@
     },
     {
       "source": "module:docs",
+      "target": "file:docs/mcp-interoperability.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
       "target": "file:docs/neo4j-store-setup.cypher",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
+      "target": "file:docs/skills-interoperability.md",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -13814,11 +15034,11 @@
     }
   ],
   "summary": {
-    "files": 106,
-    "modules": 28,
-    "functions": 324,
-    "classes": 23,
-    "relationships": 1163,
+    "files": 121,
+    "modules": 31,
+    "functions": 364,
+    "classes": 24,
+    "relationships": 1247,
     "unresolved": 1308,
     "hubs": [
       "ControlError",
