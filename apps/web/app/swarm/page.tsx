@@ -1,0 +1,3 @@
+import AppShell from '@/components/AppShell';
+import SwarmControl from '@/components/SwarmControl';
+export default function Page(){return <AppShell active="swarm"><div className="apex-page"><header className="apex-section-heading"><span className="eyebrow">ORCHESTRATION / DURABLE LOCAL STATE</span><h1>A plan is only the beginning.</h1><p>Inspect dependencies, execution leases and the accounting ledger. Start with a harmless scheduler fixture before connecting real workers.</p></header><SwarmControl/></div></AppShell>;}

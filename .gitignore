@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.env
+.env.*
+!.env.example
+.integration-sources/
+__pycache__/
+*.pyc
+*.tsbuildinfo
+.runtime/
+*.sqlite*
+.DS_Store

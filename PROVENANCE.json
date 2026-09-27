@@ -1,0 +1,9 @@
+{
+  "project": "ApexGraphSwarm",
+  "sourceRepository": "https://github.com/AAH20/play-anything",
+  "sourceHead": "1b5955c97e15d42b68e24d2ff8118d44c1bc61e2",
+  "sourceWorkingTree": "Extracted from the current local working tree, including uncommitted Graph Studio enhancements; not a byte-identical copy of the commit.",
+  "date": "2026-09-27",
+  "copiedSecrets": false,
+  "copiedHistory": false
+}
