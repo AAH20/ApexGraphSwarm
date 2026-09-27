@@ -11,7 +11,8 @@
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3010",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test tests/*.test.ts"
+    "test": "node --import tsx --test tests/*.test.ts",
+    "worker:task": "node --import tsx scripts/run-planned-task.ts"
   },
   "dependencies": {
     "ai": "7.0.117",

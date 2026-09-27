@@ -1,3 +1,5 @@
+import {randomUUID} from 'node:crypto';
+import {withDurableDispatch} from '@/lib/durable-dispatch';
 import { NextResponse } from 'next/server';
 import {
   hasSafeOrigin,
@@ -56,6 +58,7 @@ export async function POST(request: Request) {
   if (!isReviewEnabled()) return json({ error: 'Model review is disabled. Configure the server model, gateway key, and access token.' }, 503);
 
   const controller = new AbortController();
+  const abort=()=>controller.abort();request.signal.addEventListener('abort',abort,{once:true});if(request.signal.aborted)controller.abort();
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     const timeout = new Promise<never>((_, reject) => {
@@ -64,13 +67,20 @@ export async function POST(request: Request) {
         reject(new Error('deadline'));
       }, REVIEW_DEADLINE_MS);
     });
-    const result = await Promise.race([runModelReview(input, controller.signal), timeout]);
-    return json(result);
+    const governed=withDurableDispatch('ai-gateway','review',{maxOutputTokens:input.maxOutputTokens},process.env,controller.signal,randomUUID(),async context=>{
+      const callId=await context.begin('ai-gateway',process.env.GRAPH_REVIEW_MODEL!);
+      const result=await runModelReview(input,context.signal);
+      await context.record(callId,{provider:'ai-gateway',model:result.model,costMicrousd:null,tokenUsage:{prompt:result.usage.inputTokens,completion:result.usage.outputTokens},output:{summary:result.summary,findings:result.findings}});
+      return {result};
+    });
+    const result = await Promise.race([governed, timeout]);
+    return json(result.result);
   } catch (error) {
     if (error instanceof Error && error.message === 'deadline') return json({ error: 'Model review timed out after 30 seconds.' }, 504);
     // Provider errors can contain credentials, request bodies, and account details. Never return them to callers.
     return json({ error: 'Model review failed. Check server configuration and provider status.' }, 502);
   } finally {
     if (timer) clearTimeout(timer);
+    request.signal.removeEventListener('abort',abort);
   }
 }

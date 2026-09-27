@@ -8,18 +8,23 @@ import type { GraphEdge, GraphNode } from "../lib/graph";
 import { bindRendererContextEvents } from "../lib/renderer-lifecycle";
 
 type Layout = "grouped" | "force";
+export type GraphCanvasStatus = {
+  renderer: string;
+  layoutRunning: boolean;
+  visible: number;
+  error?: string;
+};
 type Props = {
   nodes: GraphNode[];
   edges: GraphEdge[];
   selected: string | null;
   onSelect: (id: string) => void;
   layout: Layout;
-  onStatus?: (status: {
-    renderer: string;
-    layoutRunning: boolean;
-    visible: number;
-    error?: string;
-  }) => void;
+  onStatus?: (status: GraphCanvasStatus) => void;
+  graphLabel?: string;
+  fallbackLabel?: string;
+  nodeActionLabel?: (node: GraphNode) => string;
+  labelsAlwaysVisible?: boolean;
 };
 
 const COLORS: Record<GraphNode["kind"], string> = {
@@ -58,7 +63,13 @@ function groupedPositions(nodes: GraphNode[]) {
   return positions;
 }
 
-export default function GraphCanvas({ nodes, edges, selected, onSelect, layout, onStatus }: Props) {
+export default function GraphCanvas({
+  nodes, edges, selected, onSelect, layout, onStatus,
+  graphLabel = "Interactive repository graph",
+  fallbackLabel = "Repository graph SVG fallback",
+  nodeActionLabel = (node) => `Select ${node.kind}: ${node.name}`,
+  labelsAlwaysVisible = false,
+}: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const sigmaRef = useRef<Sigma | null>(null);
   const graphRef = useRef<Graph | null>(null);
@@ -159,8 +170,8 @@ export default function GraphCanvas({ nodes, edges, selected, onSelect, layout, 
         labelSize: nodes.length <= 60 ? 13 : 11,
         labelWeight: "500",
         labelColor: { color: "#e5ebf6" },
-        labelRenderedSizeThreshold: nodes.length <= 60 ? 0 : 7,
-        labelDensity: nodes.length <= 60 ? 1 : 0.08,
+        labelRenderedSizeThreshold: labelsAlwaysVisible || nodes.length <= 60 ? 0 : 7,
+        labelDensity: labelsAlwaysVisible || nodes.length <= 60 ? 1 : 0.08,
         stagePadding: 28,
         minCameraRatio: 0.08,
         maxCameraRatio: 8,
@@ -307,7 +318,7 @@ export default function GraphCanvas({ nodes, edges, selected, onSelect, layout, 
       <div
         ref={hostRef}
         className="graph-canvas-renderer"
-        aria-label="Interactive repository graph"
+        aria-label={graphLabel}
         style={{ position: "absolute", inset: 0, visibility: renderError || contextError ? "hidden" : undefined }}
       />
       {(renderError || contextError) && (
@@ -316,7 +327,7 @@ export default function GraphCanvas({ nodes, edges, selected, onSelect, layout, 
           viewBox="0 0 1000 700"
           preserveAspectRatio="xMidYMid meet"
           role="group"
-          aria-label="Repository graph SVG fallback"
+          aria-label={fallbackLabel}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", background: "#101b2b" }}
         >
           <defs>
@@ -379,7 +390,7 @@ export default function GraphCanvas({ nodes, edges, selected, onSelect, layout, 
                 key={node.id}
                 role="button"
                 tabIndex={0}
-                aria-label={`Select ${node.kind}: ${node.name}`}
+                aria-label={nodeActionLabel(node)}
                 aria-pressed={isSelected}
                 onClick={() => onSelect(node.id)}
                 onKeyDown={(event) => {

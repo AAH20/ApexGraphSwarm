@@ -1,0 +1,18 @@
+{
+  "fixtureVersion": 1,
+  "python": "3.14.7",
+  "platform": "Darwin",
+  "rows": 50000,
+  "elapsedSeconds": 4.136069,
+  "peakPythonAllocationBytes": 67377566,
+  "selectedRows": 50000,
+  "truncated": false,
+  "knownCostMicrousd": 18224790,
+  "unknownCostRows": 516,
+  "forecastStatus": "blocked_incomplete_coverage",
+  "limits": [
+    "Synthetic local SQLite fixture, not a production throughput benchmark.",
+    "tracemalloc measures Python allocations, not total RSS or SQLite native memory.",
+    "Instrumentation adds overhead; wall time is machine-specific."
+  ]
+}

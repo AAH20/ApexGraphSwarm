@@ -1,0 +1,7 @@
+type Row=Record<string,unknown>;
+const record=(value:unknown):Row=>value&&typeof value==='object'&&!Array.isArray(value)?value as Row:{};
+export default function RepositoryConflictResults({result}:{result:Row}){
+ if(result.algorithm!=='committed-diff-with-prefix-aware-dependency-frontiers')return null;
+ const base=record(result.base),tasks=Array.isArray(result.tasks)?result.tasks.map(record):[];
+ return <div><h3>Committed repository evidence</h3><p>Base commit: <code>{String(base.resolvedCommit)}</code> · Git object format: {String(base.objectFormat)}</p><p className="apex-note">Writes come from committed tree differences. Working-tree edits are excluded. Read paths are declared by the planner and checked at the base; they are not runtime access traces.</p><div className="apex-table-wrap"><table><caption>Candidate changes pinned to Git objects</caption><thead><tr><th>Task</th><th>Commit</th><th>Changed paths</th><th>Declared reads</th><th>Evidence</th></tr></thead><tbody>{tasks.map(task=><tr key={String(task.id)}><td>{String(task.id)}</td><td><code>{String(task.resolvedCommit).slice(0,12)}</code></td><td>{Array.isArray(task.writes)?task.writes.length:0}</td><td>{Array.isArray(task.declaredReads)?task.declaredReads.length:0}</td><td><details><summary>Inspect paths and object IDs</summary><pre className="apex-json">{JSON.stringify({writes:task.writes,declaredReads:task.declaredReads,changeSha256:task.changeSha256},null,2)}</pre></details></td></tr>)}</tbody></table></div></div>;
+}

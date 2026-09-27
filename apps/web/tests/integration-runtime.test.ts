@@ -1,9 +1,11 @@
+import type {GovernedDispatch} from '../lib/durable-dispatch';
+const adapterOnly:GovernedDispatch=async(_id,_op,_params,_env,signal,_job,invoke)=>invoke({signal,begin:async()=> 'fixture-call',record:async()=>{}});
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtempSync,mkdirSync,writeFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
-import {IntegrationRuntime,INTEGRATION_LIMITS,getIntegrationCatalog,isIntegrationAuthorized,hasIntegrationSafeOrigin} from '../lib/integration-runtime';
+import {IntegrationRuntime,INTEGRATION_LIMITS,getIntegrationCatalog,isIntegrationAuthorized,hasIntegrationSafeOrigin,IdempotencyConflictError} from '../lib/integration-runtime';
 import type {Snapshot} from '../lib/graph';
 
 function graph(count=2):Snapshot{const nodes=Array.from({length:count},(_,i)=>({id:`n${i}`,name:`Node ${i}`,kind:'file' as const,path:`src/${i}.ts`,summary:'',confidence:'parsed' as const}));return {version:1,name:'Fixture',nodes,edges:nodes.slice(1).map((node,i)=>({source:nodes[i].id,target:node.id,relation:'imports',confidence:'parsed' as const})),warnings:[],truncated:false};}
@@ -35,8 +37,8 @@ test('jobs preserve graph identity, expose actual completion, and enforce output
  const tooBig=new IntegrationRuntime({env,execute:async()=>({result:{content:'x'.repeat(INTEGRATION_LIMITS.outputBytes+1)}})});const overflow=tooBig.start(request({}));await waitFor(()=>['failed','succeeded'].includes(tooBig.get(overflow.id)!.status));assert.equal(tooBig.get(overflow.id)?.status,'failed');assert.match(tooBig.get(overflow.id)?.error||'',/output limit/);
 });
 
-test('running cancellation settles even when an adapter ignores AbortSignal; timeout bounds are advertised',async()=>{
- const runtime=new IntegrationRuntime({env,execute:async()=>new Promise(()=>{})});const job=runtime.start(request({}));await waitFor(()=>runtime.get(job.id)?.status==='running');const cancelled=await runtime.cancel(job.id);assert.equal(cancelled?.status,'cancelled');await waitFor(()=>runtime.get(job.id)?.status==='cancelled');assert.equal(INTEGRATION_LIMITS.timeoutMs,45_000);
+test('running cancellation returns promptly while an abort-ignoring adapter retains its slot',async()=>{
+ let release:((value:{result:unknown})=>void)|undefined;const runtime=new IntegrationRuntime({env,execute:async()=>new Promise(resolve=>{release=resolve;})});const job=runtime.start(request({}));await waitFor(()=>runtime.get(job.id)?.status==='running');const cancelled=await runtime.cancel(job.id);assert.equal(cancelled?.status,'cancelled');release?.({result:{ignoredAbort:true}});await waitFor(()=>runtime.get(job.id)?.status==='cancelled');assert.equal(INTEGRATION_LIMITS.timeoutMs,45_000);
 });
 
 test('bounded queue concurrency never exceeds two jobs',async()=>{
@@ -44,9 +46,28 @@ test('bounded queue concurrency never exceeds two jobs',async()=>{
 });
 
 test('trusted local bridge receives fixed profile fields and redacts secrets from output',async()=>{
- let body:Record<string,unknown>|undefined,authorization='';const bridgeSecret='runner-secret-do-not-echo',originalFetch=globalThis.fetch;globalThis.fetch=async(input,init)=>{assert.equal(String(input),'http://127.0.0.1:8765/run');authorization=String(new Headers(init?.headers).get('authorization'));body=JSON.parse(String(init?.body));return new Response(JSON.stringify({status:'succeeded',workspace:'fixture',profile:'openmanus',output:`echo ${bridgeSecret}`,exitCode:0,usage:null}),{status:200,headers:{'content-type':'application/json'}});};try{const bridgeEnv={...env,LOCAL_RUNNER_URL:'http://127.0.0.1:8765',LOCAL_RUNNER_ACCESS_TOKEN:bridgeSecret};const runtime=new IntegrationRuntime({env:bridgeEnv});const job=runtime.start({integrationId:'openmanus',operation:'run',input:{goal:'Run a trusted profile',parameters:{harnessId:'openmanus',authMode:'subscription'}}});await waitFor(()=>runtime.get(job.id)?.status==='succeeded');assert.equal(body?.integrationId,'openmanus');assert.equal(body?.operation,'run');assert.equal(body?.harnessId,'openmanus');assert.equal(body?.authMode,'subscription');assert.equal(body?.requestId,job.id);assert.deepEqual(Object.keys(body||{}).sort(),['authMode','goal','harnessId','integrationId','operation','requestId'].sort());assert.equal(authorization,`Bearer ${bridgeSecret}`);assert.equal((runtime.get(job.id)?.result as {output:string}).output,'echo [redacted]');}finally{globalThis.fetch=originalFetch;}
+ let body:Record<string,unknown>|undefined,authorization='';const bridgeSecret='runner-secret-do-not-echo',originalFetch=globalThis.fetch;globalThis.fetch=async(input,init)=>{assert.equal(String(input),'http://127.0.0.1:8765/run');authorization=String(new Headers(init?.headers).get('authorization'));body=JSON.parse(String(init?.body));return new Response(JSON.stringify({status:'succeeded',workspace:'fixture',profile:'openmanus',output:`echo ${bridgeSecret}`,exitCode:0,usage:null}),{status:200,headers:{'content-type':'application/json'}});};try{const bridgeEnv={...env,LOCAL_RUNNER_URL:'http://127.0.0.1:8765',LOCAL_RUNNER_ACCESS_TOKEN:bridgeSecret};const runtime=new IntegrationRuntime({env:bridgeEnv,dispatch:adapterOnly});const job=runtime.start({integrationId:'openmanus',operation:'run',input:{goal:'Run a trusted profile',parameters:{harnessId:'openmanus',authMode:'subscription'}}});await waitFor(()=>runtime.get(job.id)?.status==='succeeded');assert.equal(body?.integrationId,'openmanus');assert.equal(body?.operation,'run');assert.equal(body?.harnessId,'openmanus');assert.equal(body?.authMode,'subscription');assert.equal(body?.requestId,job.id);assert.deepEqual(Object.keys(body||{}).sort(),['authMode','goal','harnessId','integrationId','operation','requestId'].sort());assert.equal(authorization,`Bearer ${bridgeSecret}`);assert.equal((runtime.get(job.id)?.result as {output:string}).output,'echo [redacted]');}finally{globalThis.fetch=originalFetch;}
 });
 
 test('bridge cancellation sends DELETE with the same server-generated job UUID',async()=>{
- const originalFetch=globalThis.fetch,calls:string[]=[];globalThis.fetch=async(input,init)=>{const url=String(input),method=init?.method||'GET';calls.push(`${method} ${url}`);if(method==='DELETE')return new Response(JSON.stringify({status:'cancelling'}),{status:202});return await new Promise<Response>((_resolve,reject)=>{const signal=init?.signal;signal?.addEventListener('abort',()=>reject(new DOMException('aborted','AbortError')),{once:true});});};try{const bridgeEnv={...env,LOCAL_RUNNER_URL:'http://127.0.0.1:8765',LOCAL_RUNNER_ACCESS_TOKEN:'runner-token-do-not-print'};const runtime=new IntegrationRuntime({env:bridgeEnv});const job=runtime.start({integrationId:'understand-anything',operation:'run',input:{goal:'Stop through bridge',parameters:{harnessId:'codex',authMode:'local'}}});await waitFor(()=>runtime.get(job.id)?.status==='running');assert.equal((await runtime.cancel(job.id))?.status,'cancelled');await waitFor(()=>calls.some(call=>call.startsWith('DELETE ')));assert.ok(calls.includes(`DELETE http://127.0.0.1:8765/run/${job.id}`));}finally{globalThis.fetch=originalFetch;}
+ const originalFetch=globalThis.fetch,calls:string[]=[];globalThis.fetch=async(input,init)=>{const url=String(input),method=init?.method||'GET';calls.push(`${method} ${url}`);if(method==='DELETE')return new Response(JSON.stringify({status:'cancelling'}),{status:202});return await new Promise<Response>((_resolve,reject)=>{const signal=init?.signal;signal?.addEventListener('abort',()=>reject(new DOMException('aborted','AbortError')),{once:true});});};try{const bridgeEnv={...env,LOCAL_RUNNER_URL:'http://127.0.0.1:8765',LOCAL_RUNNER_ACCESS_TOKEN:'runner-token-do-not-print'};const runtime=new IntegrationRuntime({env:bridgeEnv,dispatch:adapterOnly});const job=runtime.start({integrationId:'understand-anything',operation:'run',input:{goal:'Stop through bridge',parameters:{harnessId:'codex',authMode:'local'}}});await waitFor(()=>calls.some(call=>call.startsWith('POST ')));assert.equal((await runtime.cancel(job.id))?.status,'cancelled');await waitFor(()=>calls.some(call=>call.startsWith('DELETE ')));assert.ok(calls.includes(`DELETE http://127.0.0.1:8765/run/${job.id}`));}finally{globalThis.fetch=originalFetch;}
+});
+
+
+test('caller idempotency returns the original job and rejects a changed request',async()=>{
+ let calls=0,release:(()=>void)|undefined;const runtime=new IntegrationRuntime({env,execute:async()=>{calls++;await new Promise<void>(resolve=>{release=resolve;});return {result:{ok:true}};}});const first=runtime.start(request({}), 'retry-key-01');const retry=runtime.start(request({}), 'retry-key-01');assert.equal(retry.id,first.id);assert.equal(calls,0);assert.throws(()=>runtime.start({...request({}),input:{...request({}).input,goal:'different'}},'retry-key-01'),IdempotencyConflictError);await waitFor(()=>calls===1);release?.();await waitFor(()=>runtime.get(first.id)?.status==='succeeded');assert.equal(calls,1);assert.equal(JSON.stringify(runtime.get(first.id)).includes('retry-key-01'),false);
+});
+
+test('idempotency keys are bounded visible ASCII and output token cap matches advertised maximum',()=>{
+ const runtime=new IntegrationRuntime({env,execute:async()=>({result:{ok:true}})});
+ assert.throws(()=>runtime.start(request({}),'bad key'),/visible ASCII/);
+ assert.throws(()=>runtime.start(request({}),'x'.repeat(201)),/visible ASCII/);
+ const oversized={...request({}),input:{...request({}).input,parameters:{maxOutputTokens:601}}};
+ const allowed={...request({}),input:{...request({}).input,parameters:{maxOutputTokens:600}}};
+ assert.throws(()=>runtime.start(oversized),/100 to 600/);
+ assert.doesNotThrow(()=>runtime.start(allowed));
+});
+
+test('aborted adapter keeps its active slot until the underlying executor settles',async()=>{
+ const started:string[]=[],release=new Map<string,()=>void>();const runtime=new IntegrationRuntime({env,execute:async(_id,_op,input)=>{started.push(input.goal);await new Promise<void>(resolve=>release.set(input.goal,resolve));return {result:{goal:input.goal}};}});const job=(goal:string)=>({integrationId:'openrouter',operation:'review',input:{goal,graph:graph(),parameters:{}}});const first=runtime.start(job('first')),second=runtime.start(job('second')),third=runtime.start(job('third'));try{await waitFor(()=>started.length===2);assert.equal((await runtime.cancel(first.id))?.status,'cancelled');await new Promise(resolve=>setTimeout(resolve,10));assert.equal(runtime.get(third.id)?.status,'queued');assert.equal(started.length,2);release.get('first')?.();await waitFor(()=>started.includes('third'));release.get('second')?.();release.get('third')?.();await waitFor(()=>runtime.get(second.id)?.status==='succeeded'&&runtime.get(third.id)?.status==='succeeded');assert.equal(runtime.get(first.id)?.status,'cancelled');}finally{for(const done of release.values())done();}
 });

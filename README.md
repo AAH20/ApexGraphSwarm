@@ -47,6 +47,7 @@ The scope examples are unsaved design demonstrations. They do not represent conn
 - [Orchestration and integrations](#orchestration-and-integrations)
 - [Models, harnesses, and unit economics](#models-harnesses-and-unit-economics)
 - [Evaluation and benchmarks](#evaluation-and-benchmarks)
+- [Optimization Lab and verified evolution](#optimization-lab-and-verified-evolution)
 - [Capabilities and boundaries](#capabilities-and-boundaries)
 - [Verification and development](#verification-and-development)
 - [Deployment and roadmap](#deployment-and-roadmap)
@@ -107,6 +108,8 @@ In **Graph Studio**, choose **Import graph** and select the generated JSON. A gr
 | Specialist teams | `/teams` | Define specialists, skill/tool bindings, identity policy intent, team membership, and dedicated graph scopes. |
 | Swarm control | `/swarm` | Create and observe bounded deterministic task runs backed by the SQLite control plane. |
 | Delegation & cost | `/delegation` | Compare model/harness candidates, constraints, editable cost assumptions, and unit economics. |
+| Data & intelligence | `/analytics` | Recorded/imported event BI, statistics, cohort economics, guarded forecasts and relationship graphs. |
+| Optimization lab | `/optimization` | Run bounded scheduling, evidence, conflict and telemetry experiments; inspect held-out promotion gates. |
 | Evaluation lab | `/evaluations` | Inspect measured local scheduler results and design held-out evaluations and evolution gates. |
 | Ecosystem | `/ecosystem` | Review execution architectures, configured MCP discovery, skills provenance, and operating costs. |
 | Architecture lab | `/ecosystem/research` | Compare orchestration, GraphRAG, vector stores, optimization bottlenecks, and benchmark designs. |
@@ -139,7 +142,7 @@ flowchart TD
     Costs[Rate assumptions and operating costs] --> Plan[Delegation and benchmark plans]
 ```
 
-The specialist design export is a contract for future enforcing adapters. It is not automatically connected to the scheduler or framework-job runtime.
+The specialist designer can import an executable review plan and export an exact operator review request. A local operator creates the immutable contract, collects authenticated approvals, activates it, and binds it to the task. Claims and heartbeats enforce that binding alongside worker identity, grants, expiry and budget. Skills and MCP declarations remain provenance; remote IAM and resource ACLs require explicit adapters. See [specialist activation](docs/specialist-access.md).
 
 ```text
 apexgraphswarm/              Python graph analyzer, preview utilities, SQLite control plane
@@ -272,6 +275,50 @@ python3 scripts/benchmark_swarm.py --counts 30 100 300 --workers 32 --output /tm
 
 Evaluation plans distinguish task quality, latency, throughput, cost, recovery, and constraints. Configuration evolution should pass held-out quality and budget/latency gates before promotion. Published third-party reports, documented features, proposed tests, and locally measured results have different evidence levels. See [evaluation design](docs/apexgraphswarm-evaluation.md) and [comparison methodology](docs/architecture-comparison.md).
 
+## Data science and continuous intelligence
+
+Open **[/analytics](http://127.0.0.1:3010/analytics)** for six linked views: overview, visualizations, statistics, predictions, relationships, and data/methods. Load the explicitly labeled synthetic demo without credentials, or use the private workspace token for read-only ledger analytics and CSV/JSON imports.
+
+- Daily cost and attempt trends, tool/resource cohorts, latency distributions, Pearson correlation and UTC activity heatmaps.
+- Seven-day linear spending baselines with chronological holdout MAE, fixed-origin naive comparisons, and heuristic error envelopes. Today, future events, incomplete costs and unverifiable coverage cannot establish a favorable prediction.
+- A [BI-style visualization gallery](docs/analytics-visualizations.md) with pie/donut, bar/column variants, area/line/combo, treemap, waterfall, funnel, gauge, KPI, table, matrix and hierarchical views. Geographic, ribbon and model-driven visuals explain missing data/adapter requirements.
+- Tool/resource relationships use Graph Studio’s shared WebGL renderer, with fullscreen, force/grouped layouts and SVG fallback. Accessible values, aggregate evidence export and revenue/overhead scenarios preserve explicit assumptions.
+- Opt-in 30-second refresh while the page is visible; imports remain in memory and never write to the execution ledger.
+
+The stdlib engine caps live scans at 200,000 rows and imports at 10,000 rows. SQLite reads are batched; the capped selection is materialized in memory. This is a bounded local analytics implementation, not a distributed warehouse or a calibrated predictive model. See [analytics methods and limits](docs/analytics.md). Run `python3 -m scripts.benchmark_analytics --rows 50000` for a reproducible temporary SQLite fixture; measured evidence is in [the local benchmark](docs/benchmarks/analytics-local.json).
+
+## Optimization Lab and verified evolution
+
+Open **[/optimization](http://127.0.0.1:3010/optimization)** for editable local experiments. The existing `INTEGRATION_ACCESS_TOKEN` authorizes the bounded Python runner. The telemetry experiment reads a configured metrics endpoint; no model calls or deployments occur.
+
+| Workstream | Available now | Scope boundary |
+| --- | --- | --- |
+| Execution ledger | Stable attempt identities, task/tool/resource attribution, settlement receipts, retry accounting, unresolved liability and migration coverage | OpenRouter usage receipts are normalized; provider invoice reconciliation is separate |
+| Exact access grants | Principal/tool/resource matching, expiry, revocation, cumulative reserved/settled budget and lease renewal checks | Enrolled worker credentials bind lease identity; no arbitrary harness sandboxing or multi-tenant identity service |
+| Scheduling and delegation | Dependency/model-capacity/budget/deadline constraints, bounded exact search, compiled review plans and exact-task worker dispatch | Supplied duration/cost estimates; configured OpenRouter/vLLM reviews only |
+| Evidence selection | Weighted coverage under token budgets, exact small-instance oracle and greedy fallback | Declared claims only; no answer-quality or complementary-evidence guarantee |
+| Coding swarm planning | Dependency-respecting waves, declared access conflicts, and committed Git diffs with stale/tamper rechecks | Read paths remain declarations; working-tree changes excluded; no automatic merges |
+| Evaluation and evolution | Versioned task splits, training selection, held-out gates, plus bounded local greedy configuration search against exact small-instance oracles | Synthetic coverage fixtures; unknown monetary costs withhold promotion; no generated code or deployment |
+| Inference capacity | Recommendations over supplied measurements plus optional bounded vLLM metrics collection | No GPU provisioning, autoscaling or extrapolated capacity claims |
+
+Configured external adapters require an enrolled worker, exact capability grant and server policy. Dispatch checkpoints preserve partial outputs and unresolved costs. See [durable adapter setup](docs/durable-adapters.md), [provider receipt normalization](docs/provider-receipts.md) and [read-only inference telemetry](docs/inference-telemetry.md).
+
+The [algorithm evolution experiment](docs/algorithm-evolution.md) executes bounded synthetic candidates and preserves sealed fixtures for independent evaluation. [Delegation compilation](docs/delegation-plan.md) recomputes a schedule and exports a durable plan with explicit model/tool/resource mappings; adapter configuration remains caller-asserted and compilation does not dispatch workers. Executable review plans can be activated with administrator-configured capacities and exact grants, then run through the [planned-task worker](docs/planned-worker.md) or Swarm Control. The worker rechecks server policy and enforces global/per-run resource slots before a model call.
+
+Swarm Control displays ledger coverage, unresolved cost and inspectable attempt receipts. Its execution graph connects logical agents, tasks, attempts, authenticated workers, principals, grants, specialist contract bindings and resources; search, type filters, selected neighborhoods, zoom, fullscreen and an accessible node list expose the recorded relationships. See [execution graph evidence and limits](docs/execution-graph.md). Optimization results include readable assignments, declared dependency graphs, conflict waves, local benchmark timings and full JSON evidence exports. The [repository conflict experiment](docs/repository-conflicts.md) pins candidate changes to Git objects and rechecks plan semantics against fresh repository evidence; the browser cannot choose an arbitrary filesystem path.
+
+Run the reproducible synthetic benchmark from the repository root:
+
+```sh
+python3 -m scripts.benchmark_optimization
+# Or send one bounded JSON request on stdin:
+printf '%s\n' '{"action":"benchmark"}' | python3 -m apexgraphswarm.lab
+```
+
+The [recorded local fixture report](docs/benchmarks/optimization-local.json) includes source hashes, environment details, timings and gate outcomes. The fixture suite measures local algorithm runtime and gate behavior. It does **not** establish performance on PSPLIB, GraphRAG-Bench, ToolSandbox, Terminal-Bench or real agent workloads. Synthetic costs and telemetry are explicitly labeled; unknown costs remain unknown.
+
+See the [delegated priorities and production milestones](docs/optimization-roadmap.md), [optimizer schemas and bounds](docs/optimization-engine.md), [access and ledger contract](docs/access-ledger.md), and [evaluation/promotion contract](docs/evaluation-promotion.md).
+
 ## Capabilities and boundaries
 
 | Area | Available now | Remaining boundary |
@@ -298,7 +345,7 @@ npm --prefix apps/web run typecheck
 npm --prefix apps/web run build
 ```
 
-The specialist-designer verification recorded **31 Python tests and 101 web tests passing**, plus typecheck, production build, and desktop/mobile browser checks. Detailed results and scope are in [verification.md](docs/verification.md). Test timing is machine-dependent; consult the recorded environment and workload when comparing results.
+The latest local verification recorded **154 Python tests and 129 web tests passing**, plus typecheck, production build, and desktop/mobile browser checks. Detailed results and scope are in [verification.md](docs/verification.md). Test timing is machine-dependent; consult the recorded environment and workload when comparing results.
 
 Tests use harmless subprocesses and loopback sockets where required. They do not establish that real provider credentials or separately deployed services work. No paid model run is required for the regression suite.
 
@@ -310,7 +357,7 @@ The supported starting point is a **local, single-workspace deployment bound to 
 
 Incremental production work includes:
 
-1. **Enforcing specialist execution:** connect validated designs to authenticated workload identities, tenant-aware authorization, JIT credentials, verified approvals, revocation, and auditable adapter receipts.
+1. **Production specialist identity:** extend the local enforced review contracts with externally verified tenant identity, JIT credentials, resource ACLs and auditable adapter receipts.
 2. **Durable adapter integration:** unify task lifecycle and remote job status with idempotency, bounded retries, reconciliation, quotas, and isolated workers/worktrees.
 3. **Graph scale and fidelity:** incremental ingestion, compiler-backed language semantics, measured layout budgets, and storage-backed graph queries.
 4. **Evidence-driven delegation:** live model evaluations on held-out workloads, provider usage capture, rate provenance, and invoice reconciliation.

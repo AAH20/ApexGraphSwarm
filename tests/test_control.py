@@ -30,6 +30,25 @@ def simple_plan(*, cost=0, attempts=1):
     }
 
 
+def create_run(store, plan, *, idempotency_key, budget_microusd):
+    for task in plan["tasks"]:
+        if task.get("executionClass", "external") != "fixture":
+            task.setdefault("tool", "test-tool")
+            task.setdefault("resource", "test-resource")
+    return store.create_run(plan, idempotency_key=idempotency_key, budget_microusd=budget_microusd)
+
+
+def claim(store, run_id, worker_id, **kwargs):
+    status = store.status(run_id)
+    pending = next((task for task in status["tasks"] if task["status"] == "pending"), None)
+    if pending and pending["executionClass"] != "fixture":
+        store.grant_access(principal_id=worker_id, tool_id=pending["tool"],
+                           resource_id=pending["resource"], max_budget_microusd=100_000,
+                           expires_at=store._now() + 1000)
+        kwargs["principal_id"] = worker_id
+    return store.claim(run_id, worker_id, **kwargs)
+
+
 class ControlStoreTests(unittest.TestCase):
     def test_dag_dependencies_idempotency_and_fenced_completion(self):
         with ControlStore(":memory:") as store:
@@ -37,21 +56,21 @@ class ControlStoreTests(unittest.TestCase):
                 {"id": "first", "agentId": "a", "dependencies": [], "payload": {"v": 1}, "reservedCostMicrousd": 0},
                 {"id": "second", "agentId": "b", "dependencies": ["first"], "payload": {}, "reservedCostMicrousd": 0},
             ]}
-            run = store.create_run(plan, idempotency_key="request-1", budget_microusd=0)
-            same = store.create_run(plan, idempotency_key="request-1", budget_microusd=0)
+            run = create_run(store, plan, idempotency_key="request-1", budget_microusd=0)
+            same = create_run(store, plan, idempotency_key="request-1", budget_microusd=0)
             run_id = run["run"]["id"]
             self.assertEqual(same["run"]["id"], run_id)
             with self.assertRaises(ConflictError):
-                store.create_run(simple_plan(), idempotency_key="request-1", budget_microusd=0)
+                create_run(store, simple_plan(), idempotency_key="request-1", budget_microusd=0)
 
-            first = store.claim(run_id, "worker-1")
+            first = claim(store, run_id, "worker-1")
             self.assertEqual(first["id"], "first")
-            self.assertIsNone(store.claim(run_id, "worker-2"))
+            self.assertIsNone(claim(store, run_id, "worker-2"))
             result = store.complete(first["taskId"], first["leaseToken"], {"ok": True}, 0)
             self.assertEqual(result["run"]["status"], "queued")
             with self.assertRaises(LeaseError):
                 store.complete(first["taskId"], first["leaseToken"], {"duplicate": True}, 0)
-            second = store.claim(run_id, "worker-2")
+            second = claim(store, run_id, "worker-2")
             self.assertEqual(second["id"], "second")
             final = store.complete(second["taskId"], second["leaseToken"], {"done": True}, 0)
             self.assertEqual(final["run"]["status"], "succeeded")
@@ -63,35 +82,35 @@ class ControlStoreTests(unittest.TestCase):
             missing = simple_plan()
             missing["tasks"][0]["dependencies"] = ["absent"]
             with self.assertRaisesRegex(ControlError, "missing dependencies"):
-                store.create_run(missing, idempotency_key="missing", budget_microusd=0)
+                create_run(store, missing, idempotency_key="missing", budget_microusd=0)
             cycle = {"version": 1, "agents": [{"id": "a"}], "tasks": [
                 {"id": "x", "agentId": "a", "dependencies": ["y"], "reservedCostMicrousd": 0},
                 {"id": "y", "agentId": "a", "dependencies": ["x"], "reservedCostMicrousd": 0},
             ]}
             with self.assertRaisesRegex(ControlError, "cycle"):
-                store.create_run(cycle, idempotency_key="cycle", budget_microusd=0)
+                create_run(store, cycle, idempotency_key="cycle", budget_microusd=0)
             with self.assertRaises(BudgetError):
-                store.create_run(simple_plan(cost=1), idempotency_key="unknown", budget_microusd=None)
+                create_run(store, simple_plan(cost=1), idempotency_key="unknown", budget_microusd=None)
             with self.assertRaises(BudgetError):
-                store.create_run(simple_plan(cost=2), idempotency_key="underfunded", budget_microusd=1)
+                create_run(store, simple_plan(cost=2), idempotency_key="underfunded", budget_microusd=1)
             secret_payload = simple_plan()
             secret_payload["tasks"][0]["payload"] = {"api_key": "should-not-be-persisted"}
             with self.assertRaisesRegex(ControlError, "secret references"):
-                store.create_run(secret_payload, idempotency_key="secret-field", budget_microusd=0)
+                create_run(store, secret_payload, idempotency_key="secret-field", budget_microusd=0)
 
     def test_budget_reservation_retry_and_exact_settlement(self):
         with ControlStore(":memory:") as store:
             plan = simple_plan(cost=10, attempts=2)
             plan["tasks"][0]["executionClass"] = "external_idempotent"
-            run = store.create_run(plan, idempotency_key="budget", budget_microusd=10)
+            run = create_run(store, plan, idempotency_key="budget", budget_microusd=10)
             run_id = run["run"]["id"]
-            first = store.claim(run_id, "worker-a")
+            first = claim(store, run_id, "worker-a")
             retried = store.fail(first["taskId"], first["leaseToken"], "transient", retryable=True,
                                  actual_cost_microusd=3)
             self.assertEqual(retried["tasks"][0]["status"], "pending")
             self.assertEqual(retried["run"]["spentMicrousd"], 3)
             self.assertEqual(retried["run"]["reservedMicrousd"], 7)
-            second = store.claim(run_id, "worker-b")
+            second = claim(store, run_id, "worker-b")
             done = store.complete(second["taskId"], second["leaseToken"], {"ok": 1}, 7)
             self.assertEqual(done["run"]["spentMicrousd"], 10)
             self.assertEqual(done["run"]["remainingMicrousd"], 0)
@@ -101,8 +120,8 @@ class ControlStoreTests(unittest.TestCase):
         with ControlStore(":memory:") as store:
             plan = simple_plan(cost=3)
             plan["tasks"][0]["executionClass"] = "external"
-            run = store.create_run(plan, idempotency_key="cost-limit", budget_microusd=3)
-            task = store.claim(run["run"]["id"], "worker")
+            run = create_run(store, plan, idempotency_key="cost-limit", budget_microusd=3)
+            task = claim(store, run["run"]["id"], "worker")
             breached = store.complete(task["taskId"], task["leaseToken"], {}, 4)
             self.assertEqual(breached["tasks"][0]["status"], "succeeded")
             self.assertEqual(breached["run"]["spentMicrousd"], 4)
@@ -120,8 +139,8 @@ class ControlStoreTests(unittest.TestCase):
                  "payload": {"provider": "configured"}, "reservedCostMicrousd": 50,
                  "maxAttempts": 3, "executionClass": "external"},
             ]}
-            run = store.create_run(plan, idempotency_key="ambiguous", budget_microusd=50)
-            task = store.claim(run["run"]["id"], "worker", lease_seconds=2)
+            run = create_run(store, plan, idempotency_key="ambiguous", budget_microusd=50)
+            task = claim(store, run["run"]["id"], "worker", lease_seconds=2)
             store.close()
 
             clock.value += 3
@@ -145,8 +164,8 @@ class ControlStoreTests(unittest.TestCase):
                 {"id": "call", "agentId": "external", "dependencies": [], "payload": {},
                  "reservedCostMicrousd": 8, "executionClass": "external"},
             ]}
-            run = store.create_run(plan, idempotency_key="cancel-paid", budget_microusd=8)
-            task = store.claim(run["run"]["id"], "worker")
+            run = create_run(store, plan, idempotency_key="cancel-paid", budget_microusd=8)
+            task = claim(store, run["run"]["id"], "worker")
             cancelled = store.cancel(run["run"]["id"])
             self.assertEqual(cancelled["run"]["status"], "needs_reconciliation")
             self.assertEqual(cancelled["run"]["reservedMicrousd"], 8)
@@ -163,8 +182,8 @@ class ControlStoreTests(unittest.TestCase):
                 {"id": "call", "agentId": "remote", "dependencies": [], "payload": {},
                  "reservedCostMicrousd": 10, "maxAttempts": 2, "executionClass": "external"},
             ]}
-            run = store.create_run(plan, idempotency_key="unsafe-retry", budget_microusd=10)
-            task = store.claim(run["run"]["id"], "worker")
+            run = create_run(store, plan, idempotency_key="unsafe-retry", budget_microusd=10)
+            task = claim(store, run["run"]["id"], "worker")
             with self.assertRaises(ConflictError):
                 store.fail(task["taskId"], task["leaseToken"], "uncertain", retryable=True,
                            actual_cost_microusd=0)
@@ -174,8 +193,8 @@ class ControlStoreTests(unittest.TestCase):
             db_path = Path(directory) / "control.sqlite3"
             clock = FakeClock()
             first_store = ControlStore(db_path, clock=clock)
-            run = first_store.create_run(simple_plan(attempts=2), idempotency_key="restart", budget_microusd=0)
-            first = first_store.claim(run["run"]["id"], "worker-old", lease_seconds=2)
+            run = create_run(first_store, simple_plan(attempts=2), idempotency_key="restart", budget_microusd=0)
+            first = claim(first_store, run["run"]["id"], "worker-old", lease_seconds=2)
             old_token = first["leaseToken"]
             first_store.close()
 
@@ -201,10 +220,10 @@ class ControlStoreTests(unittest.TestCase):
                      for i in range(300)]
             plan = {"version": 1, "agents": agents, "tasks": tasks}
             with ControlStore(path, max_active=4, max_registered_agents=300) as store:
-                run = store.create_run(plan, idempotency_key="logical-300", budget_microusd=0)
+                run = create_run(store, plan, idempotency_key="logical-300", budget_microusd=0)
                 run_id = run["run"]["id"]
                 with ThreadPoolExecutor(max_workers=16) as pool:
-                    claims = list(pool.map(lambda index: store.claim(run_id, f"worker-{index}"), range(16)))
+                    claims = list(pool.map(lambda index: claim(store, run_id, f"worker-{index}"), range(16)))
                 active = [claim for claim in claims if claim is not None]
                 self.assertEqual(len(active), 4)
                 status = store.status(run_id)
@@ -218,8 +237,8 @@ class ControlStoreTests(unittest.TestCase):
 
     def test_cancellation_fences_running_workers_and_clears_reservations(self):
         with ControlStore(":memory:") as store:
-            run = store.create_run(simple_plan(cost=0), idempotency_key="cancel", budget_microusd=0)
-            task = store.claim(run["run"]["id"], "worker")
+            run = create_run(store, simple_plan(cost=0), idempotency_key="cancel", budget_microusd=0)
+            task = claim(store, run["run"]["id"], "worker")
             cancelled = store.cancel(run["run"]["id"])
             self.assertEqual(cancelled["run"]["status"], "cancelled")
             self.assertEqual(cancelled["run"]["reservedMicrousd"], 0)
@@ -229,8 +248,8 @@ class ControlStoreTests(unittest.TestCase):
 
     def test_recovery_does_not_retry_after_attempt_limit(self):
         with ControlStore(":memory:") as store:
-            run = store.create_run(simple_plan(attempts=1), idempotency_key="no-retry", budget_microusd=0)
-            task = store.claim(run["run"]["id"], "worker", lease_seconds=1)
+            run = create_run(store, simple_plan(attempts=1), idempotency_key="no-retry", budget_microusd=0)
+            task = claim(store, run["run"]["id"], "worker", lease_seconds=1)
             self.assertEqual(store.recover_expired(now=task["leaseExpiresAt"] + 1), {"requeued": 0, "failed": 1})
             status = store.status(run["run"]["id"])
             self.assertEqual(status["run"]["status"], "failed")

@@ -19,7 +19,7 @@ export default function IntegrationsPanel({graph,viewGraph}:{graph:Snapshot;view
  const [scope,setScope]=useState<'view'|'full'>(viewGraph?'view':'full');
  const executionGraph=scope==='view'&&viewGraph?viewGraph:graph;
  const [token,setToken]=useState(''),[goal,setGoal]=useState('Explain this repository, identify its main dependencies and propose the smallest evidence-backed improvement.'),[includeGraph,setIncludeGraph]=useState(true),[job,setJob]=useState<Job|null>(null),[jobSnapshot,setJobSnapshot]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false);
- const active=useRef<AbortController|null>(null),pollTimer=useRef<ReturnType<typeof setTimeout>|null>(null),mounted=useRef(true);
+ const active=useRef<AbortController|null>(null),pollTimer=useRef<ReturnType<typeof setTimeout>|null>(null),mounted=useRef(true),pendingPost=useRef<{body:string;key:string}|null>(null);
  const snapshot=useMemo(()=>describeSnapshot(executionGraph),[executionGraph]);
  const integration=items.find(item=>item.id===selected),source=integrationCatalog.find(item=>item.id===selected);
  const harness=getHarness(harnessId);
@@ -38,7 +38,7 @@ export default function IntegrationsPanel({graph,viewGraph}:{graph:Snapshot;view
   if(!integration||!operation)return;active.current?.abort();if(pollTimer.current)clearTimeout(pollTimer.current);const controller=new AbortController();active.current=controller;setError('');setBusy(true);setJob(null);setJobSnapshot(`${snapshot.name} · ${snapshot.id}`);
   const values:Record<string,string|number>={};for(const field of fields){const value=parameters[field.id]??field.defaultValue;if(value!==undefined&&value!=='')values[field.id]=field.type==='number'?Number(value):String(value);}
   if(selected==='harness')values.harnessId=String(harnessId);
-  try{const authorization=`Bearer ${token}`;const body=await readResponse(await fetch('/api/integrations',{method:'POST',headers:{'Content-Type':'application/json',Authorization:authorization},body:JSON.stringify({integrationId:selected,operation,input:{goal,parameters:values,...(includeGraph?{graph:executionGraph}:{})}}),signal:controller.signal}));if(controller.signal.aborted||!mounted.current)return;setJob(body.job);if(!terminal.has(body.job.status))void poll(body.job.id,authorization,controller.signal);}
+  try{const authorization=`Bearer ${token}`,requestBody=JSON.stringify({integrationId:selected,operation,input:{goal,parameters:values,...(includeGraph?{graph:executionGraph}:{})}});if(!pendingPost.current||pendingPost.current.body!==requestBody)pendingPost.current={body:requestBody,key:crypto.randomUUID()};const body=await readResponse(await fetch('/api/integrations',{method:'POST',headers:{'Content-Type':'application/json',Authorization:authorization,'Idempotency-Key':pendingPost.current.key},body:requestBody,signal:controller.signal}));pendingPost.current=null;if(controller.signal.aborted||!mounted.current)return;setJob(body.job);if(!terminal.has(body.job.status))void poll(body.job.id,authorization,controller.signal);}
   catch(e){if(!controller.signal.aborted&&mounted.current)setError(e instanceof Error?e.message:'Could not start integration.');}
   finally{if(mounted.current&&active.current===controller)setBusy(false);}
  }
