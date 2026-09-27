@@ -109,8 +109,10 @@ In **Graph Studio**, choose **Import graph** and select the generated JSON. A gr
 | Swarm control | `/swarm` | Create and observe bounded deterministic task runs backed by the SQLite control plane. |
 | Delegation & cost | `/delegation` | Compare model/harness candidates, constraints, editable cost assumptions, and unit economics. |
 | Data & intelligence | `/analytics` | Recorded/imported event BI, statistics, cohort economics, guarded forecasts and relationship graphs. |
+| Decision intelligence | `/decisions` | Laya and AnyJev typed question batches, probability inspection, provider comparison, measured latency and explicit cost estimates. |
 | Optimization lab | `/optimization` | Run bounded scheduling, evidence, conflict and telemetry experiments; inspect held-out promotion gates. |
 | Evaluation lab | `/evaluations` | Inspect measured local scheduler results and design held-out evaluations and evolution gates. |
+| Swarm Arena | `/arena` | Run the versioned five-case synthetic optimization suite and share or export a self-contained, unsigned evidence snapshot. |
 | Ecosystem | `/ecosystem` | Review execution architectures, configured MCP discovery, skills provenance, and operating costs. |
 | Architecture lab | `/ecosystem/research` | Compare orchestration, GraphRAG, vector stores, optimization bottlenecks, and benchmark designs. |
 
@@ -252,6 +254,8 @@ These are estimates until reconciled against actual usage and invoices. A routin
 
 The checked-in [local scheduler artifact](apps/web/public/benchmarks/local-swarm.json) records its classification, environment, source hashes, seed, configuration, timing, accounting, and recovery checks.
 
+The [Swarm Arena](/arena) runs the five-case deterministic optimization fixture. Its share links contain a self-contained report, run checksum, source hashes, and measurement environment; no result is uploaded to a public leaderboard. Synthetic timings and microUSD inputs are not live model performance or provider prices. Treat a shared link as unsigned evidence and rerun it before relying on it.
+
 Its largest measured fixture on 2026-09-27 used:
 
 | Measure | Recorded result |
@@ -286,6 +290,28 @@ Open **[/analytics](http://127.0.0.1:3010/analytics)** for six linked views: ove
 - Opt-in 30-second refresh while the page is visible; imports remain in memory and never write to the execution ledger.
 
 The stdlib engine caps live scans at 200,000 rows and imports at 10,000 rows. SQLite reads are batched; the capped selection is materialized in memory. This is a bounded local analytics implementation, not a distributed warehouse or a calibrated predictive model. See [analytics methods and limits](docs/analytics.md). Run `python3 -m scripts.benchmark_analytics --rows 50000` for a reproducible temporary SQLite fixture; measured evidence is in [the local benchmark](docs/benchmarks/analytics-local.json).
+
+## Fast typed decisions with Laya and AnyJev
+
+[Decision intelligence](apps/web/app/decisions/page.tsx) is accessible from every
+workspace, with contextual question presets for graph analysis, swarm work and
+operational evidence. Supply bounded context and typed choice, score or yes/no
+questions; run one configured provider or compare both. Results show probability
+distributions, a user-selected review threshold, measured request latency and
+operator-configured cost estimates. Actual costs stay unknown unless independently
+measured; an estimate is not a provider billing cap.
+
+Laya uses its native HTTP decision API. AnyJev uses the optional ApexGraphSwarm
+bridge around its Python SDK and a separately operated vLLM server. These runtimes
+remain outside the Python standard-library control plane. See [provider setup and
+limitations](docs/decision-providers.md). No model weights are bundled or downloaded
+automatically by the dashboard, and unavailable providers remain visibly unconfigured.
+
+These are structured decision tools, not unrestricted long-form research engines.
+Confidence needs validation on held-out domain data, input coverage depends on the
+checkpoint context limit, and no millisecond performance claim applies to your
+hardware until measured. Existing graph-cited model review remains the route for
+longer explanatory answers. Decisions do not grant permissions or execute swarm work.
 
 ## Optimization Lab and verified evolution
 

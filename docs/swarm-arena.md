@@ -1,0 +1,9 @@
+# Swarm Arena: run and share protocol
+
+`/arena` executes the repository's fixed `apexgraphswarm-synthetic-optimization-v1` suite through the existing authenticated local optimization endpoint. The five cases cover bounded DAG scheduling, evidence selection, declared file-conflict waves, capacity recommendation over supplied samples, and the paired held-out promotion-gate fixture.
+
+Each run reports the result produced by the Python implementation, local wall-clock time, fixture size, source SHA-256 hashes, Python version, platform, and zero provider calls. The paired fixture deliberately fails its uncertainty-aware promotion gates; its micro-USD values are synthetic arithmetic inputs, never model prices or usage receipts. Different fixture cases have different work, so the shortest case time is descriptive only and does not rank algorithms.
+
+The share URL stores a JSON snapshot in the URL fragment. The app verifies its schema and an unkeyed SHA-256 run digest on open. The digest catches accidental edits; it is not a signature and cannot authenticate who produced the result. Copying or publishing the link reveals its encoded outputs, source hashes, Python version and platform to anyone who receives it. The access token is never placed in the snapshot. A downloaded JSON artifact contains the same report.
+
+This first arena version has no hosted run registry, signed attestations, community submissions, or global leaderboard. It reproduces one deterministic local fixture suite; it does not execute arbitrary submitted tasks, launch a selected model harness, measure live agent quality, or establish the performance of an NP-hard solver against competing implementations. Those comparisons need a versioned task/evaluator registry, isolated harness adapters, matched resource and budget enforcement, held-out evidence, and persistent signed run records before public rankings can be trusted.

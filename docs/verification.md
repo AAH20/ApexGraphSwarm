@@ -161,3 +161,47 @@ neighborhood filters, selection cost details, and fullscreen entry/exit. A
 browser-found fullscreen flex-sizing mismatch was corrected; the canvas and
 outer frame now share a non-shrinking height. No console errors were reported in
 the final production-preview check. No paid provider calls were made.
+
+
+## Laya and AnyJev decision intelligence
+
+The `/decisions` workspace, contextual navigation and Graph Studio integration
+link expose bounded typed question batches. The native Laya adapter and optional
+AnyJev L0/vLLM bridge preserve choice, ordinal score and yes/no semantics.
+Provider response distributions, conservative estimated budgets, timeout/size
+bounds and unavailable-provider states are independently validated.
+
+Validation: 200 Python tests passed in 14.000 seconds; 180 web tests passed in
+15.290 seconds. TypeScript checking, Python compilation and the production build
+passed. The bridge CLI help works without importing AnyJev. Browser verification
+covered both adapters against an explicitly synthetic loopback HTTP service,
+choice/score/yes-no output, malformed JSON, insufficient budget rejection,
+contextual navigation and a 390 px layout without horizontal overflow. The final
+production preview shows both providers unconfigured and offers a clearly labeled
+synthetic fixture; its distributions sum to one and match displayed answers.
+No console errors were reported in the final preview.
+
+No model packages, tokenizer assets or weights were installed, and no real
+Laya/AnyJev inference or paid provider calls occurred. The synthetic service and
+temporary credential-bearing preview were stopped. Fixture timings establish
+HTTP/UI integration behavior only, not model speed, accuracy or production scale.
+
+
+## Interactive analytics detail cards — 2026-09-27
+
+- Python regression suite: 200 tests passed in 14.088 seconds.
+- Complete web suite: 183 tests passed in 15.298 seconds. After the final horizontal-bar selection callback fix, the 21 visualization tests passed again in 0.172 seconds.
+- Web typecheck and final production build passed. No new runtime dependency was added.
+- Browser checks used the explicitly labeled synthetic dataset. All 20 supported chart/detail families exposed inspection targets (the narrative remains prose; gated extensions still require setup). Verified pie 61/112 share and 56 successes; stacked geometry matched 47 successes plus 4 other attempts; gauge showed 112 against target 100; histogram, scatter, heatmap, daily trend, matrix, and forecast cards exposed their underlying values.
+- Verified first-click pinning, keyboard focus, Escape dismissal, category selection, and tooltip placement at a 390-pixel viewport without horizontal overflow. Pointer enter/move/leave handlers share the same card implementation; browser automation exercised click/focus rather than a dedicated hover command.
+- Forecast inspection uses a full date-column hit area and explicitly labels its bounds as heuristic. Final production browser console showed no errors. The preview was refreshed at http://127.0.0.1:3010/analytics.
+
+## Shareable Swarm Arena — 2026-09-27
+
+- Final Python regression suite: 200 tests passed in 14.711 seconds.
+- Final web regression suite: 183 tests passed in 15.408 seconds.
+- TypeScript typecheck and optimized production build passed; `/arena` generated as a static page.
+- End-to-end browser run used an ephemeral local preview token only. It returned the five-case deterministic fixture report, source hashes, platform/runtime pins, and zero provider calls. The paired synthetic promotion example remained not promoted because its uncertainty/quality gates were inconclusive.
+- Generated a share snapshot from the authenticated local fixture endpoint and opened it from a fresh page. SHA-256 integrity validation passed and the page restored all five case measurements and the held-out gate. The encoded snapshot was 4,868 bytes before base64url encoding.
+- The page clearly labels snapshots unsigned, exposes that the complete benchmark output/environment/hashes are URL encoded, excludes the token, and does not claim a hosted leaderboard. No model or external provider calls were made.
+- Production preview at `http://127.0.0.1:3010/arena` was restarted with the normal local environment after end-to-end verification. Console errors: none.

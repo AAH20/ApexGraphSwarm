@@ -1,0 +1,8 @@
+.trigger{cursor:help;}
+.trigger:focus-visible{outline:3px solid #397b72;outline-offset:3px;}
+.tooltip{position:fixed;z-index:10000;max-width:min(360px,calc(100vw - 24px));max-height:calc(100vh - 24px);overflow:auto;box-sizing:border-box;padding:12px 14px;border:1px solid #aebdc1;border-radius:10px;background:#15272d;color:#f4f8f8;box-shadow:0 12px 34px #10252b55;font:12px/1.45 system-ui,sans-serif;pointer-events:auto;}
+.tooltip strong{display:block;margin:0 0 7px;color:#fff;font-size:13px;overflow-wrap:anywhere;}
+.tooltip dl{display:grid;gap:4px;margin:0;}
+.tooltip dl>div{display:grid;grid-template-columns:minmax(86px,auto) minmax(0,1fr);gap:12px;}
+.tooltip dt{color:#b7c7ca;}
+.tooltip dd{margin:0;color:#fff;text-align:right;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;}

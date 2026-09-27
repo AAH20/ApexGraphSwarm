@@ -21,12 +21,29 @@ Group by tool, resource or UTC day; choose attempts, successful attempts or know
 cost. Temporal charts use UTC days. Stacked and combination charts use attempt
 counts, with successes versus other attempts clearly distinguished. The category
 slicer filters labels; the display limit is explicit and no fabricated “Other”
-category fills omitted values. Proportions describe the displayed selection.
-Selecting a mark or underlying-table row highlights its reported values. Export
-SVG for vector graphics or JSON for chart inputs and evidence.
+category fills omitted values. Proportions describe the displayed selection,
+with the query-matching total before the display limit shown separately. Mark
+details report both denominators where relevant; percentages are rounded to one
+decimal and include numerator and denominator. Use hover, keyboard focus, or
+click/tap on a mark to inspect its reported values. Decomposition and matrix
+details also include the snapshot source and generation time. The underlying
+table labels percentages as shares of displayed rows. Selecting a mark or table
+row highlights its reported values. Export SVG for vector graphics or JSON for
+chart inputs and evidence.
 
-The matrix pivots selected tools against up to 20 resources. Missing cells mean
-no returned observations for that pair; they are not measured zero-cost records.
+The decomposition and matrix expose tool/resource marks with attempts,
+successful and other outcomes, known-cost subtotals, unresolved-cost row counts,
+and snapshot provenance in their details. The narrative distinguishes full
+snapshot KPIs from the filtered, displayed selection. These marks are
+descriptive aggregates, not causal explanations.
+
+The matrix pivots selected tools against up to 20 resources. If more resources
+match, the gallery reports how many columns were omitted and shows the visible
+cell subtotal separately from the selected-tools total. Missing cells mean no
+returned observations for that pair; they are not measured zero-cost records.
+Cost values remain known-cost subtotals. When the report is partial or has
+unresolved charges, details label that incompleteness instead of treating
+unknown cost as zero or total spend.
 Waterfall shows cumulative positive contributions, not inferred gains/losses.
 Funnel is a category distribution, not a sequence of customer conversion stages.
 Known-cost charts preserve warnings about unresolved costs and capped cohorts.

@@ -7,7 +7,7 @@
       "name": "ApexGraphSwarm",
       "kind": "module",
       "path": ".",
-      "summary": "Directory grouping 273 indexed files, 1066 functions and 103 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 294 indexed files, 1179 functions and 113 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -285,7 +285,7 @@
       "name": "apps",
       "kind": "module",
       "path": "apps",
-      "summary": "Directory grouping 150 indexed files, 420 functions and 8 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 167 indexed files, 488 functions and 9 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -294,7 +294,7 @@
       "name": "web",
       "kind": "module",
       "path": "apps/web",
-      "summary": "Directory grouping 150 indexed files, 420 functions and 8 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 167 indexed files, 488 functions and 9 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -393,7 +393,7 @@
       "name": "app",
       "kind": "module",
       "path": "apps/web/app",
-      "summary": "Directory grouping 23 indexed files, 34 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 26 indexed files, 38 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -501,7 +501,7 @@
       "name": "api",
       "kind": "module",
       "path": "apps/web/app/api",
-      "summary": "Directory grouping 10 indexed files, 22 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 11 indexed files, 24 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -559,6 +559,45 @@
       "kind": "function",
       "path": "apps/web/app/api/control/route.ts",
       "line": 6,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "module:apps/web/app/api/decisions",
+      "name": "decisions",
+      "kind": "module",
+      "path": "apps/web/app/api/decisions",
+      "summary": "Directory grouping 1 indexed files, 2 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/app/api/decisions/route.ts",
+      "name": "route.ts",
+      "kind": "file",
+      "path": "apps/web/app/api/decisions/route.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 2 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:apps/web/app/api/decisions/route.ts:GET@7",
+      "name": "GET",
+      "kind": "function",
+      "path": "apps/web/app/api/decisions/route.ts",
+      "line": 7,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/app/api/decisions/route.ts:POST@10",
+      "name": "POST",
+      "kind": "function",
+      "path": "apps/web/app/api/decisions/route.ts",
+      "line": 10,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -934,6 +973,64 @@
       "connections": 0
     },
     {
+      "id": "module:apps/web/app/arena",
+      "name": "arena",
+      "kind": "module",
+      "path": "apps/web/app/arena",
+      "summary": "Directory grouping 1 indexed files, 1 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/app/arena/page.tsx",
+      "name": "page.tsx",
+      "kind": "file",
+      "path": "apps/web/app/arena/page.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:apps/web/app/arena/page.tsx:Page@3",
+      "name": "Page",
+      "kind": "function",
+      "path": "apps/web/app/arena/page.tsx",
+      "line": 3,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "module:apps/web/app/decisions",
+      "name": "decisions",
+      "kind": "module",
+      "path": "apps/web/app/decisions",
+      "summary": "Directory grouping 1 indexed files, 1 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/app/decisions/page.tsx",
+      "name": "page.tsx",
+      "kind": "file",
+      "path": "apps/web/app/decisions/page.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:apps/web/app/decisions/page.tsx:Page@3",
+      "name": "Page",
+      "kind": "function",
+      "path": "apps/web/app/decisions/page.tsx",
+      "line": 3,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
       "id": "module:apps/web/app/delegation",
       "name": "delegation",
       "kind": "module",
@@ -1170,7 +1267,7 @@
       "name": "components",
       "kind": "module",
       "path": "apps/web/components",
-      "summary": "Directory grouping 39 indexed files, 135 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 45 indexed files, 169 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -1182,74 +1279,74 @@
       "line": 1,
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 7 indexed functions and 0 classes.",
       "confidence": "observed",
-      "connections": 5
+      "connections": 6
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:TrendChart@6",
+      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:TrendChart@7",
       "name": "TrendChart",
       "kind": "function",
       "path": "apps/web/components/AnalyticsCharts.tsx",
-      "line": 6,
+      "line": 7,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:point@9",
+      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:point@10",
       "name": "point",
       "kind": "function",
       "path": "apps/web/components/AnalyticsCharts.tsx",
-      "line": 9,
+      "line": 10,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:Histogram@14",
+      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:Histogram@15",
       "name": "Histogram",
       "kind": "function",
       "path": "apps/web/components/AnalyticsCharts.tsx",
-      "line": 14,
+      "line": 15,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:ScatterChart@18",
+      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:ScatterChart@20",
       "name": "ScatterChart",
       "kind": "function",
       "path": "apps/web/components/AnalyticsCharts.tsx",
-      "line": 18,
+      "line": 20,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:ActivityHeatmap@22",
+      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:ActivityHeatmap@24",
       "name": "ActivityHeatmap",
       "kind": "function",
       "path": "apps/web/components/AnalyticsCharts.tsx",
-      "line": 22,
+      "line": 24,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:ForecastChart@26",
+      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:ForecastChart@29",
       "name": "ForecastChart",
       "kind": "function",
       "path": "apps/web/components/AnalyticsCharts.tsx",
-      "line": 26,
+      "line": 29,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:x@29",
+      "id": "symbol:apps/web/components/AnalyticsCharts.tsx:x@32",
       "name": "x",
       "kind": "function",
       "path": "apps/web/components/AnalyticsCharts.tsx",
-      "line": 29,
+      "line": 32,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -1372,31 +1469,11 @@
       "line": 1,
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 11 indexed functions and 0 classes.",
       "confidence": "observed",
-      "connections": 5
+      "connections": 7
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:metricName@9",
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:metricName@11",
       "name": "metricName",
-      "kind": "function",
-      "path": "apps/web/components/AnalyticsVisual.tsx",
-      "line": 9,
-      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
-      "confidence": "inferred",
-      "connections": 0
-    },
-    {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:format@10",
-      "name": "format",
-      "kind": "function",
-      "path": "apps/web/components/AnalyticsVisual.tsx",
-      "line": 10,
-      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
-      "confidence": "inferred",
-      "connections": 0
-    },
-    {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:polar@11",
-      "name": "polar",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisual.tsx",
       "line": 11,
@@ -1405,8 +1482,8 @@
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:arcPath@12",
-      "name": "arcPath",
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:format@12",
+      "name": "format",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisual.tsx",
       "line": 12,
@@ -1415,48 +1492,58 @@
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:piePath@16",
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:polar@13",
+      "name": "polar",
+      "kind": "function",
+      "path": "apps/web/components/AnalyticsVisual.tsx",
+      "line": 13,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:arcPath@14",
+      "name": "arcPath",
+      "kind": "function",
+      "path": "apps/web/components/AnalyticsVisual.tsx",
+      "line": 14,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:piePath@18",
       "name": "piePath",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisual.tsx",
-      "line": 16,
+      "line": 18,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:total@23",
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:total@25",
       "name": "total",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisual.tsx",
-      "line": 23,
+      "line": 25,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:chartRows@24",
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:chartRows@26",
       "name": "chartRows",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisual.tsx",
-      "line": 24,
+      "line": 26,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:Table@34",
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:Table@37",
       "name": "Table",
-      "kind": "function",
-      "path": "apps/web/components/AnalyticsVisual.tsx",
-      "line": 34,
-      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
-      "confidence": "inferred",
-      "connections": 0
-    },
-    {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:Segmented@37",
-      "name": "Segmented",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisual.tsx",
       "line": 37,
@@ -1465,21 +1552,31 @@
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:short@61",
-      "name": "short",
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:Segmented@40",
+      "name": "Segmented",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisual.tsx",
-      "line": 61,
+      "line": 40,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:AnalyticsVisual@63",
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:short@66",
+      "name": "short",
+      "kind": "function",
+      "path": "apps/web/components/AnalyticsVisual.tsx",
+      "line": 66,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/AnalyticsVisual.tsx:AnalyticsVisual@68",
       "name": "AnalyticsVisual",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisual.tsx",
-      "line": 63,
+      "line": 68,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -1500,23 +1597,13 @@
       "kind": "file",
       "path": "apps/web/components/AnalyticsVisualGallery.tsx",
       "line": 1,
-      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 7 indexed functions and 0 classes.",
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 10 indexed functions and 0 classes.",
       "confidence": "observed",
-      "connections": 8
+      "connections": 9
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:TileIcon@26",
+      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:TileIcon@27",
       "name": "TileIcon",
-      "kind": "function",
-      "path": "apps/web/components/AnalyticsVisualGallery.tsx",
-      "line": 26,
-      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
-      "confidence": "inferred",
-      "connections": 0
-    },
-    {
-      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:downloadText@27",
-      "name": "downloadText",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisualGallery.tsx",
       "line": 27,
@@ -1525,8 +1612,8 @@
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:AnalyticsVisualGallery@28",
-      "name": "AnalyticsVisualGallery",
+      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:downloadText@28",
+      "name": "downloadText",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisualGallery.tsx",
       "line": 28,
@@ -1535,41 +1622,81 @@
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:valueLabel@34",
+      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:AnalyticsVisualGallery@29",
+      "name": "AnalyticsVisualGallery",
+      "kind": "function",
+      "path": "apps/web/components/AnalyticsVisualGallery.tsx",
+      "line": 29,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:add@36",
+      "name": "add",
+      "kind": "function",
+      "path": "apps/web/components/AnalyticsVisualGallery.tsx",
+      "line": 36,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:valueLabel@45",
       "name": "valueLabel",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisualGallery.tsx",
-      "line": 34,
+      "line": 45,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:choose@37",
+      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:shareLabel@46",
+      "name": "shareLabel",
+      "kind": "function",
+      "path": "apps/web/components/AnalyticsVisualGallery.tsx",
+      "line": 46,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:choose@49",
       "name": "choose",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisualGallery.tsx",
-      "line": 37,
+      "line": 49,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:select@38",
+      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:select@50",
       "name": "select",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisualGallery.tsx",
-      "line": 38,
+      "line": 50,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:exportSVG@39",
+      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:exportSVG@51",
       "name": "exportSVG",
       "kind": "function",
       "path": "apps/web/components/AnalyticsVisualGallery.tsx",
-      "line": 39,
+      "line": 51,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:cohortDetails@55",
+      "name": "cohortDetails",
+      "kind": "function",
+      "path": "apps/web/components/AnalyticsVisualGallery.tsx",
+      "line": 55,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -1650,6 +1777,376 @@
       "kind": "function",
       "path": "apps/web/components/ArchitectureLab.tsx",
       "line": 30,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/components/ArenaStudio.module.css",
+      "name": "ArenaStudio.module.css",
+      "kind": "file",
+      "path": "apps/web/components/ArenaStudio.module.css",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 1
+    },
+    {
+      "id": "file:apps/web/components/ArenaStudio.tsx",
+      "name": "ArenaStudio.tsx",
+      "kind": "file",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 13 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:isRow@18",
+      "name": "isRow",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 18,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:isReport@19",
+      "name": "isReport",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 19,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:encode@20",
+      "name": "encode",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 20,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:decode@21",
+      "name": "decode",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 21,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:caseInput@22",
+      "name": "caseInput",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 22,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:duration@23",
+      "name": "duration",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 23,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:json@24",
+      "name": "json",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 24,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:moneyMicrousd@25",
+      "name": "moneyMicrousd",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 25,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:runDigest@26",
+      "name": "runDigest",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 26,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:ArenaStudio@27",
+      "name": "ArenaStudio",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 27,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:run@33",
+      "name": "run",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 33,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:copyLink@34",
+      "name": "copyLink",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 34,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArenaStudio.tsx:download@35",
+      "name": "download",
+      "kind": "function",
+      "path": "apps/web/components/ArenaStudio.tsx",
+      "line": 35,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/components/ChartTooltip.module.css",
+      "name": "ChartTooltip.module.css",
+      "kind": "file",
+      "path": "apps/web/components/ChartTooltip.module.css",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 1
+    },
+    {
+      "id": "file:apps/web/components/ChartTooltip.tsx",
+      "name": "ChartTooltip.tsx",
+      "kind": "file",
+      "path": "apps/web/components/ChartTooltip.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 4 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 6
+    },
+    {
+      "id": "symbol:apps/web/components/ChartTooltip.tsx:ChartTooltip@16",
+      "name": "ChartTooltip",
+      "kind": "function",
+      "path": "apps/web/components/ChartTooltip.tsx",
+      "line": 16,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ChartTooltip.tsx:dismiss@48",
+      "name": "dismiss",
+      "kind": "function",
+      "path": "apps/web/components/ChartTooltip.tsx",
+      "line": 48,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ChartTooltip.tsx:outside@51",
+      "name": "outside",
+      "kind": "function",
+      "path": "apps/web/components/ChartTooltip.tsx",
+      "line": 51,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ChartTooltip.tsx:reposition@58",
+      "name": "reposition",
+      "kind": "function",
+      "path": "apps/web/components/ChartTooltip.tsx",
+      "line": 58,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/components/DecisionStudio.module.css",
+      "name": "DecisionStudio.module.css",
+      "kind": "file",
+      "path": "apps/web/components/DecisionStudio.module.css",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 1
+    },
+    {
+      "id": "file:apps/web/components/DecisionStudio.tsx",
+      "name": "DecisionStudio.tsx",
+      "kind": "file",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 14 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 4
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:usdToMicrousd@23",
+      "name": "usdToMicrousd",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 23,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:money@28",
+      "name": "money",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 28,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:typeLabel@29",
+      "name": "typeLabel",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 29,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:criteriaText@30",
+      "name": "criteriaText",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 30,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:parseCriteria@31",
+      "name": "parseCriteria",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 31,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:DecisionStudio@37",
+      "name": "DecisionStudio",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 37,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:loadPreset@55",
+      "name": "loadPreset",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 55,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:updateQuestion@56",
+      "name": "updateQuestion",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 56,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:updateType@57",
+      "name": "updateType",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 57,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:addQuestion@58",
+      "name": "addQuestion",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 58,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:acceptAdvanced@59",
+      "name": "acceptAdvanced",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 59,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:runFixture@61",
+      "name": "runFixture",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 61,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:submit@62",
+      "name": "submit",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 62,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/DecisionStudio.tsx:Answer@105",
+      "name": "Answer",
+      "kind": "function",
+      "path": "apps/web/components/DecisionStudio.tsx",
+      "line": 105,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -2252,31 +2749,21 @@
       "line": 1,
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 6 indexed functions and 0 classes.",
       "confidence": "observed",
-      "connections": 8
+      "connections": 9
     },
     {
-      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:IntegrationsPanel@16",
+      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:IntegrationsPanel@17",
       "name": "IntegrationsPanel",
       "kind": "function",
       "path": "apps/web/components/IntegrationsPanel.tsx",
-      "line": 16,
+      "line": 17,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:readResponse@32",
+      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:readResponse@33",
       "name": "readResponse",
-      "kind": "function",
-      "path": "apps/web/components/IntegrationsPanel.tsx",
-      "line": 32,
-      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
-      "confidence": "inferred",
-      "connections": 0
-    },
-    {
-      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:poll@33",
-      "name": "poll",
       "kind": "function",
       "path": "apps/web/components/IntegrationsPanel.tsx",
       "line": 33,
@@ -2285,31 +2772,41 @@
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:start@37",
+      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:poll@34",
+      "name": "poll",
+      "kind": "function",
+      "path": "apps/web/components/IntegrationsPanel.tsx",
+      "line": 34,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:start@38",
       "name": "start",
       "kind": "function",
       "path": "apps/web/components/IntegrationsPanel.tsx",
-      "line": 37,
+      "line": 38,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:cancel@45",
+      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:cancel@46",
       "name": "cancel",
       "kind": "function",
       "path": "apps/web/components/IntegrationsPanel.tsx",
-      "line": 45,
+      "line": 46,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
     },
     {
-      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:exportPlan@46",
+      "id": "symbol:apps/web/components/IntegrationsPanel.tsx:exportPlan@47",
       "name": "exportPlan",
       "kind": "function",
       "path": "apps/web/components/IntegrationsPanel.tsx",
-      "line": 46,
+      "line": 47,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -2938,7 +3435,7 @@
       "name": "lib",
       "kind": "module",
       "path": "apps/web/lib",
-      "summary": "Directory grouping 40 indexed files, 207 functions and 7 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 44 indexed files, 233 functions and 8 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -3210,7 +3707,7 @@
       "line": 1,
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 2 indexed functions and 0 classes.",
       "confidence": "observed",
-      "connections": 3
+      "connections": 4
     },
     {
       "id": "symbol:apps/web/lib/analytics-types.ts:dollars@14",
@@ -3240,7 +3737,7 @@
       "line": 1,
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 7 indexed functions and 1 classes.",
       "confidence": "observed",
-      "connections": 2
+      "connections": 4
     },
     {
       "id": "symbol:apps/web/lib/analytics-visuals.ts:visualSupport@13",
@@ -3343,6 +3840,66 @@
       "connections": 0
     },
     {
+      "id": "file:apps/web/lib/chart-tooltip-details.ts",
+      "name": "chart-tooltip-details.ts",
+      "kind": "file",
+      "path": "apps/web/lib/chart-tooltip-details.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 5 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:apps/web/lib/chart-tooltip-details.ts:metricName@5",
+      "name": "metricName",
+      "kind": "function",
+      "path": "apps/web/lib/chart-tooltip-details.ts",
+      "line": 5,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/chart-tooltip-details.ts:format@6",
+      "name": "format",
+      "kind": "function",
+      "path": "apps/web/lib/chart-tooltip-details.ts",
+      "line": 6,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/chart-tooltip-details.ts:percentShare@8",
+      "name": "percentShare",
+      "kind": "function",
+      "path": "apps/web/lib/chart-tooltip-details.ts",
+      "line": 8,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/chart-tooltip-details.ts:visualTooltipDetails@10",
+      "name": "visualTooltipDetails",
+      "kind": "function",
+      "path": "apps/web/lib/chart-tooltip-details.ts",
+      "line": 10,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/chart-tooltip-details.ts:stackedAttemptShares@28",
+      "name": "stackedAttemptShares",
+      "kind": "function",
+      "path": "apps/web/lib/chart-tooltip-details.ts",
+      "line": 28,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
       "id": "file:apps/web/lib/control-client.ts",
       "name": "control-client.ts",
       "kind": "file",
@@ -3361,6 +3918,256 @@
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
+    },
+    {
+      "id": "file:apps/web/lib/decision-fixture.ts",
+      "name": "decision-fixture.ts",
+      "kind": "file",
+      "path": "apps/web/lib/decision-fixture.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 3 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-fixture.ts:fixtureAnswer@3",
+      "name": "fixtureAnswer",
+      "kind": "function",
+      "path": "apps/web/lib/decision-fixture.ts",
+      "line": 3,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-fixture.ts:peakedDistribution@7",
+      "name": "peakedDistribution",
+      "kind": "function",
+      "path": "apps/web/lib/decision-fixture.ts",
+      "line": 7,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-fixture.ts:buildDecisionFixture@15",
+      "name": "buildDecisionFixture",
+      "kind": "function",
+      "path": "apps/web/lib/decision-fixture.ts",
+      "line": 15,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/lib/decision-runtime.ts",
+      "name": "decision-runtime.ts",
+      "kind": "file",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 18 indexed functions and 1 classes.",
+      "confidence": "observed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:DecisionRuntimeError@32",
+      "name": "DecisionRuntimeError",
+      "kind": "class",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 32,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:isRecord@36",
+      "name": "isRecord",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 36,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:exactKeys@39",
+      "name": "exactKeys",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 39,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:safeInteger@43",
+      "name": "safeInteger",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 43,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:cleanString@46",
+      "name": "cleanString",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 46,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:criteriaLabels@49",
+      "name": "criteriaLabels",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 49,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:validateDecisionInput@55",
+      "name": "validateDecisionInput",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 55,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:parseEstimate@105",
+      "name": "parseEstimate",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 105,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:allowedEndpoint@111",
+      "name": "allowedEndpoint",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 111,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:providerConfig@121",
+      "name": "providerConfig",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 121,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:getDecisionProviders@130",
+      "name": "getDecisionProviders",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 130,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:validProbability@143",
+      "name": "validProbability",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 143,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:validateDistribution@146",
+      "name": "validateDistribution",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 146,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:normalizeAnswer@155",
+      "name": "normalizeAnswer",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 155,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:normalizeResponse@205",
+      "name": "normalizeResponse",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 205,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:readBoundedResponse@219",
+      "name": "readBoundedResponse",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 219,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:baseResult@244",
+      "name": "baseResult",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 244,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:callProvider@248",
+      "name": "callProvider",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 248,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/lib/decision-runtime.ts:runDecisions@285",
+      "name": "runDecisions",
+      "kind": "function",
+      "path": "apps/web/lib/decision-runtime.ts",
+      "line": 285,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/lib/decision-types.ts",
+      "name": "decision-types.ts",
+      "kind": "file",
+      "path": "apps/web/lib/decision-types.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
+      "confidence": "observed",
+      "connections": 4
     },
     {
       "id": "file:apps/web/lib/delegation-planner.ts",
@@ -5624,7 +6431,7 @@
       "name": "tests",
       "kind": "module",
       "path": "apps/web/tests",
-      "summary": "Directory grouping 30 indexed files, 36 functions and 1 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 34 indexed files, 40 functions and 1 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -5689,6 +6496,26 @@
       "connections": 0
     },
     {
+      "id": "file:apps/web/tests/analytics-visual-tooltip-math.test.ts",
+      "name": "analytics-visual-tooltip-math.test.ts",
+      "kind": "file",
+      "path": "apps/web/tests/analytics-visual-tooltip-math.test.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 4
+    },
+    {
+      "id": "symbol:apps/web/tests/analytics-visual-tooltip-math.test.ts:detailsByLabel@6",
+      "name": "detailsByLabel",
+      "kind": "function",
+      "path": "apps/web/tests/analytics-visual-tooltip-math.test.ts",
+      "line": 6,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
       "id": "file:apps/web/tests/analytics-visuals-adversarial.test.ts",
       "name": "analytics-visuals-adversarial.test.ts",
       "kind": "file",
@@ -5737,6 +6564,66 @@
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
       "confidence": "observed",
       "connections": 3
+    },
+    {
+      "id": "file:apps/web/tests/decision-fixture.test.ts",
+      "name": "decision-fixture.test.ts",
+      "kind": "file",
+      "path": "apps/web/tests/decision-fixture.test.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 4
+    },
+    {
+      "id": "symbol:apps/web/tests/decision-fixture.test.ts:close@6",
+      "name": "close",
+      "kind": "function",
+      "path": "apps/web/tests/decision-fixture.test.ts",
+      "line": 6,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/tests/decision-route.test.ts",
+      "name": "decision-route.test.ts",
+      "kind": "file",
+      "path": "apps/web/tests/decision-route.test.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:apps/web/tests/decision-route.test.ts:req@11",
+      "name": "req",
+      "kind": "function",
+      "path": "apps/web/tests/decision-route.test.ts",
+      "line": 11,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/tests/decision-runtime.test.ts",
+      "name": "decision-runtime.test.ts",
+      "kind": "file",
+      "path": "apps/web/tests/decision-runtime.test.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 4
+    },
+    {
+      "id": "symbol:apps/web/tests/decision-runtime.test.ts:jsonResponse@32",
+      "name": "jsonResponse",
+      "kind": "function",
+      "path": "apps/web/tests/decision-runtime.test.ts",
+      "line": 32,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
     },
     {
       "id": "file:apps/web/tests/delegation-planner.test.ts",
@@ -6303,7 +7190,7 @@
       "name": "docs",
       "kind": "module",
       "path": "docs",
-      "summary": "Directory grouping 64 indexed files, 0 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 66 indexed files, 0 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -6402,6 +7289,16 @@
       "name": "control-plane.md",
       "kind": "file",
       "path": "docs/control-plane.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:docs/decision-providers.md",
+      "name": "decision-providers.md",
+      "kind": "file",
+      "path": "docs/decision-providers.md",
       "line": 1,
       "summary": "File inventory; source semantics not parsed for this language.",
       "confidence": "observed",
@@ -6708,6 +7605,16 @@
       "connections": 0
     },
     {
+      "id": "file:docs/swarm-arena.md",
+      "name": "swarm-arena.md",
+      "kind": "file",
+      "path": "docs/swarm-arena.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
       "id": "file:docs/verification.md",
       "name": "verification.md",
       "kind": "file",
@@ -6979,9 +7886,19 @@
       "name": "integrations",
       "kind": "module",
       "path": "integrations",
-      "summary": "Directory grouping 3 indexed files, 22 functions and 7 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 4 indexed files, 49 functions and 10 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
+    },
+    {
+      "id": "file:integrations/anyjev_bridge.py",
+      "name": "anyjev_bridge.py",
+      "kind": "file",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 1,
+      "summary": "Opt-in, loopback-only HTTP adapter for local AnyJev L0 decisions.\n\nThis is intentionally outside ``apexgraphswarm`` so importing the stdlib control\nplane never imports AnyJev, vLLM, Transformers, or NumPy. The bridge starts only\nwhen invoked as a separate process. Contains 27 indexed functions and 3 classes.",
+      "confidence": "parsed",
+      "connections": 20
     },
     {
       "id": "file:integrations/harness-profiles.example.json",
@@ -7067,7 +7984,7 @@
       "name": "tests",
       "kind": "module",
       "path": "tests",
-      "summary": "Directory grouping 26 indexed files, 287 functions and 42 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 27 indexed files, 305 functions and 48 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -7110,6 +8027,16 @@
       "summary": "Adversarial checks for bounded, read-only attempt analytics. Contains 15 indexed functions and 1 classes.",
       "confidence": "parsed",
       "connections": 9
+    },
+    {
+      "id": "file:tests/test_anyjev_bridge.py",
+      "name": "test_anyjev_bridge.py",
+      "kind": "file",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 1,
+      "summary": "Python module; inspect symbols and relationships. Contains 18 indexed functions and 6 classes.",
+      "confidence": "parsed",
+      "connections": 14
     },
     {
       "id": "file:tests/test_benchmarks.py",
@@ -11358,6 +12285,336 @@
       "connections": 2
     },
     {
+      "id": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "name": "BridgeInputError",
+      "kind": "class",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 42,
+      "end_line": 43,
+      "summary": "The request does not match the intentionally small bridge contract.",
+      "confidence": "parsed",
+      "connections": 17
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:_reject_constant@46",
+      "name": "_reject_constant",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 46,
+      "end_line": 47,
+      "summary": "Function declared at integrations/anyjev_bridge.py:46",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:_unique_object@50",
+      "name": "_unique_object",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 50,
+      "end_line": 56,
+      "summary": "Function declared at integrations/anyjev_bridge.py:50",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:_bounded_text@59",
+      "name": "_bounded_text",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 59,
+      "end_line": 68,
+      "summary": "Function declared at integrations/anyjev_bridge.py:59",
+      "confidence": "parsed",
+      "connections": 8
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "name": "_labels_and_prompt",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 71,
+      "end_line": 113,
+      "summary": "Function declared at integrations/anyjev_bridge.py:71",
+      "confidence": "parsed",
+      "connections": 13
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "name": "validate_payload",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 116,
+      "end_line": 137,
+      "summary": "Validate the bounded Laya-shaped request before constructing SDK objects.",
+      "confidence": "parsed",
+      "connections": 10
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:_finite_probability@140",
+      "name": "_finite_probability",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 140,
+      "end_line": 146,
+      "summary": "Function declared at integrations/anyjev_bridge.py:140",
+      "confidence": "parsed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:normalize_decisions@149",
+      "name": "normalize_decisions",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 149,
+      "end_line": 206,
+      "summary": "Copy only verified AnyJev decision fields into the stable bridge shape.",
+      "confidence": "parsed",
+      "connections": 5
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:_local_http_origin@209",
+      "name": "_local_http_origin",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 209,
+      "end_line": 217,
+      "summary": "Function declared at integrations/anyjev_bridge.py:209",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:create_anyjev_runtime@220",
+      "name": "create_anyjev_runtime",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 220,
+      "end_line": 235,
+      "summary": "Function declared at integrations/anyjev_bridge.py:220",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:BridgeService@238",
+      "name": "BridgeService",
+      "kind": "class",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 238,
+      "end_line": 281,
+      "summary": "Class declared at integrations/anyjev_bridge.py:238",
+      "confidence": "parsed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:BridgeService.__init__@239",
+      "name": "BridgeService.__init__",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 239,
+      "end_line": 258,
+      "summary": "Function declared at integrations/anyjev_bridge.py:239",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:BridgeService.try_acquire@260",
+      "name": "BridgeService.try_acquire",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 260,
+      "end_line": 261,
+      "summary": "Function declared at integrations/anyjev_bridge.py:260",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:BridgeService.release@263",
+      "name": "BridgeService.release",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 263,
+      "end_line": 264,
+      "summary": "Function declared at integrations/anyjev_bridge.py:263",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:BridgeService.close@266",
+      "name": "BridgeService.close",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 266,
+      "end_line": 267,
+      "summary": "Function declared at integrations/anyjev_bridge.py:266",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:BridgeService.decide@269",
+      "name": "BridgeService.decide",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 269,
+      "end_line": 281,
+      "summary": "Function declared at integrations/anyjev_bridge.py:269",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:_is_loopback_address@284",
+      "name": "_is_loopback_address",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 284,
+      "end_line": 293,
+      "summary": "Function declared at integrations/anyjev_bridge.py:284",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:_is_local_header_host@296",
+      "name": "_is_local_header_host",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 296,
+      "end_line": 300,
+      "summary": "Function declared at integrations/anyjev_bridge.py:296",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:_origin_is_local@303",
+      "name": "_origin_is_local",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 303,
+      "end_line": 307,
+      "summary": "Function declared at integrations/anyjev_bridge.py:303",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:make_handler@310",
+      "name": "make_handler",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 310,
+      "end_line": 419,
+      "summary": "Function declared at integrations/anyjev_bridge.py:310",
+      "confidence": "parsed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:make_handler.Handler@311",
+      "name": "make_handler.Handler",
+      "kind": "class",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 311,
+      "end_line": 417,
+      "summary": "Class declared at integrations/anyjev_bridge.py:311",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.setup@315",
+      "name": "make_handler.Handler.setup",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 315,
+      "end_line": 317,
+      "summary": "Function declared at integrations/anyjev_bridge.py:315",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.log_message@319",
+      "name": "make_handler.Handler.log_message",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 319,
+      "end_line": 320,
+      "summary": "Function declared at integrations/anyjev_bridge.py:319",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "name": "make_handler.Handler._send",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 322,
+      "end_line": 338,
+      "summary": "Function declared at integrations/anyjev_bridge.py:322",
+      "confidence": "parsed",
+      "connections": 15
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._local_peer@340",
+      "name": "make_handler.Handler._local_peer",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 340,
+      "end_line": 345,
+      "summary": "Function declared at integrations/anyjev_bridge.py:340",
+      "confidence": "parsed",
+      "connections": 5
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_GET@347",
+      "name": "make_handler.Handler.do_GET",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 347,
+      "end_line": 351,
+      "summary": "Function declared at integrations/anyjev_bridge.py:347",
+      "confidence": "parsed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "name": "make_handler.Handler.do_POST",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 353,
+      "end_line": 417,
+      "summary": "Function declared at integrations/anyjev_bridge.py:353",
+      "confidence": "parsed",
+      "connections": 16
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST.<lambda>@409@409",
+      "name": "make_handler.Handler.do_POST.<lambda>@409",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 409,
+      "end_line": 409,
+      "summary": "Function declared at integrations/anyjev_bridge.py:409",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:serve@422",
+      "name": "serve",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 422,
+      "end_line": 442,
+      "summary": "Function declared at integrations/anyjev_bridge.py:422",
+      "confidence": "parsed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:integrations/anyjev_bridge.py:main@445",
+      "name": "main",
+      "kind": "function",
+      "path": "integrations/anyjev_bridge.py",
+      "line": 445,
+      "end_line": 456,
+      "summary": "Function declared at integrations/anyjev_bridge.py:445",
+      "confidence": "parsed",
+      "connections": 2
+    },
+    {
       "id": "symbol:integrations/harness_runner.py:ProfileError@42",
       "name": "ProfileError",
       "kind": "class",
@@ -12313,6 +13570,270 @@
       "summary": "Function declared at tests/test_analytics_adversarial.py:202",
       "confidence": "parsed",
       "connections": 2
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:FakeQuestion@24",
+      "name": "FakeQuestion",
+      "kind": "class",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 24,
+      "end_line": 28,
+      "summary": "Class declared at tests/test_anyjev_bridge.py:24",
+      "confidence": "parsed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory@31",
+      "name": "FakeQuestionFactory",
+      "kind": "class",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 31,
+      "end_line": 42,
+      "summary": "Class declared at tests/test_anyjev_bridge.py:31",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory.choice@33",
+      "name": "FakeQuestionFactory.choice",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 33,
+      "end_line": 34,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:33",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory.score@37",
+      "name": "FakeQuestionFactory.score",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 37,
+      "end_line": 38,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:37",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory.noul@41",
+      "name": "FakeQuestionFactory.noul",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 41,
+      "end_line": 42,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:41",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:FakeDecision@45",
+      "name": "FakeDecision",
+      "kind": "class",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 45,
+      "end_line": 51,
+      "summary": "Class declared at tests/test_anyjev_bridge.py:45",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:FakeDecision.__init__@46",
+      "name": "FakeDecision.__init__",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 46,
+      "end_line": 51,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:46",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:FakeDecider@54",
+      "name": "FakeDecider",
+      "kind": "class",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 54,
+      "end_line": 71,
+      "summary": "Class declared at tests/test_anyjev_bridge.py:54",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:FakeDecider.__init__@55",
+      "name": "FakeDecider.__init__",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 55,
+      "end_line": 60,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:55",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:FakeDecider.decide@62",
+      "name": "FakeDecider.decide",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 62,
+      "end_line": 71,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:62",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "name": "AnyJevBridgeTests",
+      "kind": "class",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 74,
+      "end_line": 192,
+      "summary": "Class declared at tests/test_anyjev_bridge.py:74",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.setUp@75",
+      "name": "AnyJevBridgeTests.setUp",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 75,
+      "end_line": 82,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:75",
+      "confidence": "parsed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.tearDown@84",
+      "name": "AnyJevBridgeTests.tearDown",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 84,
+      "end_line": 89,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:84",
+      "confidence": "parsed",
+      "connections": 0
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.valid_payload@92",
+      "name": "AnyJevBridgeTests.valid_payload",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 92,
+      "end_line": 101,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:92",
+      "confidence": "parsed",
+      "connections": 7
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.post@103",
+      "name": "AnyJevBridgeTests.post",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 103,
+      "end_line": 115,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:103",
+      "confidence": "parsed",
+      "connections": 8
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_laya_shape_returns_normalized_l0_answers_and_unknown_usage@117",
+      "name": "AnyJevBridgeTests.test_laya_shape_returns_normalized_l0_answers_and_unknown_usage",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 117,
+      "end_line": 132,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:117",
+      "confidence": "parsed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_authentication_and_nonlocal_origin_are_rejected@134",
+      "name": "AnyJevBridgeTests.test_authentication_and_nonlocal_origin_are_rejected",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 134,
+      "end_line": 137,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:134",
+      "confidence": "parsed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_request_size_and_shape_limits_are_enforced@139",
+      "name": "AnyJevBridgeTests.test_request_size_and_shape_limits_are_enforced",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 139,
+      "end_line": 144,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:139",
+      "confidence": "parsed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_question_validation_bounds_llm_fanout_and_rejects_extra_fields@146",
+      "name": "AnyJevBridgeTests.test_question_validation_bounds_llm_fanout_and_rejects_extra_fields",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 146,
+      "end_line": 155,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:146",
+      "confidence": "parsed",
+      "connections": 4
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_upstream_errors_are_generic_and_do_not_echo_exception@157",
+      "name": "AnyJevBridgeTests.test_upstream_errors_are_generic_and_do_not_echo_exception",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 157,
+      "end_line": 162,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:157",
+      "confidence": "parsed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains@164",
+      "name": "AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 164,
+      "end_line": 180,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:164",
+      "confidence": "parsed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains.<lambda>@167@167",
+      "name": "AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains.<lambda>@167",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 167,
+      "end_line": 167,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:167",
+      "confidence": "parsed",
+      "connections": 2
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload@182",
+      "name": "AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload",
+      "kind": "function",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 182,
+      "end_line": 192,
+      "summary": "Function declared at tests/test_anyjev_bridge.py:182",
+      "confidence": "parsed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload.Invalid@186",
+      "name": "AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload.Invalid",
+      "kind": "class",
+      "path": "tests/test_anyjev_bridge.py",
+      "line": 186,
+      "end_line": 189,
+      "summary": "Class declared at tests/test_anyjev_bridge.py:186",
+      "confidence": "parsed",
+      "connections": 1
     },
     {
       "id": "symbol:tests/test_benchmarks.py:BenchmarkFixtureTests@11",
@@ -15553,7 +17074,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 10
+      "connections": 11
     },
     {
       "id": "external:lucide-react",
@@ -15571,7 +17092,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 9
+      "connections": 11
     },
     {
       "id": "external:@/components/AnalyticsStudio",
@@ -15607,11 +17128,20 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 6
+      "connections": 7
     },
     {
       "id": "external:@/lib/control-client",
       "name": "@/lib/control-client",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:@/lib/decision-runtime",
+      "name": "@/lib/decision-runtime",
       "kind": "external",
       "path": "",
       "summary": "External package import hint",
@@ -15671,6 +17201,24 @@
       "summary": "External package import hint",
       "confidence": "inferred",
       "connections": 2
+    },
+    {
+      "id": "external:@/components/ArenaStudio",
+      "name": "@/components/ArenaStudio",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:@/components/DecisionStudio",
+      "name": "@/components/DecisionStudio",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
     },
     {
       "id": "external:@/components/DelegationPlanner",
@@ -15751,7 +17299,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 23
+      "connections": 26
     },
     {
       "id": "external:@/lib/analytics-types",
@@ -15761,6 +17309,15 @@
       "summary": "External package import hint",
       "confidence": "inferred",
       "connections": 8
+    },
+    {
+      "id": "external:@/components/ChartTooltip",
+      "name": "@/components/ChartTooltip",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
     },
     {
       "id": "external:next/dynamic",
@@ -15792,6 +17349,15 @@
     {
       "id": "external:@/lib/analytics-import",
       "name": "@/lib/analytics-import",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:@/lib/chart-tooltip-details",
+      "name": "@/lib/chart-tooltip-details",
       "kind": "external",
       "path": "",
       "summary": "External package import hint",
@@ -15837,6 +17403,33 @@
     {
       "id": "external:@/lib/architecture-benchmark",
       "name": "@/lib/architecture-benchmark",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:react-dom",
+      "name": "react-dom",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:@/lib/decision-types",
+      "name": "@/lib/decision-types",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:@/lib/decision-fixture",
+      "name": "@/lib/decision-fixture",
       "kind": "external",
       "path": "",
       "summary": "External package import hint",
@@ -16093,7 +17686,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 32
+      "connections": 36
     },
     {
       "id": "external:node:test",
@@ -16102,7 +17695,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 30
+      "connections": 34
     },
     {
       "id": "external:node:os",
@@ -16129,7 +17722,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 6
+      "connections": 7
     },
     {
       "id": "external:json",
@@ -16138,7 +17731,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 31
+      "connections": 33
     },
     {
       "id": "external:pathlib",
@@ -16156,7 +17749,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 22
+      "connections": 24
     },
     {
       "id": "external:sqlite3",
@@ -16183,7 +17776,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 9
+      "connections": 10
     },
     {
       "id": "external:statistics",
@@ -16201,7 +17794,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 14
+      "connections": 15
     },
     {
       "id": "external:time",
@@ -16210,7 +17803,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 14
+      "connections": 16
     },
     {
       "id": "external:collections",
@@ -16237,7 +17830,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 17
+      "connections": 19
     },
     {
       "id": "external:urllib.parse",
@@ -16246,7 +17839,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 6
+      "connections": 7
     },
     {
       "id": "external:hashlib",
@@ -16264,7 +17857,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 3
+      "connections": 4
     },
     {
       "id": "external:re",
@@ -16273,7 +17866,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 9
+      "connections": 10
     },
     {
       "id": "external:secrets",
@@ -16291,7 +17884,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 11
+      "connections": 12
     },
     {
       "id": "external:threading",
@@ -16300,7 +17893,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 8
+      "connections": 10
     },
     {
       "id": "external:decimal",
@@ -16327,7 +17920,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 10
+      "connections": 11
     },
     {
       "id": "external:ipaddress",
@@ -16336,7 +17929,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 2
+      "connections": 3
     },
     {
       "id": "external:urllib.error",
@@ -16474,13 +18067,22 @@
       "connections": 1
     },
     {
-      "id": "external:signal",
-      "name": "signal",
+      "id": "external:concurrent.futures",
+      "name": "concurrent.futures",
       "kind": "external",
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 1
+      "connections": 4
+    },
+    {
+      "id": "external:socket",
+      "name": "socket",
+      "kind": "external",
+      "path": "",
+      "summary": "Import outside the indexed files or unresolved module",
+      "confidence": "parsed",
+      "connections": 2
     },
     {
       "id": "external:http.server",
@@ -16489,7 +18091,34 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 2
+      "connections": 4
+    },
+    {
+      "id": "external:anyjev",
+      "name": "anyjev",
+      "kind": "external",
+      "path": "",
+      "summary": "Import outside the indexed files or unresolved module",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "external:anyjev.backends.vllm",
+      "name": "anyjev.backends.vllm",
+      "kind": "external",
+      "path": "",
+      "summary": "Import outside the indexed files or unresolved module",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "external:signal",
+      "name": "signal",
+      "kind": "external",
+      "path": "",
+      "summary": "Import outside the indexed files or unresolved module",
+      "confidence": "parsed",
+      "connections": 1
     },
     {
       "id": "external:platform",
@@ -16525,16 +18154,16 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 25
+      "connections": 26
     },
     {
-      "id": "external:concurrent.futures",
-      "name": "concurrent.futures",
+      "id": "external:http.client",
+      "name": "http.client",
       "kind": "external",
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 3
+      "connections": 2
     },
     {
       "id": "external:unittest.mock",
@@ -16544,24 +18173,6 @@
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
       "connections": 2
-    },
-    {
-      "id": "external:http.client",
-      "name": "http.client",
-      "kind": "external",
-      "path": "",
-      "summary": "Import outside the indexed files or unresolved module",
-      "confidence": "parsed",
-      "connections": 1
-    },
-    {
-      "id": "external:socket",
-      "name": "socket",
-      "kind": "external",
-      "path": "",
-      "summary": "Import outside the indexed files or unresolved module",
-      "confidence": "parsed",
-      "connections": 1
     },
     {
       "id": "external:shutil",
@@ -19923,6 +21534,34 @@
       "line": 6
     },
     {
+      "source": "file:apps/web/app/api/decisions/route.ts",
+      "target": "external:@/lib/decision-runtime",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/app/api/decisions/route.ts",
+      "target": "external:@/lib/integration-runtime",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/app/api/decisions/route.ts",
+      "target": "symbol:apps/web/app/api/decisions/route.ts:GET@7",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 7
+    },
+    {
+      "source": "file:apps/web/app/api/decisions/route.ts",
+      "target": "symbol:apps/web/app/api/decisions/route.ts:POST@10",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 10
+    },
+    {
       "source": "file:apps/web/app/api/ecosystem/mcp/route.ts",
       "target": "file:apps/web/lib/integration-runtime.ts",
       "relation": "imports",
@@ -20231,6 +21870,48 @@
       "line": 9
     },
     {
+      "source": "file:apps/web/app/arena/page.tsx",
+      "target": "external:@/components/AppShell",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/app/arena/page.tsx",
+      "target": "external:@/components/ArenaStudio",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/app/arena/page.tsx",
+      "target": "symbol:apps/web/app/arena/page.tsx:Page@3",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/app/decisions/page.tsx",
+      "target": "external:@/components/AppShell",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/app/decisions/page.tsx",
+      "target": "external:@/components/DecisionStudio",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/app/decisions/page.tsx",
+      "target": "symbol:apps/web/app/decisions/page.tsx:Page@3",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
       "source": "file:apps/web/app/delegation/page.tsx",
       "target": "external:@/components/AppShell",
       "relation": "imports",
@@ -20470,6 +22151,13 @@
     },
     {
       "source": "file:apps/web/components/AnalyticsCharts.tsx",
+      "target": "external:@/components/ChartTooltip",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 5
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsCharts.tsx",
       "target": "external:@/lib/analytics-types",
       "relation": "imports",
       "confidence": "inferred",
@@ -20494,56 +22182,56 @@
       "target": "file:apps/web/components/AnalyticsStudio.module.css",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 5
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsCharts.tsx",
-      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:ActivityHeatmap@22",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 22
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsCharts.tsx",
-      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:ForecastChart@26",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 26
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsCharts.tsx",
-      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:Histogram@14",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 14
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsCharts.tsx",
-      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:ScatterChart@18",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 18
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsCharts.tsx",
-      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:TrendChart@6",
-      "relation": "defines",
-      "confidence": "inferred",
       "line": 6
     },
     {
       "source": "file:apps/web/components/AnalyticsCharts.tsx",
-      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:point@9",
+      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:ActivityHeatmap@24",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 9
+      "line": 24
     },
     {
       "source": "file:apps/web/components/AnalyticsCharts.tsx",
-      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:x@29",
+      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:ForecastChart@29",
       "relation": "defines",
       "confidence": "inferred",
       "line": 29
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsCharts.tsx",
+      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:Histogram@15",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 15
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsCharts.tsx",
+      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:ScatterChart@20",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 20
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsCharts.tsx",
+      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:TrendChart@7",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 7
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsCharts.tsx",
+      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:point@10",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 10
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsCharts.tsx",
+      "target": "symbol:apps/web/components/AnalyticsCharts.tsx:x@32",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 32
     },
     {
       "source": "file:apps/web/components/AnalyticsRelationshipGraph.tsx",
@@ -20711,14 +22399,21 @@
       "target": "external:@/lib/analytics-types",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 3
+      "line": 4
     },
     {
       "source": "file:apps/web/components/AnalyticsVisual.tsx",
       "target": "external:@/lib/analytics-visuals",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 4
+      "line": 6
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisual.tsx",
+      "target": "external:@/lib/chart-tooltip-details",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 5
     },
     {
       "source": "file:apps/web/components/AnalyticsVisual.tsx",
@@ -20732,84 +22427,91 @@
       "target": "file:apps/web/components/AnalyticsVisual.module.css",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 5
+      "line": 7
     },
     {
       "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:AnalyticsVisual@63",
+      "target": "file:apps/web/components/ChartTooltip.tsx",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisual.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:AnalyticsVisual@68",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 63
+      "line": 68
     },
     {
       "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:Segmented@37",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:Segmented@40",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 40
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisual.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:Table@37",
       "relation": "defines",
       "confidence": "inferred",
       "line": 37
     },
     {
       "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:Table@34",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:arcPath@14",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 34
+      "line": 14
     },
     {
       "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:arcPath@12",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:chartRows@26",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 26
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisual.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:format@12",
       "relation": "defines",
       "confidence": "inferred",
       "line": 12
     },
     {
       "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:chartRows@24",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 24
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:format@10",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 10
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:metricName@9",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 9
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:piePath@16",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 16
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:polar@11",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:metricName@11",
       "relation": "defines",
       "confidence": "inferred",
       "line": 11
     },
     {
       "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:short@61",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:piePath@18",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 61
+      "line": 18
     },
     {
       "source": "file:apps/web/components/AnalyticsVisual.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:total@23",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:polar@13",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 23
+      "line": 13
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisual.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:short@66",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 66
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisual.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisual.tsx:total@25",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 25
     },
     {
       "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
@@ -20830,7 +22532,7 @@
       "target": "external:@/lib/analytics-visuals",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 7
+      "line": 8
     },
     {
       "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
@@ -20858,56 +22560,84 @@
       "target": "file:apps/web/components/AnalyticsVisualGallery.module.css",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 8
+      "line": 9
     },
     {
       "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:AnalyticsVisualGallery@28",
+      "target": "file:apps/web/components/ChartTooltip.tsx",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 7
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:AnalyticsVisualGallery@29",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 28
+      "line": 29
     },
     {
       "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:TileIcon@26",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 26
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:choose@37",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 37
-    },
-    {
-      "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:downloadText@27",
+      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:TileIcon@27",
       "relation": "defines",
       "confidence": "inferred",
       "line": 27
     },
     {
       "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:exportSVG@39",
+      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:add@36",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 39
+      "line": 36
     },
     {
       "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:select@38",
+      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:choose@49",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 38
+      "line": 49
     },
     {
       "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
-      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:valueLabel@34",
+      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:cohortDetails@55",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 34
+      "line": 55
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:downloadText@28",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 28
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:exportSVG@51",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 51
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:select@50",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 50
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:shareLabel@46",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 46
+    },
+    {
+      "source": "file:apps/web/components/AnalyticsVisualGallery.tsx",
+      "target": "symbol:apps/web/components/AnalyticsVisualGallery.tsx:valueLabel@45",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 45
     },
     {
       "source": "file:apps/web/components/AppShell.tsx",
@@ -21013,6 +22743,293 @@
       "relation": "defines",
       "confidence": "inferred",
       "line": 29
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "external:react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "file:apps/web/components/ArenaStudio.module.css",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 5
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "file:apps/web/components/ChartTooltip.tsx",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:ArenaStudio@27",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 27
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:caseInput@22",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 22
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:copyLink@34",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 34
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:decode@21",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 21
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:download@35",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 35
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:duration@23",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 23
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:encode@20",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 20
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:isReport@19",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 19
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:isRow@18",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 18
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:json@24",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 24
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:moneyMicrousd@25",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 25
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:run@33",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 33
+    },
+    {
+      "source": "file:apps/web/components/ArenaStudio.tsx",
+      "target": "symbol:apps/web/components/ArenaStudio.tsx:runDigest@26",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 26
+    },
+    {
+      "source": "file:apps/web/components/ChartTooltip.tsx",
+      "target": "external:react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/components/ChartTooltip.tsx",
+      "target": "external:react-dom",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/components/ChartTooltip.tsx",
+      "target": "file:apps/web/components/ChartTooltip.module.css",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 5
+    },
+    {
+      "source": "file:apps/web/components/ChartTooltip.tsx",
+      "target": "symbol:apps/web/components/ChartTooltip.tsx:ChartTooltip@16",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 16
+    },
+    {
+      "source": "file:apps/web/components/ChartTooltip.tsx",
+      "target": "symbol:apps/web/components/ChartTooltip.tsx:dismiss@48",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 48
+    },
+    {
+      "source": "file:apps/web/components/ChartTooltip.tsx",
+      "target": "symbol:apps/web/components/ChartTooltip.tsx:outside@51",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 51
+    },
+    {
+      "source": "file:apps/web/components/ChartTooltip.tsx",
+      "target": "symbol:apps/web/components/ChartTooltip.tsx:reposition@58",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 58
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "external:@/lib/decision-fixture",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 5
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "external:@/lib/decision-types",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "external:react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "file:apps/web/components/DecisionStudio.module.css",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 6
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:Answer@105",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 105
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:DecisionStudio@37",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 37
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:acceptAdvanced@59",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 59
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:addQuestion@58",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 58
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:criteriaText@30",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 30
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:loadPreset@55",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 55
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:money@28",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 28
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:parseCriteria@31",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 31
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:runFixture@61",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 61
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:submit@62",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 62
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:typeLabel@29",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 29
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:updateQuestion@56",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 56
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:updateType@57",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 57
+    },
+    {
+      "source": "file:apps/web/components/DecisionStudio.tsx",
+      "target": "symbol:apps/web/components/DecisionStudio.tsx:usdToMicrousd@23",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 23
     },
     {
       "source": "file:apps/web/components/DelegationPlanner.tsx",
@@ -21642,91 +23659,98 @@
       "target": "external:@/lib/execution-economics",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 7
+      "line": 8
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
       "target": "external:@/lib/graph",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 4
+      "line": 5
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
       "target": "external:@/lib/harness-catalog",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 8
+      "line": 9
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
       "target": "external:@/lib/integration-catalog",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 5
+      "line": 6
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
       "target": "external:lucide-react",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 3
+      "line": 4
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
-      "target": "external:react",
+      "target": "external:next/link",
       "relation": "imports",
       "confidence": "inferred",
       "line": 2
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
+      "target": "external:react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/components/IntegrationsPanel.tsx",
       "target": "file:apps/web/components/ExecutionEconomics.tsx",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 6
+      "line": 7
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
-      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:IntegrationsPanel@16",
+      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:IntegrationsPanel@17",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 16
+      "line": 17
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
-      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:cancel@45",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 45
-    },
-    {
-      "source": "file:apps/web/components/IntegrationsPanel.tsx",
-      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:exportPlan@46",
+      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:cancel@46",
       "relation": "defines",
       "confidence": "inferred",
       "line": 46
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
-      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:poll@33",
+      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:exportPlan@47",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 47
+    },
+    {
+      "source": "file:apps/web/components/IntegrationsPanel.tsx",
+      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:poll@34",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 34
+    },
+    {
+      "source": "file:apps/web/components/IntegrationsPanel.tsx",
+      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:readResponse@33",
       "relation": "defines",
       "confidence": "inferred",
       "line": 33
     },
     {
       "source": "file:apps/web/components/IntegrationsPanel.tsx",
-      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:readResponse@32",
+      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:start@38",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 32
-    },
-    {
-      "source": "file:apps/web/components/IntegrationsPanel.tsx",
-      "target": "symbol:apps/web/components/IntegrationsPanel.tsx:start@37",
-      "relation": "defines",
-      "confidence": "inferred",
-      "line": 37
+      "line": 38
     },
     {
       "source": "file:apps/web/components/OptimizationLab.tsx",
@@ -22744,6 +24768,55 @@
       "line": 9
     },
     {
+      "source": "file:apps/web/lib/chart-tooltip-details.ts",
+      "target": "file:apps/web/lib/analytics-types.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/lib/chart-tooltip-details.ts",
+      "target": "file:apps/web/lib/analytics-visuals.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/lib/chart-tooltip-details.ts",
+      "target": "symbol:apps/web/lib/chart-tooltip-details.ts:format@6",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 6
+    },
+    {
+      "source": "file:apps/web/lib/chart-tooltip-details.ts",
+      "target": "symbol:apps/web/lib/chart-tooltip-details.ts:metricName@5",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 5
+    },
+    {
+      "source": "file:apps/web/lib/chart-tooltip-details.ts",
+      "target": "symbol:apps/web/lib/chart-tooltip-details.ts:percentShare@8",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 8
+    },
+    {
+      "source": "file:apps/web/lib/chart-tooltip-details.ts",
+      "target": "symbol:apps/web/lib/chart-tooltip-details.ts:stackedAttemptShares@28",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 28
+    },
+    {
+      "source": "file:apps/web/lib/chart-tooltip-details.ts",
+      "target": "symbol:apps/web/lib/chart-tooltip-details.ts:visualTooltipDetails@10",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 10
+    },
+    {
       "source": "file:apps/web/lib/control-client.ts",
       "target": "external:node:child_process",
       "relation": "imports",
@@ -22777,6 +24850,174 @@
       "relation": "defines",
       "confidence": "inferred",
       "line": 5
+    },
+    {
+      "source": "file:apps/web/lib/decision-fixture.ts",
+      "target": "file:apps/web/lib/decision-types.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/lib/decision-fixture.ts",
+      "target": "symbol:apps/web/lib/decision-fixture.ts:buildDecisionFixture@15",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 15
+    },
+    {
+      "source": "file:apps/web/lib/decision-fixture.ts",
+      "target": "symbol:apps/web/lib/decision-fixture.ts:fixtureAnswer@3",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/lib/decision-fixture.ts",
+      "target": "symbol:apps/web/lib/decision-fixture.ts:peakedDistribution@7",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 7
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "file:apps/web/lib/decision-types.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 8
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:DecisionRuntimeError@32",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 32
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:allowedEndpoint@111",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 111
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:baseResult@244",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 244
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:callProvider@248",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 248
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:cleanString@46",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 46
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:criteriaLabels@49",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 49
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:exactKeys@39",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 39
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:getDecisionProviders@130",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 130
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:isRecord@36",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 36
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:normalizeAnswer@155",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 155
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:normalizeResponse@205",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 205
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:parseEstimate@105",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 105
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:providerConfig@121",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 121
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:readBoundedResponse@219",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 219
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:runDecisions@285",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 285
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:safeInteger@43",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 43
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:validProbability@143",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 143
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:validateDecisionInput@55",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 55
+    },
+    {
+      "source": "file:apps/web/lib/decision-runtime.ts",
+      "target": "symbol:apps/web/lib/decision-runtime.ts:validateDistribution@146",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 146
     },
     {
       "source": "file:apps/web/lib/delegation-planner.ts",
@@ -24578,6 +26819,41 @@
       "line": 11
     },
     {
+      "source": "file:apps/web/tests/analytics-visual-tooltip-math.test.ts",
+      "target": "external:node:assert/strict",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/tests/analytics-visual-tooltip-math.test.ts",
+      "target": "external:node:test",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/tests/analytics-visual-tooltip-math.test.ts",
+      "target": "file:apps/web/lib/analytics-visuals.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/tests/analytics-visual-tooltip-math.test.ts",
+      "target": "file:apps/web/lib/chart-tooltip-details.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/tests/analytics-visual-tooltip-math.test.ts",
+      "target": "symbol:apps/web/tests/analytics-visual-tooltip-math.test.ts:detailsByLabel@6",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 6
+    },
+    {
       "source": "file:apps/web/tests/analytics-visuals-adversarial.test.ts",
       "target": "external:node:assert/strict",
       "relation": "imports",
@@ -24660,6 +26936,104 @@
       "relation": "imports",
       "confidence": "inferred",
       "line": 3
+    },
+    {
+      "source": "file:apps/web/tests/decision-fixture.test.ts",
+      "target": "external:node:assert/strict",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/tests/decision-fixture.test.ts",
+      "target": "external:node:test",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/tests/decision-fixture.test.ts",
+      "target": "file:apps/web/lib/decision-fixture.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/tests/decision-fixture.test.ts",
+      "target": "file:apps/web/lib/decision-types.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/tests/decision-fixture.test.ts",
+      "target": "symbol:apps/web/tests/decision-fixture.test.ts:close@6",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 6
+    },
+    {
+      "source": "file:apps/web/tests/decision-route.test.ts",
+      "target": "external:node:assert/strict",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/tests/decision-route.test.ts",
+      "target": "external:node:test",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/tests/decision-route.test.ts",
+      "target": "file:apps/web/app/api/decisions/route.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/tests/decision-route.test.ts",
+      "target": "symbol:apps/web/tests/decision-route.test.ts:req@11",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 11
+    },
+    {
+      "source": "file:apps/web/tests/decision-runtime.test.ts",
+      "target": "external:node:assert/strict",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/tests/decision-runtime.test.ts",
+      "target": "external:node:test",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/tests/decision-runtime.test.ts",
+      "target": "file:apps/web/lib/decision-runtime.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/tests/decision-runtime.test.ts",
+      "target": "file:apps/web/lib/decision-types.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/tests/decision-runtime.test.ts",
+      "target": "symbol:apps/web/tests/decision-runtime.test.ts:jsonResponse@32",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 32
     },
     {
       "source": "file:apps/web/tests/delegation-planner.test.ts",
@@ -25691,6 +28065,258 @@
       "line": 5
     },
     {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:__future__",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 8
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:anyjev",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 229
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:anyjev.backends.vllm",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 230
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:argparse",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 10
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:concurrent.futures",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 11
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:hmac",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 12
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:http.server",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 22
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:ipaddress",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 13
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:json",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 14
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:math",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 15
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:os",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 16
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:re",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 17
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:socket",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 18
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:sys",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 19
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:threading",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 20
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:time",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 21
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:typing",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 23
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "external:urllib.parse",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 24
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 42
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeService@238",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 238
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:_bounded_text@59",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 59
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:_finite_probability@140",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 140
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:_is_local_header_host@296",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 296
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:_is_loopback_address@284",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 284
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 71
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:_local_http_origin@209",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 209
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:_origin_is_local@303",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 303
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:_reject_constant@46",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 46
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:_unique_object@50",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 50
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:create_anyjev_runtime@220",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 220
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:main@445",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 460
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:main@445",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 445
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler@310",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 310
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:normalize_decisions@149",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 149
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:serve@422",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 422
+    },
+    {
+      "source": "file:integrations/anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 116
+    },
+    {
       "source": "file:integrations/harness_runner.py",
       "target": "external:__future__",
       "relation": "imports",
@@ -26655,6 +29281,139 @@
       "relation": "defines",
       "confidence": "parsed",
       "line": 15
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "external:__future__",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 1
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "external:dataclasses",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 8
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "external:http.client",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 3
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "external:http.server",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 9
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "external:json",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 4
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "external:threading",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 5
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "external:time",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 6
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "external:typing",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 10
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "external:unittest",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 7
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "file:integrations/anyjev_bridge.py",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 12
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeService@238",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 12
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler@310",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 12
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:normalize_decisions@149",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 12
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 12
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 74
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeDecider@54",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 54
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeDecision@45",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 45
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeQuestion@24",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 24
+    },
+    {
+      "source": "file:tests/test_anyjev_bridge.py",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory@31",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 31
     },
     {
       "source": "file:tests/test_benchmarks.py",
@@ -28940,6 +31699,20 @@
     },
     {
       "source": "module:apps/web/app",
+      "target": "module:apps/web/app/arena",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app",
+      "target": "module:apps/web/app/decisions",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app",
       "target": "module:apps/web/app/delegation",
       "relation": "contains",
       "confidence": "observed",
@@ -29010,6 +31783,13 @@
     },
     {
       "source": "module:apps/web/app/api",
+      "target": "module:apps/web/app/api/decisions",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app/api",
       "target": "module:apps/web/app/api/ecosystem",
       "relation": "contains",
       "confidence": "observed",
@@ -29067,6 +31847,13 @@
     {
       "source": "module:apps/web/app/api/control",
       "target": "file:apps/web/app/api/control/route.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app/api/decisions",
+      "target": "file:apps/web/app/api/decisions/route.ts",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -29144,6 +31931,20 @@
     {
       "source": "module:apps/web/app/api/swarm",
       "target": "file:apps/web/app/api/swarm/route.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app/arena",
+      "target": "file:apps/web/app/arena/page.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app/decisions",
+      "target": "file:apps/web/app/decisions/page.tsx",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -29291,6 +32092,48 @@
     {
       "source": "module:apps/web/components",
       "target": "file:apps/web/components/ArchitectureLab.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/ArenaStudio.module.css",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/ArenaStudio.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/ChartTooltip.module.css",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/ChartTooltip.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/DecisionStudio.module.css",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/DecisionStudio.tsx",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -29549,7 +32392,35 @@
     },
     {
       "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/chart-tooltip-details.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
       "target": "file:apps/web/lib/control-client.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/decision-fixture.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/decision-runtime.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/decision-types.ts",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -29857,6 +32728,13 @@
     },
     {
       "source": "module:apps/web/tests",
+      "target": "file:apps/web/tests/analytics-visual-tooltip-math.test.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/tests",
       "target": "file:apps/web/tests/analytics-visuals-adversarial.test.ts",
       "relation": "contains",
       "confidence": "observed",
@@ -29872,6 +32750,27 @@
     {
       "source": "module:apps/web/tests",
       "target": "file:apps/web/tests/architecture-benchmark.test.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/tests",
+      "target": "file:apps/web/tests/decision-fixture.test.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/tests",
+      "target": "file:apps/web/tests/decision-route.test.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/tests",
+      "target": "file:apps/web/tests/decision-runtime.test.ts",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -30116,6 +33015,13 @@
     },
     {
       "source": "module:docs",
+      "target": "file:docs/decision-providers.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
       "target": "file:docs/delegation-plan.md",
       "relation": "contains",
       "confidence": "observed",
@@ -30326,6 +33232,13 @@
     },
     {
       "source": "module:docs",
+      "target": "file:docs/swarm-arena.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
       "target": "file:docs/verification.md",
       "relation": "contains",
       "confidence": "observed",
@@ -30515,6 +33428,13 @@
     },
     {
       "source": "module:integrations",
+      "target": "file:integrations/anyjev_bridge.py",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:integrations",
       "target": "file:integrations/harness-profiles.example.json",
       "relation": "contains",
       "confidence": "observed",
@@ -30586,6 +33506,13 @@
     {
       "source": "module:tests",
       "target": "file:tests/test_analytics_adversarial.py",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:tests",
+      "target": "file:tests/test_anyjev_bridge.py",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -41945,6 +44872,454 @@
       "line": 25
     },
     {
+      "source": "symbol:integrations/anyjev_bridge.py:BridgeService.decide@269",
+      "target": "symbol:integrations/anyjev_bridge.py:normalize_decisions@149",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 281
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:BridgeService@238",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeService.__init__@239",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 239
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:BridgeService@238",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeService.close@266",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 266
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:BridgeService@238",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeService.decide@269",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 269
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:BridgeService@238",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeService.release@263",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 263
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:BridgeService@238",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeService.try_acquire@260",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 260
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_bounded_text@59",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 61
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_bounded_text@59",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 65
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_bounded_text@59",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 67
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 73
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 76
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 84
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 88
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 93
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 100
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 103
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 106
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:_bounded_text@59",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 77
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:_bounded_text@59",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 89
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:_bounded_text@59",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 95
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "target": "symbol:integrations/anyjev_bridge.py:_bounded_text@59",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 96
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_reject_constant@46",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 47
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:_unique_object@50",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 54
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:create_anyjev_runtime@220",
+      "target": "symbol:integrations/anyjev_bridge.py:_local_http_origin@209",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 227
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:main@445",
+      "target": "symbol:integrations/anyjev_bridge.py:serve@422",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 452
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._local_peer@340",
+      "target": "symbol:integrations/anyjev_bridge.py:_is_local_header_host@296",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 343
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._local_peer@340",
+      "target": "symbol:integrations/anyjev_bridge.py:_is_loopback_address@284",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 342
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._local_peer@340",
+      "target": "symbol:integrations/anyjev_bridge.py:_origin_is_local@303",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 344
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_GET@347",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._local_peer@340",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 348
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_GET@347",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 349
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_GET@347",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 351
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 371
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._local_peer@340",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 357
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 355
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 358
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 363
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 366
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 374
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 385
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 395
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 398
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 401
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 407
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 411
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 415
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 417
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST.<lambda>@409@409",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 409
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "target": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 392
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler@311",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._local_peer@340",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 340
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler@311",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler._send@322",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 322
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler@311",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_GET@347",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 347
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler@311",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.do_POST@353",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 353
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler@311",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.log_message@319",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 319
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler.Handler@311",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler.setup@315",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 315
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:make_handler@310",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler.Handler@311",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 311
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:normalize_decisions@149",
+      "target": "symbol:integrations/anyjev_bridge.py:_finite_probability@140",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 166
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:normalize_decisions@149",
+      "target": "symbol:integrations/anyjev_bridge.py:_finite_probability@140",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 169
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:serve@422",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeService@238",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 433
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:serve@422",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler@310",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 434
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 119
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 123
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeInputError@42",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 128
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "target": "symbol:integrations/anyjev_bridge.py:_bounded_text@59",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 120
+    },
+    {
+      "source": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "target": "symbol:integrations/anyjev_bridge.py:_labels_and_prompt@71",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 129
+    },
+    {
       "source": "symbol:integrations/harness_runner.py:HarnessRunner.__init__@192",
       "target": "symbol:integrations/harness_runner.py:_known_secret_values@177",
       "relation": "calls",
@@ -43609,6 +46984,328 @@
       "relation": "calls",
       "confidence": "parsed",
       "line": 26
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.setUp@75",
+      "target": "symbol:integrations/anyjev_bridge.py:BridgeService@238",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 77
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.setUp@75",
+      "target": "symbol:integrations/anyjev_bridge.py:make_handler@310",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 78
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.setUp@75",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeDecider@54",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 76
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_authentication_and_nonlocal_origin_are_rejected@134",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.post@103",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 136
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_authentication_and_nonlocal_origin_are_rejected@134",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.post@103",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 137
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_authentication_and_nonlocal_origin_are_rejected@134",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.valid_payload@92",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 135
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_laya_shape_returns_normalized_l0_answers_and_unknown_usage@117",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.post@103",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 119
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_laya_shape_returns_normalized_l0_answers_and_unknown_usage@117",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.valid_payload@92",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 119
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload@182",
+      "target": "symbol:integrations/anyjev_bridge.py:normalize_decisions@149",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 192
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload@182",
+      "target": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 183
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload@182",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload.Invalid@186",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 192
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload@182",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload.Invalid@186",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 186
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_question_validation_bounds_llm_fanout_and_rejects_extra_fields@146",
+      "target": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 151
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_question_validation_bounds_llm_fanout_and_rejects_extra_fields@146",
+      "target": "symbol:integrations/anyjev_bridge.py:validate_payload@116",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 155
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_question_validation_bounds_llm_fanout_and_rejects_extra_fields@146",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.valid_payload@92",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 147
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_question_validation_bounds_llm_fanout_and_rejects_extra_fields@146",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.valid_payload@92",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 152
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_request_size_and_shape_limits_are_enforced@139",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.post@103",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 140
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_request_size_and_shape_limits_are_enforced@139",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.post@103",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 142
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains.<lambda>@167@167",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.post@103",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 167
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains.<lambda>@167@167",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.valid_payload@92",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 167
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains@164",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.post@103",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 173
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains@164",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains.<lambda>@167@167",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 167
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains@164",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.valid_payload@92",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 173
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_upstream_errors_are_generic_and_do_not_echo_exception@157",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.post@103",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 160
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_upstream_errors_are_generic_and_do_not_echo_exception@157",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.valid_payload@92",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 160
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.post@103",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 103
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.setUp@75",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 75
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.tearDown@84",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 84
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_authentication_and_nonlocal_origin_are_rejected@134",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 134
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_laya_shape_returns_normalized_l0_answers_and_unknown_usage@117",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 117
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_normalizer_rejects_invalid_probability_payload@182",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 182
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_question_validation_bounds_llm_fanout_and_rejects_extra_fields@146",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 146
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_request_size_and_shape_limits_are_enforced@139",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 139
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_timeout_keeps_serialized_slot_until_underlying_inference_drains@164",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 164
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.test_upstream_errors_are_generic_and_do_not_echo_exception@157",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 157
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests@74",
+      "target": "symbol:tests/test_anyjev_bridge.py:AnyJevBridgeTests.valid_payload@92",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 92
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:FakeDecider.decide@62",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeDecision@45",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 71
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:FakeDecider@54",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeDecider.__init__@55",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 55
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:FakeDecider@54",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeDecider.decide@62",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 62
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:FakeDecision@45",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeDecision.__init__@46",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 46
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory.choice@33",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeQuestion@24",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 34
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory.noul@41",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeQuestion@24",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 42
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory.score@37",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeQuestion@24",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 38
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory@31",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory.choice@33",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 33
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory@31",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory.noul@41",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 41
+    },
+    {
+      "source": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory@31",
+      "target": "symbol:tests/test_anyjev_bridge.py:FakeQuestionFactory.score@37",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 37
     },
     {
       "source": "symbol:tests/test_benchmarks.py:BenchmarkFixtureTests.test_all_logical_agent_tiers_fit_the_registry_and_remain_fixture_labeled@36",
@@ -50486,12 +54183,12 @@
     }
   ],
   "summary": {
-    "files": 273,
-    "modules": 41,
-    "functions": 1066,
-    "classes": 103,
-    "relationships": 4843,
-    "unresolved": 5660,
+    "files": 294,
+    "modules": 44,
+    "functions": 1179,
+    "classes": 113,
+    "relationships": 5141,
+    "unresolved": 5908,
     "hubs": [
       "ControlError",
       "SpecialistContractError",
@@ -50504,13 +54201,13 @@
     {
       "path": "apps/web/next-env.d.ts",
       "line": 3,
-      "expression": "./.next/dev/types/routes.d.ts",
+      "expression": "./.next/types/routes.d.ts",
       "relation": "imports"
     },
     {
       "path": "apps/web/next-env.d.ts",
       "line": 4,
-      "expression": "./.next/dev/types/root-params.d.ts",
+      "expression": "./.next/types/root-params.d.ts",
       "relation": "imports"
     },
     {
