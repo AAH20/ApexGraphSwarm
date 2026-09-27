@@ -16,6 +16,11 @@ export const costLines = [
   ['resume','Resume operations','resumes'],
   ['egress','Network egress','GB'],
   ['platform','Cluster / observability / subscription allocation','allocated units'],
+  ['embedding','Embedding ingestion and refresh','million tokens'],
+  ['reranking','Reranker service','requests'],
+  ['indexStorage','Graph/vector index storage','GB-months'],
+  ['retrieval','Managed retrieval/query fees','requests'],
+  ['indexBuild','Graph extraction / index compute','compute-hours'],
 ] as const;
 export type CostId = typeof costLines[number][0];
 export type CostAssumption = {id:CostId; quantity:number|null; usdPerUnit:number|null};

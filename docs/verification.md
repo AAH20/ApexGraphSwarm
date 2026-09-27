@@ -31,3 +31,12 @@ Real model/harness credentials and quotas, workload-specific held-out evaluation
 - Production API smoke on port 3010 passed for empty configuration, absent bearer authentication, cross-origin access and arbitrary endpoint rejection.
 - Browser verification: connection filtering; empty MCP configuration state; successful pending-review skill manifest; rejected unsupported YAML; live cost subtotal with incomplete totals remaining unavailable; no browser console errors. At 390px width, page scroll width remains 390px and all six navigation destinations remain available. Temporary viewport override was reset.
 - AX documentation is a pinned source assessment only. AX was not installed or benchmarked. MCP discovery supports its documented handshake/HTTP subset, not every protocol revision/auth mode. Skill review does not fetch, install or execute skill packages.
+
+## Orchestration, retrieval and optimization comparison — 2026-09-27
+
+- Python regression suite: 31/31 passed in 5.284 seconds. No Python source or dependency changes.
+- Web suite: 90/90 passed in 0.851 seconds. Added benchmark-design tests cover missing evidence/unknown budget, non-executable complete designs, candidate allowlists, resource/quality/latency/cost constraints and immutable input handling. Cost calculations now include five additional retrieval/indexing categories.
+- TypeScript and Next.js production build passed with `/ecosystem/research`.
+- Browser: selected candidates across orchestration and retrieval categories; verified eight retrieval cards and eight bottleneck entries; switching workload updated control baseline/metrics; an active-worker value of 300 displayed a constraint error and disabled export. Filling all design fields displayed “References still need verification; execution remains disabled.” No console errors.
+- Desktop layout and 390px mobile comparison/bottleneck views checked. Mobile document width and scroll width both measured 390px; viewport override reset and temporary test inputs cleared by reload.
+- Source symbol references render as code rather than invalid HTTP links. Published methodology, third-party reports, feature documentation and absent benchmark evidence are labeled separately. No new framework/database performance measurements, installs, provider calls or cloud deployments were made.

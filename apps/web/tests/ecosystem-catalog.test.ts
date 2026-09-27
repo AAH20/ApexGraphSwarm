@@ -7,7 +7,7 @@ test('unknown ecosystem costs do not become a zero total',()=>{
 });
 test('complete explicit assumptions support cost per successful result',()=>{
  const result=estimateEcosystemCost(costLines.map(([id])=>({id,quantity:10,usdPerUnit:2})),7);
- assert.equal(result.totalUsd,140);assert.equal(result.costPerSuccessUsd,20);assert.equal(result.complete,true);
+ assert.equal(result.totalUsd,costLines.length*20);assert.equal(result.costPerSuccessUsd,costLines.length*20/7);assert.equal(result.complete,true);
 });
 test('invalid, duplicate and overflow cost inputs fail closed',()=>{
  for(const value of [NaN,Infinity,-1]) assert.throws(()=>estimateEcosystemCost([{id:'model',quantity:value,usdPerUnit:1}],1));

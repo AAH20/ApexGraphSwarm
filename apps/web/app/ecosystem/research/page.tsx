@@ -1,0 +1,4 @@
+import AppShell from '@/components/AppShell';
+import ArchitectureLab from '@/components/ArchitectureLab';
+import Link from 'next/link';
+export default function Page(){return <AppShell active="ecosystem"><div className="apex-page"><header className="apex-section-heading"><span className="eyebrow">ARCHITECTURE LAB / ORCHESTRATION · RETRIEVAL · OPTIMIZATION</span><h1>Compare the system. Measure the tradeoffs.</h1><p>Assess established agent projects, complementary GraphRAG and vector stores, and the bottlenecks your architecture must address. Keep published evidence separate from results measured in this workspace.</p><div className="apex-actions"><Link href="/ecosystem" className="secondary-button">← Connections & skills</Link><Link href="/swarm" className="secondary-button">Swarm control</Link></div></header><ArchitectureLab/></div></AppShell>;}

@@ -7,7 +7,7 @@
       "name": "ApexGraphSwarm",
       "kind": "module",
       "path": ".",
-      "summary": "Directory grouping 121 indexed files, 364 functions and 24 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 133 indexed files, 370 functions and 24 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -125,7 +125,7 @@
       "name": "apps",
       "kind": "module",
       "path": "apps",
-      "summary": "Directory grouping 84 indexed files, 234 functions and 3 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 92 indexed files, 240 functions and 3 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -134,7 +134,7 @@
       "name": "web",
       "kind": "module",
       "path": "apps/web",
-      "summary": "Directory grouping 84 indexed files, 234 functions and 3 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 92 indexed files, 240 functions and 3 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -233,7 +233,7 @@
       "name": "app",
       "kind": "module",
       "path": "apps/web/app",
-      "summary": "Directory grouping 16 indexed files, 26 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 17 indexed files, 27 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -681,7 +681,7 @@
       "name": "ecosystem",
       "kind": "module",
       "path": "apps/web/app/ecosystem",
-      "summary": "Directory grouping 1 indexed files, 1 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 2 indexed files, 2 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -706,6 +706,35 @@
       "connections": 0
     },
     {
+      "id": "module:apps/web/app/ecosystem/research",
+      "name": "research",
+      "kind": "module",
+      "path": "apps/web/app/ecosystem/research",
+      "summary": "Directory grouping 1 indexed files, 1 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/app/ecosystem/research/page.tsx",
+      "name": "page.tsx",
+      "kind": "file",
+      "path": "apps/web/app/ecosystem/research/page.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 3
+    },
+    {
+      "id": "symbol:apps/web/app/ecosystem/research/page.tsx:Page@4",
+      "name": "Page",
+      "kind": "function",
+      "path": "apps/web/app/ecosystem/research/page.tsx",
+      "line": 4,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
       "id": "module:apps/web/app/evaluations",
       "name": "evaluations",
       "kind": "module",
@@ -722,14 +751,14 @@
       "line": 1,
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
       "confidence": "observed",
-      "connections": 2
+      "connections": 3
     },
     {
-      "id": "symbol:apps/web/app/evaluations/page.tsx:Page@3",
+      "id": "symbol:apps/web/app/evaluations/page.tsx:Page@4",
       "name": "Page",
       "kind": "function",
       "path": "apps/web/app/evaluations/page.tsx",
-      "line": 3,
+      "line": 4,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -780,14 +809,14 @@
       "line": 1,
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
       "confidence": "observed",
-      "connections": 2
+      "connections": 3
     },
     {
-      "id": "symbol:apps/web/app/swarm/page.tsx:Page@3",
+      "id": "symbol:apps/web/app/swarm/page.tsx:Page@4",
       "name": "Page",
       "kind": "function",
       "path": "apps/web/app/swarm/page.tsx",
-      "line": 3,
+      "line": 4,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -797,7 +826,7 @@
       "name": "components",
       "kind": "module",
       "path": "apps/web/components",
-      "summary": "Directory grouping 15 indexed files, 56 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 17 indexed files, 60 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -817,6 +846,66 @@
       "kind": "function",
       "path": "apps/web/components/AppShell.tsx",
       "line": 5,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/components/ArchitectureLab.module.css",
+      "name": "ArchitectureLab.module.css",
+      "kind": "file",
+      "path": "apps/web/components/ArchitectureLab.module.css",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 1
+    },
+    {
+      "id": "file:apps/web/components/ArchitectureLab.tsx",
+      "name": "ArchitectureLab.tsx",
+      "kind": "file",
+      "path": "apps/web/components/ArchitectureLab.tsx",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 4 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 8
+    },
+    {
+      "id": "symbol:apps/web/components/ArchitectureLab.tsx:SourceReference@19",
+      "name": "SourceReference",
+      "kind": "function",
+      "path": "apps/web/components/ArchitectureLab.tsx",
+      "line": 19,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArchitectureLab.tsx:ArchitectureLab@21",
+      "name": "ArchitectureLab",
+      "kind": "function",
+      "path": "apps/web/components/ArchitectureLab.tsx",
+      "line": 21,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArchitectureLab.tsx:toggle@29",
+      "name": "toggle",
+      "kind": "function",
+      "path": "apps/web/components/ArchitectureLab.tsx",
+      "line": 29,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "symbol:apps/web/components/ArchitectureLab.tsx:exportDesign@30",
+      "name": "exportDesign",
+      "kind": "function",
+      "path": "apps/web/components/ArchitectureLab.tsx",
+      "line": 30,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -1535,7 +1624,7 @@
       "name": "lib",
       "kind": "module",
       "path": "apps/web/lib",
-      "summary": "Directory grouping 21 indexed files, 131 functions and 2 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 25 indexed files, 132 functions and 2 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -1578,6 +1667,26 @@
       "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
       "confidence": "observed",
       "connections": 2
+    },
+    {
+      "id": "file:apps/web/lib/architecture-benchmark.ts",
+      "name": "architecture-benchmark.ts",
+      "kind": "file",
+      "path": "apps/web/lib/architecture-benchmark.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser. Contains 1 indexed functions and 0 classes.",
+      "confidence": "observed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:apps/web/lib/architecture-benchmark.ts:createArchitectureBenchmark@9",
+      "name": "createArchitectureBenchmark",
+      "kind": "function",
+      "path": "apps/web/lib/architecture-benchmark.ts",
+      "line": 9,
+      "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
+      "confidence": "inferred",
+      "connections": 0
     },
     {
       "id": "file:apps/web/lib/control-client.ts",
@@ -1700,11 +1809,11 @@
       "connections": 1
     },
     {
-      "id": "symbol:apps/web/lib/ecosystem-catalog.ts:estimateEcosystemCost@22",
+      "id": "symbol:apps/web/lib/ecosystem-catalog.ts:estimateEcosystemCost@27",
       "name": "estimateEcosystemCost",
       "kind": "function",
       "path": "apps/web/lib/ecosystem-catalog.ts",
-      "line": 22,
+      "line": 27,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
       "connections": 0
@@ -2860,6 +2969,26 @@
       "connections": 0
     },
     {
+      "id": "file:apps/web/lib/optimization-evidence.ts",
+      "name": "optimization-evidence.ts",
+      "kind": "file",
+      "path": "apps/web/lib/optimization-evidence.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/lib/orchestration-evidence.ts",
+      "name": "orchestration-evidence.ts",
+      "kind": "file",
+      "path": "apps/web/lib/orchestration-evidence.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
       "id": "file:apps/web/lib/orchestrator.ts",
       "name": "orchestrator.ts",
       "kind": "file",
@@ -2987,6 +3116,16 @@
       "line": 10,
       "summary": "Lexically detected declaration. JavaScript/TypeScript scope and calls are not resolved.",
       "confidence": "inferred",
+      "connections": 0
+    },
+    {
+      "id": "file:apps/web/lib/retrieval-evidence.ts",
+      "name": "retrieval-evidence.ts",
+      "kind": "file",
+      "path": "apps/web/lib/retrieval-evidence.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
+      "confidence": "observed",
       "connections": 0
     },
     {
@@ -3191,9 +3330,19 @@
       "name": "tests",
       "kind": "module",
       "path": "apps/web/tests",
-      "summary": "Directory grouping 16 indexed files, 14 functions and 1 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 17 indexed files, 14 functions and 1 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
+    },
+    {
+      "id": "file:apps/web/tests/architecture-benchmark.test.ts",
+      "name": "architecture-benchmark.test.ts",
+      "kind": "file",
+      "path": "apps/web/tests/architecture-benchmark.test.ts",
+      "line": 1,
+      "summary": "JavaScript/TypeScript: lexical declarations and import hints; no full language parser.",
+      "confidence": "observed",
+      "connections": 3
     },
     {
       "id": "file:apps/web/tests/delegation-planner.test.ts",
@@ -3510,7 +3659,7 @@
       "name": "docs",
       "kind": "module",
       "path": "docs",
-      "summary": "Directory grouping 15 indexed files, 0 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 19 indexed files, 0 functions and 0 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -3549,6 +3698,16 @@
       "name": "apexgraphswarm-extraction.md",
       "kind": "file",
       "path": "docs/apexgraphswarm-extraction.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:docs/architecture-comparison.md",
+      "name": "architecture-comparison.md",
+      "kind": "file",
+      "path": "docs/architecture-comparison.md",
       "line": 1,
       "summary": "File inventory; source semantics not parsed for this language.",
       "confidence": "observed",
@@ -3639,6 +3798,36 @@
       "name": "neo4j-store-setup.cypher",
       "kind": "file",
       "path": "docs/neo4j-store-setup.cypher",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:docs/optimization-bottlenecks.md",
+      "name": "optimization-bottlenecks.md",
+      "kind": "file",
+      "path": "docs/optimization-bottlenecks.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:docs/orchestration-landscape.md",
+      "name": "orchestration-landscape.md",
+      "kind": "file",
+      "path": "docs/orchestration-landscape.md",
+      "line": 1,
+      "summary": "File inventory; source semantics not parsed for this language.",
+      "confidence": "observed",
+      "connections": 0
+    },
+    {
+      "id": "file:docs/retrieval-landscape.md",
+      "name": "retrieval-landscape.md",
+      "kind": "file",
+      "path": "docs/retrieval-landscape.md",
       "line": 1,
       "summary": "File inventory; source semantics not parsed for this language.",
       "confidence": "observed",
@@ -5543,7 +5732,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 3
+      "connections": 7
     },
     {
       "id": "external:lucide-react",
@@ -5552,7 +5741,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 8
+      "connections": 9
     },
     {
       "id": "external:@/components/AppShell",
@@ -5561,7 +5750,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 5
+      "connections": 6
     },
     {
       "id": "external:@/lib/control-client",
@@ -5618,6 +5807,15 @@
       "connections": 1
     },
     {
+      "id": "external:@/components/ArchitectureLab",
+      "name": "@/components/ArchitectureLab",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
       "id": "external:@/components/EvaluationLab",
       "name": "@/components/EvaluationLab",
       "kind": "external",
@@ -5651,7 +5849,43 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 11
+      "connections": 12
+    },
+    {
+      "id": "external:@/lib/orchestration-evidence",
+      "name": "@/lib/orchestration-evidence",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:@/lib/retrieval-evidence",
+      "name": "@/lib/retrieval-evidence",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:@/lib/optimization-evidence",
+      "name": "@/lib/optimization-evidence",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
+    },
+    {
+      "id": "external:@/lib/architecture-benchmark",
+      "name": "@/lib/architecture-benchmark",
+      "kind": "external",
+      "path": "",
+      "summary": "External package import hint",
+      "confidence": "inferred",
+      "connections": 1
     },
     {
       "id": "external:@/lib/delegation-planner",
@@ -5876,7 +6110,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 18
+      "connections": 19
     },
     {
       "id": "external:node:test",
@@ -5885,7 +6119,7 @@
       "path": "",
       "summary": "External package import hint",
       "confidence": "inferred",
-      "connections": 16
+      "connections": 17
     },
     {
       "id": "external:node:os",
@@ -6955,6 +7189,34 @@
       "line": 3
     },
     {
+      "source": "file:apps/web/app/ecosystem/research/page.tsx",
+      "target": "external:@/components/AppShell",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/app/ecosystem/research/page.tsx",
+      "target": "external:@/components/ArchitectureLab",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/app/ecosystem/research/page.tsx",
+      "target": "external:next/link",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/app/ecosystem/research/page.tsx",
+      "target": "symbol:apps/web/app/ecosystem/research/page.tsx:Page@4",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
       "source": "file:apps/web/app/error.tsx",
       "target": "symbol:apps/web/app/error.tsx:ErrorView@2",
       "relation": "defines",
@@ -6966,21 +7228,28 @@
       "target": "external:@/components/AppShell",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 1
+      "line": 2
     },
     {
       "source": "file:apps/web/app/evaluations/page.tsx",
       "target": "external:@/components/EvaluationLab",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 2
+      "line": 3
     },
     {
       "source": "file:apps/web/app/evaluations/page.tsx",
-      "target": "symbol:apps/web/app/evaluations/page.tsx:Page@3",
+      "target": "external:next/link",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/app/evaluations/page.tsx",
+      "target": "symbol:apps/web/app/evaluations/page.tsx:Page@4",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 3
+      "line": 4
     },
     {
       "source": "file:apps/web/app/graph/page.tsx",
@@ -7050,21 +7319,28 @@
       "target": "external:@/components/AppShell",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 1
+      "line": 2
     },
     {
       "source": "file:apps/web/app/swarm/page.tsx",
       "target": "external:@/components/SwarmControl",
       "relation": "imports",
       "confidence": "inferred",
-      "line": 2
+      "line": 3
     },
     {
       "source": "file:apps/web/app/swarm/page.tsx",
-      "target": "symbol:apps/web/app/swarm/page.tsx:Page@3",
+      "target": "external:next/link",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/app/swarm/page.tsx",
+      "target": "symbol:apps/web/app/swarm/page.tsx:Page@4",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 3
+      "line": 4
     },
     {
       "source": "file:apps/web/components/AppShell.tsx",
@@ -7086,6 +7362,90 @@
       "relation": "defines",
       "confidence": "inferred",
       "line": 5
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "external:@/lib/architecture-benchmark",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 8
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "external:@/lib/optimization-evidence",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 7
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "external:@/lib/orchestration-evidence",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 5
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "external:@/lib/retrieval-evidence",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 6
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "external:lucide-react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 4
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "external:next/link",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "external:react",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "file:apps/web/components/ArchitectureLab.module.css",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 9
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "symbol:apps/web/components/ArchitectureLab.tsx:ArchitectureLab@21",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 21
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "symbol:apps/web/components/ArchitectureLab.tsx:SourceReference@19",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 19
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "symbol:apps/web/components/ArchitectureLab.tsx:exportDesign@30",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 30
+    },
+    {
+      "source": "file:apps/web/components/ArchitectureLab.tsx",
+      "target": "symbol:apps/web/components/ArchitectureLab.tsx:toggle@29",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 29
     },
     {
       "source": "file:apps/web/components/DelegationPlanner.tsx",
@@ -7991,6 +8351,13 @@
       "line": 2
     },
     {
+      "source": "file:apps/web/lib/architecture-benchmark.ts",
+      "target": "symbol:apps/web/lib/architecture-benchmark.ts:createArchitectureBenchmark@9",
+      "relation": "defines",
+      "confidence": "inferred",
+      "line": 9
+    },
+    {
       "source": "file:apps/web/lib/control-client.ts",
       "target": "external:node:child_process",
       "relation": "imports",
@@ -8090,10 +8457,10 @@
     },
     {
       "source": "file:apps/web/lib/ecosystem-catalog.ts",
-      "target": "symbol:apps/web/lib/ecosystem-catalog.ts:estimateEcosystemCost@22",
+      "target": "symbol:apps/web/lib/ecosystem-catalog.ts:estimateEcosystemCost@27",
       "relation": "defines",
       "confidence": "inferred",
-      "line": 22
+      "line": 27
     },
     {
       "source": "file:apps/web/lib/execution-economics.ts",
@@ -9228,6 +9595,27 @@
       "relation": "defines",
       "confidence": "inferred",
       "line": 11
+    },
+    {
+      "source": "file:apps/web/tests/architecture-benchmark.test.ts",
+      "target": "external:node:assert/strict",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 2
+    },
+    {
+      "source": "file:apps/web/tests/architecture-benchmark.test.ts",
+      "target": "external:node:test",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 1
+    },
+    {
+      "source": "file:apps/web/tests/architecture-benchmark.test.ts",
+      "target": "file:apps/web/lib/architecture-benchmark.ts",
+      "relation": "imports",
+      "confidence": "inferred",
+      "line": 3
     },
     {
       "source": "file:apps/web/tests/delegation-planner.test.ts",
@@ -11113,6 +11501,20 @@
       "line": 0
     },
     {
+      "source": "module:apps/web/app/ecosystem",
+      "target": "module:apps/web/app/ecosystem/research",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/app/ecosystem/research",
+      "target": "file:apps/web/app/ecosystem/research/page.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
       "source": "module:apps/web/app/evaluations",
       "target": "file:apps/web/app/evaluations/page.tsx",
       "relation": "contains",
@@ -11136,6 +11538,20 @@
     {
       "source": "module:apps/web/components",
       "target": "file:apps/web/components/AppShell.tsx",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/ArchitectureLab.module.css",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/components",
+      "target": "file:apps/web/components/ArchitectureLab.tsx",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -11261,6 +11677,13 @@
     },
     {
       "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/architecture-benchmark.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
       "target": "file:apps/web/lib/control-client.ts",
       "relation": "contains",
       "confidence": "observed",
@@ -11373,6 +11796,20 @@
     },
     {
       "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/optimization-evidence.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/orchestration-evidence.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
       "target": "file:apps/web/lib/orchestrator.ts",
       "relation": "contains",
       "confidence": "observed",
@@ -11381,6 +11818,13 @@
     {
       "source": "module:apps/web/lib",
       "target": "file:apps/web/lib/renderer-lifecycle.ts",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/lib",
+      "target": "file:apps/web/lib/retrieval-evidence.ts",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -11437,6 +11881,13 @@
     {
       "source": "module:apps/web/scripts",
       "target": "file:apps/web/scripts/smoke-kernels.mjs",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:apps/web/tests",
+      "target": "file:apps/web/tests/architecture-benchmark.test.ts",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -11583,6 +12034,13 @@
     },
     {
       "source": "module:docs",
+      "target": "file:docs/architecture-comparison.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
       "target": "file:docs/control-plane.md",
       "relation": "contains",
       "confidence": "observed",
@@ -11640,6 +12098,27 @@
     {
       "source": "module:docs",
       "target": "file:docs/neo4j-store-setup.cypher",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
+      "target": "file:docs/optimization-bottlenecks.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
+      "target": "file:docs/orchestration-landscape.md",
+      "relation": "contains",
+      "confidence": "observed",
+      "line": 0
+    },
+    {
+      "source": "module:docs",
+      "target": "file:docs/retrieval-landscape.md",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -15034,11 +15513,11 @@
     }
   ],
   "summary": {
-    "files": 121,
-    "modules": 31,
-    "functions": 364,
+    "files": 133,
+    "modules": 32,
+    "functions": 370,
     "classes": 24,
-    "relationships": 1247,
+    "relationships": 1282,
     "unresolved": 1308,
     "hubs": [
       "ControlError",

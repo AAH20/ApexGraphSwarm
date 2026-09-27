@@ -19,6 +19,7 @@ Open **http://127.0.0.1:3010**. Play Anything remains on its original port. Kern
 - **Graph Studio** — fullscreen graph exploration, source evidence, search, filtering, paths, optional Neo4j storage and framework integrations.
 - **Swarm control** — SQLite-backed task DAGs, transactional leases, fenced completion, recovery and integer micro-USD accounting. The UI executor runs deterministic fixtures only; actual framework executions remain in their separate adapter runtime.
 - **Delegation & cost** — extensible model/harness candidates, eligibility constraints, dated/editable rate assumptions and cost per successful result. Unknown costs remain unknown. Exported plans do not execute models.
+- **Architecture lab** — `/ecosystem/research` compares established orchestration frameworks, GraphRAG pipelines and vector stores, audits the original optimization kernels, and exports benchmark designs with explicit quality/latency/cost gates. See [adoption plan](docs/architecture-comparison.md).
 - **Ecosystem** — Google AX execution architecture, MCP endpoint discovery, skills.sh / Agent Skills review imports, compatibility boundaries and complete operating-cost assumptions. Open `/ecosystem`; selected integrations export a plan, not a deployment.
 - **Evaluation lab** — actual local scheduler measurements, reproducible benchmark provenance, held-out evaluation design and gated configuration evolution.
 
