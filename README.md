@@ -4,7 +4,7 @@
 
 ApexGraphSwarm combines an interactive code graph with a durable local scheduling foundation and explicit integration contracts. Explore a repository, design a team with precise capabilities and authority, compare execution and retrieval architectures, and measure what a proposed system can actually do.
 
-The project was extracted from [Play Anything](https://github.com/AAH20/play-anything), including its local Graph Studio enhancements. It has an independent Git history; [PROVENANCE.json](PROVENANCE.json) records the source and extraction boundary.
+ApexGraphSwarm is a standalone engineering platform for building, understanding, and evaluating agentic graph and swarm systems.
 
 > **Status:** local engineering foundation. Repository exploration, deterministic scheduling, design tools, and configured integration adapters are available. Specialist-team designs do not yet dispatch custom teams or enforce IAM/PAM. Data-center, Physical AI, and IoT nodes are planning scopes, not connected infrastructure controllers. See [capabilities and boundaries](#capabilities-and-boundaries).
 
@@ -298,7 +298,7 @@ npm --prefix apps/web run typecheck
 npm --prefix apps/web run build
 ```
 
-The specialist-designer verification recorded **31 Python tests and 101 web tests passing**, plus typecheck, production build, and desktop/mobile browser checks. Detailed results and scope are in [verification.md](docs/verification.md). Test timing is machine-dependent; this project does not claim the original Play Anything 29-test or sub-0.05-second baseline.
+The specialist-designer verification recorded **31 Python tests and 101 web tests passing**, plus typecheck, production build, and desktop/mobile browser checks. Detailed results and scope are in [verification.md](docs/verification.md). Test timing is machine-dependent; consult the recorded environment and workload when comparing results.
 
 Tests use harmless subprocesses and loopback sockets where required. They do not establish that real provider credentials or separately deployed services work. No paid model run is required for the regression suite.
 
@@ -323,7 +323,7 @@ Do not place the local SQLite database on an unreliable shared/network filesyste
 
 | Topic | Reference |
 | --- | --- |
-| Extraction and architecture | [Project extraction](docs/apexgraphswarm-extraction.md) |
+| Architecture and project history | [Architecture notes](docs/apexgraphswarm-extraction.md) |
 | Scheduler API and lifecycle | [Control-plane contracts](docs/control-plane.md) |
 | Specialist workflow and private adapters | [Team designer](docs/specialist-teams.md) |
 | Design schema and preview semantics | [Specialist design contract](docs/specialist-design-contract.md) |
@@ -340,8 +340,8 @@ Do not place the local SQLite database on an unreliable shared/network filesyste
 
 ## Provenance and licenses
 
-The extracted project preserves the [Apache 2.0 license](LICENSE). Third-party kernels retain their own licenses and pinned source references; evaluate each dependency's terms before redistribution or commercial use. Inclusion in a catalog is not endorsement, certification, or an implemented integration.
+ApexGraphSwarm is licensed under [Apache 2.0](LICENSE). Third-party kernels retain their own licenses and pinned source references; evaluate each dependency's terms before redistribution or commercial use. Inclusion in a catalog is not endorsement, certification, or an implemented integration.
 
-Original Play Anything history was not rewritten or copied. The extraction includes local enhancements that may not exist in the recorded upstream commit. See [PROVENANCE.json](PROVENANCE.json) for the exact source boundary.
+Source provenance is recorded in [PROVENANCE.json](PROVENANCE.json).
 
 For experienced mentorship and implementation discussions: [aah@a2zsoc.com](mailto:aah@a2zsoc.com).
