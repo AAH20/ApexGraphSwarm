@@ -173,6 +173,8 @@ Evidence has a defined scope:
 
 Current bounds include **1,800 visible nodes / 12,000 visible edges**, graph imports up to **25,000 nodes / 100,000 edges / 15 MB**, and default analyzer limits of **2,000 files / 10,000 symbols / 1 MB per source file**. The force-layout worker has a three-second computation budget. These are operating limits, not latency guarantees; narrow dense graphs and inspect truncation warnings.
 
+The [Claude Code repository-evidence plugin](integrations/claude-code-plugin/) invokes this analyzer and guides evidence-bounded explanations. It requires the ApexGraphSwarm package to be available at the working repository root; it is not a general-purpose analyzer for unrelated repositories.
+
 ## Specialist teams and scoped authority
 
 The [team designer](docs/specialist-teams.md) supports:
