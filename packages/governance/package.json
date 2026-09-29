@@ -1,0 +1,19 @@
+{
+  "name": "@apexgraphswarm/governance",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test src/**/*.test.ts",
+    "build": "tsc --noEmit",
+    "lint": "echo 'no lint configured'",
+    "clean": "rm -rf dist .turbo"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.0"
+  }
+}

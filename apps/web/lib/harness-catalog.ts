@@ -1,5 +1,32 @@
+/**
+ * Type HarnessId.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { HarnessId } from './module';
+ * ```
+ */
 export type HarnessId = 'codex' | 'claude-code' | 'cursor' | 'antigravity' | 'opencode' | 'hermes';
+/**
+ * Type ProviderMode.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ProviderMode } from './module';
+ * ```
+ */
 export type ProviderMode = 'gateway' | 'openrouter' | 'vllm' | 'subscription' | 'manual';
+/**
+ * Type AuthMode.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { AuthMode } from './module';
+ * ```
+ */
 export type AuthMode = 'account-plan' | 'provider-api-key' | 'oauth' | 'self-hosted-endpoint' | 'provider-specific';
 
 export type HarnessCatalogEntry = {
@@ -121,6 +148,17 @@ export const harnessCatalog: readonly HarnessCatalogEntry[] = [
   },
 ];
 
+/**
+ * Function getHarness.
+ *
+ * @param {HarnessId} id - Description of id.
+ * @returns {HarnessCatalogEntry} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = getHarness(...);
+ * ```
+ */
 export function getHarness(id: HarnessId): HarnessCatalogEntry {
   const harness = harnessCatalog.find(item => item.id === id);
   if (!harness) throw new Error(`Unknown harness: ${id}`);

@@ -1,3 +1,9 @@
+/**
+ * React component for execution economics.
+ *
+ * @module ExecutionEconomics
+ * @packageDocumentation
+ */
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
@@ -33,6 +39,16 @@ const numberInput = (label: string, value: string, onChange: (next: string) => v
   </label>
 );
 
+/**
+ * React component ExecutionEconomics.
+ *
+ * @param {controlledHarness, provider}  harnessId - Description of  harnessId.
+ *
+ * @example
+ * ```typescript
+ * const result = ExecutionEconomics(...);
+ * ```
+ */
 export default function ExecutionEconomics({ harnessId: controlledHarness, provider: controlledProvider, workloadKind, onEstimate }: Props) {
   const [localHarness, setLocalHarness] = useState<HarnessId>('codex');
   const [localProvider, setLocalProvider] = useState<ProviderMode>('openrouter');

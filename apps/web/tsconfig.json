@@ -25,6 +25,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@apexgraphswarm/governance": [
+        "../../packages/governance/src/index.ts"
       ]
     }
   },

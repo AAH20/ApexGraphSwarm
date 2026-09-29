@@ -1,4 +1,19 @@
+/**
+ * Constant optimizationExamples.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { optimizationExamples } from './module';
+ * ```
+ */
 export const optimizationExamples: {title:string;description:string;establishes:string;limit:string;payload:Record<string,unknown>}[]=[
+/**
+ * Core library module for optimization examples.ts functionality.
+ *
+ * @module optimization-examples
+ * @packageDocumentation
+ */
  {title:'Benchmark suite',description:'Run the versioned synthetic fixture suite and inspect its measured local timings, objective values, and promotion decisions.',establishes:'Repeatable tests of local algorithms and evaluation gates under declared assumptions.',limit:'No external benchmark scores, live model quality, GPU throughput, or production-scale claim.',payload:{action:'benchmark'}},
  {title:'Delegate & schedule',description:'Assign eligible model options to a dependency graph under an integer spend cap, model capacities and a deadline.',establishes:'A bounded scheduling result with dependency, capacity and budget constraints. Unknown option costs cannot count as free.',limit:'Duration and cost are supplied estimates. Planning does not dispatch agents or establish model quality.',payload:{action:'schedule',budget_microusd:22000,capacities:{economy:2,fast:1},deadline_seconds:12,tasks:[{id:'analyze',dependencies:[],duration_estimate:4,options:[{model:'economy',estimated_cost_microusd:5000,duration_estimate:4},{model:'fast',estimated_cost_microusd:9000,duration_estimate:2}]},{id:'implement',dependencies:['analyze'],duration_estimate:6,options:[{model:'economy',estimated_cost_microusd:10000,duration_estimate:6},{model:'fast',estimated_cost_microusd:16000,duration_estimate:3}]},{id:'verify',dependencies:['implement'],duration_estimate:2,options:[{model:'economy',estimated_cost_microusd:3000,duration_estimate:2}]}]}},
  {title:'Evidence budget',description:'Select weighted claim coverage within a token allowance, with a bounded exact oracle to compare the greedy baseline.',establishes:'Coverage and token consumption for declared claims, including an explicit bound on exhaustive search.',limit:'Claim coverage is a surrogate objective. It does not measure answer correctness or complementary evidence requirements.',payload:{action:'evidence',token_budget:9,items:[{id:'architecture',claims:['entry','dependencies'],token_cost:5,weights:{entry:2,dependencies:3}},{id:'tests',claims:['validation'],token_cost:4,weights:{validation:4}},{id:'summary',claims:['entry','validation'],token_cost:6,weights:{entry:2,validation:4}}]}},

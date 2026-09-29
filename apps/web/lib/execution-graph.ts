@@ -1,7 +1,58 @@
+/**
+ * Type ExecutionNode.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ExecutionNode } from './module';
+ * ```
+ */
 export type ExecutionNode={id:string;kind:string;label:string;status?:string;reservedMicrousd?:number|null;actualMicrousd?:number|null;details?:Record<string,unknown>;explanations?:string[]};
+/**
+ * Type ExecutionEdge.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ExecutionEdge } from './module';
+ * ```
+ */
 export type ExecutionEdge={id:string;source:string;target:string;kind:string;label?:string};
+/**
+ * Type ExecutionGraph.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ExecutionGraph } from './module';
+ * ```
+ */
 export type ExecutionGraph={version:1;runId:string;nodes:ExecutionNode[];edges:ExecutionEdge[];summary:{nodeCount:number;edgeCount:number;omittedNodes:number;omittedEdges:number;attemptCoverage:{expected:number;recorded:number;missing:number;complete:boolean;returned?:number};allCostsResolved:boolean;knownActualMicrousd:number;unknownCostAttempts:number};limitations:string[];truncated:boolean};
+/**
+ * Constant EXECUTION_KINDS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { EXECUTION_KINDS } from './module';
+ * ```
+ */
 export const EXECUTION_KINDS=['run','agent','task','attempt','principal','worker','grant','resource','specialist_contract'] as const;
+/**
+ * Function executionView.
+ *
+ * @param {ExecutionGraph} graph - Description of graph.
+ * @param {string} query - Description of query.
+ * @param {string} kind - Description of kind.
+ * @param {string|null} focusId - Description of focusId.
+ * @param {boolean} neighborhood - Description of neighborhood.
+ * @param limit - Description of limit.
+ *
+ * @example
+ * ```typescript
+ * const result = executionView(..., ..., ..., ..., ..., ...);
+ * ```
+ */
 export function executionView(graph:ExecutionGraph,query:string,kind:string,focusId:string|null,neighborhood:boolean,limit=120){
  const search=query.trim().toLowerCase(),connected=new Set<string>();
  if(focusId){connected.add(focusId);for(const edge of graph.edges){if(edge.source===focusId)connected.add(edge.target);if(edge.target===focusId)connected.add(edge.source);}}
@@ -11,6 +62,16 @@ export function executionView(graph:ExecutionGraph,query:string,kind:string,focu
  const nodes=ordered.slice(0,limit),ids=new Set(nodes.map(node=>node.id));
  return {nodes,edges:graph.edges.filter(edge=>ids.has(edge.source)&&ids.has(edge.target)),matched:matches.length,omitted:matches.length-nodes.length};
 }
+/**
+ * Function executionLayout.
+ *
+ * @param {ExecutionNode[]} nodes - Description of nodes.
+ *
+ * @example
+ * ```typescript
+ * const result = executionLayout(...);
+ * ```
+ */
 export function executionLayout(nodes:ExecutionNode[]){
  const kinds=EXECUTION_KINDS.filter(kind=>nodes.some(node=>node.kind===kind));
  const positions=new Map<string,{x:number;y:number}>();let rows=1;

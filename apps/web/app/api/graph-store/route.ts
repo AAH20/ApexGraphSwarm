@@ -8,17 +8,84 @@ import {
   isGraphStoreAuthorized,
 } from '../../../lib/neo4j-store';
 
+/**
+ * Constant runtime.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { runtime } from './module';
+ * ```
+ */
 export const runtime = 'nodejs';
+/**
+ * Constant maxDuration.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { maxDuration } from './module';
+ * ```
+ */
 export const maxDuration = 25;
 
+/**
+ * Function json.
+ *
+ * @param body - Description of body.
+ * @param status - Description of status.
+ *
+ * @example
+ * ```typescript
+ * const result = json(..., ...);
+ * ```
+ */
 function json(body: unknown, status = 200) {
   return NextResponse.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 }
 
+/**
+ * Function GET.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { GET } from './module';
+ * ```
+ */
+/**
+ * API route handler for GET requests.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { GET } from './module';
+ * ```
+ */
 export async function GET() {
   return json({ enabled: Boolean(getNeo4jConfig() && process.env.GRAPH_STORE_ACCESS_TOKEN), mode: 'neo4j' });
 }
 
+/**
+ * Function POST.
+ *
+ * @param {Request} request - Description of request.
+ *
+ * @example
+ * ```typescript
+ * const result = POST(...);
+ * ```
+ */
+/**
+ * API route handler for POST requests.
+ *
+ * @param {Request} request - Description of request.
+ *
+ * @example
+ * ```typescript
+ * const result = POST(...);
+ * ```
+ */
 export async function POST(request: Request) {
   if (!hasGraphStoreSafeOrigin(request)) return json({ error: 'Request origin is not allowed.' }, 403);
   if (!isGraphStoreAuthorized(request, process.env.GRAPH_STORE_ACCESS_TOKEN)) return json({ error: 'Graph store access token is missing or invalid.' }, 401);

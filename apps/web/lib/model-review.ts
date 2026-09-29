@@ -3,10 +3,52 @@ import { timingSafeEqual } from 'node:crypto';
 import { z } from 'zod';
 import { indexGraph, neighborhood, parseSnapshot, type Snapshot } from './graph';
 
+/**
+ * Constant REVIEW_MAX_BYTES.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { REVIEW_MAX_BYTES } from './module';
+ * ```
+ */
 export const REVIEW_MAX_BYTES = 2 * 1024 * 1024;
+/**
+ * Constant REVIEW_MAX_GOAL_CHARS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { REVIEW_MAX_GOAL_CHARS } from './module';
+ * ```
+ */
 export const REVIEW_MAX_GOAL_CHARS = 2_000;
+/**
+ * Constant REVIEW_MAX_OUTPUT_TOKENS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { REVIEW_MAX_OUTPUT_TOKENS } from './module';
+ * ```
+ */
 export const REVIEW_MAX_OUTPUT_TOKENS = 1_000;
+/**
+ * Constant REVIEW_DEADLINE_MS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { REVIEW_DEADLINE_MS } from './module';
+ * ```
+ */
 export const REVIEW_DEADLINE_MS = 30_000;
+/**
+ * Core library module for model review.ts functionality.
+ *
+ * @module model-review
+ * @packageDocumentation
+ */
 const TOOL_RESULT_NODES = 30;
 
 const outputSchema = z.object({
@@ -25,8 +67,28 @@ export type ModelReview = {
   model: string;
 };
 
+/**
+ * Type ReviewInput.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ReviewInput } from './module';
+ * ```
+ */
 export type ReviewInput = { graph: Snapshot; goal: string; maxOutputTokens: number };
 
+/**
+ * Function parseReviewInput.
+ *
+ * @param value - Description of value.
+ * @returns {ReviewInput} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = parseReviewInput(...);
+ * ```
+ */
 export function parseReviewInput(value: unknown): ReviewInput {
   if (!value || typeof value !== 'object') throw new Error('Expected a review request object.');
   const body = value as Record<string, unknown>;
@@ -47,6 +109,18 @@ export function isReviewEnabled(env: { AI_GATEWAY_API_KEY?: string; GRAPH_REVIEW
   return Boolean(env.AI_GATEWAY_API_KEY && env.GRAPH_REVIEW_MODEL && env.GRAPH_REVIEW_ACCESS_TOKEN);
 }
 
+/**
+ * Function isAuthorized.
+ *
+ * @param {Request} request - Description of request.
+ * @param token - Description of token.
+ * @returns {boolean} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = isAuthorized(..., ...);
+ * ```
+ */
 export function isAuthorized(request: Request, token = process.env.GRAPH_REVIEW_ACCESS_TOKEN): boolean {
   if (!token) return false;
   const authorization = request.headers.get('authorization') || '';
@@ -56,6 +130,17 @@ export function isAuthorized(request: Request, token = process.env.GRAPH_REVIEW_
   return supplied.length === expected.length && timingSafeEqual(supplied, expected);
 }
 
+/**
+ * Function hasSafeOrigin.
+ *
+ * @param {Request} request - Description of request.
+ * @returns {boolean} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = hasSafeOrigin(...);
+ * ```
+ */
 export function hasSafeOrigin(request: Request): boolean {
   const origin = request.headers.get('origin');
   if (!origin) return true; // Non-browser callers still require the configured bearer token.
@@ -69,6 +154,18 @@ export function hasSafeOrigin(request: Request): boolean {
   }
 }
 
+/**
+ * Function validateCitations.
+ *
+ * @param {z.infer<typeof outputSchema>} result - Description of result.
+ * @param {Snapshot} graph - Description of graph.
+ * @returns {ModelReview['findings']} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = validateCitations(..., ...);
+ * ```
+ */
 export function validateCitations(result: z.infer<typeof outputSchema>, graph: Snapshot): ModelReview['findings'] {
   const ids = new Set(graph.nodes.map(node => node.id));
   return result.findings.map(finding => {
@@ -78,6 +175,18 @@ export function validateCitations(result: z.infer<typeof outputSchema>, graph: S
   });
 }
 
+/**
+ * Function runModelReview.
+ *
+ * @param {ReviewInput} input - Description of input.
+ * @param {AbortSignal} signal - Description of signal.
+ * @returns {Promise<ModelReview>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = runModelReview(..., ...);
+ * ```
+ */
 export async function runModelReview(input: ReviewInput, signal: AbortSignal): Promise<ModelReview> {
   const modelId = process.env.GRAPH_REVIEW_MODEL;
   const apiKey = process.env.AI_GATEWAY_API_KEY;

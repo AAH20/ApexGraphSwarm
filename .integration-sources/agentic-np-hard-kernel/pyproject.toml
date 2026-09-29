@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentic-np-hard-kernel"
+version = "1.0.0"
+description = "Deterministic Mathematical Operating Engine for the 10 Apex NP-Hard Computational Bottlenecks in Modern Agentic AI"
+readme = "README.md"
+authors = [{ name = "AAH20 Sovereign Holdings" }]
+license = { text = "Apache-2.0" }
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+keywords = [
+    "agentic-ai",
+    "autonomous-agents",
+    "np-hard-optimization",
+    "tool-routing",
+    "workflow-dag",
+    "prefix-caching",
+    "speculative-execution",
+    "self-healing-dag",
+    "submodular-memory",
+    "pareto-model-routing",
+    "deadlock-free-concurrency",
+    "least-privilege-rbac",
+    "byzantine-consensus",
+    "devin-claude-code",
+    "cloud-sre-swarm"
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+agentic-np-hard-kernel = "agentic_np_hard_kernel.cli:main"

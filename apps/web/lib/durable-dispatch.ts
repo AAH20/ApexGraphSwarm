@@ -4,13 +4,78 @@ import {mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {assertJsonPrecision} from './optimization-json';
 
+/**
+ * Core library module for durable dispatch.ts functionality.
+ *
+ * @module durable-dispatch
+ * @packageDocumentation
+ */
+/**
+ * Type Env.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Env } from './module';
+ * ```
+ */
 type Env=Record<string,string|undefined>;
+/**
+ * Type DispatchPolicy.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { DispatchPolicy } from './module';
+ * ```
+ */
 export type DispatchPolicy={integrationId:string;operation:string;resourceId:string;maxCostMicrousd:number;maxProviderCalls?:number;modelId?:string;parameterEquals?:Record<string,string|number>};
+/**
+ * Type DispatchContext.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { DispatchContext } from './module';
+ * ```
+ */
 export type DispatchContext={begin:(provider:string,model:string)=>Promise<string>;record:(id:string,evidence:Record<string,unknown>)=>Promise<void>;signal:AbortSignal};
+/**
+ * Type DispatchResult.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { DispatchResult } from './module';
+ * ```
+ */
 export type DispatchResult={result:unknown;usage?:{inputTokens:number|null;outputTokens:number|null};externalCancel?:()=>Promise<void>};
+/**
+ * Type GovernedDispatch.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { GovernedDispatch } from './module';
+ * ```
+ */
 export type GovernedDispatch=(integrationId:string,operation:string,parameters:Record<string,string|number>,env:Env,signal:AbortSignal,jobId:string,invoke:(context:DispatchContext)=>Promise<DispatchResult>)=>Promise<DispatchResult>;
 const isRecord=(v:unknown):v is Record<string,unknown>=>!!v&&typeof v==='object'&&!Array.isArray(v);
 const identifier=(v:unknown)=>typeof v==='string'&&v.length>0&&v.length<=128&&!/[\x00-\x1f]/.test(v);
+/**
+ * Function dispatchPolicy.
+ *
+ * @param {string} integrationId - Description of integrationId.
+ * @param {string} operation - Description of operation.
+ * @param {Record<string,string|number>} parameters - Description of parameters.
+ * @param {Env} env - Description of env.
+ * @returns {DispatchPolicy} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = dispatchPolicy(..., ..., ..., ...);
+ * ```
+ */
 export function dispatchPolicy(integrationId:string,operation:string,parameters:Record<string,string|number>,env:Env):DispatchPolicy{
  if(!env.APEX_WORKER_CREDENTIAL||!identifier(env.APEX_WORKER_ID))throw Error('External execution requires an enrolled APEX_WORKER_ID and APEX_WORKER_CREDENTIAL and exact capability grants.');
  let policies:unknown;try{policies=JSON.parse(env.APEX_INTEGRATION_POLICIES_JSON||'[]');}catch{throw Error('APEX_INTEGRATION_POLICIES_JSON must be valid JSON.');}
@@ -31,6 +96,19 @@ export function dispatchPolicy(integrationId:string,operation:string,parameters:
  return policy;
 }
 
+/**
+ * Function pythonJson.
+ *
+ * @param {string} module - Description of module.
+ * @param {Record<string,unknown>} input - Description of input.
+ * @param {Env} env - Description of env.
+ * @returns {Promise<Record<string,any>>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = pythonJson(..., ..., ...);
+ * ```
+ */
 async function pythonJson(module:string,input:Record<string,unknown>,env:Env):Promise<Record<string,any>>{
  return new Promise((resolve,reject)=>{
   const child=execFile('python3',['-m',module],{cwd:path.resolve(process.cwd(),'../..'),timeout:10000,maxBuffer:2*1024*1024,encoding:'utf8',env:{NODE_ENV:process.env.NODE_ENV||'production',PATH:env.PATH||process.env.PATH,LANG:'C.UTF-8',PYTHONIOENCODING:'utf-8',PYTHONDONTWRITEBYTECODE:'1'}},(error,stdout)=>{
@@ -38,15 +116,50 @@ async function pythonJson(module:string,input:Record<string,unknown>,env:Env):Pr
   });child.stdin?.on('error',()=>{});child.stdin?.end(JSON.stringify(input));
  });
 }
+/**
+ * Function durableOperation.
+ *
+ * @param {Record<string,unknown>} input - Description of input.
+ * @param {Env} env - Description of env.
+ *
+ * @example
+ * ```typescript
+ * const result = durableOperation(..., ...);
+ * ```
+ */
 export async function durableOperation(input:Record<string,unknown>,env:Env=process.env){
  const directory=env.APEX_CONTROL_DB_PATH?path.dirname(path.resolve(env.APEX_CONTROL_DB_PATH)):path.resolve(process.cwd(),'../../.runtime');
  await mkdir(directory,{recursive:true,mode:0o700});
  const dbPath=env.APEX_CONTROL_DB_PATH?path.resolve(env.APEX_CONTROL_DB_PATH):path.join(directory,'control.sqlite');
  const response=await pythonJson('apexgraphswarm.control',{...input,dbPath},env);if(!isRecord(response.data))throw Error('Durable operation returned no data.');return response.data as Record<string,any>;
 }
+/**
+ * Function normalizeProviderReceipt.
+ *
+ * @param {Record<string,unknown>} payload - Description of payload.
+ * @param {string} model - Description of model.
+ * @param {Env} env - Description of env.
+ *
+ * @example
+ * ```typescript
+ * const result = normalizeProviderReceipt(..., ..., ...);
+ * ```
+ */
 export async function normalizeProviderReceipt(payload:Record<string,unknown>,model:string,env:Env){
  const result=await pythonJson('apexgraphswarm.provider_receipts',{action:'normalizeOpenRouter',payload,expectedGenerationId:payload.id,expectedModel:model},env);if(result.provider!=='openrouter'||typeof result.costMicrousd!=='number')throw Error('Provider receipt was not normalized.');return result;
 }
+/**
+ * Function sanitize.
+ *
+ * @param value - Description of value.
+ * @param {Env} env - Description of env.
+ * @returns {unknown} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = sanitize(..., ...);
+ * ```
+ */
 function sanitize(value:unknown,env:Env):unknown{
  const secrets=Object.entries(env).filter(([key,v])=>/(?:KEY|TOKEN|SECRET|PASSWORD|CREDENTIAL)$/i.test(key)&&v&&v.length>=8).map(([,v])=>v!);
  if(typeof value==='string')return secrets.reduce((text,secret)=>text.split(secret).join('[redacted]'),value);
@@ -54,6 +167,15 @@ function sanitize(value:unknown,env:Env):unknown{
  if(isRecord(value))return Object.fromEntries(Object.entries(value).filter(([key])=>!/(?:api_?key|access_?token|secret|password|authorization|credential)$/i.test(key)).map(([key,v])=>[key,sanitize(v,env)]));
  return value;
 }
+/**
+ * Constant withDurableDispatch.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { withDurableDispatch } from './module';
+ * ```
+ */
 export const withDurableDispatch:GovernedDispatch=async(integrationId,operation,parameters,env,signal,jobId,invoke)=>{
  const policy=dispatchPolicy(integrationId,operation,parameters,env),credential=env.APEX_WORKER_CREDENTIAL!;
  const created=await durableOperation({action:'create',idempotencyKey:`integration-${jobId}`,budgetMicrousd:policy.maxCostMicrousd,plan:{version:1,agents:[{id:'adapter',name:'Authenticated integration worker'}],tasks:[{id:'execute',agentId:'adapter',dependencies:[],executionClass:'external',maxAttempts:1,reservedCostMicrousd:policy.maxCostMicrousd,tool:`integration:${integrationId}:${operation}`,resource:policy.resourceId,payload:{jobId,integrationId,operation}}]}},env);

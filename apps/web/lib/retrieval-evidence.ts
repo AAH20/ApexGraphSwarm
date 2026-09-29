@@ -1,3 +1,12 @@
+/**
+ * Type RetrievalLayer.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { RetrievalLayer } from './module';
+ * ```
+ */
 export type RetrievalLayer = 'graphrag' | 'graph-store' | 'vector-store';
 
 export type RetrievalEvidence = {

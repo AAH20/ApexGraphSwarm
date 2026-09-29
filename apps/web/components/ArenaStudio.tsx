@@ -1,12 +1,54 @@
+/**
+ * React component for arena studio.
+ *
+ * @module ArenaStudio
+ * @packageDocumentation
+ */
 'use client';
 
 import {useEffect,useMemo,useState} from 'react';
 import ChartTooltip from './ChartTooltip';
 import styles from './ArenaStudio.module.css';
 
+/**
+ * Type Row.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Row } from './module';
+ * ```
+ */
 type Row=Record<string,unknown>;
+/**
+ * Type BenchmarkCase.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { BenchmarkCase } from './module';
+ * ```
+ */
 type BenchmarkCase=Row&{id:string;elapsedMs:number;result:Row};
+/**
+ * Type Report.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Report } from './module';
+ * ```
+ */
 type Report={benchmarkId:string;fixtureSchema:Row;sourceHashes:Record<string,string>;measurementType:string;environment:Row;providerCalls:0;costProvenance:string;cases:BenchmarkCase[];limits:string[]};
+/**
+ * Type Snapshot.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Snapshot } from './module';
+ * ```
+ */
 type Snapshot={schemaVersion:1;runId:string;createdAt:string;report:Report};
 const cases=[
  {id:'dag-scheduling',name:'Dependency scheduling',unit:'tasks',description:'Assign a dependency graph under fixture capacity, budget and deadline constraints.'},
@@ -15,15 +57,118 @@ const cases=[
  {id:'capacity-recommendation',name:'Inference capacity',unit:'samples',description:'Recommend concurrency from synthetic throughput, latency, utilization and queue samples.'},
  {id:'paired-promotion-gate',name:'Held-out promotion gate',unit:'paired tasks',description:'Compare a supplied fixture candidate against a baseline with conservative uncertainty bounds.'},
 ] as const;
+/**
+ * Function isRow.
+ *
+ * @param v - Description of v.
+ * @returns {v is Row} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = isRow(...);
+ * ```
+ */
 function isRow(v:unknown):v is Row{return !!v&&typeof v==='object'&&!Array.isArray(v);}
+/**
+ * Function isReport.
+ *
+ * @param v - Description of v.
+ * @returns {v is Report} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = isReport(...);
+ * ```
+ */
 function isReport(v:unknown):v is Report{return isRow(v)&&typeof v.benchmarkId==='string'&&isRow(v.fixtureSchema)&&isRow(v.sourceHashes)&&Object.values(v.sourceHashes).every(hash=>typeof hash==='string')&&typeof v.measurementType==='string'&&isRow(v.environment)&&v.providerCalls===0&&typeof v.costProvenance==='string'&&Array.isArray(v.cases)&&v.cases.length===5&&Array.isArray(v.limits)&&v.limits.every(item=>typeof item==='string')&&v.cases.every(c=>isRow(c)&&['dag-scheduling','evidence-selection','file-conflict-waves','capacity-recommendation','paired-promotion-gate'].includes(String(c.id))&&typeof c.elapsedMs==='number'&&Number.isFinite(c.elapsedMs)&&c.elapsedMs>=0&&isRow(c.result));}
+/**
+ * Function encode.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = encode(...);
+ * ```
+ */
 function encode(value:unknown){const bytes=new TextEncoder().encode(JSON.stringify(value));let binary='';for(const byte of bytes)binary+=String.fromCharCode(byte);return btoa(binary).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');}
+/**
+ * Function decode.
+ *
+ * @param {string} value - Description of value.
+ * @returns {unknown} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = decode(...);
+ * ```
+ */
 function decode(value:string):unknown{if(value.length>18000)throw Error('This shared result is too large to open safely.');const normalized=value.replaceAll('-','+').replaceAll('_','/');const binary=atob(normalized.padEnd(Math.ceil(normalized.length/4)*4,'='));const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));}
+/**
+ * Function caseInput.
+ *
+ * @param {Row} row - Description of row.
+ *
+ * @example
+ * ```typescript
+ * const result = caseInput(...);
+ * ```
+ */
 function caseInput(row:Row){const result=isRow(row.result)?row.result:{};return Number(row.inputTasks??row.inputItems??row.inputTelemetrySamples??result.taskCountHeldout??0);}
+/**
+ * Function duration.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = duration(...);
+ * ```
+ */
 function duration(value:unknown){return typeof value==='number'&&Number.isFinite(value)?value.toFixed(3)+' ms':'Not measured';}
+/**
+ * Function json.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = json(...);
+ * ```
+ */
 function json(value:unknown){return JSON.stringify(value,null,2);}
+/**
+ * Function moneyMicrousd.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = moneyMicrousd(...);
+ * ```
+ */
 function moneyMicrousd(value:unknown){return typeof value==='number'&&Number.isFinite(value)?'$'+(value/1_000_000).toFixed(6):'Unknown';}
+/**
+ * Function runDigest.
+ *
+ * @param {Report} report - Description of report.
+ * @param {string} createdAt - Description of createdAt.
+ *
+ * @example
+ * ```typescript
+ * const result = runDigest(..., ...);
+ * ```
+ */
 async function runDigest(report:Report,createdAt:string){const data=new TextEncoder().encode(JSON.stringify({report,createdAt}));const digest=await crypto.subtle.digest('SHA-256',data);return [...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+/**
+ * React component ArenaStudio.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ArenaStudio } from './module';
+ * ```
+ */
 export default function ArenaStudio(){
  const[token,setToken]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[snapshot,setSnapshot]=useState<Snapshot|null>(null),[shared,setShared]=useState(false),[copied,setCopied]=useState(false);
  useEffect(()=>{const value=new URLSearchParams(location.hash.slice(1)).get('run');if(!value)return;let active=true;void(async()=>{try{const raw=decode(value);if(!isRow(raw)||raw.schemaVersion!==1||typeof raw.runId!=='string'||!/^[a-f0-9]{64}$/.test(raw.runId)||typeof raw.createdAt!=='string'||Number.isNaN(Date.parse(raw.createdAt))||!isReport(raw.report))throw Error('Shared result schema is not supported.');if(await runDigest(raw.report,raw.createdAt)!==raw.runId)throw Error('Shared run integrity check failed.');if(active){setSnapshot(raw as Snapshot);setShared(true);}}catch(cause){if(active)setError(cause instanceof Error?cause.message:'Could not open this shared run.');}})();return()=>{active=false;}},[]);

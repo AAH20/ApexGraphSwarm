@@ -1,3 +1,9 @@
+/**
+ * React component for graph canvas enhanced.
+ *
+ * @module GraphCanvasEnhanced
+ * @packageDocumentation
+ */
 "use client";
 
 import Graph from "graphology";
@@ -10,9 +16,36 @@ import { bindRendererContextEvents } from "../lib/renderer-lifecycle";
 
 // ─── Optional: community detection + centrality ────────────────────────────
 // These are dynamic imports so the bundle stays small if unused.
+/**
+ * Type Louvain.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Louvain } from './module';
+ * ```
+ */
 type Louvain = (graph: Graph) => Record<string, number>;
+/**
+ * Type PageRank.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { PageRank } from './module';
+ * ```
+ */
 type PageRank = (graph: Graph, opts?: { alpha?: number }) => Record<string, number>;
 
+/**
+ * Type Layout.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Layout } from './module';
+ * ```
+ */
 type Layout = "grouped" | "force" | "circular" | "3d";
 export type GraphCanvasStatus = {
   renderer: string;
@@ -64,6 +97,16 @@ const COMMUNITY_PALETTE = [
   "#22d3ee", "#f87171", "#4ade80", "#818cf8", "#e879f9",
 ];
 
+/**
+ * Function groupedPositions.
+ *
+ * @param {GraphNode[]} nodes - Description of nodes.
+ *
+ * @example
+ * ```typescript
+ * const result = groupedPositions(...);
+ * ```
+ */
 function groupedPositions(nodes: GraphNode[]) {
   const groups = new Map<string, GraphNode[]>();
   for (const node of [...nodes].sort((a, b) => a.id.localeCompare(b.id))) {
@@ -91,6 +134,16 @@ function groupedPositions(nodes: GraphNode[]) {
   return positions;
 }
 
+/**
+ * Function circularPositions.
+ *
+ * @param {GraphNode[]} nodes - Description of nodes.
+ *
+ * @example
+ * ```typescript
+ * const result = circularPositions(...);
+ * ```
+ */
 function circularPositions(nodes: GraphNode[]) {
   const positions = new Map<string, { x: number; y: number }>();
   const sorted = [...nodes].sort((a, b) => a.id.localeCompare(b.id));

@@ -1,4 +1,14 @@
 import type {Snapshot} from './graph';
+/**
+ * Function neo4jBundle.
+ *
+ * @param {Snapshot} graph - Description of graph.
+ *
+ * @example
+ * ```typescript
+ * const result = neo4jBundle(...);
+ * ```
+ */
 export async function neo4jBundle(graph:Snapshot){const bytes=new TextEncoder().encode(JSON.stringify(graph));const digest=await crypto.subtle.digest('SHA-256',bytes);const revision=[...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('');return {
  format:'play-anything.neo4j-import.v1',status:'export-only; no database connection or import performed',revision,
  instructions:['Replace tenant_id and repository_id with your authorized namespace.','Use fixed statements with parameters through your own database driver. Do not interpolate repository names into Cypher.','Apply uniqueness constraint before import. Commit node and relationship imports atomically, then publish the revision.','This bundle is a rebuildable snapshot projection; a hosted query API must enforce authorization separately from Supabase RLS.'],

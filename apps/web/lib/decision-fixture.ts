@@ -1,9 +1,44 @@
 import type {DecisionAnswer, DecisionProvider, DecisionQuestion, DecisionResult} from './decision-types';
 
+/**
+ * Core library module for decision fixture.ts functionality.
+ *
+ * @module decision-fixture
+ * @packageDocumentation
+ */
+/**
+ * Function fixtureAnswer.
+ *
+ * @param {string} id - Description of id.
+ * @param {DecisionQuestion['type']} type - Description of type.
+ * @param {string|number} value - Description of value.
+ * @param {Record<string,number>} distribution - Description of distribution.
+ * @param {number} confidence - Description of confidence.
+ * @param {number} threshold - Description of threshold.
+ * @returns {DecisionAnswer} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = fixtureAnswer(..., ..., ..., ..., ..., ...);
+ * ```
+ */
 function fixtureAnswer(id:string,type:DecisionQuestion['type'],value:string|number,distribution:Record<string,number>,confidence:number,threshold:number):DecisionAnswer {
  return {id,type,value,distribution,confidence,reviewRequired:confidence<threshold};
 }
 
+/**
+ * Function peakedDistribution.
+ *
+ * @param {string[]} labels - Description of labels.
+ * @param {number} winnerIndex - Description of winnerIndex.
+ * @param {number} peak - Description of peak.
+ * @returns {Record<string,number>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = peakedDistribution(..., ..., ...);
+ * ```
+ */
 function peakedDistribution(labels:string[],winnerIndex:number,peak:number):Record<string,number> {
  if(!labels.length)return {};
  if(labels.length===1)return {[labels[0]]:1};

@@ -1,3 +1,9 @@
+/**
+ * React component for specialist designer.
+ *
+ * @module SpecialistDesigner
+ * @packageDocumentation
+ */
 'use client';
 import {useEffect,useMemo,useState} from 'react';
 import Link from 'next/link';
@@ -10,8 +16,37 @@ import {identityEvidence} from '@/lib/identity-evidence';
 import styles from './SpecialistDesigner.module.css';
 const draftKey='apexgraphswarm.specialists.design.v1';
 const nodeKinds:ScopeNode['kind'][]=['repository','module','swarm','datacenter','rack','fleet','device','iot-center'];
+/**
+ * Function newId.
+ *
+ * @param {string} prefix - Description of prefix.
+ *
+ * @example
+ * ```typescript
+ * const result = newId(...);
+ * ```
+ */
 function newId(prefix:string){return `${prefix}-${crypto.randomUUID().slice(0,8)}`;}
+/**
+ * Function exportJSON.
+ *
+ * @param {SpecialistDesign} design - Description of design.
+ *
+ * @example
+ * ```typescript
+ * const result = exportJSON(...);
+ * ```
+ */
 function exportJSON(design:SpecialistDesign){const url=URL.createObjectURL(new Blob([JSON.stringify(design,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='apex-specialist-design.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+/**
+ * React component SpecialistDesigner.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { SpecialistDesigner } from './module';
+ * ```
+ */
 export default function SpecialistDesigner(){
  const [design,setDesign]=useState(createStarterDesign);
  const [nodeId,setNodeId]=useState(()=>createStarterDesign().nodes[0].id);

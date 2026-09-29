@@ -1,3 +1,9 @@
+/**
+ * React component for analytics studio.
+ *
+ * @module AnalyticsStudio
+ * @packageDocumentation
+ */
 'use client';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {downloadJSON} from '@/lib/graph';
@@ -8,8 +14,37 @@ import styles from './AnalyticsStudio.module.css';
 import AnalyticsRelationshipGraph from './AnalyticsRelationshipGraph';
 import AnalyticsVisualGallery from './AnalyticsVisualGallery';
 const views=['Overview','Visualizations','Statistics','Predictions','Relationships','Data & methods'] as const;
+/**
+ * Type View.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { View } from './module';
+ * ```
+ */
 type View=typeof views[number];
+/**
+ * Function saveText.
+ *
+ * @param {string} name - Description of name.
+ * @param {string} text - Description of text.
+ *
+ * @example
+ * ```typescript
+ * const result = saveText(..., ...);
+ * ```
+ */
 function saveText(name:string,text:string){const url=URL.createObjectURL(new Blob([text],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+/**
+ * React component AnalyticsStudio.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { AnalyticsStudio } from './module';
+ * ```
+ */
 export default function AnalyticsStudio(){
  const [report,setReport]=useState<AnalyticsReport|null>(null),[view,setView]=useState<View>('Overview');
  const [source,setSource]=useState<'live'|'import'|'demo'>('live'),[token,setToken]=useState(''),[days,setDays]=useState(30),[tool,setTool]=useState('');

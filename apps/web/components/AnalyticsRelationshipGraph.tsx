@@ -1,3 +1,9 @@
+/**
+ * React component for analytics relationship graph.
+ *
+ * @module AnalyticsRelationshipGraph
+ * @packageDocumentation
+ */
 'use client';
 
 import dynamic from 'next/dynamic';
@@ -15,6 +21,16 @@ const GraphCanvas = dynamic(() => import('./GraphCanvas'), {
   loading: () => <div className={styles.loading}><Network size={28} /><span>Preparing the WebGL relationship graph…</span></div>,
 });
 
+/**
+ * Function AnalyticsRelationshipGraph.
+ *
+ * @param {{ report}  report  - Description of  report .
+ *
+ * @example
+ * ```typescript
+ * const result = AnalyticsRelationshipGraph(...);
+ * ```
+ */
 export function AnalyticsRelationshipGraph({ report }: { report: AnalyticsReport }) {
   const stage = useRef<HTMLElement>(null);
   const fullscreen = useGraphFullscreen(stage);

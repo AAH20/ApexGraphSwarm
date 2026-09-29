@@ -1,3 +1,9 @@
+/**
+ * React component for swarm panel.
+ *
+ * @module SwarmPanel
+ * @packageDocumentation
+ */
 'use client';
 import {useState,useRef,useEffect,useMemo} from 'react';
 import {Bot,Play,Square,Download,Check,Clock,ShieldCheck,Workflow,Sparkles,ArrowUpRight,ChevronDown} from 'lucide-react';
@@ -5,6 +11,15 @@ import {orchestrate,type RunState} from '@/lib/orchestrator';
 import {type Snapshot,describeSnapshot,downloadJSON} from '@/lib/graph';
 import {type ModelSwarmResult} from '@/lib/model-swarm';
 const roles={cartographer:{name:'Structure scout',description:'Find entry points and highly connected symbols.'},dependencies:{name:'Dependency analyst',description:'Inspect cycles in resolved semantic relationships.'},evidence:{name:'Evidence critic',description:'Surface uncertainty, gaps and coverage limits.'}};
+/**
+ * Type Review.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Review } from './module';
+ * ```
+ */
 type Review={summary:string;findings:{title:string;detail:string;nodeIds:string[];confidence:string}[];usage?:{inputTokens:number|null;outputTokens:number|null};model?:string};
 export default function SwarmPanel({graph,onSelect,onReport}:{graph:Snapshot;onSelect:(id:string)=>void;onReport:(report:unknown)=>void}){
  const [runState,setRun]=useState<RunState|null>(null),[concurrency,setConcurrency]=useState(2),[timeout,setTimeoutBudget]=useState(5000),[expanded,setExpanded]=useState(false);

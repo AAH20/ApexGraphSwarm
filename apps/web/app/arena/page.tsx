@@ -1,3 +1,12 @@
 import AppShell from '@/components/AppShell';
 import ArenaStudio from '@/components/ArenaStudio';
+/**
+ * React component Page.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Page } from './module';
+ * ```
+ */
 export default function Page(){return <AppShell active="arena"><div className="apex-page"><header className="apex-section-heading"><span className="eyebrow">SWARM ARENA / REPRODUCIBLE EVIDENCE</span><h1>Make the run easy to inspect and share.</h1><p>Run a fixed local challenge pack, inspect each result and its source pins, then share a portable evidence snapshot. Comparisons are meaningful only when workload, source revision, environment and limits match.</p></header><ArenaStudio/></div></AppShell>}

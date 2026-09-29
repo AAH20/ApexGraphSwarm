@@ -1,3 +1,9 @@
+/**
+ * React component for execution trace.
+ *
+ * @module ExecutionTrace
+ * @packageDocumentation
+ */
 'use client';
 import {useEffect,useId,useMemo,useRef,useState} from 'react';
 import {Maximize2,RefreshCw,Download,Search,ZoomIn,ZoomOut} from 'lucide-react';
@@ -6,6 +12,16 @@ import {formatMicrousd} from '@/lib/format-microusd';
 import {EXECUTION_KINDS,executionLayout,executionView,type ExecutionGraph} from '@/lib/execution-graph';
 import styles from './ExecutionTrace.module.css';
 
+/**
+ * React component ExecutionTrace.
+ *
+ * @param {{runId} runId,token - Description of runId,token.
+ *
+ * @example
+ * ```typescript
+ * const result = ExecutionTrace(...);
+ * ```
+ */
 export default function ExecutionTrace({runId,token}:{runId:string;token:string}){
  const [graph,setGraph]=useState<ExecutionGraph|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState('');
  const [query,setQuery]=useState(''),[kind,setKind]=useState('all'),[selected,setSelected]=useState<string|null>(null),[neighbors,setNeighbors]=useState(false),[zoom,setZoom]=useState(1),[expanded,setExpanded]=useState(false),[fullscreen,setFullscreen]=useState(false);

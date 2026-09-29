@@ -1,5 +1,30 @@
+/**
+ * React component for repository conflict results.
+ *
+ * @module RepositoryConflictResults
+ * @packageDocumentation
+ */
+/**
+ * Type Row.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Row } from './module';
+ * ```
+ */
 type Row=Record<string,unknown>;
 const record=(value:unknown):Row=>value&&typeof value==='object'&&!Array.isArray(value)?value as Row:{};
+/**
+ * React component RepositoryConflictResults.
+ *
+ * @param {{result} result - Description of result.
+ *
+ * @example
+ * ```typescript
+ * const result = RepositoryConflictResults(...);
+ * ```
+ */
 export default function RepositoryConflictResults({result}:{result:Row}){
  if(result.algorithm!=='committed-diff-with-prefix-aware-dependency-frontiers')return null;
  const base=record(result.base),tasks=Array.isArray(result.tasks)?result.tasks.map(record):[];

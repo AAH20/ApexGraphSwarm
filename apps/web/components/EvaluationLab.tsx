@@ -1,3 +1,9 @@
+/**
+ * React component for evaluation lab.
+ *
+ * @module EvaluationLab
+ * @packageDocumentation
+ */
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
@@ -27,6 +33,15 @@ type Artifact = {
   proposedTargets: { label: string; value: string; status: 'unmeasured' }[];
 };
 
+/**
+ * Type Candidate.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Candidate } from './module';
+ * ```
+ */
 type Candidate = { id: string; version: string; name: string; topology: 'star' | 'graph'; graphRouting: boolean; maxWorkers: number; budgetUsd: string; evidence: string };
 
 const seeds: Candidate[] = [
@@ -34,16 +49,47 @@ const seeds: Candidate[] = [
   { id: 'graph-swarm', version: '2.0.0', name: 'Graph-routed swarm candidate', topology: 'graph', graphRouting: true, maxWorkers: 10, budgetUsd: 'unknown', evidence: 'Proposed; requires held-out quality and safety evidence.' },
 ];
 
+/**
+ * Function number.
+ *
+ * @param {number | undefined} value - Description of value.
+ * @param places - Description of places.
+ *
+ * @example
+ * ```typescript
+ * const result = number(..., ...);
+ * ```
+ */
 function number(value: number | undefined, places = 2) {
   return Number.isFinite(value) ? value!.toFixed(places) : '—';
 }
 
+/**
+ * Function validArtifact.
+ *
+ * @param value - Description of value.
+ * @returns {value is Artifact} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = validArtifact(...);
+ * ```
+ */
 function validArtifact(value: unknown): value is Artifact {
   if (!value || typeof value !== 'object') return false;
   const item = value as Partial<Artifact>;
   return item.schemaVersion === 1 && item.classification === 'deterministic_local_queue_fixture' && Array.isArray(item.scenarios) && !!item.provenance && Array.isArray(item.proposedTargets);
 }
 
+/**
+ * React component EvaluationLab.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { EvaluationLab } from './module';
+ * ```
+ */
 export default function EvaluationLab() {
   const [artifact, setArtifact] = useState<Artifact | null>(null);
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'missing' | 'invalid'>('loading');

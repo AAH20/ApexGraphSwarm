@@ -1,4 +1,14 @@
 // Browser JSON numbers must not silently round integer microUSD amounts.
+/**
+ * Function assertJsonPrecision.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = assertJsonPrecision(...);
+ * ```
+ */
 export function assertJsonPrecision(value:unknown):void {
  const pending:unknown[]=[value];let count=0;
  while(pending.length){

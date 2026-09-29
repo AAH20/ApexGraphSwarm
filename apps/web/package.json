@@ -26,7 +26,8 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "sigma": "^4.0.0-alpha.7",
-    "zod": "4.6.5"
+    "zod": "4.6.5",
+    "@apexgraphswarm/governance": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "26.6.3",

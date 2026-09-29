@@ -1,3 +1,9 @@
+/**
+ * React component for graph workspace.
+ *
+ * @module GraphWorkspace
+ * @packageDocumentation
+ */
 'use client';
 import {useState,useEffect,useMemo,useCallback,useRef,useDeferredValue} from 'react';
 import Link from 'next/link';
@@ -13,7 +19,27 @@ import {neo4jBundle} from '@/lib/neo4j-export';
 const GraphCanvas=dynamic(()=>import('./GraphCanvas'),{ssr:false,loading:()=> <div className="canvas-loading"><Network size={32}/><span>Preparing the graph renderer…</span></div>});
 const initialFilters:Filters={query:'',kind:'all',relation:'all',evidence:'all',directory:'all',view:'modules',focus:null,hops:1,direction:'both'};
 const colors:Record<string,string>={module:'#8493ff',file:'#53c5ad',function:'#70a8ff',class:'#f2bf68',external:'#9ba6b8'};
+/**
+ * Function NodeIcon.
+ *
+ * @param {{kind} kind - Description of kind.
+ *
+ * @example
+ * ```typescript
+ * const result = NodeIcon(...);
+ * ```
+ */
 function NodeIcon({kind}:{kind:string}){return kind==='module'?<Layers size={15}/>:kind==='file'?<FileCode2 size={15}/>:<Code2 size={15}/>;}
+/**
+ * React component GraphWorkspace.
+ *
+ * @param {{embedded?} embedded=false - Description of embedded=false.
+ *
+ * @example
+ * ```typescript
+ * const result = GraphWorkspace(...);
+ * ```
+ */
 export default function GraphWorkspace({embedded=false}:{embedded?:boolean}){
  const [graph,setGraph]=useState<Snapshot|null>(null),[error,setError]=useState(''),[notice,setNotice]=useState(''),[source,setSource]=useState('Prepared project snapshot');
  const [filters,setFilters]=useState<Filters>(initialFilters),[selected,setSelected]=useState<string|null>(null),[layout,setLayout]=useState<'grouped'|'force'>('grouped'),[inspectorTab,setInspectorTab]=useState<'node'|'constraints'>('node'),[listOpen,setListOpen]=useState(false),[searchAll,setSearchAll]=useState('');

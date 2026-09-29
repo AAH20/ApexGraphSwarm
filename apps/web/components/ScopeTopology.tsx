@@ -1,3 +1,9 @@
+/**
+ * React component for scope topology.
+ *
+ * @module ScopeTopology
+ * @packageDocumentation
+ */
 'use client';
 
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
@@ -37,6 +43,16 @@ const compact = (value: string, max = 22) => value.length > max ? `${value.slice
 const compareNodes = (a: ScopeTopologyNode, b: ScopeTopologyNode) =>
   a.label < b.label ? -1 : a.label > b.label ? 1 : a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
 
+/**
+ * React component ScopeTopology.
+ *
+ * @param {ScopeTopologyProps}  nodes, selectedId, onSelect  - Description of  nodes, selectedId, onSelect .
+ *
+ * @example
+ * ```typescript
+ * const result = ScopeTopology(...);
+ * ```
+ */
 export default function ScopeTopology({ nodes, selectedId, onSelect }: ScopeTopologyProps) {
   const [focusedId, setFocusedId] = useState(selectedId);
   const [zoom, setZoom] = useState(1);

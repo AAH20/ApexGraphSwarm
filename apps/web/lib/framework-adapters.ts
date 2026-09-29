@@ -1,5 +1,20 @@
 import type { IntegrationField, IntegrationInfo, IntegrationInput } from './integration-runtime';
 
+/**
+ * Core library module for framework adapters.ts functionality.
+ *
+ * @module framework-adapters
+ * @packageDocumentation
+ */
+/**
+ * Type FrameworkEnv.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { FrameworkEnv } from './module';
+ * ```
+ */
 type FrameworkEnv = Record<string, string | undefined>;
 type FrameworkResult = {
   result: unknown;
@@ -13,10 +28,32 @@ const field = (id: string, label: string, required = true): IntegrationField => 
 const numberField = (id: string, label: string, defaultValue?: number): IntegrationField => ({ id, label, type: 'number', required: false, ...(defaultValue === undefined ? {} : { defaultValue }) });
 const selectField = (id: string, label: string, options: string[], defaultValue?: string): IntegrationField => ({ id, label, type: 'select', required: false, options, ...(defaultValue ? { defaultValue } : {}) });
 
+/**
+ * Function configured.
+ *
+ * @param {FrameworkEnv} env - Description of env.
+ * @param {string[]} keys - Description of keys.
+ *
+ * @example
+ * ```typescript
+ * const result = configured(..., ...);
+ * ```
+ */
 function configured(env: FrameworkEnv, keys: string[]) {
   return keys.every((key) => Boolean(env[key]?.trim()));
 }
 
+/**
+ * Function getFrameworkIntegrations.
+ *
+ * @param {FrameworkEnv} env - Description of env.
+ * @returns {IntegrationInfo[]} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = getFrameworkIntegrations(...);
+ * ```
+ */
 export function getFrameworkIntegrations(env: FrameworkEnv = process.env): IntegrationInfo[] {
   const cogneeReady = configured(env, ['COGNEE_BASE_URL', 'COGNEE_DATASET']);
   const cogneeHeaders = env.COGNEE_API_KEY?.trim();
@@ -78,11 +115,34 @@ export function getFrameworkIntegrations(env: FrameworkEnv = process.env): Integ
   ];
 }
 
+/**
+ * Function required.
+ *
+ * @param {string | undefined} value - Description of value.
+ * @param {string} name - Description of name.
+ *
+ * @example
+ * ```typescript
+ * const result = required(..., ...);
+ * ```
+ */
 function required(value: string | undefined, name: string) {
   if (!value?.trim()) throw new Error(`${name} is not configured.`);
   return value.trim();
 }
 
+/**
+ * Function serviceBase.
+ *
+ * @param {FrameworkEnv} env - Description of env.
+ * @param {string} name - Description of name.
+ * @param allowHttpLocal - Description of allowHttpLocal.
+ *
+ * @example
+ * ```typescript
+ * const result = serviceBase(..., ..., ...);
+ * ```
+ */
 function serviceBase(env: FrameworkEnv, name: string, allowHttpLocal = false) {
   const raw = required(env[name], name);
   let url: URL;
@@ -94,6 +154,16 @@ function serviceBase(env: FrameworkEnv, name: string, allowHttpLocal = false) {
   return url.toString().replace(/\/$/, '');
 }
 
+/**
+ * Function assertPrivateMiroFish.
+ *
+ * @param {string} base - Description of base.
+ *
+ * @example
+ * ```typescript
+ * const result = assertPrivateMiroFish(...);
+ * ```
+ */
 function assertPrivateMiroFish(base: string) {
   const host = new URL(base).hostname.toLowerCase().replace(/^\[|\]$/g, '');
   const local = ['localhost', '::1'].includes(host) || host.endsWith('.local');
@@ -102,6 +172,17 @@ function assertPrivateMiroFish(base: string) {
   if (!(local || privateV4 || privateV6)) throw new Error('MIROFISH_BASE_URL must target a server-private or loopback service because the upstream API has no authentication.');
 }
 
+/**
+ * Function id.
+ *
+ * @param {string | number | undefined} value - Description of value.
+ * @param {string} label - Description of label.
+ *
+ * @example
+ * ```typescript
+ * const result = id(..., ...);
+ * ```
+ */
 function id(value: string | number | undefined, label: string) {
   if (typeof value !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(value)) {
     throw new Error(`${label} is required and must be a valid identifier.`);
@@ -109,12 +190,35 @@ function id(value: string | number | undefined, label: string) {
   return value;
 }
 
+/**
+ * Function boundedJson.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = boundedJson(...);
+ * ```
+ */
 function boundedJson(value: unknown) {
   const text = JSON.stringify(value);
   if (new TextEncoder().encode(text).byteLength > MAX_FRAMEWORK_BODY) throw new Error('Framework request exceeded the 1 MB input limit.');
   return text;
 }
 
+/**
+ * Function requestJson.
+ *
+ * @param {string} url - Description of url.
+ * @param {RequestInit} init - Description of init.
+ * @param {AbortSignal} signal - Description of signal.
+ * @returns {Promise<unknown>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = requestJson(..., ..., ...);
+ * ```
+ */
 async function requestJson(url: string, init: RequestInit, signal: AbortSignal): Promise<unknown> {
   const response = await fetch(url, { ...init, signal, redirect: 'error', cache: 'no-store' });
   const declaredLength = Number(response.headers.get('content-length') || 0);
@@ -144,6 +248,16 @@ async function requestJson(url: string, init: RequestInit, signal: AbortSignal):
   try { return JSON.parse(text); } catch { return text.slice(0, 12_000); }
 }
 
+/**
+ * Function envelope.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = envelope(...);
+ * ```
+ */
 function envelope(value: unknown) {
   if (value && typeof value === 'object' && !Array.isArray(value)) {
     const record = value as Record<string, unknown>;
@@ -153,6 +267,16 @@ function envelope(value: unknown) {
   return value;
 }
 
+/**
+ * Function graphDocument.
+ *
+ * @param {IntegrationInput} input - Description of input.
+ *
+ * @example
+ * ```typescript
+ * const result = graphDocument(...);
+ * ```
+ */
 function graphDocument(input: IntegrationInput) {
   if (!input.graph) throw new Error('This operation requires the selected repository graph.');
   return {
@@ -163,6 +287,20 @@ function graphDocument(input: IntegrationInput) {
   };
 }
 
+/**
+ * Function executeCognee.
+ *
+ * @param {string} operation - Description of operation.
+ * @param {IntegrationInput} input - Description of input.
+ * @param {FrameworkEnv} env - Description of env.
+ * @param {AbortSignal} signal - Description of signal.
+ * @returns {Promise<FrameworkResult>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = executeCognee(..., ..., ..., ...);
+ * ```
+ */
 async function executeCognee(operation: string, input: IntegrationInput, env: FrameworkEnv, signal: AbortSignal): Promise<FrameworkResult> {
   const base = serviceBase(env, 'COGNEE_BASE_URL', true);
   const dataset = typeof input.parameters.dataset === 'string' && input.parameters.dataset.trim()
@@ -196,6 +334,20 @@ async function executeCognee(operation: string, input: IntegrationInput, env: Fr
   return { result: { integrationId: 'cognee', operation, scope, dataset, response: envelope(result), ...(operation === 'cognify' ? { remoteExecution: { state: 'accepted', terminal: false, followUpOperation: 'search', note: 'The request used run_in_background=true; this acknowledgment does not prove cognification completed.' } } : {}) } };
 }
 
+/**
+ * Function executeMiroFish.
+ *
+ * @param {string} operation - Description of operation.
+ * @param {IntegrationInput} input - Description of input.
+ * @param {FrameworkEnv} env - Description of env.
+ * @param {AbortSignal} signal - Description of signal.
+ * @returns {Promise<FrameworkResult>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = executeMiroFish(..., ..., ..., ...);
+ * ```
+ */
 async function executeMiroFish(operation: string, input: IntegrationInput, env: FrameworkEnv, signal: AbortSignal): Promise<FrameworkResult> {
   const base = serviceBase(env, 'MIROFISH_BASE_URL', true);
   assertPrivateMiroFish(base);
@@ -223,10 +375,34 @@ async function executeMiroFish(operation: string, input: IntegrationInput, env: 
   return { result: { integrationId: 'mirofish', operation, scope: 'existing-prepared-simulation', simulationId, response: envelope(started), remoteExecution: { state: 'accepted', terminal: false, followUpOperation: 'status' }, note: 'The upstream runner executes independently after this start response; poll status using the returned simulationId.' } };
 }
 
+/**
+ * Function langGraphHeaders.
+ *
+ * @param {FrameworkEnv} env - Description of env.
+ *
+ * @example
+ * ```typescript
+ * const result = langGraphHeaders(...);
+ * ```
+ */
 function langGraphHeaders(env: FrameworkEnv) {
   return { 'content-type': 'application/json', 'x-api-key': required(env.LANGGRAPH_API_KEY, 'LANGGRAPH_API_KEY') };
 }
 
+/**
+ * Function executeLangGraph.
+ *
+ * @param {string} operation - Description of operation.
+ * @param {IntegrationInput} input - Description of input.
+ * @param {FrameworkEnv} env - Description of env.
+ * @param {AbortSignal} signal - Description of signal.
+ * @returns {Promise<FrameworkResult>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = executeLangGraph(..., ..., ..., ...);
+ * ```
+ */
 async function executeLangGraph(operation: string, input: IntegrationInput, env: FrameworkEnv, signal: AbortSignal): Promise<FrameworkResult> {
   const base = serviceBase(env, 'LANGGRAPH_BASE_URL');
   const headers = langGraphHeaders(env);
@@ -267,6 +443,20 @@ async function executeLangGraph(operation: string, input: IntegrationInput, env:
   throw new Error('LangGraph operation is not allowlisted.');
 }
 
+/**
+ * Function executeCrewAI.
+ *
+ * @param {string} operation - Description of operation.
+ * @param {IntegrationInput} input - Description of input.
+ * @param {FrameworkEnv} env - Description of env.
+ * @param {AbortSignal} signal - Description of signal.
+ * @returns {Promise<FrameworkResult>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = executeCrewAI(..., ..., ..., ...);
+ * ```
+ */
 async function executeCrewAI(operation: string, input: IntegrationInput, env: FrameworkEnv, signal: AbortSignal): Promise<FrameworkResult> {
   const base = serviceBase(env, 'CREWAI_BASE_URL');
   const headers = { authorization: `Bearer ${required(env.CREWAI_TOKEN, 'CREWAI_TOKEN')}`, 'content-type': 'application/json' };

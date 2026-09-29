@@ -74,6 +74,7 @@ class EvaluationSuite:
     max_accept_rate_regression: float = 0.02
     max_cost_microusd_per_task: int | None = None
     cost_cap_enforcement_id: str | None = None
+    metric_profile: dict[str, Any] | None = None
 
     @classmethod
     def from_dict(cls, raw: Mapping[str, Any]) -> "EvaluationSuite":
@@ -92,6 +93,37 @@ class EvaluationSuite:
         enforcement_id = raw.get("costCapEnforcementId")
         if enforcement_id is not None:
             enforcement_id = _required_text(enforcement_id, "costCapEnforcementId")
+        metric_profile = None
+        profile_raw = raw.get("metricProfile")
+        if profile_raw is not None:
+            from .hierarchy import HierarchyError, get_metric_profile, normalize_metric_weights
+            if not isinstance(profile_raw, Mapping) or set(profile_raw) - {
+                    "profileId", "profileVersion", "weightSetVersion", "weights",
+                    "minimumWeightedScore", "maxScoreRegression"}:
+                raise EvaluationError("metricProfile accepts profileId, profileVersion, weightSetVersion, weights, minimumWeightedScore, and maxScoreRegression")
+            profile_id = _required_text(profile_raw.get("profileId"), "metricProfile.profileId")
+            try:
+                base_profile = get_metric_profile(profile_id)
+                weights = normalize_metric_weights(profile_id, profile_raw.get("weights"))
+            except HierarchyError as exc:
+                raise EvaluationError(str(exc)) from exc
+            version = _required_text(profile_raw.get("profileVersion", base_profile["profileVersion"]), "metricProfile.profileVersion")
+            if version != base_profile["profileVersion"]:
+                raise EvaluationError("metricProfile version is not registered")
+            weight_set_version = profile_raw.get("weightSetVersion")
+            if profile_raw.get("weights") is not None and not weight_set_version:
+                raise EvaluationError("custom metricProfile weights require weightSetVersion")
+            if profile_raw.get("weights") is None and weight_set_version is not None:
+                raise EvaluationError("weightSetVersion requires explicit custom weights")
+            metric_profile = {
+                "profileId": base_profile["profileId"], "profileVersion": version,
+                "weightSetVersion": _required_text(weight_set_version, "metricProfile.weightSetVersion") if weight_set_version else "builtin-" + version,
+                "weights": weights,
+                "minimumWeightedScore": _finite_number(profile_raw.get("minimumWeightedScore", 0.7),
+                                                        "minimumWeightedScore", low=0, high=1),
+                "maxScoreRegression": _finite_number(profile_raw.get("maxScoreRegression", 0.02),
+                                                     "maxScoreRegression", low=0, high=1),
+            }
         if isinstance(violations, bool) or not isinstance(violations, int) or violations < 0:
             raise EvaluationError("maxPolicyViolations must be a non-negative integer")
         if isinstance(attempts, bool) or not isinstance(attempts, int) or not 1 <= attempts <= 10:
@@ -116,10 +148,11 @@ class EvaluationSuite:
                 raw.get("maxAcceptRateRegression", 0.02), "maxAcceptRateRegression", low=0, high=1),
             max_cost_microusd_per_task=cost_cap,
             cost_cap_enforcement_id=enforcement_id,
+            metric_profile=metric_profile,
         )
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        result = {
             "suiteId": self.suite_id, "suiteVersion": self.suite_version,
             "tasksetId": self.taskset_id, "tasksetVersion": self.taskset_version,
             "evaluatorId": self.evaluator_id, "evaluatorVersion": self.evaluator_version,
@@ -131,6 +164,9 @@ class EvaluationSuite:
             "maxCostMicrousdPerTask": self.max_cost_microusd_per_task,
             "costCapEnforcementId": self.cost_cap_enforcement_id,
         }
+        if self.metric_profile is not None:
+            result["metricProfile"] = self.metric_profile
+        return result
 
 
 @dataclass(frozen=True)
@@ -169,6 +205,7 @@ class Attempt:
     quality_score: float | None
     accepted: bool | None
     policy_violations: int
+    metric_scores: dict[str, float] | None = None
 
     @classmethod
     def from_dict(cls, raw: Mapping[str, Any]) -> "Attempt":
@@ -192,6 +229,17 @@ class Attempt:
         violations = raw.get("policyViolations", 0)
         if isinstance(violations, bool) or not isinstance(violations, int) or violations < 0:
             raise EvaluationError("policyViolations must be a non-negative integer")
+        raw_metrics = raw.get("metricScores")
+        metric_scores = None
+        if raw_metrics is not None:
+            if not isinstance(raw_metrics, Mapping) or len(raw_metrics) > 32:
+                raise EvaluationError("metricScores must be an object with at most 32 metrics")
+            metric_scores = {}
+            for name, score in raw_metrics.items():
+                metric_name = _required_text(name, "metricScores key")
+                if len(metric_name) > 64:
+                    raise EvaluationError("metricScores keys must be at most 64 characters")
+                metric_scores[metric_name] = _finite_number(score, "metricScores." + metric_name, low=0, high=1)
         return cls(
             _required_text(raw.get("attemptId"), "attemptId"),
             _required_text(raw.get("candidateId"), "attempt candidateId"),
@@ -200,7 +248,7 @@ class Attempt:
             _required_text(raw.get("evaluatorVersion"), "attempt evaluatorVersion"),
             index, status,
             _finite_number(raw.get("elapsedMs"), "elapsedMs", low=0),
-            cost, quality, accepted, violations,
+            cost, quality, accepted, violations, metric_scores,
         )
 
 
@@ -214,7 +262,7 @@ def _bounded_mean_interval(values: Sequence[float], low: float, high: float,
     return max(low, mean - radius), min(high, mean + radius)
 
 
-def _paired_difference_interval(baseline: Sequence[int], candidate: Sequence[int], alpha: float) -> dict[str, float]:
+def _paired_difference_interval(baseline: Sequence[float], candidate: Sequence[float], alpha: float) -> dict[str, float]:
     if len(baseline) != len(candidate) or not baseline:
         raise EvaluationError("paired held-out task outcomes are incomplete")
     differences = [float(c - b) for b, c in zip(baseline, candidate)]
@@ -230,6 +278,62 @@ def _paired_difference_interval(baseline: Sequence[int], candidate: Sequence[int
         radius = min(2.0, math.sqrt(2.0 * sample_variance * log_term / n)
                      + (14.0 * log_term) / (3.0 * (n - 1)))
     return {"mean": mean, "lower": max(-1.0, mean - radius), "upper": min(1.0, mean + radius)}
+
+
+def _profile_summary_from_scores(task_ids: Sequence[str], task_scores: Mapping[str, Any],
+                                 suite: EvaluationSuite) -> dict[str, Any] | None:
+    """Recompute complete per-task weighted scores and conservative bounds."""
+    profile = suite.metric_profile
+    if profile is None:
+        return None
+    if not isinstance(task_scores, Mapping) or list(task_scores) != list(task_ids):
+        raise EvaluationError("metric profile scores must cover the exact ordered task set")
+    weights = profile["weights"]
+    vectors: list[dict[str, float] | None] = []
+    weighted: list[float | None] = []
+    observed: dict[str, list[float]] = {name: [] for name in weights}
+    missing: list[str] = []
+    for task_id in task_ids:
+        raw = task_scores[task_id]
+        if raw is None:
+            vectors.append(None)
+            weighted.append(None)
+            missing.append(task_id)
+            continue
+        if not isinstance(raw, Mapping) or set(raw) != set(weights):
+            raise EvaluationError("metric profile task scores must include every registered metric exactly once")
+        vector: dict[str, float] = {}
+        for name in weights:
+            vector[name] = _finite_number(raw[name], "metricScores." + name, low=0, high=1)
+            observed[name].append(vector[name])
+        vectors.append(vector)
+        weighted.append(sum(vector[name] * weight / 100 for name, weight in weights.items()))
+    complete = not missing
+    alpha = suite.confidence_alpha / 8.0
+    lower = upper = mean = None
+    if complete:
+        values = [value for value in weighted if value is not None]
+        mean = sum(values) / len(values) if values else None
+        lower, upper = _bounded_mean_interval(values, 0.0, 1.0, alpha)
+    failures = []
+    if not complete:
+        failures.append("metric_profile_scores_incomplete")
+    elif lower is None or lower < profile["minimumWeightedScore"]:
+        failures.append("weighted_metric_quality_floor_not_met")
+    return {
+        "profileId": profile["profileId"], "profileVersion": profile["profileVersion"],
+        "weightSetVersion": profile["weightSetVersion"], "weights": dict(weights),
+        "minimumWeightedScore": profile["minimumWeightedScore"],
+        "maxScoreRegression": profile["maxScoreRegression"], "taskCount": len(task_ids),
+        "scoredTaskCount": len(task_ids) - len(missing), "missingTaskIds": missing,
+        "taskWeightedScores": dict(zip(task_ids, weighted)),
+        "meanWeightedScore": mean, "weightedScoreLowerBound": lower,
+        "weightedScoreUpperBound": upper,
+        "metricMeans": {name: sum(values) / len(values) if complete and values else None
+                        for name, values in observed.items()},
+        "gateFailures": failures,
+        "confidenceAlphaPerProfileBound": alpha,
+    }
 
 
 def evaluate_candidate(candidate: Candidate, suite: EvaluationSuite, attempts: Sequence[Attempt], split: str) -> dict[str, Any]:
@@ -255,6 +359,7 @@ def evaluate_candidate(candidate: Candidate, suite: EvaluationSuite, attempts: S
     final_statuses: list[str | None] = []
     final_accepted: list[bool | None] = []
     final_quality: list[float | None] = []
+    task_metric_scores: dict[str, Any] = {}
     quality_sum = 0.0
     quality_count = 0
     policy_count = 0
@@ -273,6 +378,7 @@ def evaluate_candidate(candidate: Candidate, suite: EvaluationSuite, attempts: S
         final_statuses.append(rows[-1].status if rows else None)
         final_accepted.append(rows[-1].accepted if rows else None)
         final_quality.append(rows[-1].quality_score if rows else None)
+        task_metric_scores[task_id] = rows[-1].metric_scores if rows else None
         task_latency.append(sum(a.elapsed_ms for a in rows) if rows else None)
         task_cost = 0
         task_cost_known = bool(rows)
@@ -312,7 +418,7 @@ def evaluate_candidate(candidate: Candidate, suite: EvaluationSuite, attempts: S
     p95_index = max(0, math.ceil(0.95 * n) - 1)
     success_rate = accepted_count / n if complete else None
     cost_per_accepted = (total_cost / accepted_count if complete and accepted_count and unknown_cost_attempts == 0 else None)
-    gate_alpha = suite.confidence_alpha / 6.0
+    gate_alpha = suite.confidence_alpha / (8.0 if suite.metric_profile is not None else 6.0)
     if complete:
         accepted_rate_lower, accepted_rate_upper = _bounded_mean_interval(
             [float(bit) for bit in accepted_bits if bit is not None], 0.0, 1.0, gate_alpha)
@@ -344,7 +450,10 @@ def evaluate_candidate(candidate: Candidate, suite: EvaluationSuite, attempts: S
         reasons.append("p95_task_latency_exceeded")
     if not complete or accepted_rate_lower is None or accepted_rate_lower < suite.quality_floor:
         reasons.append("quality_floor_not_met_with_uncertainty")
-    return {
+    profile_summary = _profile_summary_from_scores(task_ids, task_metric_scores, suite)
+    if profile_summary is not None:
+        reasons.extend(profile_summary["gateFailures"])
+    report = {
         "candidate": candidate.to_dict(), "suite": suite.to_dict(), "split": split,
         "taskCount": n, "attemptCount": attempt_count, "attemptsPerTask": attempts_per_task,
         "acceptedCount": accepted_count, "acceptedRate": success_rate,
@@ -375,6 +484,10 @@ def evaluate_candidate(candidate: Candidate, suite: EvaluationSuite, attempts: S
         "hardGatesPassed": not reasons, "gateFailures": reasons,
         "taskOutcomes": {task_id: accepted_bits[i] for i, task_id in enumerate(task_ids)},
     }
+    if profile_summary is not None:
+        report["taskMetricScores"] = task_metric_scores
+        report["metricProfileEvaluation"] = profile_summary
+    return report
 
 
 def _validate_heldout_report(report: Mapping[str, Any], suite: EvaluationSuite) -> None:
@@ -394,6 +507,8 @@ def _validate_heldout_report(report: Mapping[str, Any], suite: EvaluationSuite) 
     maps = ("taskOutcomes", "attemptsPerTask", "taskCostMicrousd", "knownTaskCostMicrousd",
             "unknownCostAttemptsByTask", "taskLatencyMs", "taskPolicyViolations",
             "taskFinalStatus", "taskFinalAccepted", "taskFinalQualityScore")
+    if suite.metric_profile is not None:
+        maps = maps + ("taskMetricScores",)
     for field in maps:
         value = report.get(field)
         if not isinstance(value, Mapping) or list(value) != list(task_ids):
@@ -464,7 +579,7 @@ def _validate_heldout_report(report: Mapping[str, Any], suite: EvaluationSuite) 
         raise EvaluationError("held-out report latency statistics do not reconcile")
     successes = sum(accepted_bits)
     success_rate = successes / len(task_ids)
-    alpha = suite.confidence_alpha / 6.0
+    alpha = suite.confidence_alpha / (8.0 if suite.metric_profile is not None else 6.0)
     success_lower, success_upper = _bounded_mean_interval([float(v) for v in accepted_bits], 0.0, 1.0, alpha)
     cap = suite.max_cost_microusd_per_task
     mean_cost_lower = mean_cost_upper = cpa_lower = cpa_upper = None
@@ -507,6 +622,11 @@ def _validate_heldout_report(report: Mapping[str, Any], suite: EvaluationSuite) 
         reasons.append("p95_task_latency_exceeded")
     if success_lower < suite.quality_floor:
         reasons.append("quality_floor_not_met_with_uncertainty")
+    if suite.metric_profile is not None:
+        profile_summary = _profile_summary_from_scores(task_ids, report["taskMetricScores"], suite)
+        if report.get("metricProfileEvaluation") != profile_summary:
+            raise EvaluationError("held-out metric profile summary does not reconcile")
+        reasons.extend(profile_summary["gateFailures"])
     if report.get("gateFailures") != reasons or report.get("hardGatesPassed") is not (not reasons):
         raise EvaluationError("held-out report hard-gate summary does not reconcile")
 
@@ -528,8 +648,9 @@ def compare_candidates(baseline: Mapping[str, Any], candidate: Mapping[str, Any]
         raise EvaluationError("held-out reports are incomplete; every task needs an attempt")
     paired = _paired_difference_interval([base_outcomes[t] for t in suite.heldout_task_ids],
                                          [cand_outcomes[t] for t in suite.heldout_task_ids],
-                                         suite.confidence_alpha / 6.0)
+                                         suite.confidence_alpha / (8.0 if suite.metric_profile is not None else 6.0))
     failures = []
+    paired_profile = None
     if cand_id == base_id:
         failures.append("candidate_is_baseline")
     if not candidate.get("hardGatesPassed"):
@@ -544,6 +665,16 @@ def compare_candidates(baseline: Mapping[str, Any], candidate: Mapping[str, Any]
     noninferiority_margin = suite.max_accept_rate_regression
     if paired["lower"] < -noninferiority_margin:
         failures.append("heldout_quality_noninferiority_not_established")
+    if suite.metric_profile is not None:
+        base_scores = baseline["metricProfileEvaluation"]["taskWeightedScores"]
+        cand_scores = candidate["metricProfileEvaluation"]["taskWeightedScores"]
+        if any(base_scores[t] is None or cand_scores[t] is None for t in suite.heldout_task_ids):
+            raise EvaluationError("held-out weighted metric scores are incomplete")
+        paired_profile = _paired_difference_interval([base_scores[t] for t in suite.heldout_task_ids],
+                                                       [cand_scores[t] for t in suite.heldout_task_ids],
+                                                       suite.confidence_alpha / 8.0)
+        if paired_profile["lower"] < -suite.metric_profile["maxScoreRegression"]:
+            failures.append("weighted_metric_score_noninferiority_not_established")
     base_cpa = baseline.get("costPerAcceptedMicrousdLowerBound")
     candidate_cpa = candidate.get("costPerAcceptedMicrousdUpperBound")
     if base_cpa is None or candidate_cpa is None:
@@ -553,6 +684,8 @@ def compare_candidates(baseline: Mapping[str, Any], candidate: Mapping[str, Any]
     return {
         "baselineCandidateId": base_id, "candidateId": cand_id, "split": "heldout",
         "pairedAcceptedRateDifference": paired, "noninferiorityMargin": noninferiority_margin,
+        "pairedWeightedMetricScoreDifference": paired_profile,
+        "maxMetricScoreRegression": suite.metric_profile["maxScoreRegression"] if suite.metric_profile else None,
         "baselineCostPerAcceptedMicrousdLowerBound": base_cpa,
         "candidateCostPerAcceptedMicrousdUpperBound": candidate_cpa,
         "promote": not failures, "failures": failures,
@@ -596,7 +729,9 @@ def evaluate(payload: Mapping[str, Any]) -> dict[str, Any]:
     train_eligible = [c for c in candidates if c.candidate_id != baseline_id
                       and reports[c.candidate_id]["train"]["hardGatesPassed"]
                       and reports[c.candidate_id]["train"]["costPerAcceptedMicrousdUpperBound"] is not None]
-    selected = min(train_eligible, key=lambda c: (reports[c.candidate_id]["train"]["costPerAcceptedMicrousdUpperBound"], c.candidate_id)) if train_eligible else None
+    selected = min(train_eligible, key=lambda c: (reports[c.candidate_id]["train"]["costPerAcceptedMicrousdUpperBound"],
+                                                  -(reports[c.candidate_id]["train"].get("metricProfileEvaluation", {}).get("meanWeightedScore") or 0.0),
+                                                  c.candidate_id)) if train_eligible else None
     decision = None
     if selected is not None and selected.candidate_id != baseline_id:
         baseline_heldout = reports[baseline_id]["heldout"]
@@ -617,7 +752,8 @@ def evaluate(payload: Mapping[str, Any]) -> dict[str, Any]:
         decision = {"promote": False, "failures": ["no_train_eligible_candidate" if selected is None else "training_selection_is_baseline"],
                     "sealedSetUsedForSelection": False}
     return {
-        "evaluationProtocol": "paired-heldout-v1", "suite": suite.to_dict(),
+        "evaluationProtocol": "paired-heldout-profile-v2" if suite.metric_profile else "paired-heldout-v1",
+        "suite": suite.to_dict(),
         "candidateReports": reports,
         "trainingSelection": {"selectedCandidateId": selected.candidate_id if selected else None,
                               "selectionSplit": "train", "sealedSetUsedForSelection": False},

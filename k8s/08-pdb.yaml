@@ -1,0 +1,14 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: apexgraphswarm-web
+  namespace: apexgraphswarm
+  labels:
+    app.kubernetes.io/name: apexgraphswarm
+    app.kubernetes.io/component: web
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: apexgraphswarm
+      app.kubernetes.io/component: web

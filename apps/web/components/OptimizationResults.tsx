@@ -1,8 +1,33 @@
 import RepositoryConflictResults from './RepositoryConflictResults';
 import {formatMicrousd as money} from '@/lib/format-microusd';
+/**
+ * React component for optimization results.
+ *
+ * @module OptimizationResults
+ * @packageDocumentation
+ */
+/**
+ * Type Row.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Row } from './module';
+ * ```
+ */
 type Row=Record<string,unknown>;
 const records=(value:unknown):Row[]=>Array.isArray(value)?value.filter((item):item is Row=>!!item&&typeof item==='object'&&!Array.isArray(item)):[];
 const object=(value:unknown):Row=>value&&typeof value==='object'&&!Array.isArray(value)?value as Row:{};
+/**
+ * React component OptimizationResults.
+ *
+ * @param {{result} result - Description of result.
+ *
+ * @example
+ * ```typescript
+ * const result = OptimizationResults(...);
+ * ```
+ */
 export default function OptimizationResults({result}:{result:Row}){
  const assignments=records(result.assignments ?? object(result.schedule).assignments).map(row=>({...row,task_id:row.task_id??row.sourceTaskId,model:row.model??row.configuredModelId,start:row.start??row.startSeconds,finish:row.finish??row.finishSeconds,cost_microusd:row.cost_microusd??row.reservedCostMicrousd})),cases=records(result.cases),conflicts=records(result.conflicts);
  const decision=object(result.promotionDecision ?? result.heldoutPromotionDecision);

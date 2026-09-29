@@ -1,3 +1,4 @@
+import copy
 import unittest
 
 from apexgraphswarm.evaluation import (
@@ -19,6 +20,11 @@ def suite_dict(**overrides):
     return raw
 
 
+def coding_metric_scores(value=0.9):
+    from apexgraphswarm.hierarchy import METRIC_PROFILES
+    return {name: value for name in METRIC_PROFILES["coding"]["weights"]}
+
+
 def candidate(cid, config):
     return {"candidateId": cid, "version": "1", "config": config}
 
@@ -37,6 +43,60 @@ def rows_for(cid, tasks, cost):
 
 
 class EvaluationTests(unittest.TestCase):
+    def test_field_metric_profile_is_weighted_on_final_tasks_and_compared_paired(self):
+        suite = EvaluationSuite.from_dict(suite_dict(metricProfile={
+            "profileId": "coding", "profileVersion": "1",
+            "minimumWeightedScore": 0.0, "maxScoreRegression": 1.0,
+        }))
+        base = Candidate.from_dict(candidate("base", {"cap": 1}))
+        changed = Candidate.from_dict(candidate("new", {"cap": 2}))
+        attempts = []
+        for cid, score in (("base", 0.9), ("new", 0.8)):
+            for task_id in suite.heldout_task_ids:
+                attempts.append(Attempt.from_dict({
+                    **attempt(cid + "-" + task_id, cid, task_id, cost=20),
+                    "metricScores": coding_metric_scores(score),
+                }))
+        base_report = evaluate_candidate(base, suite, attempts, "heldout")
+        changed_report = evaluate_candidate(changed, suite, attempts, "heldout")
+        summary = changed_report["metricProfileEvaluation"]
+        self.assertEqual(summary["profileId"], "coding")
+        self.assertAlmostEqual(summary["meanWeightedScore"], 0.8)
+        self.assertTrue(summary["gateFailures"] == [])
+        self.assertEqual(summary["weights"]["correctness"], 30)
+        decision = compare_candidates(base_report, changed_report, suite)
+        self.assertIsNotNone(decision["pairedWeightedMetricScoreDifference"])
+        self.assertAlmostEqual(decision["pairedWeightedMetricScoreDifference"]["mean"], -0.1)
+
+    def test_metric_profile_missing_scores_are_a_gate_and_tampering_is_rejected(self):
+        suite = EvaluationSuite.from_dict(suite_dict(metricProfile={
+            "profileId": "coding", "minimumWeightedScore": 0.0,
+        }))
+        c = Candidate.from_dict(candidate("base", {"cap": 1}))
+        missing = [Attempt.from_dict(attempt("a-" + task_id, "base", task_id))
+                   for task_id in suite.heldout_task_ids]
+        report = evaluate_candidate(c, suite, missing, "heldout")
+        self.assertIn("metric_profile_scores_incomplete", report["gateFailures"])
+        self.assertFalse(report["hardGatesPassed"])
+        altered = copy.deepcopy(report)
+        altered["metricProfileEvaluation"]["meanWeightedScore"] = 1.0
+        with self.assertRaisesRegex(EvaluationError, "summary does not reconcile"):
+            compare_candidates(report, altered, suite)
+
+    def test_metric_profile_weights_are_versioned_and_bounded(self):
+        with self.assertRaisesRegex(EvaluationError, "version is not registered"):
+            EvaluationSuite.from_dict(suite_dict(metricProfile={"profileId": "coding", "profileVersion": "999"}))
+        with self.assertRaisesRegex(EvaluationError, "valid range"):
+            EvaluationSuite.from_dict(suite_dict(metricProfile={"profileId": "coding", "minimumWeightedScore": 1.1}))
+        custom = coding_metric_scores(100)
+        weights = {key: 0 for key in custom}
+        weights["correctness"] = 100
+        with self.assertRaisesRegex(EvaluationError, "require weightSetVersion"):
+            EvaluationSuite.from_dict(suite_dict(metricProfile={"profileId": "coding", "weights": weights}))
+        configured = EvaluationSuite.from_dict(suite_dict(metricProfile={
+            "profileId": "coding", "weights": weights, "weightSetVersion": "team-policy-2",
+        }))
+        self.assertEqual(configured.to_dict()["metricProfile"]["weights"]["correctness"], 100)
     def test_split_overlap_and_unsafe_candidate_configs_rejected(self):
         with self.assertRaises(EvaluationError):
             EvaluationSuite.from_dict(suite_dict(sealedTaskIds=["h1"]))

@@ -1,3 +1,9 @@
+/**
+ * React component for decision studio.
+ *
+ * @module DecisionStudio
+ * @packageDocumentation
+ */
 'use client';
 
 import {useEffect, useMemo, useRef, useState} from 'react';
@@ -5,7 +11,25 @@ import type {DecisionAnswer, DecisionInput, DecisionProvider, DecisionQuestion, 
 import {buildDecisionFixture} from '@/lib/decision-fixture';
 import styles from './DecisionStudio.module.css';
 
+/**
+ * Type Context.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Context } from './module';
+ * ```
+ */
 type Context = 'graph'|'swarm'|'teams'|'analytics'|'optimization'|'delegation'|'evaluations'|'ecosystem'|'overview';
+/**
+ * Type Preset.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Preset } from './module';
+ * ```
+ */
 type Preset = {id:string;title:string;summary:string;questions:Record<string,DecisionQuestion>};
 
 const presets:Record<Context,Preset> = {
@@ -20,20 +44,83 @@ const presets:Record<Context,Preset> = {
  overview:{id:'overview',title:'General decision',summary:'Frame a choice and a yes/no decision question.',questions:{'choice':{type:'choice',instructions:'Which option best satisfies the stated goal and constraints?',criteria:['Option A','Option B']},'ready':{type:'noul',instructions:'Is the supplied evidence sufficient to make this decision? Answer yes or no.'}}},
 };
 
+/**
+ * Function usdToMicrousd.
+ *
+ * @param {string} raw - Description of raw.
+ * @returns {number|null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = usdToMicrousd(...);
+ * ```
+ */
 function usdToMicrousd(raw:string):number|null {
  if(!/^\d{1,9}(?:\.\d{1,6})?$/.test(raw.trim()))return null;
  const value=Number(raw);if(!Number.isFinite(value)||value<0||value>1000000)return null;
  const micros=Math.round(value*1_000_000);return Number.isSafeInteger(micros)?micros:null;
 }
+/**
+ * Function money.
+ *
+ * @param {number|null|undefined} value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = money(...);
+ * ```
+ */
 function money(value:number|null|undefined){return value==null?'Unknown':`$${(value/1_000_000).toFixed(6)}`}
+/**
+ * Function typeLabel.
+ *
+ * @param {DecisionQuestion['type']} type - Description of type.
+ *
+ * @example
+ * ```typescript
+ * const result = typeLabel(...);
+ * ```
+ */
 function typeLabel(type:DecisionQuestion['type']){return type==='noul'?'Yes/no decision · probability':'Structured choice/score decision';}
+/**
+ * Function criteriaText.
+ *
+ * @param {DecisionQuestion} question - Description of question.
+ *
+ * @example
+ * ```typescript
+ * const result = criteriaText(...);
+ * ```
+ */
 function criteriaText(question:DecisionQuestion){return Array.isArray(question.criteria)?question.criteria.join('\n'):question.criteria?JSON.stringify(question.criteria,null,2):'';}
+/**
+ * Function parseCriteria.
+ *
+ * @param {string} text - Description of text.
+ * @param {DecisionQuestion['type']} type - Description of type.
+ * @returns {DecisionQuestion['criteria']|undefined} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = parseCriteria(..., ...);
+ * ```
+ */
 function parseCriteria(text:string,type:DecisionQuestion['type']):DecisionQuestion['criteria']|undefined {
  if(type==='noul'||!text.trim())return undefined;
  if(type==='choice')return text.split('\n').map(row=>row.trim()).filter(Boolean);
  try{const parsed:unknown=JSON.parse(text);if(Array.isArray(parsed)&&parsed.every(item=>typeof item==='string'))return parsed;if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed)&&Object.values(parsed).every(item=>typeof item==='string'))return parsed as Record<string,string>;}catch{}
  return text.split('\n').map(row=>row.trim()).filter(Boolean);
 }
+/**
+ * React component DecisionStudio.
+ *
+ * @param {{context?} context='overview' - Description of context='overview'.
+ *
+ * @example
+ * ```typescript
+ * const result = DecisionStudio(...);
+ * ```
+ */
 export default function DecisionStudio({context='overview'}:{context?:Context}) {
  const initial=presets[context]??presets.overview;
  const [state,setState]=useState('');
@@ -102,6 +189,16 @@ export default function DecisionStudio({context='overview'}:{context?:Context}) 
  </main>;
 }
 
+/**
+ * Function Answer.
+ *
+ * @param {{answer} answer,question,threshold - Description of answer,question,threshold.
+ *
+ * @example
+ * ```typescript
+ * const result = Answer(...);
+ * ```
+ */
 function Answer({answer,question,threshold}:{answer:DecisionAnswer;question?:DecisionQuestion;threshold:number}){
  const entries=Object.entries(answer.distribution??{}).map(([label,value])=>[answer.type==='noul'?(label==='true'?'Yes':label==='false'?'No':label):label,value] as const).sort((a,b)=>b[1]-a[1]);
  const yesProbability=answer.type==='noul'&&typeof answer.value==='number'&&Number.isFinite(answer.value)&&answer.value>=0&&answer.value<=1?answer.value:null;

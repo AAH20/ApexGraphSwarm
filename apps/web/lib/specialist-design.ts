@@ -1,4 +1,22 @@
+/**
+ * Type SkillBinding.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { SkillBinding } from './module';
+ * ```
+ */
 export type SkillBinding = { id: string; sourceUrl: string; revision: string; sha256: string };
+/**
+ * Type ToolBinding.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ToolBinding } from './module';
+ * ```
+ */
 export type ToolBinding = { serverId: string; toolName: string; gatewayId: string };
 export type AccessPolicy = {
   provider: 'agentiam-lab' | 'agent-jit-iam' | 'external';
@@ -23,6 +41,15 @@ export type Specialist = {
   tools: ToolBinding[];
   policy: AccessPolicy;
 };
+/**
+ * Type SpecialistTeam.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { SpecialistTeam } from './module';
+ * ```
+ */
 export type SpecialistTeam = { id: string; name: string; agentIds: string[] };
 export type ScopeNode = {
   id: string;
@@ -32,8 +59,35 @@ export type ScopeNode = {
   teamIds: string[];
   externalRef: string;
 };
+/**
+ * Type SpecialistDesign.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { SpecialistDesign } from './module';
+ * ```
+ */
 export type SpecialistDesign = { schemaVersion: 1; id: string; name: string; agents: Specialist[]; teams: SpecialistTeam[]; nodes: ScopeNode[] };
+/**
+ * Type AccessPreviewRequest.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { AccessPreviewRequest } from './module';
+ * ```
+ */
 export type AccessPreviewRequest = { agentId: string; nodeId: string; action: string; audience: string; purpose: string; elapsedSeconds: number; approverIds: string[] };
+/**
+ * Type AccessPreview.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { AccessPreview } from './module';
+ * ```
+ */
 export type AccessPreview = { decision: 'denied' | 'approval-required' | 'eligible-for-review'; executionAllowed: false; reasons: string[] };
 
 const MAX_JSON_BYTES = 512 * 1024;
@@ -53,6 +107,20 @@ const nodeKinds = new Set(['workspace', 'repository', 'module', 'swarm', 'datace
 const forbiddenActionSegments = new Set(['admin', 'administer', 'actuate', 'actuation']);
 const referencePattern = /^[A-Za-z0-9][A-Za-z0-9_.:@/-]{0,127}$/;
 
+/**
+ * Function plainRecord.
+ *
+ * @param value - Description of value.
+ * @param {readonly string[]} expected - Description of expected.
+ * @param {string} path - Description of path.
+ * @param {string[]} errors - Description of errors.
+ * @returns {Record<string, unknown> | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = plainRecord(..., ..., ..., ...);
+ * ```
+ */
 function plainRecord(value: unknown, expected: readonly string[], path: string, errors: string[]): Record<string, unknown> | null {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) {
     errors.push(`${path} must be an object.`);
@@ -76,6 +144,19 @@ function plainRecord(value: unknown, expected: readonly string[], path: string, 
   return value as Record<string, unknown>;
 }
 
+/**
+ * Function ownArray.
+ *
+ * @param value - Description of value.
+ * @param {string} path - Description of path.
+ * @param {string[]} errors - Description of errors.
+ * @returns {unknown[] | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = ownArray(..., ..., ...);
+ * ```
+ */
 function ownArray(value: unknown, path: string, errors: string[]): unknown[] | null {
   if (!Array.isArray(value) || Object.getPrototypeOf(value) !== Array.prototype) {
     errors.push(`${path} must be an array.`);
@@ -99,6 +180,19 @@ function ownArray(value: unknown, path: string, errors: string[]): unknown[] | n
   return result;
 }
 
+/**
+ * Function copyBoundedJson.
+ *
+ * @param value - Description of value.
+ * @param {{ seen: Set<object>; values: number }} state - Description of state.
+ * @param {number} depth - Description of depth.
+ * @returns {unknown} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = copyBoundedJson(..., ..., ...);
+ * ```
+ */
 function copyBoundedJson(value: unknown, state: { seen: Set<object>; values: number }, depth: number): unknown {
   if (depth > MAX_JSON_DEPTH || ++state.values > MAX_JSON_VALUES) throw new Error('input bounds exceeded');
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return value;
@@ -143,6 +237,22 @@ function copyBoundedJson(value: unknown, state: { seen: Set<object>; values: num
   }
 }
 
+/**
+ * Function text.
+ *
+ * @param {Record<string, unknown>} record - Description of record.
+ * @param {string} key - Description of key.
+ * @param {string} path - Description of path.
+ * @param {string[]} errors - Description of errors.
+ * @param {number} max - Description of max.
+ * @param min - Description of min.
+ * @returns {string} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = text(..., ..., ..., ..., ..., ...);
+ * ```
+ */
 function text(record: Record<string, unknown>, key: string, path: string, errors: string[], max: number, min = 1): string {
   const value = record[key];
   if (typeof value !== 'string' || value.trim().length < min || value.length > max || /[\u0000-\u001f\u007f]/.test(value)) {
@@ -152,6 +262,19 @@ function text(record: Record<string, unknown>, key: string, path: string, errors
   return value;
 }
 
+/**
+ * Function identifier.
+ *
+ * @param value - Description of value.
+ * @param {string} path - Description of path.
+ * @param {string[]} errors - Description of errors.
+ * @returns {string} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = identifier(..., ..., ...);
+ * ```
+ */
 function identifier(value: unknown, path: string, errors: string[]): string {
   if (typeof value !== 'string' || !referencePattern.test(value) || value.includes('://') || /[?*]/.test(value)) {
     errors.push(`${path} must be a non-secret exact identifier.`);
@@ -160,6 +283,21 @@ function identifier(value: unknown, path: string, errors: string[]): string {
   return value;
 }
 
+/**
+ * Function stringList.
+ *
+ * @param value - Description of value.
+ * @param {string} path - Description of path.
+ * @param {string[]} errors - Description of errors.
+ * @param max - Description of max.
+ * @param exactIdentifier - Description of exactIdentifier.
+ * @returns {string[]} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = stringList(..., ..., ..., ..., ...);
+ * ```
+ */
 function stringList(value: unknown, path: string, errors: string[], max = MAX_LIST, exactIdentifier = false): string[] {
   const items = ownArray(value, path, errors);
   if (!items) return [];
@@ -173,6 +311,19 @@ function stringList(value: unknown, path: string, errors: string[], max = MAX_LI
   return result;
 }
 
+/**
+ * Function parseSkill.
+ *
+ * @param value - Description of value.
+ * @param {number} index - Description of index.
+ * @param {string[]} errors - Description of errors.
+ * @returns {SkillBinding | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = parseSkill(..., ..., ...);
+ * ```
+ */
 function parseSkill(value: unknown, index: number, errors: string[]): SkillBinding | null {
   const path = `agents.skills[${index}]`;
   const item = plainRecord(value, ['id', 'sourceUrl', 'revision', 'sha256'], path, errors);
@@ -192,6 +343,19 @@ function parseSkill(value: unknown, index: number, errors: string[]): SkillBindi
   return { id, sourceUrl, revision, sha256 };
 }
 
+/**
+ * Function parseTool.
+ *
+ * @param value - Description of value.
+ * @param {number} index - Description of index.
+ * @param {string[]} errors - Description of errors.
+ * @returns {ToolBinding | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = parseTool(..., ..., ...);
+ * ```
+ */
 function parseTool(value: unknown, index: number, errors: string[]): ToolBinding | null {
   const path = `agents.tools[${index}]`;
   const item = plainRecord(value, ['serverId', 'toolName', 'gatewayId'], path, errors);
@@ -202,6 +366,19 @@ function parseTool(value: unknown, index: number, errors: string[]): ToolBinding
   return { serverId, toolName, gatewayId };
 }
 
+/**
+ * Function parsePolicy.
+ *
+ * @param value - Description of value.
+ * @param {number} index - Description of index.
+ * @param {string[]} errors - Description of errors.
+ * @returns {AccessPolicy | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = parsePolicy(..., ..., ...);
+ * ```
+ */
 function parsePolicy(value: unknown, index: number, errors: string[]): AccessPolicy | null {
   const path = `agents[${index}].policy`;
   const item = plainRecord(value, ['provider', 'subjectRef', 'ownerRef', 'tenantRef', 'audience', 'purpose', 'actions', 'resourceIds', 'ttlSeconds', 'maxDelegationDepth', 'approvalQuorum'], path, errors);
@@ -230,6 +407,19 @@ function parsePolicy(value: unknown, index: number, errors: string[]): AccessPol
   };
 }
 
+/**
+ * Function parseAgent.
+ *
+ * @param value - Description of value.
+ * @param {number} index - Description of index.
+ * @param {string[]} errors - Description of errors.
+ * @returns {Specialist | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = parseAgent(..., ..., ...);
+ * ```
+ */
 function parseAgent(value: unknown, index: number, errors: string[]): Specialist | null {
   const path = `agents[${index}]`;
   const item = plainRecord(value, ['id', 'name', 'role', 'harnessId', 'modelRef', 'skills', 'tools', 'policy'], path, errors);
@@ -252,10 +442,33 @@ function parseAgent(value: unknown, index: number, errors: string[]): Specialist
   return { id, name, role, harnessId, modelRef, skills, tools, policy: policy ?? emptyPolicy() };
 }
 
+/**
+ * Function emptyPolicy.
+ *
+ * @returns {AccessPolicy} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * import { emptyPolicy } from './module';
+ * ```
+ */
 function emptyPolicy(): AccessPolicy {
   return { provider: 'external', subjectRef: 'subject:unassigned', ownerRef: 'owner:unassigned', tenantRef: 'tenant:local', audience: 'apexgraphswarm', purpose: 'unassigned', actions: [], resourceIds: [], ttlSeconds: 300, maxDelegationDepth: 0, approvalQuorum: 1 };
 }
 
+/**
+ * Function parseTeam.
+ *
+ * @param value - Description of value.
+ * @param {number} index - Description of index.
+ * @param {string[]} errors - Description of errors.
+ * @returns {SpecialistTeam | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = parseTeam(..., ..., ...);
+ * ```
+ */
 function parseTeam(value: unknown, index: number, errors: string[]): SpecialistTeam | null {
   const path = `teams[${index}]`;
   const item = plainRecord(value, ['id', 'name', 'agentIds'], path, errors);
@@ -263,6 +476,19 @@ function parseTeam(value: unknown, index: number, errors: string[]): SpecialistT
   return { id: identifier(item.id, `${path}.id`, errors), name: text(item, 'name', path, errors, 128), agentIds: stringList(item.agentIds, `${path}.agentIds`, errors, MAX_AGENTS, true) };
 }
 
+/**
+ * Function parseNode.
+ *
+ * @param value - Description of value.
+ * @param {number} index - Description of index.
+ * @param {string[]} errors - Description of errors.
+ * @returns {ScopeNode | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = parseNode(..., ..., ...);
+ * ```
+ */
 function parseNode(value: unknown, index: number, errors: string[]): ScopeNode | null {
   const path = `nodes[${index}]`;
   const item = plainRecord(value, ['id', 'label', 'kind', 'parentId', 'teamIds', 'externalRef'], path, errors);
@@ -293,6 +519,17 @@ function addDuplicateErrors<T>(items: readonly T[], key: (item: T) => string, pa
   }
 }
 
+/**
+ * Function validateHierarchy.
+ *
+ * @param {readonly ScopeNode[]} nodes - Description of nodes.
+ * @param {string[]} errors - Description of errors.
+ *
+ * @example
+ * ```typescript
+ * const result = validateHierarchy(..., ...);
+ * ```
+ */
 function validateHierarchy(nodes: readonly ScopeNode[], errors: string[]): void {
   const byId = new Map(nodes.map(node => [node.id, node]));
   const roots = nodes.filter(node => node.parentId === null);
@@ -314,6 +551,16 @@ function validateHierarchy(nodes: readonly ScopeNode[], errors: string[]): void 
   }
 }
 
+/**
+ * Function validateSpecialistDesign.
+ *
+ * @param input - Description of input.
+ *
+ * @example
+ * ```typescript
+ * const result = validateSpecialistDesign(...);
+ * ```
+ */
 export function validateSpecialistDesign(input: unknown): { valid: boolean; errors: string[]; design: SpecialistDesign | null } {
   try {
     if (input === null || typeof input !== 'object') return { valid: false, errors: ['Design must be a JSON object.'], design: null };
@@ -356,14 +603,48 @@ export function validateSpecialistDesign(input: unknown): { valid: boolean; erro
   }
 }
 
+/**
+ * Function privilegedAction.
+ *
+ * @param {string} action - Description of action.
+ * @returns {boolean} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = privilegedAction(...);
+ * ```
+ */
 function privilegedAction(action: string): boolean {
   return action.split(/[^a-z]+/i).some(part => forbiddenActionSegments.has(part.toLowerCase()));
 }
 
+/**
+ * Function denied.
+ *
+ * @param {string[]} reasons - Description of reasons.
+ * @returns {AccessPreview} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = denied(...);
+ * ```
+ */
 function denied(reasons: string[]): AccessPreview {
   return { decision: 'denied', executionAllowed: false, reasons: [...new Set(reasons)] };
 }
 
+/**
+ * Function previewSpecialistAccess.
+ *
+ * @param {SpecialistDesign} design - Description of design.
+ * @param {AccessPreviewRequest} request - Description of request.
+ * @returns {AccessPreview} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = previewSpecialistAccess(..., ...);
+ * ```
+ */
 export function previewSpecialistAccess(design: SpecialistDesign, request: AccessPreviewRequest): AccessPreview {
   try {
   const validation = validateSpecialistDesign(design);
@@ -409,6 +690,16 @@ export function previewSpecialistAccess(design: SpecialistDesign, request: Acces
   }
 }
 
+/**
+ * Function createStarterDesign.
+ *
+ * @returns {SpecialistDesign} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * import { createStarterDesign } from './module';
+ * ```
+ */
 export function createStarterDesign(): SpecialistDesign {
   const agents: Specialist[] = [
     { id: 'agent-planner', name: 'Planner', role: 'Break a goal into bounded tasks.', harnessId: 'unconfigured', modelRef: 'unconfigured', skills: [], tools: [], policy: emptyPolicy() },

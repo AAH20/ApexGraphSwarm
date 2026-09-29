@@ -1,3 +1,9 @@
+/**
+ * React component for graph store panel.
+ *
+ * @module GraphStorePanel
+ * @packageDocumentation
+ */
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import {Database,LoaderCircle} from 'lucide-react';

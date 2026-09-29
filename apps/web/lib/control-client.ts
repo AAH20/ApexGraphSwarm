@@ -2,6 +2,16 @@ import {assertJsonPrecision} from './optimization-json';
 import {execFile} from 'node:child_process';
 import path from 'node:path';
 import {mkdir} from 'node:fs/promises';
+/**
+ * Function controlOperation.
+ *
+ * @param {Record<string,unknown>} input - Description of input.
+ *
+ * @example
+ * ```typescript
+ * const result = controlOperation(...);
+ * ```
+ */
 export async function controlOperation(input:Record<string,unknown>){
  const root=path.resolve(process.cwd(),'../..'),runtime=path.join(root,'.runtime'),dbPath=process.env.APEX_CONTROL_DB_PATH?path.resolve(process.env.APEX_CONTROL_DB_PATH):path.join(runtime,'control.sqlite');
  if(input.action!=='executionGraph')await mkdir(path.dirname(dbPath),{recursive:true,mode:0o700});

@@ -1,9 +1,45 @@
 import { createHash, timingSafeEqual } from 'node:crypto';
 import { parseSnapshot, type Snapshot } from './graph';
 
+/**
+ * Constant GRAPH_STORE_MAX_BYTES.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { GRAPH_STORE_MAX_BYTES } from './module';
+ * ```
+ */
 export const GRAPH_STORE_MAX_BYTES = 2 * 1024 * 1024;
+/**
+ * Constant GRAPH_STORE_TIMEOUT_MS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { GRAPH_STORE_TIMEOUT_MS } from './module';
+ * ```
+ */
 export const GRAPH_STORE_TIMEOUT_MS = 20_000;
+/**
+ * Constant GRAPH_STORE_MAX_NODES.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { GRAPH_STORE_MAX_NODES } from './module';
+ * ```
+ */
 export const GRAPH_STORE_MAX_NODES = 20_000;
+/**
+ * Constant GRAPH_STORE_MAX_EDGES.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { GRAPH_STORE_MAX_EDGES } from './module';
+ * ```
+ */
 export const GRAPH_STORE_MAX_EDGES = 80_000;
 
 export type Neo4jConfig = {
@@ -22,14 +58,46 @@ export type StoredRevision = {
   createdAt: string | null;
 };
 
+/**
+ * Type QueryResult.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { QueryResult } from './module';
+ * ```
+ */
 type QueryResult = { data?: { fields?: string[]; values?: unknown[][] }; errors?: { code?: string; message?: string }[] };
 
+/**
+ * Function getNeo4jConfig.
+ *
+ * @param {Record<string, string | undefined>} env - Description of env.
+ * @returns {Neo4jConfig | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = getNeo4jConfig(...);
+ * ```
+ */
 export function getNeo4jConfig(env: Record<string, string | undefined> = process.env): Neo4jConfig | null {
   const { NEO4J_URI: uri, NEO4J_USERNAME: username, NEO4J_PASSWORD: password, GRAPH_STORE_NAMESPACE: namespace } = env;
   if (!uri || !username || !password || !namespace) return null;
   return { uri, username, password, namespace, database: env.NEO4J_DATABASE || 'neo4j' };
 }
 
+/**
+ * Function isGraphStoreAuthorized.
+ *
+ * @param {Request} request - Description of request.
+ * @param {string | undefined} token - Description of token.
+ * @returns {boolean} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = isGraphStoreAuthorized(..., ...);
+ * ```
+ */
 export function isGraphStoreAuthorized(request: Request, token: string | undefined): boolean {
   if (!token) return false;
   const value = request.headers.get('authorization') || '';
@@ -39,6 +107,17 @@ export function isGraphStoreAuthorized(request: Request, token: string | undefin
   return received.length === expected.length && timingSafeEqual(received, expected);
 }
 
+/**
+ * Function hasGraphStoreSafeOrigin.
+ *
+ * @param {Request} request - Description of request.
+ * @returns {boolean} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = hasGraphStoreSafeOrigin(...);
+ * ```
+ */
 export function hasGraphStoreSafeOrigin(request: Request): boolean {
   const origin = request.headers.get('origin');
   if (!origin) return true;
@@ -50,6 +129,16 @@ export function hasGraphStoreSafeOrigin(request: Request): boolean {
   } catch { return false; }
 }
 
+/**
+ * Function validateGraphForStorage.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = validateGraphForStorage(...);
+ * ```
+ */
 export function validateGraphForStorage(value: unknown): { graph: Snapshot; revision: string; snapshotJson: string } {
   const graph = parseSnapshot(value);
   if (graph.nodes.length > GRAPH_STORE_MAX_NODES || graph.edges.length > GRAPH_STORE_MAX_EDGES) throw new Error('Graph exceeds storage limits.');
@@ -59,6 +148,17 @@ export function validateGraphForStorage(value: unknown): { graph: Snapshot; revi
   return { graph, revision, snapshotJson };
 }
 
+/**
+ * Function resolveQueryUrl.
+ *
+ * @param {Neo4jConfig} config - Description of config.
+ * @returns {string} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = resolveQueryUrl(...);
+ * ```
+ */
 export function resolveQueryUrl(config: Neo4jConfig): string {
   let base: URL;
   try { base = new URL(config.uri); } catch { throw new Error('Neo4j URI is invalid.'); }
@@ -71,12 +171,33 @@ export function resolveQueryUrl(config: Neo4jConfig): string {
   return new URL(`/db/${encodeURIComponent(database)}/query/v2`, base).toString();
 }
 
+/**
+ * Function extractRows.
+ *
+ * @param {QueryResult} body - Description of body.
+ *
+ * @example
+ * ```typescript
+ * const result = extractRows(...);
+ * ```
+ */
 function extractRows(body: QueryResult): { fields: string[]; values: unknown[][] } {
   if (body.errors?.length) throw new Error('Neo4j query failed.');
   if (!body.data || !Array.isArray(body.data.fields) || !Array.isArray(body.data.values)) throw new Error('Neo4j returned an invalid response.');
   return body.data as { fields: string[]; values: unknown[][] };
 }
 
+/**
+ * Function createNeo4jStore.
+ *
+ * @param {Neo4jConfig} config - Description of config.
+ * @param {typeof fetch} fetcher - Description of fetcher.
+ *
+ * @example
+ * ```typescript
+ * const result = createNeo4jStore(..., ...);
+ * ```
+ */
 export function createNeo4jStore(config: Neo4jConfig, fetcher: typeof fetch = fetch) {
   const url = resolveQueryUrl(config);
   const database = config.database || 'neo4j';

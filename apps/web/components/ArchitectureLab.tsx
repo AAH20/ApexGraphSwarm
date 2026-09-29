@@ -1,3 +1,9 @@
+/**
+ * React component for architecture lab.
+ *
+ * @module ArchitectureLab
+ * @packageDocumentation
+ */
 'use client';
 import {useState} from 'react';
 import Link from 'next/link';
@@ -16,8 +22,27 @@ const allowedIds=candidates.map(entry=>entry.key);
 const initialDraft:BenchmarkDraft={workload:'repository-change',candidateIds:[],modelRevision:'',datasetRevision:'',environment:'',priceEvidence:'',componentPins:'',trials:3,taskCount:30,activeWorkers:4,budgetUsd:null,minimumSuccessRate:null,maxP95Seconds:null,maxUsdPerSuccess:null};
 const evidenceFields=[['modelRevision','Model/provider revision'],['datasetRevision','Held-out dataset / corpus revision'],['componentPins','Framework / store / image pins'],['environment','Hardware, region and index settings'],['priceEvidence','Dated rate and usage-receipt references']] as const;
 
+/**
+ * Function SourceReference.
+ *
+ * @param {{source} source,label - Description of source,label.
+ *
+ * @example
+ * ```typescript
+ * const result = SourceReference(...);
+ * ```
+ */
 function SourceReference({source,label}:{source:string;label:string}){return source.startsWith('https://')?<a href={source} target="_blank" rel="noreferrer">{label} <ArrowUpRight size={12}/></a>:<code>{source}</code>;}
 
+/**
+ * React component ArchitectureLab.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ArchitectureLab } from './module';
+ * ```
+ */
 export default function ArchitectureLab(){
  const [category,setCategory]=useState('orchestration');
  const [query,setQuery]=useState('');

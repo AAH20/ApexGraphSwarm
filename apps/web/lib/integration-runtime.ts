@@ -7,16 +7,121 @@ import {describeSnapshot,parseSnapshot,type Snapshot,type SnapshotDescriptor} fr
 import {executeFramework,getFrameworkIntegrations} from './framework-adapters';
 import {executeHermes,getHermesIntegrations} from './hermes-adapter';
 
+/**
+ * Constant INTEGRATION_LIMITS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { INTEGRATION_LIMITS } from './module';
+ * ```
+ */
 export const INTEGRATION_LIMITS={requestBytes:2*1024*1024,outputBytes:1024*1024,concurrency:2,queued:12,timeoutMs:45_000,jobTtlMs:60*60_000,maxJobs:100,modelInputNodes:300,modelInputEdges:900,kernelNodes:500,kernelEdges:5000} as const;
+/**
+ * Type IntegrationStatus.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { IntegrationStatus } from './module';
+ * ```
+ */
 export type IntegrationStatus='queued'|'running'|'succeeded'|'failed'|'cancelled';
+/**
+ * Type IntegrationMode.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { IntegrationMode } from './module';
+ * ```
+ */
 export type IntegrationMode='remote_api'|'local_python'|'local_bridge'|'kernel_http'|'manual'|'unsupported'|'unconfigured';
+/**
+ * Type IntegrationField.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { IntegrationField } from './module';
+ * ```
+ */
 export type IntegrationField={id:string;label:string;type:'text'|'number'|'select';required?:boolean;options?:{value:string;label:string}[]|string[];defaultValue?:string|number};
+/**
+ * Type IntegrationOperation.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { IntegrationOperation } from './module';
+ * ```
+ */
 export type IntegrationOperation={id:string;label:string;description?:string;inputFields?:IntegrationField[]};
+/**
+ * Type IntegrationInfo.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { IntegrationInfo } from './module';
+ * ```
+ */
 export type IntegrationInfo={id:string;label:string;category:string;mode:IntegrationMode;configured:boolean;capability:'ready'|'partial'|'unconfigured'|'unsupported';statusText:string;operations:IntegrationOperation[];inputFields?:IntegrationField[];modelId?:string};
+/**
+ * Type IntegrationJob.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { IntegrationJob } from './module';
+ * ```
+ */
 export type IntegrationJob={id:string;status:IntegrationStatus;integrationId:string;operation:string;createdAt:string;updatedAt:string;result?:unknown;usage?:{inputTokens:number|null;outputTokens:number|null};error?:string;snapshot?:Pick<SnapshotDescriptor,'id'|'version'|'name'|'nodeCount'|'edgeCount'|'nodeEvidence'|'edgeEvidence'|'constraints'>};
+/**
+ * Type IntegrationInput.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { IntegrationInput } from './module';
+ * ```
+ */
 export type IntegrationInput={goal:string;graph?:Snapshot;parameters:Record<string,string|number>};
+/**
+ * Core library module for integration runtime.ts functionality.
+ *
+ * @module integration-runtime
+ * @packageDocumentation
+ */
+/**
+ * Type IntegrationJobRecord.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { IntegrationJobRecord } from './module';
+ * ```
+ */
 type IntegrationJobRecord={public:IntegrationJob;input:IntegrationInput;controller:AbortController;timer?:ReturnType<typeof setTimeout>;cancelled:boolean;executionStarted:boolean;executionSettled:boolean;idempotencyDigest?:string;externalCancel?:()=>Promise<void>};
+/**
+ * Type IntegrationEnv.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { IntegrationEnv } from './module';
+ * ```
+ */
 type IntegrationEnv=Record<string,string|undefined>;
+/**
+ * Type JobExecutor.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { JobExecutor } from './module';
+ * ```
+ */
 type JobExecutor=(integrationId:string,operation:string,input:IntegrationInput,signal:AbortSignal,jobId:string)=>Promise<{result:unknown;usage?:{inputTokens:number|null;outputTokens:number|null};externalCancel?:()=>Promise<void>}>;
 
 const modelFields:IntegrationField[]=[{id:'maxOutputTokens',label:'Maximum output tokens per model call',type:'number',defaultValue:600}];
@@ -37,8 +142,47 @@ const externalUnsupported=[
 const bridgeModes=['subscription','api','manual','local'];
 
 const kernelPins={graph:{package:'graph_rag_np_hard_kernel',project:'graph-rag-np-hard-kernel',revision:'35b1bb93a04d419fc1167480d93a1eed711fb711'},agentic:{package:'agentic_np_hard_kernel',project:'agentic-np-hard-kernel',revision:'ad8e99faa20c414b60d86b8ec211863c003535fc'},mirofish:{package:'mirofish_swarm_optimizer',project:'mirofish-swarm-optimizer',revision:'d2a3df25cf80750fadd562373f7941b9cb8db2f1'},swarm:{package:'agentic_graph_swarm_kernel',project:'agentic-graph-swarm-kernel',revision:'d429ee702e0e9b59b68f3714723a4f1d4bc425c8'}} as const;
+/**
+ * Function configuredDirectory.
+ *
+ * @param {string|undefined} value - Description of value.
+ * @param {typeof kernelPins[keyof typeof kernelPins]} pin - Description of pin.
+ *
+ * @example
+ * ```typescript
+ * const result = configuredDirectory(..., ...);
+ * ```
+ */
 function configuredDirectory(value:string|undefined,pin:typeof kernelPins[keyof typeof kernelPins]){if(!value)return null;try{const root=realpathSync(value),manifest=JSON.parse(readFileSync(path.join(path.dirname(root),'sources.json'),'utf8')) as {name?:string;revision?:string;path?:string}[];const matched=manifest.some(item=>item.name===pin.project&&item.revision===pin.revision&&item.path&&realpathSync(item.path)===root);return existsSync(path.join(root,pin.package,'engine.py'))&&matched?root:null;}catch{return null;}}
+/**
+ * Function info.
+ *
+ * @param {string} id - Description of id.
+ * @param {string} label - Description of label.
+ * @param {string} category - Description of category.
+ * @param {IntegrationMode} mode - Description of mode.
+ * @param {boolean} configured - Description of configured.
+ * @param {string} statusText - Description of statusText.
+ * @param {IntegrationOperation[]} ops - Description of ops.
+ * @returns {IntegrationInfo} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = info(..., ..., ..., ..., ..., ..., ...);
+ * ```
+ */
 function info(id:string,label:string,category:string,mode:IntegrationMode,configured:boolean,statusText:string,ops:IntegrationOperation[]):IntegrationInfo{return {id,label,category,mode,configured,capability:configured?'ready':mode==='unsupported'?'unsupported':'unconfigured',statusText,operations:configured?ops:[]};}
+/**
+ * Function getIntegrationCatalog.
+ *
+ * @param {IntegrationEnv} env - Description of env.
+ * @returns {IntegrationInfo[]} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = getIntegrationCatalog(...);
+ * ```
+ */
 export function getIntegrationCatalog(env:IntegrationEnv=process.env):IntegrationInfo[]{
  const openrouter=Boolean(env.OPENROUTER_API_KEY&&env.OPENROUTER_MODEL);
  const vllm=Boolean(env.VLLM_BASE_URL&&env.VLLM_MODEL);
@@ -58,11 +202,63 @@ export function getIntegrationCatalog(env:IntegrationEnv=process.env):Integratio
  return [router,local,...kernels,suite,...getFrameworkIntegrations(env),...getHermesIntegrations(env),info('harness','Local harness bridge','harness','local_bridge',bridge,bridge?'Private local runner configured; each fixed harness profile is checked on start.':'Set LOCAL_RUNNER_URL and LOCAL_RUNNER_ACCESS_TOKEN to enable a private local bridge.',operations.harness),...external];
 }
 
+/**
+ * Function isIntegrationAuthorized.
+ *
+ * @param {Request} request - Description of request.
+ * @param token - Description of token.
+ *
+ * @example
+ * ```typescript
+ * const result = isIntegrationAuthorized(..., ...);
+ * ```
+ */
 export function isIntegrationAuthorized(request:Request,token=process.env.INTEGRATION_ACCESS_TOKEN){if(!token)return false;const value=request.headers.get('authorization')||'';if(value.length!==token.length+7||!value.startsWith('Bearer '))return false;const supplied=Buffer.from(value.slice(7)),expected=Buffer.from(token);return supplied.length===expected.length&&timingSafeEqual(supplied,expected);}
+/**
+ * Function hasIntegrationSafeOrigin.
+ *
+ * @param {Request} request - Description of request.
+ *
+ * @example
+ * ```typescript
+ * const result = hasIntegrationSafeOrigin(...);
+ * ```
+ */
 export function hasIntegrationSafeOrigin(request:Request){const origin=request.headers.get('origin');if(!origin)return true;try{const parsed=new URL(origin),host=request.headers.get('x-forwarded-host')||request.headers.get('host'),proto=request.headers.get('x-forwarded-proto')||new URL(request.url).protocol.slice(0,-1);return Boolean(host&&parsed.host===host&&parsed.protocol===`${proto}:`);}catch{return false;}}
 
+/**
+ * Function safeUrl.
+ *
+ * @param {string} value - Description of value.
+ * @param allowLocal - Description of allowLocal.
+ *
+ * @example
+ * ```typescript
+ * const result = safeUrl(..., ...);
+ * ```
+ */
 function safeUrl(value:string,allowLocal=true){const url=new URL(value);const local=['localhost','127.0.0.1','[::1]'].includes(url.hostname);if(url.username||url.password||url.search||url.hash||(!local&&url.protocol!=='https:')||(local&&!allowLocal&&url.protocol!=='https:'))throw new Error('Integration endpoint must be a server-configured HTTPS URL (HTTP is allowed only for loopback development).');return url;}
+/**
+ * Function runnerBase.
+ *
+ * @param {string} value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = runnerBase(...);
+ * ```
+ */
 function runnerBase(value:string){const url=safeUrl(value);if(url.pathname!=='/'&&url.pathname!=='')throw new Error('LOCAL_RUNNER_URL must be a base origin without a path.');return url.origin;}
+/**
+ * Function outputLimit.
+ *
+ * @param {Record<string,string|number>} parameters - Description of parameters.
+ *
+ * @example
+ * ```typescript
+ * const result = outputLimit(...);
+ * ```
+ */
 function outputLimit(parameters:Record<string,string|number>){const cap=parameters.maxOutputTokens??600;if(typeof cap!=='number'||!Number.isInteger(cap)||cap<100||cap>600)throw new Error('maxOutputTokens must be an integer from 100 to 600.');return cap;}
 function parseIntegrationRequest(value:unknown,env:IntegrationEnv):{integrationId:string;operation:string;input:IntegrationInput;descriptor:IntegrationInfo}{
  if(!value||typeof value!=='object'||Array.isArray(value))throw new Error('Expected a JSON integration request.');const body=value as Record<string,unknown>;
@@ -80,12 +276,61 @@ function parseIntegrationRequest(value:unknown,env:IntegrationEnv):{integrationI
  return {integrationId:descriptor.id,operation:operation.id,input:{goal:goal.trim(),graph,parameters:normalized},descriptor};
 }
 
+/**
+ * Class IdempotencyConflictError.
+ *
+ * @extends Error
+ *
+ * @example
+ * ```typescript
+ * const instance = new IdempotencyConflictError();
+ * ```
+ */
 export class IdempotencyConflictError extends Error{constructor(){super('Idempotency-Key was already used for a different integration request.');this.name='IdempotencyConflictError';}}
 
+/**
+ * Function digest.
+ *
+ * @param {string} value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = digest(...);
+ * ```
+ */
 function digest(value:string){return createHash('sha256').update(value).digest('hex');}
+/**
+ * Function validateIdempotencyKey.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = validateIdempotencyKey(...);
+ * ```
+ */
 function validateIdempotencyKey(value:unknown){if(typeof value!=='string'||value.length<1||value.length>200||!/^[\x21-\x7e]+$/.test(value))throw new Error('Idempotency-Key must contain 1 to 200 visible ASCII characters.');return digest(value);}
+/**
+ * Function isTerminal.
+ *
+ * @param {IntegrationStatus} status - Description of status.
+ *
+ * @example
+ * ```typescript
+ * const result = isTerminal(...);
+ * ```
+ */
 function isTerminal(status:IntegrationStatus){return status==='succeeded'||status==='failed'||status==='cancelled';}
 
+/**
+ * Class IntegrationRuntime.
+ *
+ *
+ * @example
+ * ```typescript
+ * const instance = new IntegrationRuntime();
+ * ```
+ */
 export class IntegrationRuntime{
  private jobs=new Map<string,IntegrationJobRecord>();private queue:string[]=[];private active=0;private idempotency=new Map<string,{requestDigest:string;jobId:string}>();
  constructor(private options:{env?:IntegrationEnv;execute?:JobExecutor;dispatch?:GovernedDispatch;now?:()=>number}={}){}
@@ -121,11 +366,80 @@ export class IntegrationRuntime{
  }
 }
 
+/**
+ * Function sanitizeError.
+ *
+ * @param {string} message - Description of message.
+ *
+ * @example
+ * ```typescript
+ * const result = sanitizeError(...);
+ * ```
+ */
 function sanitizeError(message:string){return message.replace(/Bearer\s+[^\s]+/gi,'Bearer [redacted]').replace(/(?:OPENROUTER_API_KEY|VLLM_API_KEY|LOCAL_RUNNER_ACCESS_TOKEN)\s*[:=]\s*[^\s]+/gi,'[credential redacted]').slice(0,500);}
+/**
+ * Function redactSecrets.
+ *
+ * @param value - Description of value.
+ * @param {IntegrationEnv} env - Description of env.
+ * @returns {unknown} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = redactSecrets(..., ...);
+ * ```
+ */
 function redactSecrets(value:unknown,env:IntegrationEnv):unknown{const secrets=Object.entries(env).filter(([key,val])=>/(?:KEY|TOKEN|SECRET|PASSWORD|CREDENTIAL)$/i.test(key)&&Boolean(val)&&String(val).length>=8).map(([,val])=>String(val));if(typeof value==='string')return secrets.reduce((text,secret)=>text.split(secret).join('[redacted]'),value);if(Array.isArray(value))return value.map(item=>redactSecrets(item,env));if(value&&typeof value==='object'){return Object.fromEntries(Object.entries(value).filter(([key])=>!/(?:api_?key|access_?token|secret|password|authorization)$/i.test(key)).map(([key,item])=>[key,redactSecrets(item,env)]));}return value;}
+/**
+ * Function boundedJson.
+ *
+ * @param {Response} response - Description of response.
+ * @param maxBytes - Description of maxBytes.
+ *
+ * @example
+ * ```typescript
+ * const result = boundedJson(..., ...);
+ * ```
+ */
 async function boundedJson(response:Response,maxBytes=INTEGRATION_LIMITS.outputBytes){if(!response.body)throw new Error('Integration returned an empty response.');const reader=response.body.getReader(),parts:Uint8Array[]=[];let total=0;while(true){const {done,value}=await reader.read();if(done)break;total+=value.byteLength;if(total>maxBytes){await reader.cancel();throw new Error('Integration response exceeded the 1 MB output limit.');}parts.push(value);}const bytes=new Uint8Array(total);let offset=0;for(const part of parts){bytes.set(part,offset);offset+=part.length;}return JSON.parse(new TextDecoder().decode(bytes));}
+/**
+ * Function requestGraphContext.
+ *
+ * @param {Snapshot} graph - Description of graph.
+ *
+ * @example
+ * ```typescript
+ * const result = requestGraphContext(...);
+ * ```
+ */
 function requestGraphContext(graph:Snapshot){const descriptor=describeSnapshot(graph);return {snapshot:descriptor,nodes:graph.nodes.map(n=>({id:n.id,name:n.name,kind:n.kind,path:n.path,confidence:n.confidence,summary:n.summary.slice(0,240)})),edges:graph.edges.map(e=>({source:e.source,target:e.target,relation:e.relation,confidence:e.confidence}))};}
+/**
+ * Function validateModelResult.
+ *
+ * @param value - Description of value.
+ * @param {Snapshot} graph - Description of graph.
+ *
+ * @example
+ * ```typescript
+ * const result = validateModelResult(..., ...);
+ * ```
+ */
 function validateModelResult(value:unknown,graph:Snapshot){if(!value||typeof value!=='object'||Array.isArray(value))throw new Error('Model returned invalid JSON.');const data=value as Record<string,unknown>;if(typeof data.summary!=='string'||!Array.isArray(data.findings))throw new Error('Model response must contain a summary and findings array.');const ids=new Set(graph.nodes.map(n=>n.id));const findings=data.findings.slice(0,12).map((item)=>{if(!item||typeof item!=='object'||Array.isArray(item))throw new Error('Model returned an invalid finding.');const finding=item as Record<string,unknown>;if(typeof finding.title!=='string'||typeof finding.detail!=='string'||!Array.isArray(finding.nodeIds)||finding.nodeIds.length>12||finding.nodeIds.some(id=>typeof id!=='string'||!ids.has(id)))throw new Error('Model cited a node that is not present in this snapshot.');return {title:finding.title.slice(0,200),detail:finding.detail.slice(0,1200),nodeIds:finding.nodeIds as string[]};});return {summary:data.summary.slice(0,2000),findings};}
+/**
+ * Function callModel.
+ *
+ * @param {string} integrationId - Description of integrationId.
+ * @param {string} operation - Description of operation.
+ * @param {IntegrationInput} input - Description of input.
+ * @param {IntegrationEnv} env - Description of env.
+ * @param {AbortSignal} signal - Description of signal.
+ * @param {DispatchContext} context - Description of context.
+ *
+ * @example
+ * ```typescript
+ * const result = callModel(..., ..., ..., ..., ..., ...);
+ * ```
+ */
 async function callModel(integrationId:string,operation:string,input:IntegrationInput,env:IntegrationEnv,signal:AbortSignal,context?:DispatchContext){const provider=integrationId==='openrouter'?'openrouter':'vllm',model=env[provider==='openrouter'?'OPENROUTER_MODEL':'VLLM_MODEL']!,base=provider==='openrouter'?'https://openrouter.ai/api/v1':safeUrl(env.VLLM_BASE_URL!).toString().replace(/\/$/,''),key=env[provider==='openrouter'?'OPENROUTER_API_KEY':'VLLM_API_KEY'];if(!key&&provider==='openrouter')throw new Error('Provider is not configured.');const graph=input.graph!;const graphContext=requestGraphContext(graph);const cap=Number(input.parameters.maxOutputTokens??600);const endpoint=provider==='openrouter'?`${base}/chat/completions`:`${base.endsWith('/v1')?base:`${base}/v1`}/chat/completions`;const headers:Record<string,string>={'content-type':'application/json'};if(key)headers.authorization=`Bearer ${key}`;if(provider==='openrouter'){headers['HTTP-Referer']='http://localhost';headers['X-Title']='ApexGraphSwarm';}
  const invoke=async(role:string,extra:string)=>{const callId=context?await context.begin(provider,model):randomUUID();const response=await fetch(endpoint,{method:'POST',headers,signal,redirect:'error',body:JSON.stringify({model,temperature:0,max_tokens:cap,response_format:{type:'json_object'},messages:[{role:'system',content:`You are a ${role} specialist reviewing a repository graph. Use only supplied snapshot evidence. Return JSON {"summary":string,"findings":[{"title":string,"detail":string,"nodeIds":string[]}]} with 1-3 concise findings. Cite only exact supplied node IDs. Separate observations from inferences and state uncertainty.`},{role:'user',content:JSON.stringify({goal:input.goal,task:extra,snapshot:graphContext.snapshot,nodes:graphContext.nodes,edges:graphContext.edges})}]})});if(!response.ok)throw new Error(`Provider request failed with HTTP ${response.status}.`);const payload=await boundedJson(response) as any;const text=payload?.choices?.[0]?.message?.content;
  let receipt:Record<string,unknown>={provider,model,generationId:typeof payload?.id==='string'?payload.id:null,costMicrousd:null,costBasis:'unresolved'};
@@ -134,7 +448,29 @@ async function callModel(integrationId:string,operation:string,input:Integration
 if(typeof text!=='string')throw new Error('Provider returned no message content.');let parsed:unknown;try{parsed=JSON.parse(text);}catch{throw new Error('Provider returned malformed JSON.');}return {result:validateModelResult(parsed,graph),usage:payload.usage&&Number.isFinite(payload.usage.prompt_tokens)&&Number.isFinite(payload.usage.completion_tokens)?{inputTokens:payload.usage.prompt_tokens,outputTokens:payload.usage.completion_tokens}:{inputTokens:null,outputTokens:null}};};
  if(operation==='review'){const one=await invoke('graph structure and dependency risk','Review the requested goal.');return {result:{provider,modelId:model,agentRuns:1,steps:['single specialist review'],...one.result},usage:one.usage};}
  const specialists=await Promise.allSettled([invoke('graph structure','Identify structural patterns and likely architectural bottlenecks.'),invoke('dependency risk','Identify dependency and evidence risks; preserve uncertainty.')]);const failed=specialists.find(result=>result.status==='rejected');if(failed?.status==='rejected')throw failed.reason;const [structure,risk]=specialists.map(result=>(result as PromiseFulfilledResult<Awaited<ReturnType<typeof invoke>>>).value);if(signal.aborted)throw new Error('Cancelled.');const critic=await invoke('critic synthesis',`Synthesize the two specialist reviews. Preserve disagreements, uncertainty, and valid citations. Specialist reports: ${JSON.stringify([structure.result,risk.result]).slice(0,7000)}`);const usage={inputTokens:sumUsage([structure,risk,critic],'inputTokens'),outputTokens:sumUsage([structure,risk,critic],'outputTokens')};return {result:{provider,modelId:model,agentRuns:3,steps:['parallel structure specialist','parallel dependency-risk specialist','critic synthesis'],specialists:{structure:structure.result,risk:risk.result},...critic.result},usage};}
+/**
+ * Function sumUsage.
+ *
+ * @param {{usage:{inputTokens:number|null;outputTokens:number|null}}[]} items - Description of items.
+ * @param {'inputTokens'|'outputTokens'} field - Description of field.
+ *
+ * @example
+ * ```typescript
+ * const result = sumUsage(..., ...);
+ * ```
+ */
 function sumUsage(items:{usage:{inputTokens:number|null;outputTokens:number|null}}[],field:'inputTokens'|'outputTokens'){return items.every(item=>item.usage[field]!==null)?items.reduce((sum,item)=>sum+(item.usage[field]||0),0):null;}
+/**
+ * Function kernelRoot.
+ *
+ * @param {string} integrationId - Description of integrationId.
+ * @param {IntegrationEnv} env - Description of env.
+ *
+ * @example
+ * ```typescript
+ * const result = kernelRoot(..., ...);
+ * ```
+ */
 function kernelRoot(integrationId:string,env:IntegrationEnv){const mapping:Record<string,string>={'graph-rag-kernel':'GRAPH_RAG_KERNEL_PATH','agentic-kernel':'AGENTIC_KERNEL_PATH','mirofish-optimizer':'MIROFISH_KERNEL_PATH','graph-swarm-kernel':'GRAPH_SWARM_KERNEL_PATH'};const name=mapping[integrationId];if(!name)throw new Error('Kernel integration is not allowlisted.');const root=env[name];if(!root)throw new Error('Kernel path is not configured.');return realpathSync(root);}
 const kernelConfig:Record<string,{module:string;engine:string;method:string;operation:string;revisionKey:string}>={
  'graph-rag-kernel':{module:'graph_rag_np_hard_kernel',engine:'GraphRAGNPHardEngine',method:'detect_communities_modularity',operation:'communities',revisionKey:'graph_rag_np_hard_kernel'},
@@ -142,7 +478,37 @@ const kernelConfig:Record<string,{module:string;engine:string;method:string;oper
  'mirofish-optimizer':{module:'mirofish_swarm_optimizer',engine:'MiroFishSwarmEngine',method:'solve_critical_influence',operation:'influence',revisionKey:'mirofish_swarm_optimizer'},
  'graph-swarm-kernel':{module:'agentic_graph_swarm_kernel',engine:'AgenticGraphSwarmEngine',method:'solve_consensus',operation:'consensus',revisionKey:'agentic_graph_swarm_kernel'},
 };
+/**
+ * Function runKernel.
+ *
+ * @param {string} integrationId - Description of integrationId.
+ * @param {Snapshot} graph - Description of graph.
+ * @param {Record<string,string|number>} parameters - Description of parameters.
+ * @param {IntegrationEnv} env - Description of env.
+ * @param {AbortSignal} signal - Description of signal.
+ *
+ * @example
+ * ```typescript
+ * const result = runKernel(..., ..., ..., ..., ...);
+ * ```
+ */
 function runKernel(integrationId:string,graph:Snapshot,parameters:Record<string,string|number>,env:IntegrationEnv,signal:AbortSignal){const config=kernelConfig[integrationId];if(!config)throw new Error('Kernel integration is not allowlisted.');const root=kernelRoot(integrationId,env);return new Promise<{result:unknown;usage?:undefined}>((resolve,reject)=>{const child=spawn('python3',['-I',path.join(process.cwd(),'integrations','kernel_runner.py'),root,integrationId],{shell:false,stdio:['pipe','pipe','pipe'] as const,env:{PATH:process.env.PATH||'/usr/bin:/bin',NODE_ENV:process.env.NODE_ENV||'production',PYTHONIOENCODING:'utf-8'} as NodeJS.ProcessEnv});let stdout='',stderr='',settled=false;const done=(error?:Error,value?:unknown)=>{if(settled)return;settled=true;signal.removeEventListener('abort',abort);if(error)reject(error);else resolve({result:value});};const abort=()=>{child.kill('SIGTERM');done(new Error('Kernel execution cancelled.'));};signal.addEventListener('abort',abort,{once:true});child.stdin.end(JSON.stringify({graph,parameters}));child.stdout.setEncoding('utf8');child.stderr.setEncoding('utf8');child.stdout.on('data',chunk=>{stdout+=chunk;if(stdout.length>INTEGRATION_LIMITS.outputBytes){child.kill('SIGKILL');done(new Error('Kernel output exceeded the 1 MB limit.'));}});child.stderr.on('data',chunk=>{stderr=(stderr+chunk).slice(0,2000);});child.once('error',()=>done(new Error('Python kernel runner could not start.')));child.once('close',code=>{if(code!==0)return done(new Error(`Kernel execution failed${stderr?`: ${stderr.replace(/\s+/g,' ').replace(/\/(?:Users|private|tmp)\/[^ ]+/g,'[path]').slice(0,250)}`:''}.`));try{const output=JSON.parse(stdout);if(output.integrationId!==integrationId||output.operation!==config.operation)throw new Error('Kernel response identity mismatch.');done(undefined,output);}catch(error){done(error instanceof Error?error:new Error('Kernel returned invalid JSON.'));}});});}
+/**
+ * Function executeGovernedIntegration.
+ *
+ * @param {string} integrationId - Description of integrationId.
+ * @param {string} operation - Description of operation.
+ * @param {IntegrationInput} input - Description of input.
+ * @param {IntegrationEnv} env - Description of env.
+ * @param {AbortSignal} signal - Description of signal.
+ * @param {string} jobId - Description of jobId.
+ * @param {DispatchContext} context - Description of context.
+ *
+ * @example
+ * ```typescript
+ * const result = executeGovernedIntegration(..., ..., ..., ..., ..., ..., ...);
+ * ```
+ */
 async function executeGovernedIntegration(integrationId:string,operation:string,input:IntegrationInput,env:IntegrationEnv,signal:AbortSignal,jobId:string,context:DispatchContext){
  if(['openrouter','vllm'].includes(integrationId))return executeIntegration(integrationId,operation,input,signal,env,jobId,context);
  const callId=await context.begin(integrationId,operation);
@@ -153,6 +519,23 @@ async function executeGovernedIntegration(integrationId:string,operation:string,
  await context.record(callId,{provider:integrationId,model:operation,phase:'response_received',costMicrousd:null,outputBytes,outputSha256});
  return result;
 }
+/**
+ * Function executeIntegration.
+ *
+ * @param {string} integrationId - Description of integrationId.
+ * @param {string} operation - Description of operation.
+ * @param {IntegrationInput} input - Description of input.
+ * @param {AbortSignal} signal - Description of signal.
+ * @param {IntegrationEnv} env - Description of env.
+ * @param jobId - Description of jobId.
+ * @param {DispatchContext} context - Description of context.
+ * @returns {Promise<} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = executeIntegration(..., ..., ..., ..., ..., ..., ...);
+ * ```
+ */
 async function executeIntegration(integrationId:string,operation:string,input:IntegrationInput,signal:AbortSignal,env:IntegrationEnv=process.env,jobId='',context?:DispatchContext):Promise<{result:unknown;usage?:{inputTokens:number|null;outputTokens:number|null};externalCancel?:()=>Promise<void>}>{if(['openrouter','vllm'].includes(integrationId))return callModel(integrationId,operation,input,env,signal,context);if(integrationId==='hermes')return executeHermes(integrationId,operation,input,env,signal);if(['cognee','mirofish','langgraph','crewai'].includes(integrationId))return executeFramework(integrationId,operation,input,env,signal,jobId);if(kernelConfig[integrationId])return runKernel(integrationId,input.graph!,input.parameters,env,signal);if(integrationId==='kernel-suite'&&operation==='analyze'){const entries:[string,string][]=[['graph-rag-kernel','communities'],['agentic-kernel','workflow'],['mirofish-optimizer','influence'],['graph-swarm-kernel','consensus']],results=[] as unknown[];for(const [id,op] of entries){if(signal.aborted)throw new Error('Kernel suite cancelled.');const started=Date.now();try{const run=await runKernel(id,input.graph!,{},env,signal);results.push({integrationId:id,operation:op,status:'succeeded',elapsedMs:Date.now()-started,...(run.result as object)});}catch(error){if(signal.aborted)throw error;results.push({integrationId:id,operation:op,status:'failed',elapsedMs:Date.now()-started,error:error instanceof Error?sanitizeError(error.message):'Kernel failed.'});}}return {result:{kind:'comparative-diagnostic-suite',snapshot:{id:describeSnapshot(input.graph!).id,name:input.graph!.name},inputCounts:{nodesSelected:input.graph!.nodes.length,nodesTotal:input.graph!.nodes.length,edgesSelected:input.graph!.edges.length,edgesTotal:input.graph!.edges.length,omittedNodes:0,omittedEdges:0},assumptions:['All graph input was passed to each bounded solver without slicing.','Invalid or cyclic workflow dependencies are rejected; a partial suite keeps other solver results.','Results are distinct diagnostics and are not directly comparable objective scores.'],results}};}if(['harness','openmanus','understand-anything'].includes(integrationId)){const base=runnerBase(env.LOCAL_RUNNER_URL!),token=env.LOCAL_RUNNER_ACCESS_TOKEN!;const endpoint=`${base}/run`,cancelEndpoint=`${base}/run/${encodeURIComponent(jobId)}`;const cancel=async()=>{try{await fetch(cancelEndpoint,{method:'DELETE',redirect:'error',headers:{authorization:`Bearer ${token}`}});}catch{/* cancellation is best effort; server job remains marked canceled */}};signal.addEventListener('abort',()=>{void cancel();},{once:true});const graph=input.graph?{name:input.graph.name,nodes:input.graph.nodes.length,edges:input.graph.edges.length}:undefined;const response=await fetch(endpoint,{method:'POST',redirect:'error',signal,headers:{authorization:`Bearer ${token}`,'content-type':'application/json'},body:JSON.stringify({requestId:jobId,integrationId,harnessId:input.parameters.harnessId,operation,authMode:input.parameters.authMode,goal:input.goal,graph})});if(!response.ok)throw new Error(`Local runner bridge failed with HTTP ${response.status}.`);const data=await boundedJson(response);if(!data||typeof data!=='object'||(data as any).status!=='succeeded')throw new Error('Local runner did not report a completed successful execution.');return {result:data,usage:(data as any).usage&&Number.isFinite((data as any).usage.inputTokens)&&Number.isFinite((data as any).usage.outputTokens)?{inputTokens:(data as any).usage.inputTokens,outputTokens:(data as any).usage.outputTokens}:undefined,externalCancel:cancel};}throw new Error('No execution adapter is configured for this integration.');}
 
 

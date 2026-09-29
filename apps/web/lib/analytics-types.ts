@@ -11,5 +11,44 @@ export type AnalyticsReport={
  forecast:{status:string;points:{date:string;predictedMicrousd:number;lowerMicrousd:number;upperMicrousd:number}[];backtestMAE:number|null;naiveMAE:number|null;method:string;limitations:string[]};
  anomalies:{date:string;value:number;reason:string}[];correlation:{n:number;pearsonR:number|null};scatter:{latencySeconds:number;costMicrousd:number}[];limitations:string[];availableTools:string[];
 };
+/**
+ * Function dollars.
+ *
+ * @param {number|null|undefined} micro - Description of micro.
+ *
+ * @example
+ * ```typescript
+ * const result = dollars(...);
+ * ```
+ */
+/**
+ * Constant dollars.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { dollars } from './module';
+ * ```
+ */
 export const dollars=(micro:number|null|undefined)=>formatMicrousd(micro??null);
+/**
+ * Function decimal.
+ *
+ * @param {number|null|undefined} value - Description of value.
+ * @param suffix - Description of suffix.
+ *
+ * @example
+ * ```typescript
+ * const result = decimal(..., ...);
+ * ```
+ */
+/**
+ * Constant decimal.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { decimal } from './module';
+ * ```
+ */
 export const decimal=(value:number|null|undefined,suffix='')=>value==null?'Insufficient data':`${new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(value)}${suffix}`;

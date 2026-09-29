@@ -1,3 +1,9 @@
+/**
+ * React component for ecosystem workspace.
+ *
+ * @module EcosystemWorkspace
+ * @packageDocumentation
+ */
 'use client';
 import {useState} from 'react';
 import Link from 'next/link';
@@ -6,11 +12,59 @@ import {costLines,ecosystemCatalog,estimateEcosystemCost,type CostAssumption,typ
 import {reviewSkillImport,type SkillImportReview} from '@/lib/skill-manifest';
 import styles from './EcosystemWorkspace.module.css';
 
+/**
+ * Type Server.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Server } from './module';
+ * ```
+ */
 type Server = {id:string;label:string;configured:boolean;statusText:string};
+/**
+ * Type Discovery.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Discovery } from './module';
+ * ```
+ */
 type Discovery = {server:{id:string;label:string;protocolVersion:string};tools:Array<{name:string;description?:string;inputSchema?:unknown;annotations?:unknown}>;pagination:{pages:number;truncated:boolean}};
+/**
+ * Function download.
+ *
+ * @param {string} name - Description of name.
+ * @param data - Description of data.
+ *
+ * @example
+ * ```typescript
+ * const result = download(..., ...);
+ * ```
+ */
 function download(name:string,data:unknown){const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+/**
+ * Function numberOrNull.
+ *
+ * @param {string} text - Description of text.
+ *
+ * @example
+ * ```typescript
+ * const result = numberOrNull(...);
+ * ```
+ */
 function numberOrNull(text:string){return text.trim()===''?null:Number(text);}
 
+/**
+ * React component EcosystemWorkspace.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { EcosystemWorkspace } from './module';
+ * ```
+ */
 export default function EcosystemWorkspace(){
  const [query,setQuery]=useState('');const [layer,setLayer]=useState('all');
  const [selected,setSelected]=useState<EcosystemId[]>(['google-ax','skills-sh']);

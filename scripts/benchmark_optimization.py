@@ -19,13 +19,14 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from apexgraphswarm.evaluation import evaluate
+from apexgraphswarm.hierarchy import METRIC_PROFILES, plan_hierarchy
 from apexgraphswarm.optimization import (
     CodeTask, DagTask, EvidenceItem, ModelOption, TelemetrySample,
     plan_waves, recommend_capacity, schedule_dag, select_evidence,
 )
 
 
-REPORT_VERSION = "apexgraphswarm-synthetic-optimization-v1"
+REPORT_VERSION = "apexgraphswarm-synthetic-optimization-v2"
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -46,13 +47,14 @@ def _attempt(aid: str, candidate: str, task: str, cost: int) -> dict[str, Any]:
         "attemptIndex": 1, "status": "succeeded", "elapsedMs": 25,
         "actualCostMicrousd": cost, "qualityScore": 1.0, "accepted": True,
         "policyViolations": 0,
+        "metricScores": {name: 0.9 for name in METRIC_PROFILES["coding"]["weights"]},
     }
 
 
 def _paired_demo(task_count: int = 64) -> dict[str, Any]:
     """Show the promotion gate on paired deterministic data, not live results."""
-    train_ids = ["train-%04d" % i for i in range(100)]
-    held_ids = ["held-%05d" % i for i in range(task_count)]
+    train_ids = ["train-%04d" % i for i in range(128)]
+    held_ids = ["held-%05d" % i for i in range(max(task_count, 128))]
     sealed_ids = ["sealed-a"]
     task_ids = train_ids + held_ids
     candidates = [
@@ -74,6 +76,8 @@ def _paired_demo(task_count: int = 64) -> dict[str, Any]:
             "confidenceAlpha": 0.05, "maxAttemptsPerTask": 1,
             "maxCostMicrousdPerTask": 100,
             "costCapEnforcementId": "synthetic-fixture-cap-v1",
+            "metricProfile": {"profileId": "coding", "minimumWeightedScore": 0.7,
+                              "maxScoreRegression": 0.02},
         },
         "candidates": candidates, "attempts": attempts,
         "baselineCandidateId": "baseline",
@@ -81,7 +85,7 @@ def _paired_demo(task_count: int = 64) -> dict[str, Any]:
     report = evaluate(payload)
     decision = report["promotionDecision"]
     return {
-        "synthetic": True, "taskCountHeldout": task_count,
+        "synthetic": True, "taskCountHeldout": len(held_ids),
         "baselineCandidateId": "baseline",
         "selectedCandidateId": report["trainingSelection"]["selectedCandidateId"],
         "selectedOn": "training only", "sealedSetUsedForSelection": False,
@@ -93,7 +97,46 @@ def _paired_demo(task_count: int = 64) -> dict[str, Any]:
                               "hardGatesPassed", "gateFailures")}
             for cid in ("baseline", "candidate")
         },
+        "weightedMetricSummary": {
+            cid: report["candidateReports"][cid]["heldout"]["metricProfileEvaluation"]
+            for cid in ("baseline", "candidate")
+        },
     }
+
+
+def _hierarchy_scale_case(task_count: int) -> dict[str, Any]:
+    """Measure planner overhead for a synthetic plan; this is not agent execution."""
+    profile = METRIC_PROFILES["coding"]["weights"]
+    tasks = []
+    for index in range(task_count):
+        tasks.append({
+            "id": "task-%04d" % index,
+            "family": "synthetic-review",
+            "dependencies": ["task-%04d" % (index - 1)] if index else [],
+            "requiredCapabilities": ["fixture-work"], "requiredActions": ["read"],
+            "resourceScope": "repo:synthetic", "dataBoundary": "public-fixture",
+            "estimatedCostMicrousd": 1, "estimatedLatencyMs": 10,
+        })
+    agents = [
+        {"id": "leader-fixture", "role": "leader", "profileIds": ["coding"],
+         "capabilities": ["coordination"], "authorizedActions": ["read"],
+         "authorizationGrantId": "benchmark-grant-leader", "resourceScopes": ["repo:synthetic"],
+         "dataBoundaries": ["public-fixture"], "metricScores": {name: 0.9 for name in profile}},
+        {"id": "worker-fixture", "role": "worker", "profileIds": ["coding"],
+         "capabilities": ["fixture-work"], "authorizedActions": ["read"],
+         "authorizationGrantId": "benchmark-grant-worker", "resourceScopes": ["repo:synthetic"],
+         "dataBoundaries": ["public-fixture"], "maxAssignments": task_count,
+         "metricScores": {name: 0.9 for name in profile}},
+    ]
+    payload = {"profileId": "coding", "tasks": tasks, "agents": agents,
+               "limits": {"budgetMicrousd": task_count + 1, "deadlineMs": task_count * 10 + 1,
+                           "maxClusterTasks": 16, "maxClusters": 32}}
+    result, elapsed_ms = _timed(lambda: plan_hierarchy(payload))
+    return {"inputTasks": task_count, "elapsedMs": elapsed_ms,
+            "result": {key: result[key] for key in (
+                "schemaVersion", "status", "clusterCount", "estimatedCriticalPathMs",
+                "estimatedTotalCostMicrousd", "unknownCostTaskIds", "blockers")},
+            "synthetic": True, "providerCalls": 0}
 
 
 def benchmark_report() -> dict[str, Any]:
@@ -134,15 +177,17 @@ def benchmark_report() -> dict[str, Any]:
     )
     capacity, capacity_ms = _timed(lambda: recommend_capacity(telemetry, target_utilization=0.75))
     paired, paired_ms = _timed(_paired_demo)
+    hierarchy_scale = [_hierarchy_scale_case(size) for size in (4, 32, 128, 200)]
     return {
         "benchmarkId": REPORT_VERSION,
         "fixtureSchema": {"version": "1", "scheduleTasks": len(tasks),
                           "evidenceItems": len(evidence_items), "codingTasks": len(code_tasks),
-                          "telemetrySamples": len(telemetry), "pairedHeldoutTasks": 64,
-                          "pairedTrainingTasks": 100},
+                          "telemetrySamples": len(telemetry), "pairedHeldoutTasks": 128,
+                          "pairedTrainingTasks": 128, "hierarchyPlanTaskSizes": [4, 32, 128, 200]},
         "sourceHashes": {
             "optimization.py": _sha256(ROOT / "apexgraphswarm" / "optimization.py"),
             "evaluation.py": _sha256(ROOT / "apexgraphswarm" / "evaluation.py"),
+            "hierarchy.py": _sha256(ROOT / "apexgraphswarm" / "hierarchy.py"),
             "benchmark_optimization.py": _sha256(Path(__file__).resolve()),
         },
         "measurementType": "local wall-clock measurements of deterministic synthetic fixtures",
@@ -159,11 +204,14 @@ def benchmark_report() -> dict[str, Any]:
             {"id": "capacity-recommendation", "synthetic": True, "inputTelemetrySamples": len(telemetry),
              "elapsedMs": capacity_ms, "result": asdict(capacity)},
             {"id": "paired-promotion-gate", "synthetic": True, "elapsedMs": paired_ms, "result": paired},
+            {"id": "hierarchical-planner-scaling", "synthetic": True,
+             "measurementType": "local deterministic plan construction only", "sizes": hierarchy_scale},
         ],
         "limits": [
             "Synthetic task graphs, durations, costs, and telemetry are fixtures only.",
             "No model/provider is called; results do not establish production performance.",
             "Task attempts are supplied deterministic evaluator records, not measured agent work.",
+            "Hierarchy scale cases measure planner construction only, not model calls, active workers, swarm quality or production capacity.",
             "Sealed tasks are never used for training selection or promotion selection.",
         ],
     }

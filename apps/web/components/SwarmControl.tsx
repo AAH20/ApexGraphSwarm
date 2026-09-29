@@ -1,3 +1,9 @@
+/**
+ * React component for swarm control.
+ *
+ * @module SwarmControl
+ * @packageDocumentation
+ */
 'use client';
 import {useEffect,useState} from 'react';
 import {Play,RefreshCw,Square,Download} from 'lucide-react';
@@ -5,7 +11,26 @@ import {downloadJSON} from '@/lib/graph';
 import {formatMicrousd} from '@/lib/format-microusd';
 import ExecutionTrace from './ExecutionTrace';
 import ExecutionLedger,{type LedgerView} from './ExecutionLedger';
+/**
+ * Type State.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { State } from './module';
+ * ```
+ */
 type State={ledger?:LedgerView;run:{id:string;status:string;version:number;budgetMicrousd:number;reservedMicrousd:number;spentMicrousd:number;remainingMicrousd:number};agents:{id:string;name:string}[];tasks:{taskId:string;id:string;agentId:string;status:string;dependencies:string[];attempts:number;maxAttempts:number;actualCostMicrousd:number|null;executionClass:string;requireResourceCapacity?:boolean;reservedCostMicrousd?:number;payload?:{sourceTaskId?:string;execution?:{version?:number}}}[];events:{sequence:number;type:string;at:string;taskId?:string}[]};
+/**
+ * React component SwarmControl.
+ *
+ * @param {{initialRunId?} initialRunId='' - Description of initialRunId=''.
+ *
+ * @example
+ * ```typescript
+ * const result = SwarmControl(...);
+ * ```
+ */
 export default function SwarmControl({initialRunId=''}:{initialRunId?:string}){
  const [token,setToken]=useState(''),[agents,setAgents]=useState(10),[runId,setRunId]=useState(initialRunId),[state,setState]=useState<State|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState('');
  useEffect(()=>{try{if(!initialRunId)setRunId(localStorage.getItem('apexgraphswarm.last-run.v1')||'');}catch{}},[initialRunId]);

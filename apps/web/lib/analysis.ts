@@ -1,8 +1,56 @@
 import {type Snapshot,indexGraph,LIMITS} from './graph';
+/**
+ * Constant ROLES.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ROLES } from './module';
+ * ```
+ */
 export const ROLES=['cartographer','dependencies','evidence'] as const;
+/**
+ * Type Role.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Role } from './module';
+ * ```
+ */
 export type Role=typeof ROLES[number];
+/**
+ * Type Finding.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Finding } from './module';
+ * ```
+ */
 export type Finding={title:string;detail:string;severity:'info'|'attention';nodeIds:string[];confidence:'observed'|'inferred'};
+/**
+ * Type Analysis.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Analysis } from './module';
+ * ```
+ */
 export type Analysis={role:Role;summary:string;findings:Finding[];metrics:Record<string,number>;durationMs:number};
+/**
+ * Function analyze.
+ *
+ * @param {Role} role - Description of role.
+ * @param {Snapshot} g - Description of g.
+ * @returns {Analysis} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = analyze(..., ...);
+ * ```
+ */
 export function analyze(role:Role,g:Snapshot):Analysis{
  const start=performance.now(),{nodes,out,incoming}=indexGraph(g);let findings:Finding[]=[],metrics:Record<string,number>={},summary='';
  if(role==='cartographer'){
@@ -30,4 +78,15 @@ export function analyze(role:Role,g:Snapshot):Analysis{
  }
  return {role,summary,findings:findings.slice(0,LIMITS.findings),metrics,durationMs:Math.round((performance.now()-start)*100)/100};
 }
+/**
+ * Function reconcile.
+ *
+ * @param {Snapshot} g - Description of g.
+ * @param {Analysis[]} results - Description of results.
+ *
+ * @example
+ * ```typescript
+ * const result = reconcile(..., ...);
+ * ```
+ */
 export function reconcile(g:Snapshot,results:Analysis[]){const ids=new Set(g.nodes.map(n=>n.id));const accepted:Finding[]=[],rejected:Finding[]=[];for(const result of results)for(const finding of result.findings)(finding.nodeIds.every(id=>ids.has(id))?accepted:rejected).push(finding);return {accepted:accepted.slice(0,LIMITS.findings),rejected,summary:`${results.length} specialists completed; ${accepted.length} evidence-linked findings, ${rejected.length} rejected for invalid references. Agreement does not upgrade inferred evidence to a fact.`};}

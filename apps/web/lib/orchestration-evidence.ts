@@ -12,6 +12,15 @@ export type OrchestrationEvidence = {
   asOf: '2026-09-27';
 };
 
+/**
+ * Constant orchestrationEvidence.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { orchestrationEvidence } from './module';
+ * ```
+ */
 export const orchestrationEvidence: readonly OrchestrationEvidence[] = Object.freeze([
   {
     id: 'langchain-stack',

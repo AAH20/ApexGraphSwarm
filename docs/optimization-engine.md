@@ -1,6 +1,6 @@
 # Bounded optimization helpers
 
-`apexgraphswarm.optimization` contains pure, deterministic planners. It returns candidate schedules, evidence selections, coding waves, and capacity recommendations. It does not call models, inspect a checkout, execute shell commands, access a provider, or query prices. Estimates and telemetry are supplied by the caller. Unknown cost stays unknown.
+`apexgraphswarm.optimization` contains pure, deterministic planners. It returns candidate schedules, evidence selections, coding waves, and capacity recommendations. `apexgraphswarm.hierarchy` adds a bounded root/domain/cluster/worker plan with field-specific metric profiles. It does not call models, inspect a checkout, execute shell commands, access a provider, or query prices. Estimates and telemetry are supplied by the caller. Unknown cost stays unknown.
 
 All APIs reject malformed/non-finite numeric values and enforce input limits. `OptimizationInputError` reports invalid or over-bound inputs. Result objects are frozen dataclasses composed of tuples and scalar values; `optimize()` converts them to JSON-compatible dictionaries.
 
@@ -74,3 +74,5 @@ For small DAGs, bounded exhaustive search enumerates precedence-respecting task 
 ## JSON dispatcher
 
 `optimize(payload)` accepts exactly one of `schedule`, `evidence`, `waves`, or `capacity` in the `action` field and rejects unknown top-level fields. It returns `dataclasses.asdict()`-shaped data. Task/options/sample/evidence fields use the names shown above. Bounds are 500 tasks/evidence items, 2,000 total explicit/global model options, 2,000 distinct claims, 500 declared paths per coding task, and 10,000 telemetry samples. Exact thresholds and limits are exposed through result metadata.
+
+The authenticated local `apexgraphswarm.lab` dispatcher also exposes `action: "hierarchy"`. Its exact bounded schema, versioned metric profiles, clustering behavior, hard gates, evaluation integration, benchmark boundaries, and economics are documented in [hierarchical orchestration](hierarchical-orchestration.md). It returns a plan only and independently requires live grant checks before any separate execution action.

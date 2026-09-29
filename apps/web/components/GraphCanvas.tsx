@@ -1,3 +1,9 @@
+/**
+ * React component for graph canvas.
+ *
+ * @module GraphCanvas
+ * @packageDocumentation
+ */
 "use client";
 
 import Graph from "graphology";
@@ -7,6 +13,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { GraphEdge, GraphNode } from "../lib/graph";
 import { bindRendererContextEvents } from "../lib/renderer-lifecycle";
 
+/**
+ * Type Layout.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Layout } from './module';
+ * ```
+ */
 type Layout = "grouped" | "force";
 export type GraphCanvasStatus = {
   renderer: string;
@@ -35,6 +50,16 @@ const COLORS: Record<GraphNode["kind"], string> = {
   external: "#9ba6b8",
 };
 
+/**
+ * Function groupedPositions.
+ *
+ * @param {GraphNode[]} nodes - Description of nodes.
+ *
+ * @example
+ * ```typescript
+ * const result = groupedPositions(...);
+ * ```
+ */
 function groupedPositions(nodes: GraphNode[]) {
   const groups = new Map<string, GraphNode[]>();
   for (const node of [...nodes].sort((a, b) => a.id.localeCompare(b.id))) {
