@@ -1,10 +1,54 @@
 import {assertJsonPrecision} from '@/lib/optimization-json';
 import {optimizationOperation} from '@/lib/optimization-client';
 import {hasIntegrationSafeOrigin,isIntegrationAuthorized} from '@/lib/integration-runtime';
+/**
+ * Constant runtime.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { runtime } from './module';
+ * ```
+ */
 export const runtime='nodejs';
+/**
+ * Constant dynamic.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { dynamic } from './module';
+ * ```
+ */
 export const dynamic='force-dynamic';
+/**
+ * API route handler for optimization endpoints.
+ *
+ * @module route
+ * @packageDocumentation
+ */
 const headers={'Cache-Control':'no-store'};
 let active=0;
+/**
+ * Function POST.
+ *
+ * @param {Request} request - Description of request.
+ *
+ * @example
+ * ```typescript
+ * const result = POST(...);
+ * ```
+ */
+/**
+ * API route handler for POST requests.
+ *
+ * @param {Request} request - Description of request.
+ *
+ * @example
+ * ```typescript
+ * const result = POST(...);
+ * ```
+ */
 export async function POST(request:Request){
  if(!isIntegrationAuthorized(request)||!hasIntegrationSafeOrigin(request))return Response.json({error:'Enter the private workspace execution token.'},{status:401,headers});
  if(!request.headers.get('content-type')?.startsWith('application/json'))return Response.json({error:'JSON is required.'},{status:415,headers});

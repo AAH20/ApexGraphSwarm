@@ -1,5 +1,14 @@
 import {isIP} from 'node:net';
 
+/**
+ * Constant MCP_DISCOVERY_LIMITS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { MCP_DISCOVERY_LIMITS } from './module';
+ * ```
+ */
 export const MCP_DISCOVERY_LIMITS = {
   profiles: 8,
   timeoutMs: 20_000,
@@ -10,6 +19,15 @@ export const MCP_DISCOVERY_LIMITS = {
   schemaBytes: 32 * 1024,
 } as const;
 
+/**
+ * Constant MCP_HANDSHAKE_VERSIONS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { MCP_HANDSHAKE_VERSIONS } from './module';
+ * ```
+ */
 export const MCP_HANDSHAKE_VERSIONS = [
   '2025-11-25',
   '2025-06-18',
@@ -17,13 +35,77 @@ export const MCP_HANDSHAKE_VERSIONS = [
   '2024-11-05',
 ] as const;
 
+/**
+ * Type Env.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Env } from './module';
+ * ```
+ */
 type Env = Record<string, string | undefined>;
+/**
+ * Type McpProfile.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { McpProfile } from './module';
+ * ```
+ */
 type McpProfile = {id: string; label: string; url: string; tokenEnv?: string; token?: string};
+/**
+ * Type McpHeaders.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { McpHeaders } from './module';
+ * ```
+ */
 type McpHeaders = Record<string, string>;
+/**
+ * Type RpcResponse.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { RpcResponse } from './module';
+ * ```
+ */
 type RpcResponse = {jsonrpc: '2.0'; id: string | number; result?: unknown; error?: {code: number; message: string}; transportSessionId?: string};
+/**
+ * Type SafeTool.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { SafeTool } from './module';
+ * ```
+ */
 type SafeTool = {name: string; title?: string; description?: string; inputSchema: Record<string, unknown>};
+/**
+ * Type Fetcher.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Fetcher } from './module';
+ * ```
+ */
 type Fetcher = typeof fetch;
 
+/**
+ * Class McpDiscoveryError.
+ *
+ * @extends Error
+ *
+ * @example
+ * ```typescript
+ * const instance = new McpDiscoveryError();
+ * ```
+ */
 export class McpDiscoveryError extends Error {
   constructor(message: string, readonly status = 502) {
     super(message);
@@ -31,14 +113,47 @@ export class McpDiscoveryError extends Error {
   }
 }
 
+/**
+ * Function plainRecord.
+ *
+ * @param value - Description of value.
+ * @returns {value is Record<string, unknown>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = plainRecord(...);
+ * ```
+ */
 function plainRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value && typeof value === 'object' && !Array.isArray(value));
 }
 
+/**
+ * Function validId.
+ *
+ * @param value - Description of value.
+ * @returns {value is string} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = validId(...);
+ * ```
+ */
 function validId(value: unknown): value is string {
   return typeof value === 'string' && /^[a-z][a-z0-9-]{0,62}$/.test(value);
 }
 
+/**
+ * Function endpoint.
+ *
+ * @param value - Description of value.
+ * @returns {string | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = endpoint(...);
+ * ```
+ */
 function endpoint(value: unknown): string | null {
   if (typeof value !== 'string' || value.length > 2048) return null;
   try {
@@ -53,6 +168,16 @@ function endpoint(value: unknown): string | null {
   }
 }
 
+/**
+ * Function loadProfiles.
+ *
+ * @param {Env} env - Description of env.
+ *
+ * @example
+ * ```typescript
+ * const result = loadProfiles(...);
+ * ```
+ */
 function loadProfiles(env: Env): {profiles: McpProfile[]; error?: string} {
   const raw = env.MCP_SERVERS_JSON;
   if (!raw?.trim()) return {profiles: []};
@@ -87,6 +212,16 @@ function loadProfiles(env: Env): {profiles: McpProfile[]; error?: string} {
   return {profiles};
 }
 
+/**
+ * Function getMcpDiscoveryCatalog.
+ *
+ * @param {Env} env - Description of env.
+ *
+ * @example
+ * ```typescript
+ * const result = getMcpDiscoveryCatalog(...);
+ * ```
+ */
 export function getMcpDiscoveryCatalog(env: Env = process.env) {
   const loaded = loadProfiles(env);
   return {
@@ -272,6 +407,19 @@ export async function discoverMcpTools(serverId: unknown, options: {
 
 }
 
+/**
+ * Function readRpc.
+ *
+ * @param {Response} response - Description of response.
+ * @param {number} expectedId - Description of expectedId.
+ * @param {string} method - Description of method.
+ * @returns {Promise<RpcResponse>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = readRpc(..., ..., ...);
+ * ```
+ */
 async function readRpc(response: Response, expectedId: number, method: string): Promise<RpcResponse> {
   const contentType = response.headers.get('content-type')?.split(';', 1)[0].trim().toLowerCase();
   let text: string;
@@ -286,6 +434,19 @@ async function readRpc(response: Response, expectedId: number, method: string): 
   throw new McpDiscoveryError(`MCP server returned an unsupported response type for ${method}.`);
 }
 
+/**
+ * Function validateRpc.
+ *
+ * @param value - Description of value.
+ * @param {number} expectedId - Description of expectedId.
+ * @param {string} method - Description of method.
+ * @returns {RpcResponse} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = validateRpc(..., ..., ...);
+ * ```
+ */
 function validateRpc(value: unknown, expectedId: number, method: string): RpcResponse {
   const hasResult = plainRecord(value) && Object.hasOwn(value, 'result');
   const hasError = plainRecord(value) && Object.hasOwn(value, 'error');
@@ -297,6 +458,18 @@ function validateRpc(value: unknown, expectedId: number, method: string): RpcRes
   return value as RpcResponse;
 }
 
+/**
+ * Function readBoundedText.
+ *
+ * @param {Response} response - Description of response.
+ * @param {number} maximum - Description of maximum.
+ * @returns {Promise<string>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = readBoundedText(..., ...);
+ * ```
+ */
 async function readBoundedText(response: Response, maximum: number): Promise<string> {
   if (!response.body) throw new McpDiscoveryError('MCP server returned an empty response.');
   const reader = response.body.getReader();
@@ -322,6 +495,19 @@ async function readBoundedText(response: Response, maximum: number): Promise<str
   return new TextDecoder().decode(bytes);
 }
 
+/**
+ * Function readSseRpc.
+ *
+ * @param {Response} response - Description of response.
+ * @param {number} expectedId - Description of expectedId.
+ * @param {string} method - Description of method.
+ * @returns {Promise<RpcResponse>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = readSseRpc(..., ..., ...);
+ * ```
+ */
 async function readSseRpc(response: Response, expectedId: number, method: string): Promise<RpcResponse> {
   if (!response.body) throw new McpDiscoveryError('MCP server returned an empty SSE stream.');
   const reader = response.body.getReader();
@@ -363,6 +549,16 @@ async function readSseRpc(response: Response, expectedId: number, method: string
   }
 }
 
+/**
+ * Function safeServerInfo.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = safeServerInfo(...);
+ * ```
+ */
 function safeServerInfo(value: unknown) {
   if (!plainRecord(value) || typeof value.name !== 'string' || typeof value.version !== 'string') {
     throw new McpDiscoveryError('MCP server returned invalid serverInfo.');
@@ -372,12 +568,33 @@ function safeServerInfo(value: unknown) {
     ...(typeof value.description === 'string' ? {description: value.description.slice(0, 1000)} : {})};
 }
 
+/**
+ * Function sanitizeCapabilities.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = sanitizeCapabilities(...);
+ * ```
+ */
 function sanitizeCapabilities(value: unknown) {
   if (!plainRecord(value)) return {};
   const tools = plainRecord(value.tools) ? {tools: {listChanged: value.tools.listChanged === true}} : {};
   return tools;
 }
 
+/**
+ * Function sanitizeSchema.
+ *
+ * @param value - Description of value.
+ * @returns {Record<string, unknown>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = sanitizeSchema(...);
+ * ```
+ */
 function sanitizeSchema(value: unknown): Record<string, unknown> {
   if (!plainRecord(value)) throw new McpDiscoveryError('MCP tool inputSchema must be an object.');
   let visited = 0;
@@ -413,6 +630,17 @@ function sanitizeSchema(value: unknown): Record<string, unknown> {
   return result;
 }
 
+/**
+ * Function sanitizeTool.
+ *
+ * @param value - Description of value.
+ * @returns {SafeTool} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = sanitizeTool(...);
+ * ```
+ */
 function sanitizeTool(value: unknown): SafeTool {
   if (!plainRecord(value) || typeof value.name !== 'string' || !value.name.trim() || value.name.length > 128) {
     throw new McpDiscoveryError('MCP server returned an invalid tool entry.');

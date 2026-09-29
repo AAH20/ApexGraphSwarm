@@ -1,6 +1,39 @@
+/**
+ * Constant MAX_SKILL_BYTES.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { MAX_SKILL_BYTES } from './module';
+ * ```
+ */
 export const MAX_SKILL_BYTES = 200_000;
+/**
+ * Constant MAX_FRONTMATTER_BYTES.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { MAX_FRONTMATTER_BYTES } from './module';
+ * ```
+ */
 export const MAX_FRONTMATTER_BYTES = 16_000;
+/**
+ * Constant MAX_DECLARATIONS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { MAX_DECLARATIONS } from './module';
+ * ```
+ */
 export const MAX_DECLARATIONS = 64;
+/**
+ * Core library module for skill manifest.ts functionality.
+ *
+ * @module skill-manifest
+ * @packageDocumentation
+ */
 const KNOWN_HARNESSES = new Set(['codex', 'claude-code', 'cursor', 'antigravity', 'opencode', 'hermes']);
 
 export type SkillImportInput = {
@@ -41,12 +74,45 @@ export type SkillImportReview = {
   manifest: LockedSkillManifest | null;
 };
 
+/**
+ * Type ParsedFrontmatter.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ParsedFrontmatter } from './module';
+ * ```
+ */
 type ParsedFrontmatter = { raw: string; fields: Record<string, string>; errors: string[]; warnings: string[]; body: string };
 
+/**
+ * Function utf8Size.
+ *
+ * @param {string} value - Description of value.
+ * @returns {number} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = utf8Size(...);
+ * ```
+ */
 function utf8Size(value: string): number {
   return new TextEncoder().encode(value).byteLength;
 }
 
+/**
+ * Function parseScalar.
+ *
+ * @param {string} rawValue - Description of rawValue.
+ * @param {number} lineNumber - Description of lineNumber.
+ * @param {string[]} errors - Description of errors.
+ * @returns {string | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = parseScalar(..., ..., ...);
+ * ```
+ */
 function parseScalar(rawValue: string, lineNumber: number, errors: string[]): string | null {
   const value = rawValue.trim();
   if (!value) {

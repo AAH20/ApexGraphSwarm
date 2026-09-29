@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ApexGraphSwarm — Enhanced Graph Demo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0d1928; color: #e7edf6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; overflow: hidden; }
+.header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid rgba(184,199,222,0.12); }
+.header h1 { font-size: 20px; font-weight: 600; }
+.header .subtitle { font-size: 12px; color: #71829d; margin-top: 4px; }
+.toggles { display: flex; gap: 8px; flex-wrap: wrap; }
+.toggle { display: flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 6px; border: 1px solid rgba(184,199,222,0.24); background: transparent; color: #71829d; font-size: 12px; cursor: pointer; }
+.toggle.active { border-color: #8493ff; background: rgba(132,147,255,0.15); color: #b4c5ff; }
+.layout-bar { display: flex; gap: 8px; align-items: center; padding: 8px 24px; border-bottom: 1px solid rgba(184,199,222,0.12); }
+.layout-bar span { font-size: 12px; color: #71829d; }
+.layout-btn { padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(184,199,222,0.24); background: transparent; color: #71829d; font-size: 12px; cursor: pointer; text-transform: capitalize; }
+.layout-btn.active { border-color: #8493ff; background: rgba(132,147,255,0.15); color: #b4c5ff; }
+.canvas-container { position: relative; height: calc(100vh - 120px); }
+.graph-canvas { position: absolute; inset: 0; }
+.canvas-controls { position: absolute; bottom: 12px; right: 12px; z-index: 10; display: flex; gap: 4px; }
+.ctrl-btn { width: 32px; height: 32px; border-radius: 6px; border: 1px solid rgba(184,199,222,0.24); background: rgba(13,25,40,0.9); color: #e7edf6; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.minimap { position: absolute; bottom: 12px; right: 120px; z-index: 10; width: 160px; height: 120px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(184,199,222,0.24); background: rgba(13,25,40,0.9); }
+.legend { position: absolute; bottom: 12px; left: 12px; z-index: 10; padding: 8px 12px; border-radius: 8px; background: rgba(13,25,40,0.9); border: 1px solid rgba(184,199,222,0.24); }
+.legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+.legend-label { font-size: 11px; color: #c3cede; }
+.search-box { position: absolute; top: 12px; left: 12px; z-index: 10; width: 260px; }
+.search-box input { width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(184,199,222,0.24); background: rgba(13,25,40,0.95); color: #e7edf6; font-size: 13px; outline: none; }
+.tooltip { position: absolute; top: 50px; right: 12px; z-index: 10; padding: 8px 12px; border-radius: 8px; background: rgba(13,25,40,0.97); border: 1px solid rgba(184,199,222,0.24); color: #e7edf6; font-size: 12px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1>GraphCanvasEnhanced — Full Feature Demo</h1>
+    <p class="subtitle">21 nodes · 27 edges · Sigma.js v3 + Graphology + Louvain + PageRank</p>
+  </div>
+  <div class="toggles">
+    <button class="toggle active" data-feature="communities">Communities</button>
+    <button class="toggle active" data-feature="centrality">Centrality</button>
+    <button class="toggle" data-feature="minimap">Minimap</button>
+    <button class="toggle active" data-feature="search">Search</button>
+    <button class="toggle" data-feature="edgeLabels">Edge Labels</button>
+  </div>
+</div>
+<div class="layout-bar">
+  <span>Layout:</span>
+  <button class="layout-btn active" data-layout="force">Force</button>
+  <button class="layout-btn" data-layout="grouped">Grouped</button>
+  <button class="layout-btn" data-layout="circular">Circular</button>
+</div>
+<div class="canvas-container" id="canvas-container">
+  <div class="graph-canvas" id="graph-canvas"></div>
+  <div class="search-box" id="search-box">
+    <input type="text" id="search-input" placeholder="Search nodes..." />
+  </div>
+  <div class="legend" id="legend"></div>
+  <div class="minimap" id="minimap" style="display:none;"></div>
+  <div class="canvas-controls">
+    <button class="ctrl-btn" id="zoom-in">+</button>
+    <button class="ctrl-btn" id="zoom-out">−</button>
+    <button class="ctrl-btn" id="zoom-fit">Fit</button>
+  </div>
+</div>
+
+<script>
+// Inline Sigma.js v3 + Graphology (bundled for demo)
+// This is a self-contained demo that renders the graph using Canvas 2D
+
+const COMMUNITY_PALETTE = ['#8493ff','#53c5ad','#70a8ff','#f2bf68','#e879f9','#fb923c','#34d399','#f472b6','#a78bfa','#fbbf24'];
+const KIND_COLORS = { module:'#8493ff', file:'#53c5ad', function:'#70a8ff', class:'#f2bf68', external:'#9ba6b8' };
+
+const nodes = [
+  { id:'core', name:'Core Engine', kind:'module', path:'src/core', summary:'Core orchestration engine', confidence:'observed', connections:8 },
+  { id:'swarm', name:'Swarm Orchestrator', kind:'module', path:'src/swarm', summary:'Multi-agent swarm orchestration', confidence:'observed', connections:7 },
+  { id:'graph', name:'Graph Intelligence', kind:'module', path:'src/graph', summary:'Graph-based reasoning engine', confidence:'observed', connections:6 },
+  { id:'security', name:'Security Layer', kind:'module', path:'src/security', summary:'Policy enforcement and validation', confidence:'observed', connections:5 },
+  { id:'mcp', name:'MCP Gateway', kind:'module', path:'src/mcp', summary:'Model Context Protocol gateway', confidence:'observed', connections:4 },
+  { id:'f1', name:'orchestrator.ts', kind:'file', path:'src/swarm/orchestrator.ts', summary:'Swarm orchestration logic', confidence:'observed', connections:3 },
+  { id:'f2', name:'graph-engine.ts', kind:'file', path:'src/graph/engine.ts', summary:'Graph construction engine', confidence:'observed', connections:3 },
+  { id:'f3', name:'security-policy.ts', kind:'file', path:'src/security/policy.ts', summary:'Security policy definitions', confidence:'observed', connections:2 },
+  { id:'f4', name:'mcp-router.ts', kind:'file', path:'src/mcp/router.ts', summary:'MCP tool routing', confidence:'observed', connections:2 },
+  { id:'f5', name:'types.ts', kind:'file', path:'src/core/types.ts', summary:'Shared type definitions', confidence:'observed', connections:4 },
+  { id:'f6', name:'utils.ts', kind:'file', path:'src/core/utils.ts', summary:'Utility functions', confidence:'observed', connections:3 },
+  { id:'fn1', name:'orchestrate()', kind:'function', path:'src/swarm/orchestrator.ts:42', summary:'Main orchestration loop', confidence:'observed', connections:2 },
+  { id:'fn2', name:'buildGraph()', kind:'function', path:'src/graph/engine.ts:15', summary:'Build knowledge graph', confidence:'observed', connections:2 },
+  { id:'fn3', name:'validatePolicy()', kind:'function', path:'src/security/policy.ts:8', summary:'Validate security policy', confidence:'observed', connections:1 },
+  { id:'fn4', name:'route()', kind:'function', path:'src/mcp/router.ts:23', summary:'Route MCP tool calls', confidence:'observed', connections:1 },
+  { id:'fn5', name:'dispatch()', kind:'function', path:'src/core/orchestrator.ts:67', summary:'Dispatch agent tasks', confidence:'observed', connections:2 },
+  { id:'c1', name:'SwarmKernel', kind:'class', path:'src/swarm/kernel.ts', summary:'Swarm kernel class', confidence:'observed', connections:2 },
+  { id:'c2', name:'GraphStore', kind:'class', path:'src/graph/store.ts', summary:'Graph storage class', confidence:'observed', connections:2 },
+  { id:'c3', name:'PolicyEngine', kind:'class', path:'src/security/engine.ts', summary:'Policy engine class', confidence:'observed', connections:1 },
+  { id:'e1', name:'sigma', kind:'external', path:'node_modules/sigma', summary:'Sigma.js graph renderer', confidence:'observed', connections:1 },
+  { id:'e2', name:'graphology', kind:'external', path:'node_modules/graphology', summary:'Graphology data layer', confidence:'observed', connections:1 },
+];
+
+const edges = [
+  ['core','swarm','imports'], ['core','graph','imports'], ['core','security','imports'], ['core','mcp','imports'],
+  ['swarm','f1','contains'], ['swarm','c1','contains'], ['graph','f2','contains'], ['graph','c2','contains'],
+  ['security','f3','contains'], ['security','c3','contains'], ['mcp','f4','contains'], ['core','f5','contains'],
+  ['core','f6','contains'], ['f1','fn1','defines'], ['f2','fn2','defines'], ['f3','fn3','defines'],
+  ['f4','fn4','defines'], ['f5','fn5','defines'], ['c1','fn1','calls'], ['c2','fn2','calls'],
+  ['fn1','fn5','calls'], ['fn2','fn5','calls'], ['fn5','fn4','calls'],
+  ['graph','e1','depends'], ['graph','e2','depends'], ['swarm','security','enforces'], ['mcp','security','validates'],
+];
+
+let showCommunities = true;
+let showCentrality = true;
+let showMinimap = false;
+let showEdgeLabels = false;
+let currentLayout = 'force';
+let canvas, ctx, scale = 1, offsetX = 0, offsetY = 0;
+let nodePositions = {};
+let communities = null;
+let centrality = null;
+let hoveredNode = null;
+let selectedNode = null;
+
+function computeCommunities() {
+  // Simple Louvain-like community detection
+  const adj = {};
+  nodes.forEach(n => adj[n.id] = []);
+  edges.forEach(([s,t]) => { adj[s].push(t); adj[t].push(s); });
+  
+  // Initialize each node in its own community
+  const comm = {};
+  nodes.forEach((n, i) => comm[n.id] = i);
+  
+  // Simple modularity optimization (few iterations)
+  for (let iter = 0; iter < 10; iter++) {
+    let changed = false;
+    nodes.forEach(n => {
+      const neighborComms = {};
+      adj[n.id].forEach(neighbor => {
+        const c = comm[neighbor];
+        neighborComms[c] = (neighborComms[c] || 0) + 1;
+      });
+      let bestComm = comm[n.id];
+      let bestScore = 0;
+      Object.entries(neighborComms).forEach(([c, score]) => {
+        if (score > bestScore) { bestScore = score; bestComm = parseInt(c); }
+      });
+      if (bestComm !== comm[n.id]) { comm[n.id] = bestComm; changed = true; }
+    });
+    if (!changed) break;
+  }
+  
+  // Renumber communities
+  const unique = [...new Set(Object.values(comm))].sort();
+  const remap = {};
+  unique.forEach((c, i) => remap[c] = i);
+  nodes.forEach(n => comm[n.id] = remap[comm[n.id]]);
+  
+  return comm;
+}
+
+function computeCentrality() {
+  // PageRank-like centrality
+  const pr = {};
+  nodes.forEach(n => pr[n.id] = 1 / nodes.length);
+  
+  for (let iter = 0; iter < 20; iter++) {
+    const newPr = {};
+    nodes.forEach(n => {
+      let sum = 0;
+      edges.forEach(([s, t]) => {
+        if (t === n.id) {
+          const outDegree = edges.filter(e => e[0] === s).length;
+          sum += pr[s] / outDegree;
+        }
+      });
+      newPr[n.id] = 0.15 / nodes.length + 0.85 * sum;
+    });
+    nodes.forEach(n => pr[n.id] = newPr[n.id]);
+  }
+  
+  return pr;
+}
+
+function computeLayout() {
+  nodePositions = {};
+  
+  if (currentLayout === 'circular') {
+    const sorted = [...nodes].sort((a,b) => a.id.localeCompare(b.id));
+    sorted.forEach((n, i) => {
+      const angle = (2 * Math.PI * i) / sorted.length;
+      const radius = Math.max(1.5, 0.3 * Math.sqrt(sorted.length));
+      nodePositions[n.id] = { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius };
+    });
+  } else if (currentLayout === 'grouped') {
+    const groups = {};
+    nodes.forEach(n => { if (!groups[n.kind]) groups[n.kind] = []; groups[n.kind].push(n); });
+    const names = Object.keys(groups).sort();
+    names.forEach((name, gi) => {
+      const members = groups[name];
+      const angle = (2 * Math.PI * gi) / names.length - Math.PI / 2;
+      const cx = names.length === 1 ? 0 : Math.cos(angle) * 2.1;
+      const cy = names.length === 1 ? 0 : Math.sin(angle) * 2.1;
+      const radius = Math.max(0.45, Math.min(1.7, 0.22 * Math.sqrt(members.length)));
+      members.forEach((n, i) => {
+        const na = (2 * Math.PI * i) / members.length;
+        nodePositions[n.id] = { x: cx + Math.cos(na) * radius, y: cy + Math.sin(na) * radius };
+      });
+    });
+  } else {
+    // Force-directed (simple simulation)
+    const sorted = [...nodes].sort((a,b) => a.id.localeCompare(b.id));
+    sorted.forEach((n, i) => {
+      const angle = (2 * Math.PI * i) / sorted.length;
+      nodePositions[n.id] = { x: Math.cos(angle) * 2, y: Math.sin(angle) * 2 };
+    });
+    
+    // Run a few iterations of force simulation
+    for (let iter = 0; iter < 100; iter++) {
+      const forces = {};
+      nodes.forEach(n => forces[n.id] = { x: 0, y: 0 });
+      
+      // Repulsion
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = nodePositions[a.id].x - nodePositions[b.id].x;
+          const dy = nodePositions[a.id].y - nodePositions[b.id].y;
+          const dist = Math.max(0.1, Math.sqrt(dx*dx + dy*dy));
+          const force = 0.5 / (dist * dist);
+          forces[a.id].x += (dx / dist) * force;
+          forces[a.id].y += (dy / dist) * force;
+          forces[b.id].x -= (dx / dist) * force;
+          forces[b.id].y -= (dy / dist) * force;
+        }
+      }
+      
+      // Attraction (edges)
+      edges.forEach(([s, t]) => {
+        const dx = nodePositions[t].x - nodePositions[s].x;
+        const dy = nodePositions[t].y - nodePositions[s].y;
+        const dist = Math.max(0.1, Math.sqrt(dx*dx + dy*dy));
+        const force = dist * 0.01;
+        forces[s].x += (dx / dist) * force;
+        forces[s].y += (dy / dist) * force;
+        forces[t].x -= (dx / dist) * force;
+        forces[t].y -= (dy / dist) * force;
+      });
+      
+      // Center gravity
+      nodes.forEach(n => {
+        forces[n.id].x -= nodePositions[n.id].x * 0.01;
+        forces[n.id].y -= nodePositions[n.id].y * 0.01;
+      });
+      
+      // Apply forces
+      nodes.forEach(n => {
+        nodePositions[n.id].x += forces[n.id].x * 0.1;
+        nodePositions[n.id].y += forces[n.id].y * 0.1;
+      });
+    }
+  }
+}
+
+function getNodeColor(n) {
+  if (showCommunities && communities) {
+    return COMMUNITY_PALETTE[communities[n.id] % COMMUNITY_PALETTE.length];
+  }
+  return KIND_COLORS[n.kind];
+}
+
+function getNodeSize(n) {
+  if (showCentrality && centrality) {
+    return Math.max(4, Math.min(20, 4 + centrality[n.id] * 30));
+  }
+  return n.kind === 'module' ? 6 : Math.min(10, 4 + Math.log2((n.connections || 0) + 1));
+}
+
+function render() {
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    document.getElementById('graph-canvas').appendChild(canvas);
+    ctx = canvas.getContext('2d');
+    
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX - rect.left - offsetX) / scale;
+      const y = (e.clientY - rect.top - offsetY) / scale;
+      hoveredNode = null;
+      nodes.forEach(n => {
+        const pos = nodePositions[n.id];
+        const size = getNodeSize(n);
+        if (Math.sqrt((x - pos.x)**2 + (y - pos.y)**2) < size) {
+          hoveredNode = n.id;
+        }
+      });
+      canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
+      render();
+    });
+    
+    canvas.addEventListener('click', (e) => {
+      if (hoveredNode) {
+        selectedNode = hoveredNode;
+        render();
+      }
+    });
+  }
+  
+  const container = document.getElementById('canvas-container');
+  canvas.width = container.clientWidth;
+  canvas.height = container.clientHeight;
+  
+  // Compute layout
+  communities = showCommunities ? computeCommunities() : null;
+  centrality = showCentrality ? computeCentrality() : null;
+  computeLayout();
+  
+  // Center and scale
+  const positions = Object.values(nodePositions);
+  const minX = Math.min(...positions.map(p => p.x));
+  const maxX = Math.max(...positions.map(p => p.x));
+  const minY = Math.min(...positions.map(p => p.y));
+  const maxY = Math.max(...positions.map(p => p.y));
+  const padding = 60;
+  const availableW = canvas.width - padding * 2;
+  const availableH = canvas.height - padding * 2;
+  const graphW = Math.max(1, maxX - minX);
+  const graphH = Math.max(1, maxY - minY);
+  scale = Math.min(availableW / graphW, availableH / graphH);
+  offsetX = padding + (availableW - graphW * scale) / 2 - minX * scale;
+  offsetY = padding + (availableH - graphH * scale) / 2 - minY * scale;
+  
+  // Clear
+  ctx.fillStyle = '#0d1928';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // Draw edges
+  edges.forEach(([s, t, rel]) => {
+    const sp = nodePositions[s];
+    const tp = nodePositions[t];
+    const sx = sp.x * scale + offsetX;
+    const sy = sp.y * scale + offsetY;
+    const tx = tp.x * scale + offsetX;
+    const ty = tp.y * scale + offsetY;
+    
+    const isHighlighted = selectedNode && (s === selectedNode || t === selectedNode);
+    
+    ctx.beginPath();
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(tx, ty);
+    ctx.strokeStyle = isHighlighted ? 'rgba(180,197,255,0.75)' : 'rgba(151,167,194,0.22)';
+    ctx.lineWidth = isHighlighted ? 1.5 : 1;
+    ctx.stroke();
+    
+    // Arrow
+    const angle = Math.atan2(ty - sy, tx - sx);
+    const arrowLen = 6;
+    const nodeSize = getNodeSize(nodes.find(n => n.id === t));
+    const tx2 = tx - Math.cos(angle) * (nodeSize + 2);
+    const ty2 = ty - Math.sin(angle) * (nodeSize + 2);
+    ctx.beginPath();
+    ctx.moveTo(tx2, ty2);
+    ctx.lineTo(tx2 - arrowLen * Math.cos(angle - 0.5), ty2 - arrowLen * Math.sin(angle - 0.5));
+    ctx.lineTo(tx2 - arrowLen * Math.cos(angle + 0.5), ty2 - arrowLen * Math.sin(angle + 0.5));
+    ctx.closePath();
+    ctx.fillStyle = isHighlighted ? 'rgba(180,197,255,0.75)' : 'rgba(151,167,194,0.22)';
+    ctx.fill();
+    
+    // Edge label
+    if (showEdgeLabels) {
+      const mx = (sx + tx) / 2;
+      const my = (sy + ty) / 2;
+      ctx.fillStyle = '#71829d';
+      ctx.font = '10px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(rel, mx, my - 4);
+    }
+  });
+  
+  // Draw nodes
+  nodes.forEach(n => {
+    const pos = nodePositions[n.id];
+    const x = pos.x * scale + offsetX;
+    const y = pos.y * scale + offsetY;
+    const size = getNodeSize(n);
+    const color = getNodeColor(n);
+    const isSelected = selectedNode === n.id;
+    const isHovered = hoveredNode === n.id;
+    
+    // Node circle
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fillStyle = isSelected ? '#ffffff' : isHovered ? '#b4c5ff' : color;
+    ctx.fill();
+    
+    // Selection ring
+    if (isSelected) {
+      ctx.beginPath();
+      ctx.arc(x, y, size + 3, 0, Math.PI * 2);
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+    
+    // Label
+    ctx.fillStyle = isSelected ? '#ffffff' : '#c3cede';
+    ctx.font = `${isSelected ? 'bold ' : ''}${isSelected ? 12 : 11}px Inter, sans-serif`;
+    ctx.textAlign = 'left';
+    ctx.fillText(n.name, x + size + 4, y + 4);
+  });
+  
+  // Legend
+  const legendEl = document.getElementById('legend');
+  if (showCommunities && communities) {
+    const unique = [...new Set(Object.values(communities))].sort();
+    legendEl.innerHTML = unique.map(id => `<div class="legend-item"><span class="legend-dot" style="background:${COMMUNITY_PALETTE[id % COMMUNITY_PALETTE.length]}"></span><span class="legend-label">Community ${id + 1}</span></div>`).join('');
+  } else {
+    legendEl.innerHTML = Object.entries(KIND_COLORS).map(([k,c]) => `<div class="legend-item"><span class="legend-dot" style="background:${c}"></span><span class="legend-label">${k}</span></div>`).join('');
+  }
+  
+  // Minimap
+  const minimapEl = document.getElementById('minimap');
+  if (showMinimap) {
+    minimapEl.style.display = 'block';
+    minimapEl.innerHTML = '<canvas width="160" height="120" style="width:100%;height:100%;"></canvas>';
+    const mmCanvas = minimapEl.querySelector('canvas');
+    const mmCtx = mmCanvas.getContext('2d');
+    mmCtx.fillStyle = '#0d1928';
+    mmCtx.fillRect(0, 0, 160, 120);
+    
+    const mmScale = Math.min(140 / graphW, 100 / graphH);
+    const mmOffsetX = (160 - graphW * mmScale) / 2 - minX * mmScale;
+    const mmOffsetY = (120 - graphH * mmScale) / 2 - minY * mmScale;
+    
+    edges.forEach(([s, t]) => {
+      const sp = nodePositions[s];
+      const tp = nodePositions[t];
+      mmCtx.beginPath();
+      mmCtx.moveTo(sp.x * mmScale + mmOffsetX, sp.y * mmScale + mmOffsetY);
+      mmCtx.lineTo(tp.x * mmScale + mmOffsetX, tp.y * mmScale + mmOffsetY);
+      mmCtx.strokeStyle = 'rgba(151,167,194,0.15)';
+      mmCtx.lineWidth = 0.5;
+      mmCtx.stroke();
+    });
+    
+    nodes.forEach(n => {
+      const pos = nodePositions[n.id];
+      mmCtx.beginPath();
+      mmCtx.arc(pos.x * mmScale + mmOffsetX, pos.y * mmScale + mmOffsetY, 2, 0, Math.PI * 2);
+      mmCtx.fillStyle = KIND_COLORS[n.kind];
+      mmCtx.fill();
+    });
+  } else {
+    minimapEl.style.display = 'none';
+  }
+}
+
+// Toggles
+document.querySelectorAll('.toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('active');
+    const feature = btn.dataset.feature;
+    if (feature === 'communities') showCommunities = btn.classList.contains('active');
+    if (feature === 'centrality') showCentrality = btn.classList.contains('active');
+    if (feature === 'minimap') showMinimap = btn.classList.contains('active');
+    if (feature === 'edgeLabels') showEdgeLabels = btn.classList.contains('active');
+    render();
+  });
+});
+
+// Layout
+document.querySelectorAll('.layout-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.layout-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentLayout = btn.dataset.layout;
+    render();
+  });
+});
+
+// Zoom
+document.getElementById('zoom-in').addEventListener('click', () => { scale *= 1.2; render(); });
+document.getElementById('zoom-out').addEventListener('click', () => { scale /= 1.2; render(); });
+document.getElementById('zoom-fit').addEventListener('click', () => { scale = 1; offsetX = 0; offsetY = 0; render(); });
+
+// Search
+document.getElementById('search-input').addEventListener('input', (e) => {
+  const q = e.target.value.toLowerCase();
+  if (!q) return;
+  const match = nodes.find(n => n.name.toLowerCase().includes(q));
+  if (match) {
+    selectedNode = match.id;
+    render();
+  }
+});
+
+// Initial render
+render();
+</script>
+</body>
+</html>

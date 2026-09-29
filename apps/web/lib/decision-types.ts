@@ -1,3 +1,12 @@
+/**
+ * Type DecisionProvider.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { DecisionProvider } from './module';
+ * ```
+ */
 export type DecisionProvider = 'laya' | 'anyjev';
 export type DecisionQuestion = {
   type: 'choice' | 'score' | 'noul';

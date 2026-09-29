@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mirofish-swarm-optimizer"
+version = "1.1.0"
+description = "Hard Mathematical Solvers for MiroFish Swarm Intelligence Simulation Exceeding Evolutionary Algorithms"
+readme = "README.md"
+authors = [{ name = "AAH20 Sovereign Holdings" }]
+license = { text = "Apache-2.0" }
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+keywords = [
+    "mirofish",
+    "swarm-intelligence",
+    "multi-agent-simulation",
+    "np-hard-optimization",
+    "coalition-structure-generation",
+    "influence-maximization",
+    "kemeny-young-consensus",
+    "condorcet-criterion",
+    "evolutionary-algorithms",
+    "genetic-algorithms",
+    "particle-swarm-optimization",
+    "graphrag",
+    "opinion-dynamics",
+    "geopolitical-forecasting",
+    "market-microstructure",
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+mirofish-swarm-optimizer = "mirofish_swarm_optimizer.cli:main"

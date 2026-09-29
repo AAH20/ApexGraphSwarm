@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apexgraphswarm-config
+  namespace: apexgraphswarm
+  labels:
+    app.kubernetes.io/name: apexgraphswarm
+    app.kubernetes.io/component: config
+data:
+  # Application
+  NODE_ENV: "production"
+  NEXT_TELEMETRY_DISABLED: "1"
+  # Control plane
+  APEX_CONTROL_DB_PATH: "/data/control.sqlite"
+  APEX_REPOSITORY_PATH: "/data/repository"
+  # Graph store
+  GRAPH_STORE_NAMESPACE: "apexgraphswarm"
+  # Local runner
+  LOCAL_RUNNER_URL: "http://127.0.0.1:8765"
+  # MCP
+  MCP_SERVERS_JSON: "[]"
+  APEX_INTEGRATION_POLICIES_JSON: "[]"
+  # Cost estimation defaults
+  LAYA_COST_MICROUSD_PER_QUESTION: "0"
+  ANYJEV_COST_MICROUSD_PER_QUESTION: "0"

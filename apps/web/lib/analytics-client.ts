@@ -1,6 +1,16 @@
 import {execFile} from 'node:child_process';
 import path from 'node:path';
 import {assertJsonPrecision} from './optimization-json';
+/**
+ * Function analyticsOperation.
+ *
+ * @param {Record<string,unknown>} input - Description of input.
+ *
+ * @example
+ * ```typescript
+ * const result = analyticsOperation(...);
+ * ```
+ */
 export async function analyticsOperation(input:Record<string,unknown>){
  const root=path.resolve(process.cwd(),'../..');
  const dbPath=process.env.APEX_CONTROL_DB_PATH?path.resolve(process.env.APEX_CONTROL_DB_PATH):path.join(root,'.runtime','control.sqlite');

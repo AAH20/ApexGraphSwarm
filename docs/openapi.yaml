@@ -1,0 +1,1870 @@
+openapi: 3.1.0
+info:
+  title: ApexGraphSwarm API
+  description: |
+    ApexGraphSwarm is a local-first engineering workspace for repository intelligence,
+    specialist teams, bounded swarm orchestration, evaluation, and cost-aware delegation.
+
+    This specification covers all HTTP API endpoints exposed by the Next.js web application
+    and the Python control plane. All endpoints are local-first and bound to loopback by
+    default. Execution controls require a private workspace token configured as
+    `INTEGRATION_ACCESS_TOKEN`.
+
+    ## Authentication
+
+    Most endpoints require a bearer token sent in the `Authorization` header. The token
+    is compared using constant-time comparison against a server-side secret. Some
+    endpoints also validate the `Origin` header against the request host to prevent
+    cross-origin abuse.
+
+    ## Rate Limiting
+
+    Several endpoints enforce concurrency limits (typically 2 concurrent requests).
+    Exceeding the limit returns HTTP 429.
+
+    ## Idempotency
+
+    Integration job creation requires an `Idempotency-Key` header. Reusing a key with
+    a different payload returns HTTP 409 Conflict.
+  version: 1.0.0
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: ApexGraphSwarm
+    url: https://github.com/AAH20/ApexGraphSwarm
+
+servers:
+  - url: http://127.0.0.1:3010
+    description: Local development server
+
+tags:
+  - name: graph-store
+    description: Neo4j graph persistence (load/save)
+  - name: control
+    description: Swarm control plane (fixtures, status, execution graph)
+  - name: analytics
+    description: Bounded read-only analytics over execution ledgers
+  - name: decisions
+    description: Typed decision providers (Laya, AnyJev)
+  - name: optimization
+    description: Local optimization experiments (scheduling, evidence, evolution)
+  - name: integrations
+    description: External integration catalog and job management
+  - name: mcp
+    description: MCP server discovery
+  - name: review
+    description: Model-based graph review
+  - name: swarm
+    description: Multi-specialist model swarm review
+  - name: planned-tasks
+    description: Execute persisted planned tasks
+
+paths:
+  /api/graph-store:
+    get:
+      tags: [graph-store]
+      summary: Check graph store status
+      description: Returns whether Neo4j graph storage is configured and accessible.
+      operationId: getGraphStoreStatus
+      responses:
+        '200':
+          description: Graph store status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  enabled:
+                    type: boolean
+                    description: Whether Neo4j is configured with an access token
+                  mode:
+                    type: string
+                    enum: [neo4j]
+                    description: Storage backend mode
+    post:
+      tags: [graph-store]
+      summary: Load or save a graph snapshot
+      description: |
+        Persists a graph snapshot to Neo4j or loads the active revision.
+        The request body must contain `action` set to `"load"` or `"save"`.
+        For `"save"`, a `graph` field containing the snapshot is required.
+      operationId: graphStoreOperation
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/GraphStoreLoadRequest'
+                - $ref: '#/components/schemas/GraphStoreSaveRequest'
+      responses:
+        '200':
+          description: Graph loaded or saved successfully
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GraphSnapshot'
+                  - $ref: '#/components/schemas/StoredRevision'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          description: No saved graph available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '502':
+          description: Graph storage backend error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: Neo4j not configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/control:
+    post:
+      tags: [control]
+      summary: Control plane operations
+      description: |
+        Execute control plane operations including fixture creation, status queries,
+        fixture advancement, run cancellation, and execution graph projection.
+        All operations are deterministic and local; no model calls are made.
+      operationId: controlOperation
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ControlRequest'
+      responses:
+        '200':
+          description: Control operation result
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ControlStatus'
+                  - $ref: '#/components/schemas/ExecutionGraph'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /api/analytics:
+    post:
+      tags: [analytics]
+      summary: Run analytics query
+      description: |
+        Execute a bounded, read-only analytics query over the execution ledger.
+        Supports live ledger scans and CSV/JSON event imports. Results include
+        KPIs, latency distributions, daily trends, cohort economics, heatmaps,
+        relationship graphs, forecasts, and anomaly detection.
+      operationId: analyticsOperation
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyticsRequest'
+      responses:
+        '200':
+          description: Analytics report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsReport'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /api/decisions:
+    get:
+      tags: [decisions]
+      summary: List decision providers
+      description: Returns the list of configured decision providers and their status.
+      operationId: getDecisionProviders
+      responses:
+        '200':
+          description: Provider list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  providers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProviderInfo'
+    post:
+      tags: [decisions]
+      summary: Run typed decisions
+      description: |
+        Execute typed decision questions against one or two configured providers
+        (Laya, AnyJev). Questions can be choice, score, or noul (yes/no) type.
+        Returns probability distributions, confidence scores, and cost estimates.
+      operationId: runDecisions
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DecisionInput'
+      responses:
+        '200':
+          description: Decision results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DecisionResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /api/optimization:
+    post:
+      tags: [optimization]
+      summary: Run optimization experiment
+      description: |
+        Execute a bounded local optimization experiment. Supported actions include
+        hierarchy planning, scheduling, evidence selection, wave planning,
+        capacity analysis, evaluation, telemetry collection, benchmarking,
+        evolution, delegation compilation, and repository conflict detection.
+        All operations are deterministic and local; no model calls are made.
+      operationId: optimizationOperation
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptimizationRequest'
+      responses:
+        '200':
+          description: Experiment result
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /api/integrations:
+    get:
+      tags: [integrations]
+      summary: List available integrations
+      description: |
+        Returns the catalog of configured integrations including model providers,
+        local kernels, framework adapters, and harness bridges. Also returns
+        integration limits and constraints.
+      operationId: getIntegrationCatalog
+      responses:
+        '200':
+          description: Integration catalog
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  integrations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IntegrationInfo'
+                  limits:
+                    $ref: '#/components/schemas/IntegrationLimits'
+    post:
+      tags: [integrations]
+      summary: Start an integration job
+      description: |
+        Start a new integration job with idempotency support. The job is queued
+        and executed asynchronously. Returns a job record with initial status.
+        Requires an `Idempotency-Key` header.
+      operationId: startIntegrationJob
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          description: Unique key for idempotent request handling (1-200 visible ASCII chars)
+          schema:
+            type: string
+            pattern: '^[\x21-\x7e]+$'
+            minLength: 1
+            maxLength: 200
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationRequest'
+      responses:
+        '202':
+          description: Job accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationJob'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Idempotency conflict or recovery required
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/IdempotencyConflict'
+                  - $ref: '#/components/schemas/RecoveryRequired'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '503':
+          description: Integration unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/integrations/jobs/{id}:
+    get:
+      tags: [integrations]
+      summary: Get integration job status
+      description: Retrieve the current status and result of an integration job.
+      operationId: getIntegrationJob
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Job UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job:
+                    $ref: '#/components/schemas/IntegrationJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags: [integrations]
+      summary: Cancel integration job
+      description: Cancel a running or queued integration job.
+      operationId: cancelIntegrationJob
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Job UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job cancelled
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job:
+                    $ref: '#/components/schemas/IntegrationJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/ecosystem/mcp:
+    get:
+      tags: [mcp]
+      summary: List MCP server profiles
+      description: Returns the catalog of configured MCP server profiles and their discovery status.
+      operationId: getMcpCatalog
+      responses:
+        '200':
+          description: MCP server catalog
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  servers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/McpServer'
+                  configurationError:
+                    type: string
+                    description: Configuration error message if profiles are invalid
+    post:
+      tags: [mcp]
+      summary: Discover MCP tools
+      description: |
+        Discover tools from a configured MCP server. Performs the MCP handshake,
+        lists available tools with pagination, and returns sanitized tool schemas.
+        Supports JSON and SSE response formats.
+      operationId: discoverMcpTools
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [serverId]
+              properties:
+                serverId:
+                  type: string
+                  pattern: '^[a-z][a-z0-9-]{0,62}$'
+                  description: MCP server profile identifier
+      responses:
+        '200':
+          description: Discovered tools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/McpDiscoveryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: MCP server profile not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '502':
+          description: MCP discovery failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: MCP server not configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/review:
+    get:
+      tags: [review]
+      summary: Check model review status
+      description: Returns whether model review is configured and enabled.
+      operationId: getReviewStatus
+      responses:
+        '200':
+          description: Review status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  enabled:
+                    type: boolean
+    post:
+      tags: [review]
+      summary: Run model review
+      description: |
+        Execute a model-based graph review using a tool-loop agent. The agent
+        searches and inspects the graph, then returns a summary with cited findings.
+        Findings are validated against the graph to ensure all cited node IDs exist.
+        Maximum 30-second deadline.
+      operationId: runModelReview
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewInput'
+      responses:
+        '200':
+          description: Review result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelReview'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '502':
+          description: Model review failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: Model review not configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '504':
+          description: Review timed out
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/swarm:
+    post:
+      tags: [swarm]
+      summary: Run model swarm review
+      description: |
+        Execute a multi-specialist model swarm review. Two parallel specialists
+        (structure and dependency-risk) review the graph independently, followed
+        by a critic that synthesizes their findings. Maximum 45-second deadline.
+        Each specialist uses up to 3 model steps with 600 output tokens per call.
+      operationId: runModelSwarm
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwarmReviewInput'
+      responses:
+        '200':
+          description: Swarm review result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelSwarmResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '499':
+          description: Client cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '502':
+          description: Model swarm failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: Model review not configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '504':
+          description: Swarm timed out
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/planned-tasks:
+    post:
+      tags: [planned-tasks]
+      summary: Execute a planned task
+      description: |
+        Execute a single persisted planned task. The task must have been previously
+        compiled and stored. Only bounded model graph reviews (OpenRouter/vLLM) can
+        run as planned tasks. The request body must contain exactly `runId` and `taskId`.
+        Maximum 45-second deadline.
+      operationId: executePlannedTask
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [runId, taskId]
+              properties:
+                runId:
+                  type: string
+                  pattern: '^[a-zA-Z0-9_-]{1,128}$'
+                taskId:
+                  type: string
+                  pattern: '^[a-zA-Z0-9_-]{1,128}$'
+      responses:
+        '200':
+          description: Task execution result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Private workspace execution token
+
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Origin not allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    PayloadTooLarge:
+      description: Request body exceeds size limit
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnsupportedMediaType:
+      description: Content-Type must be application/json
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Concurrency limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message (local paths redacted)
+
+    GraphStoreLoadRequest:
+      type: object
+      required: [action]
+      properties:
+        action:
+          type: string
+          enum: [load]
+
+    GraphStoreSaveRequest:
+      type: object
+      required: [action, graph]
+      properties:
+        action:
+          type: string
+          enum: [save]
+        graph:
+          $ref: '#/components/schemas/GraphSnapshot'
+
+    GraphSnapshot:
+      type: object
+      required: [version, name, nodes, edges]
+      properties:
+        version:
+          type: integer
+          minimum: 1
+        name:
+          type: string
+          maxLength: 500
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GraphNode'
+          maxItems: 25000
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/GraphEdge'
+          maxItems: 100000
+        warnings:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+        truncated:
+          type: boolean
+        summary:
+          type: object
+          properties:
+            unresolved:
+              type: integer
+              minimum: 0
+        unresolved:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+              line:
+                type: integer
+                minimum: 1
+              expression:
+                type: string
+          maxItems: 200
+
+    GraphNode:
+      type: object
+      required: [id, name, kind, path, summary, confidence]
+      properties:
+        id:
+          type: string
+          maxLength: 2000
+        name:
+          type: string
+          maxLength: 2000
+        kind:
+          type: string
+          enum: [module, file, function, class, external]
+        path:
+          type: string
+          maxLength: 4000
+        summary:
+          type: string
+          maxLength: 10000
+        confidence:
+          type: string
+          enum: [parsed, observed, inferred, illustrative, aggregated]
+        line:
+          type: integer
+          minimum: 1
+        connections:
+          type: integer
+          minimum: 0
+
+    GraphEdge:
+      type: object
+      required: [source, target, relation, confidence]
+      properties:
+        source:
+          type: string
+          maxLength: 2000
+        target:
+          type: string
+          maxLength: 2000
+        relation:
+          type: string
+          maxLength: 100
+        confidence:
+          type: string
+          enum: [parsed, observed, inferred, illustrative, aggregated]
+        line:
+          type: integer
+          minimum: 0
+        count:
+          type: integer
+          minimum: 1
+
+    StoredRevision:
+      type: object
+      properties:
+        revision:
+          type: string
+          description: SHA-256 digest of the snapshot
+        name:
+          type: string
+        nodeCount:
+          type: integer
+        edgeCount:
+          type: integer
+        createdAt:
+          type: string
+          nullable: true
+
+    ControlRequest:
+      type: object
+      required: [action]
+      properties:
+        action:
+          type: string
+          enum: [createFixture, status, advanceFixture, cancel, executionGraph]
+        agents:
+          type: integer
+          enum: [1, 10, 30, 100, 300]
+          description: Number of logical agents (createFixture only)
+        runId:
+          type: string
+          pattern: '^[a-zA-Z0-9_-]{1,100}$'
+          description: Run identifier (required for status, advanceFixture, cancel, executionGraph)
+        idempotencyKey:
+          type: string
+          pattern: '^[a-zA-Z0-9_-]{8,100}$'
+          description: Idempotency key (createFixture only)
+
+    ControlStatus:
+      type: object
+      properties:
+        run:
+          type: object
+          properties:
+            id:
+              type: string
+            status:
+              type: string
+            budgetExceeded:
+              type: boolean
+            cancelRequested:
+              type: boolean
+            reservedMicrousd:
+              type: integer
+              nullable: true
+        tasks:
+          type: array
+          items:
+            type: object
+        agents:
+          type: array
+          items:
+            type: object
+        ledger:
+          type: object
+          properties:
+            attempts:
+              type: array
+              items:
+                type: object
+
+    ExecutionGraph:
+      type: object
+      properties:
+        version:
+          type: integer
+          enum: [1]
+        runId:
+          type: string
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExecutionNode'
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExecutionEdge'
+        summary:
+          type: object
+          properties:
+            nodeCount:
+              type: integer
+            edgeCount:
+              type: integer
+            omittedNodes:
+              type: integer
+            omittedEdges:
+              type: integer
+            attemptCoverage:
+              type: object
+              properties:
+                expected:
+                  type: integer
+                recorded:
+                  type: integer
+                missing:
+                  type: integer
+                complete:
+                  type: boolean
+            allCostsResolved:
+              type: boolean
+            knownActualMicrousd:
+              type: integer
+            unknownCostAttempts:
+              type: integer
+        limitations:
+          type: array
+          items:
+            type: string
+        truncated:
+          type: boolean
+
+    ExecutionNode:
+      type: object
+      properties:
+        id:
+          type: string
+        kind:
+          type: string
+          enum: [run, agent, task, attempt, principal, worker, grant, resource, specialist_contract]
+        label:
+          type: string
+        status:
+          type: string
+        reservedMicrousd:
+          type: integer
+          nullable: true
+        actualMicrousd:
+          type: integer
+          nullable: true
+        details:
+          type: object
+        explanations:
+          type: array
+          items:
+            type: string
+
+    ExecutionEdge:
+      type: object
+      properties:
+        id:
+          type: string
+        source:
+          type: string
+        target:
+          type: string
+        kind:
+          type: string
+        label:
+          type: string
+
+    AnalyticsRequest:
+      type: object
+      required: [source]
+      properties:
+        source:
+          type: string
+          enum: [live, import]
+          description: Data source (live ledger or event import)
+        days:
+          type: integer
+          description: Number of days to analyze
+        tool:
+          type: string
+          description: Filter by tool name
+        rows:
+          type: array
+          description: Event rows for import source
+          items:
+            $ref: '#/components/schemas/AnalyticsEvent'
+
+    AnalyticsEvent:
+      type: object
+      required: [attemptId, taskId, startedAt, outcome]
+      properties:
+        attemptId:
+          type: string
+          maxLength: 256
+        taskId:
+          type: string
+          maxLength: 256
+        tool:
+          type: string
+          maxLength: 256
+          nullable: true
+        resource:
+          type: string
+          maxLength: 256
+          nullable: true
+        startedAt:
+          type: number
+          description: Unix epoch timestamp
+        settledAt:
+          type: number
+          nullable: true
+          description: Unix epoch timestamp
+        outcome:
+          type: string
+          enum: [running, unknown, succeeded, failed, cancelled, not_started, expired_retryable]
+        actualCostMicrousd:
+          type: integer
+          minimum: 0
+          nullable: true
+
+    AnalyticsReport:
+      type: object
+      properties:
+        version:
+          type: integer
+        source:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+        windowStart:
+          type: string
+          format: date-time
+        quality:
+          type: object
+          properties:
+            scannedRows:
+              type: integer
+            selectedRows:
+              type: integer
+            unknownCostRows:
+              type: integer
+            invalidRows:
+              type: integer
+            truncated:
+              type: boolean
+        kpis:
+          type: object
+          properties:
+            attempts:
+              type: integer
+            succeeded:
+              type: integer
+            failed:
+              type: integer
+            running:
+              type: integer
+            knownCostMicrousd:
+              type: integer
+            costPerSuccessMicrousd:
+              type: number
+              nullable: true
+            successRate:
+              type: number
+              nullable: true
+        latency:
+          type: object
+          properties:
+            count:
+              type: integer
+            p50:
+              type: number
+              nullable: true
+            p95:
+              type: number
+              nullable: true
+            mean:
+              type: number
+              nullable: true
+            stddev:
+              type: number
+              nullable: true
+            histogram:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                  count:
+                    type: integer
+            sampled:
+              type: boolean
+        daily:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+              attempts:
+                type: integer
+              succeeded:
+                type: integer
+              knownCostMicrousd:
+                type: integer
+              unknownCostRows:
+                type: integer
+        cohorts:
+          type: array
+          items:
+            type: object
+            properties:
+              tool:
+                type: string
+              resource:
+                type: string
+              attempts:
+                type: integer
+              succeeded:
+                type: integer
+              knownCostMicrousd:
+                type: integer
+              unknownCostRows:
+                type: integer
+              meanLatencySeconds:
+                type: number
+                nullable: true
+        heatmap:
+          type: array
+          items:
+            type: object
+            properties:
+              day:
+                type: integer
+              hour:
+                type: integer
+              count:
+                type: integer
+        graph:
+          type: object
+          properties:
+            nodes:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  label:
+                    type: string
+                  kind:
+                    type: string
+            edges:
+              type: array
+              items:
+                type: object
+                properties:
+                  source:
+                    type: string
+                  target:
+                    type: string
+                  attempts:
+                    type: integer
+                  knownCostMicrousd:
+                    type: integer
+        forecast:
+          type: object
+          properties:
+            status:
+              type: string
+            points:
+              type: array
+              items:
+                type: object
+                properties:
+                  date:
+                    type: string
+                  predictedMicrousd:
+                    type: number
+                  lowerMicrousd:
+                    type: number
+                  upperMicrousd:
+                    type: number
+            backtestMAE:
+              type: number
+              nullable: true
+            naiveMAE:
+              type: number
+              nullable: true
+            method:
+              type: string
+            limitations:
+              type: array
+              items:
+                type: string
+        anomalies:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+              value:
+                type: number
+              reason:
+                type: string
+        correlation:
+          type: object
+          properties:
+            n:
+              type: integer
+            pearsonR:
+              type: number
+              nullable: true
+        scatter:
+          type: array
+          items:
+            type: object
+            properties:
+              latencySeconds:
+                type: number
+              costMicrousd:
+                type: number
+        limitations:
+          type: array
+          items:
+            type: string
+        availableTools:
+          type: array
+          items:
+            type: string
+
+    DecisionInput:
+      type: object
+      required: [providers, state, questions, threshold, maxCostMicrousd]
+      properties:
+        providers:
+          type: array
+          items:
+            type: string
+            enum: [laya, anyjev]
+          minItems: 1
+          maxItems: 2
+          uniqueItems: true
+        state:
+          type: string
+          maxLength: 16000
+          description: Context state for the decision
+        questions:
+          type: object
+          minProperties: 1
+          maxProperties: 8
+          additionalProperties:
+            $ref: '#/components/schemas/DecisionQuestion'
+        threshold:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Confidence threshold for review flagging
+        maxCostMicrousd:
+          type: integer
+          minimum: 0
+          description: Maximum estimated cost in micro-USD
+
+    DecisionQuestion:
+      type: object
+      required: [type, instructions]
+      properties:
+        type:
+          type: string
+          enum: [choice, score, noul]
+        instructions:
+          type: string
+          maxLength: 1000
+        criteria:
+          oneOf:
+            - type: array
+              items:
+                type: string
+                maxLength: 80
+              minItems: 2
+              maxItems: 12
+              uniqueItems: true
+            - type: object
+              additionalProperties:
+                type: string
+                maxLength: 500
+              minProperties: 2
+              maxProperties: 12
+
+    DecisionResult:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum: [laya, anyjev]
+        status:
+          type: string
+          enum: [succeeded, failed, unconfigured]
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/DecisionAnswer'
+        elapsedMs:
+          type: integer
+        estimatedCostMicrousd:
+          type: integer
+          nullable: true
+        actualCostMicrousd:
+          type: "null"
+          description: Always null; actual cost is unknown
+        model:
+          type: string
+          nullable: true
+        error:
+          type: string
+        warnings:
+          type: array
+          items:
+            type: string
+
+    DecisionAnswer:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum: [choice, score, noul]
+        value:
+          oneOf:
+            - type: string
+            - type: number
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+        distribution:
+          type: object
+          additionalProperties:
+            type: number
+            minimum: 0
+            maximum: 1
+        reviewRequired:
+          type: boolean
+
+    ProviderInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          enum: [laya, anyjev]
+        label:
+          type: string
+        configured:
+          type: boolean
+        statusText:
+          type: string
+        estimatedCostPerQuestionMicrousd:
+          type: integer
+          nullable: true
+
+    OptimizationRequest:
+      type: object
+      required: [action]
+      properties:
+        action:
+          type: string
+          enum: [hierarchy, schedule, evidence, waves, capacity, evaluate, telemetry, benchmark, evolve, compileDelegation, repositoryConflicts, verifyRepositoryConflicts]
+        # Additional fields depend on the action; see action-specific schemas
+
+    IntegrationRequest:
+      type: object
+      required: [integrationId, operation, input]
+      properties:
+        integrationId:
+          type: string
+          description: Integration identifier (e.g., openrouter, vllm, graph-rag-kernel)
+        operation:
+          type: string
+          description: Operation identifier (e.g., review, delegate, communities)
+        input:
+          $ref: '#/components/schemas/IntegrationInput'
+
+    IntegrationInput:
+      type: object
+      required: [goal, parameters]
+      properties:
+        goal:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        graph:
+          $ref: '#/components/schemas/GraphSnapshot'
+        parameters:
+          type: object
+          additionalProperties:
+            oneOf:
+              - type: string
+              - type: number
+
+    IntegrationInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        category:
+          type: string
+        mode:
+          type: string
+          enum: [remote_api, local_python, local_bridge, kernel_http, manual, unsupported, unconfigured]
+        configured:
+          type: boolean
+        capability:
+          type: string
+          enum: [ready, partial, unconfigured, unsupported]
+        statusText:
+          type: string
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationOperation'
+        inputFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationField'
+        modelId:
+          type: string
+
+    IntegrationOperation:
+      type: object
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+        inputFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationField'
+
+    IntegrationField:
+      type: object
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        type:
+          type: string
+          enum: [text, number, select]
+        required:
+          type: boolean
+        options:
+          oneOf:
+            - type: array
+              items:
+                type: string
+            - type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                  label:
+                    type: string
+        defaultValue:
+          oneOf:
+            - type: string
+            - type: number
+
+    IntegrationLimits:
+      type: object
+      properties:
+        requestBytes:
+          type: integer
+          description: Maximum request body size in bytes
+        concurrency:
+          type: integer
+          description: Maximum concurrent jobs
+        queue:
+          type: integer
+          description: Maximum queued jobs
+        timeoutMs:
+          type: integer
+          description: Job timeout in milliseconds
+        kernelNodes:
+          type: integer
+          description: Maximum nodes for kernel input
+        kernelEdges:
+          type: integer
+          description: Maximum edges for kernel input
+        modelNodes:
+          type: integer
+          description: Maximum nodes for model input
+        modelEdges:
+          type: integer
+          description: Maximum edges for model input
+
+    IntegrationJob:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [queued, running, succeeded, failed, cancelled]
+        integrationId:
+          type: string
+        operation:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        result:
+          type: object
+        usage:
+          type: object
+          properties:
+            inputTokens:
+              type: integer
+              nullable: true
+            outputTokens:
+              type: integer
+              nullable: true
+        error:
+          type: string
+        snapshot:
+          type: object
+          properties:
+            id:
+              type: string
+            version:
+              type: integer
+            name:
+              type: string
+            nodeCount:
+              type: integer
+            edgeCount:
+              type: integer
+            nodeEvidence:
+              type: object
+            edgeEvidence:
+              type: object
+            constraints:
+              type: object
+
+    IdempotencyConflict:
+      type: object
+      properties:
+        error:
+          type: string
+        recovery:
+          type: object
+          properties:
+            jobId:
+              type: string
+            runId:
+              type: string
+              nullable: true
+            durableRunIdempotencyKey:
+              type: string
+
+    RecoveryRequired:
+      type: object
+      properties:
+        error:
+          type: string
+        recovery:
+          type: object
+          properties:
+            jobId:
+              type: string
+            runId:
+              type: string
+              nullable: true
+            durableRunIdempotencyKey:
+              type: string
+            lookup:
+              type: string
+
+    McpServer:
+      type: object
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        configured:
+          type: boolean
+        transport:
+          type: string
+          enum: [streamable-http]
+        supportedProtocol:
+          type: string
+        statusText:
+          type: string
+
+    McpDiscoveryResult:
+      type: object
+      properties:
+        server:
+          type: object
+          properties:
+            id:
+              type: string
+            label:
+              type: string
+            protocolVersion:
+              type: string
+            serverInfo:
+              type: object
+            capabilities:
+              type: object
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/McpTool'
+        pagination:
+          type: object
+          properties:
+            pages:
+              type: integer
+            truncated:
+              type: boolean
+
+    McpTool:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        inputSchema:
+          type: object
+
+    ReviewInput:
+      type: object
+      required: [graph, goal, maxOutputTokens]
+      properties:
+        graph:
+          $ref: '#/components/schemas/GraphSnapshot'
+        goal:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        maxOutputTokens:
+          type: integer
+          minimum: 1
+          maximum: 1000
+
+    ModelReview:
+      type: object
+      properties:
+        summary:
+          type: string
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReviewFinding'
+        usage:
+          type: object
+          properties:
+            inputTokens:
+              type: integer
+              nullable: true
+            outputTokens:
+              type: integer
+              nullable: true
+        model:
+          type: string
+
+    ReviewFinding:
+      type: object
+      properties:
+        title:
+          type: string
+        detail:
+          type: string
+        nodeIds:
+          type: array
+          items:
+            type: string
+        confidence:
+          type: string
+          enum: [model-suggestion]
+
+    SwarmReviewInput:
+      type: object
+      required: [graph, goal]
+      properties:
+        graph:
+          $ref: '#/components/schemas/GraphSnapshot'
+        goal:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        maxOutputTokens:
+          type: integer
+          description: Fixed at 5400 for swarm calls
+
+    ModelSwarmResult:
+      type: object
+      properties:
+        snapshot:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+        summary:
+          type: string
+        specialists:
+          type: object
+          properties:
+            structure:
+              $ref: '#/components/schemas/ModelSwarmCall'
+            dependencyRisk:
+              $ref: '#/components/schemas/ModelSwarmCall'
+        critic:
+          allOf:
+            - $ref: '#/components/schemas/ModelSwarmCall'
+            - type: object
+              properties:
+                agreements:
+                  type: array
+                  items:
+                    type: string
+                disagreements:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      topic:
+                        type: string
+                      structureView:
+                        type: string
+                      dependencyView:
+                        type: string
+                      nodeIds:
+                        type: array
+                        items:
+                          type: string
+          nullable: true
+        usage:
+          type: object
+          properties:
+            inputTokens:
+              type: integer
+              nullable: true
+            outputTokens:
+              type: integer
+              nullable: true
+        agentRuns:
+          type: integer
+          enum: [3]
+        maxModelSteps:
+          type: integer
+          enum: [9]
+        maxOutputTokens:
+          type: integer
+        steps:
+          type: array
+          items:
+            type: string
+          enum:
+            - structure + dependency-risk in parallel
+            - critic synthesis after both specialists settle
+
+    ModelSwarmCall:
+      type: object
+      properties:
+        summary:
+          type: string
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelSwarmFinding'
+        usage:
+          type: object
+          properties:
+            inputTokens:
+              type: integer
+              nullable: true
+            outputTokens:
+              type: integer
+              nullable: true
+        model:
+          type: string
+        status:
+          type: string
+          enum: [complete, failed]
+
+    ModelSwarmFinding:
+      allOf:
+        - $ref: '#/components/schemas/ReviewFinding'
+        - type: object
+          properties:
+            specialist:
+              type: string
+              enum: [structure, dependency-risk, critic]

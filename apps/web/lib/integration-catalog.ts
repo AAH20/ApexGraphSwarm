@@ -226,6 +226,17 @@ export const integrationCatalog: IntegrationSource[] = [
   },
 ];
 
+/**
+ * Function getIntegration.
+ *
+ * @param {string} id - Description of id.
+ * @returns {IntegrationSource | undefined} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = getIntegration(...);
+ * ```
+ */
 export function getIntegration(id: string): IntegrationSource | undefined {
   return integrationCatalog.find((integration) => integration.id === id);
 }

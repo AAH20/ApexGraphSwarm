@@ -1,8 +1,44 @@
 import { type HarnessId, type ProviderMode } from './harness-catalog';
 
+/**
+ * Constant OPENROUTER_RATES_CHECKED_AT.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { OPENROUTER_RATES_CHECKED_AT } from './module';
+ * ```
+ */
 export const OPENROUTER_RATES_CHECKED_AT = '2026-09-27';
+/**
+ * Constant OPENROUTER_MODELS_URL.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { OPENROUTER_MODELS_URL } from './module';
+ * ```
+ */
 export const OPENROUTER_MODELS_URL = 'https://openrouter.ai/api/v1/models';
+/**
+ * Constant RUNPOD_RATES_CHECKED_AT.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { RUNPOD_RATES_CHECKED_AT } from './module';
+ * ```
+ */
 export const RUNPOD_RATES_CHECKED_AT = '2026-09-13';
+/**
+ * Constant RUNPOD_PRICING_URL.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { RUNPOD_PRICING_URL } from './module';
+ * ```
+ */
 export const RUNPOD_PRICING_URL = 'https://www.runpod.io/pricing';
 
 export type TokenRates = {
@@ -83,6 +119,15 @@ export type EconomicsInput = {
   monthlyBudgetUsd: number | null;
 };
 
+/**
+ * Type BudgetStatus.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { BudgetStatus } from './module';
+ * ```
+ */
 export type BudgetStatus = 'not-set' | 'within' | 'exceeds' | 'unknown';
 
 export type ExecutionEstimate = {
@@ -120,6 +165,17 @@ const perMillion = (tokens: number, rate: number | null, label: string, missing:
   return tokens * rate / 1_000_000;
 };
 
+/**
+ * Function calculateExecutionEconomics.
+ *
+ * @param {EconomicsInput} input - Description of input.
+ * @returns {ExecutionEstimate} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = calculateExecutionEconomics(...);
+ * ```
+ */
 export function calculateExecutionEconomics(input: EconomicsInput): ExecutionEstimate {
   const nonNegative = [
     input.uncachedInputTokensPerAgentAttempt, input.outputTokensPerAgentAttempt,

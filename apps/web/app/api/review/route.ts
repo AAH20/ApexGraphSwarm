@@ -11,17 +11,84 @@ import {
   runModelReview,
 } from '../../../lib/model-review';
 
+/**
+ * Constant runtime.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { runtime } from './module';
+ * ```
+ */
 export const runtime = 'nodejs';
+/**
+ * Constant maxDuration.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { maxDuration } from './module';
+ * ```
+ */
 export const maxDuration = 35;
 
+/**
+ * Function json.
+ *
+ * @param body - Description of body.
+ * @param status - Description of status.
+ *
+ * @example
+ * ```typescript
+ * const result = json(..., ...);
+ * ```
+ */
 function json(body: unknown, status = 200) {
   return NextResponse.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 }
 
+/**
+ * Function GET.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { GET } from './module';
+ * ```
+ */
+/**
+ * API route handler for GET requests.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { GET } from './module';
+ * ```
+ */
 export async function GET() {
   return json({ enabled: isReviewEnabled() });
 }
 
+/**
+ * Function POST.
+ *
+ * @param {Request} request - Description of request.
+ *
+ * @example
+ * ```typescript
+ * const result = POST(...);
+ * ```
+ */
+/**
+ * API route handler for POST requests.
+ *
+ * @param {Request} request - Description of request.
+ *
+ * @example
+ * ```typescript
+ * const result = POST(...);
+ * ```
+ */
 export async function POST(request: Request) {
   if (!hasSafeOrigin(request)) return json({ error: 'Request origin is not allowed.' }, 403);
   if (!isAuthorized(request)) return json({ error: 'Model review access token is missing or invalid.' }, 401);

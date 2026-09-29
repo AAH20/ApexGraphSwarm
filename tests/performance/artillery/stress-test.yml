@@ -1,0 +1,68 @@
+# Artillery Stress Test - Push beyond 10K RPS
+# Identifies system limits and degradation patterns
+
+config:
+  target: "{{ $processEnvironment.BASE_URL || 'http://127.0.0.1:3010' }}"
+  phases:
+    - name: "Baseline"
+      duration: 60
+      arrivalRate: 10000
+    - name: "25% over target"
+      duration: 60
+      arrivalRate: 12500
+    - name: "50% over target"
+      duration: 60
+      arrivalRate: 15000
+    - name: "75% over target"
+      duration: 60
+      arrivalRate: 17500
+    - name: "100% over target"
+      duration: 60
+      arrivalRate: 20000
+    - name: "150% over target"
+      duration: 60
+      arrivalRate: 25000
+    - name: "Recovery"
+      duration: 120
+      arrivalRate: 10000
+    - name: "Cool down"
+      duration: 60
+      arrivalRate: 0
+  defaults:
+    headers:
+      Content-Type: "application/json"
+  processor: "./artillery-helpers.js"
+
+scenarios:
+  - name: "Read-heavy stress"
+    weight: 80
+    flow:
+      - get:
+          url: "/api/integrations"
+          expect:
+            - statusCode: 200
+            - statusCode: 429
+      - get:
+          url: "/api/decisions"
+          expect:
+            - statusCode: 200
+            - statusCode: 429
+      - get:
+          url: "/api/ecosystem/mcp"
+          expect:
+            - statusCode: 200
+            - statusCode: 429
+
+  - name: "Mixed operations"
+    weight: 20
+    flow:
+      - post:
+          url: "/api/control"
+          headers:
+            Authorization: "Bearer {{ $processEnvironment.AUTH_TOKEN }}"
+          json:
+            action: "status"
+            runId: "artillery-stress-test"
+          expect:
+            - statusCode: 200
+            - statusCode: 429

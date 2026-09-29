@@ -3,6 +3,17 @@ import path from 'node:path';
 import {assertJsonPrecision} from './optimization-json';
 
 // Only a fixed Python entry point is invoked; JSON never becomes shell syntax.
+/**
+ * Function optimizationOperation.
+ *
+ * @param {Record<string, unknown>} input - Description of input.
+ * @returns {Promise<Record<string, unknown>>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = optimizationOperation(...);
+ * ```
+ */
 export async function optimizationOperation(input: Record<string, unknown>): Promise<Record<string, unknown>> {
  return new Promise((resolve,reject)=>{
   const child=execFile('python3',['-m','apexgraphswarm.lab'],{

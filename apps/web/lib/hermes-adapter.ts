@@ -1,9 +1,49 @@
 import type {IntegrationInfo,IntegrationInput} from './integration-runtime';
+/**
+ * Core library module for hermes adapter.ts functionality.
+ *
+ * @module hermes-adapter
+ * @packageDocumentation
+ */
+/**
+ * Type Env.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Env } from './module';
+ * ```
+ */
 type Env=Record<string,string|undefined>;
+/**
+ * Function getHermesIntegrations.
+ *
+ * @param {Env} env - Description of env.
+ * @returns {IntegrationInfo[]} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = getHermesIntegrations(...);
+ * ```
+ */
 export function getHermesIntegrations(env:Env):IntegrationInfo[]{
  const configured=Boolean(env.HERMES_BASE_URL&&env.HERMES_API_KEY&&env.HERMES_MODEL);
  return [{id:'hermes',label:'Hermes Agent API',category:'framework',mode:configured?'remote_api':'unconfigured',configured,capability:configured?'partial':'unconfigured',statusText:configured?'Uses your Hermes gateway API and its configured tools. Cancelling the HTTP request does not certify that remote tool execution stopped.':'Configure HERMES_BASE_URL, HERMES_API_KEY and HERMES_MODEL for the authenticated Hermes API server.',operations:[{id:'review',label:'Run Hermes repository review',description:'Send the goal and bounded graph context to the verified OpenAI-compatible chat endpoint.'}]}];
 }
+/**
+ * Function executeHermes.
+ *
+ * @param {string} _id - Description of _id.
+ * @param {string} operation - Description of operation.
+ * @param {IntegrationInput} input - Description of input.
+ * @param {Env} env - Description of env.
+ * @param {AbortSignal} signal - Description of signal.
+ *
+ * @example
+ * ```typescript
+ * const result = executeHermes(..., ..., ..., ..., ...);
+ * ```
+ */
 export async function executeHermes(_id:string,operation:string,input:IntegrationInput,env:Env,signal:AbortSignal){
  if(operation!=='review')throw Error('Unsupported Hermes operation.');
  if(!env.HERMES_BASE_URL||!env.HERMES_API_KEY||!env.HERMES_MODEL)throw Error('Hermes API is not configured.');

@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graph-rag-np-hard-kernel"
+version = "1.0.0"
+description = "Deterministic Mathematical Operating Substrate for the 10 Apex NP-Hard Computational Bottlenecks in Graph Engineering and GraphRAG"
+readme = "README.md"
+authors = [{ name = "AAH20 Sovereign Holdings" }]
+license = { text = "Apache-2.0" }
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Database",
+]
+keywords = [
+    "graphrag",
+    "knowledge-graphs",
+    "graph-engineering",
+    "np-hard-optimization",
+    "steiner-tree",
+    "community-detection",
+    "correlation-clustering",
+    "entity-resolution",
+    "constrained-shortest-path",
+    "submodular-maximization",
+    "temporal-subgraph-isomorphism",
+    "spectral-sparsification",
+    "bipartite-matching",
+    "metric-dimension",
+    "k-degree-anonymity"
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+graph-rag-np-hard-kernel = "graph_rag_np_hard_kernel.cli:main"

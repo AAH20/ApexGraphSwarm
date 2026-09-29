@@ -1,3 +1,9 @@
+/**
+ * React component for analytics visual gallery.
+ *
+ * @module AnalyticsVisualGallery
+ * @packageDocumentation
+ */
 'use client';
 import {useMemo,useRef,useState} from 'react';
 import type {AnalyticsReport} from '@/lib/analytics-types';
@@ -7,7 +13,25 @@ import AnalyticsVisual from './AnalyticsVisual';
 import ChartTooltip from './ChartTooltip';
 import {buildVisualData,type VisualKind} from '@/lib/analytics-visuals';
 import styles from './AnalyticsVisualGallery.module.css';
+/**
+ * Type ExtraKind.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ExtraKind } from './module';
+ * ```
+ */
 type ExtraKind='decomposition'|'narrative'|'map'|'key-influencers'|'scripted';
+/**
+ * Type Choice.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Choice } from './module';
+ * ```
+ */
 type Choice=VisualKind|ExtraKind;
 const families:{label:string;items:[Choice,string][]}[]=[
  {label:'Compare',items:[['bar','Bar'],['column','Column'],['stacked-bar','Stacked bar'],['stacked-column','Stacked column'],['percent-bar','100% stacked bar'],['percent-column','100% stacked column']]},
@@ -24,8 +48,40 @@ const unsupported:Partial<Record<Choice,{title:string;detail:string}>>={
  'key-influencers':{title:'Requires a fitted explanatory model',detail:'Key-influencer analysis requires a target outcome, row-level features, validation splits and model diagnostics. Aggregate correlations do not establish which factors drive an outcome. Use Statistics for the descriptive evidence available now.'},
  scripted:{title:'Requires an isolated execution adapter',detail:'R/Python scripts and third-party custom visuals can execute code. This gallery renders built-in React/SVG visuals; it does not execute uploaded scripts or load Power BI AppSource packages. A reviewed sandbox adapter is required for that capability.'},
 };
+/**
+ * Function TileIcon.
+ *
+ * @param {{kind} kind - Description of kind.
+ *
+ * @example
+ * ```typescript
+ * const result = TileIcon(...);
+ * ```
+ */
 function TileIcon({kind}:{kind:Choice}){const pie=['pie','donut'].includes(kind);return <svg viewBox="0 0 28 24" width="28" height="24" aria-hidden="true">{pie?<><circle cx="13" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth={kind==='donut'?5:2}/><path d="M13 3V12H22" fill="none" stroke="currentColor" strokeWidth="2"/></>:['line','area','combo','ribbon','stacked-area'].includes(kind)?<><path d="M2 20L9 12L15 16L25 3" fill="none" stroke="currentColor" strokeWidth="2"/><path d="M2 2V22H27" fill="none" stroke="currentColor" opacity=".3"/></>:<><rect x="3" y="12" width="5" height="10" rx="1" fill="currentColor" opacity=".45"/><rect x="11" y="6" width="5" height="16" rx="1" fill="currentColor" opacity=".7"/><rect x="19" y="2" width="5" height="20" rx="1" fill="currentColor"/></>}</svg>;}
+/**
+ * Function downloadText.
+ *
+ * @param {string} name - Description of name.
+ * @param {string} text - Description of text.
+ * @param {string} type - Description of type.
+ *
+ * @example
+ * ```typescript
+ * const result = downloadText(..., ..., ...);
+ * ```
+ */
 function downloadText(name:string,text:string,type:string){const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+/**
+ * React component AnalyticsVisualGallery.
+ *
+ * @param {{report} report - Description of report.
+ *
+ * @example
+ * ```typescript
+ * const result = AnalyticsVisualGallery(...);
+ * ```
+ */
 export default function AnalyticsVisualGallery({report}:{report:AnalyticsReport}){
  const [kind,setKind]=useState<Choice>('pie'),[dimension,setDimension]=useState<'tool'|'resource'|'day'>('tool');
  const [metric,setMetric]=useState<'attempts'|'succeeded'|'knownCostMicrousd'>('attempts'),[query,setQuery]=useState(''),[limit,setLimit]=useState(12),[selected,setSelected]=useState<string|null>(null),[target,setTarget]=useState('');

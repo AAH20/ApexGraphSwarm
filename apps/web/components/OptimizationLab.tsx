@@ -1,3 +1,9 @@
+/**
+ * React component for optimization lab.
+ *
+ * @module OptimizationLab
+ * @packageDocumentation
+ */
 'use client';
 import {useRef,useState} from 'react';
 import {downloadJSON} from '@/lib/graph';
@@ -5,8 +11,36 @@ import {optimizationExamples} from '@/lib/optimization-examples';
 import styles from './OptimizationLab.module.css';
 import OptimizationResults from './OptimizationResults';
 
+/**
+ * Type Result.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Result } from './module';
+ * ```
+ */
 type Result=Record<string,unknown>;
+/**
+ * Function text.
+ *
+ * @param value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = text(...);
+ * ```
+ */
 function text(value:unknown){return typeof value==='string'||typeof value==='number'||typeof value==='boolean'?String(value):value===null?'Unknown':JSON.stringify(value);}
+/**
+ * React component OptimizationLab.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { OptimizationLab } from './module';
+ * ```
+ */
 export default function OptimizationLab(){
  const [selected,setSelected]=useState(0),[source,setSource]=useState(JSON.stringify(optimizationExamples[0].payload,null,2));
  const [token,setToken]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState('');

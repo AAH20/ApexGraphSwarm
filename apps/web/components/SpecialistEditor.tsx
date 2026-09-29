@@ -1,3 +1,9 @@
+/**
+ * React component for specialist editor.
+ *
+ * @module SpecialistEditor
+ * @packageDocumentation
+ */
 'use client';
 import {useState} from 'react';
 import Link from 'next/link';

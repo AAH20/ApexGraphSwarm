@@ -1,15 +1,39 @@
+/**
+ * React component for chart tooltip.
+ *
+ * @module ChartTooltip
+ * @packageDocumentation
+ */
 'use client';
 
 import {cloneElement, useCallback, useEffect, useId, useRef, useState, type FocusEvent, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent, type PointerEvent, type ReactElement} from 'react';
 import {createPortal} from 'react-dom';
 import styles from './ChartTooltip.module.css';
 
+/**
+ * Type ChartTooltipDetail.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ChartTooltipDetail } from './module';
+ * ```
+ */
 export type ChartTooltipDetail = {label: string; value: string};
 export type ChartTooltipProps = {
   title: string;
   details: ChartTooltipDetail[];
   children: ReactElement<Record<string, unknown>>;
 };
+/**
+ * Type Point.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Point } from './module';
+ * ```
+ */
 type Point = {x: number; y: number};
 
 /** Wrap one HTML or SVG chart mark with an accessible, viewport-positioned detail tooltip. */

@@ -1,0 +1,126 @@
+# ApexGraphSwarm - Docker Compose Configuration
+# Defines all services for the ApexGraphSwarm platform
+
+version: "3.8"
+
+services:
+  # ============================================================
+  # Main Application (Next.js + Python backend)
+  # ============================================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3010:3010"
+    environment:
+      - NODE_ENV=production
+      - PORT=3010
+      - APEX_CONTROL_DB_PATH=/app/.runtime/control.sqlite
+      # Optional: Neo4j configuration
+      # - NEO4J_URI=http://neo4j:7474
+      # - NEO4J_USERNAME=neo4j
+      # - NEO4J_PASSWORD=password
+      # - NEO4J_DATABASE=neo4j
+      # - GRAPH_STORE_NAMESPACE=apexgraphswarm
+      # - GRAPH_STORE_ACCESS_TOKEN=your-token-here
+      # Optional: vLLM configuration
+      # - VLLM_BASE_URL=http://vllm:8000
+      # - VLLM_MODEL=meta-llama/Llama-3.1-8B-Instruct
+      # - VLLM_API_KEY=your-api-key
+      # Optional: AI Gateway
+      # - AI_GATEWAY_API_KEY=your-gateway-key
+      # - GRAPH_REVIEW_MODEL=your-model-id
+      # - GRAPH_REVIEW_ACCESS_TOKEN=your-access-token
+      # Optional: OpenRouter
+      # - OPENROUTER_API_KEY=your-openrouter-key
+      # - OPENROUTER_MODEL=your-model-id
+      # Optional: Local runner
+      # - LOCAL_RUNNER_URL=http://host.docker.internal:8765
+      # - LOCAL_RUNNER_ACCESS_TOKEN=your-token
+    volumes:
+      - app-runtime:/app/.runtime
+      - app-reports:/app/apps/web/reports
+    restart: unless-stopped
+    networks:
+      - apexgraphswarm
+
+  # ============================================================
+  # Optional: Neo4j Graph Database
+  # Uncomment to enable Neo4j-backed graph storage
+  # ============================================================
+  # neo4j:
+  #   image: neo4j:5-community
+  #   ports:
+  #     - "7474:7474"  # HTTP
+  #     - "7687:7687"  # Bolt
+  #   environment:
+  #     - NEO4J_AUTH=neo4j/password
+  #     - NEO4J_PLUGINS=["apoc", "gds"]
+  #     - NEO4J_dbms_security_procedures_unrestricted=apoc.*,gds.*
+  #   volumes:
+  #     - neo4j-data:/data
+  #     - neo4j-logs:/logs
+  #   restart: unless-stopped
+  #   networks:
+  #     - apexgraphswarm
+
+  # ============================================================
+  # Optional: vLLM Inference Server
+  # Uncomment to enable local LLM inference
+  # ============================================================
+  # vllm:
+  #   image: vllm/vllm-openai:latest
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     - VLLM_MODEL=meta-llama/Llama-3.1-8B-Instruct
+  #   volumes:
+  #     - vllm-data:/data
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: all
+  #             capabilities: [gpu]
+  #   restart: unless-stopped
+  #   networks:
+  #     - apexgraphswarm
+
+  # ============================================================
+  # Optional: Redis (for caching/sessions)
+  # ============================================================
+  # redis:
+  #   image: redis:7-alpine
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis-data:/data
+  #   restart: unless-stopped
+  #   networks:
+  #     - apexgraphswarm
+
+# ============================================================
+# Volumes
+# ============================================================
+volumes:
+  app-runtime:
+    driver: local
+  app-reports:
+    driver: local
+  # neo4j-data:
+  #   driver: local
+  # neo4j-logs:
+  #   driver: local
+  # vllm-data:
+  #   driver: local
+  # redis-data:
+  #   driver: local
+
+# ============================================================
+# Networks
+# ============================================================
+networks:
+  apexgraphswarm:
+    driver: bridge

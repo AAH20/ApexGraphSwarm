@@ -1,7 +1,25 @@
 import type { AnalyticsReport } from './analytics-types';
 import type { Evidence, GraphEdge, GraphNode } from './graph';
 
+/**
+ * Type AnalyticsCategory.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { AnalyticsCategory } from './module';
+ * ```
+ */
 export type AnalyticsCategory = 'all' | 'tool' | 'resource';
+/**
+ * Type AnalyticsGraphMetrics.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { AnalyticsGraphMetrics } from './module';
+ * ```
+ */
 export type AnalyticsGraphMetrics = { attempts: number; knownCostMicrousd: number; complete: boolean };
 export type AnalyticsGraphView = {
   nodes: GraphNode[];
@@ -16,8 +34,46 @@ export type AnalyticsGraphView = {
   };
 };
 
+/**
+ * Constant MAX_ANALYTICS_GRAPH_NODES.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { MAX_ANALYTICS_GRAPH_NODES } from './module';
+ * ```
+ */
 export const MAX_ANALYTICS_GRAPH_NODES = 200;
+/**
+ * Constant MAX_ANALYTICS_GRAPH_EDGES.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { MAX_ANALYTICS_GRAPH_EDGES } from './module';
+ * ```
+ */
 export const MAX_ANALYTICS_GRAPH_EDGES = 600;
+/**
+ * Function analyticsEdgeKey.
+ *
+ * @param {string} source - Description of source.
+ * @param {string} target - Description of target.
+ *
+ * @example
+ * ```typescript
+ * const result = analyticsEdgeKey(..., ...);
+ * ```
+ */
+/**
+ * Constant analyticsEdgeKey.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { analyticsEdgeKey } from './module';
+ * ```
+ */
 export const analyticsEdgeKey = (source: string, target: string) => JSON.stringify([source, target]);
 
 const safeLabel = (value: unknown): value is string =>

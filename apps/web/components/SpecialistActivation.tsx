@@ -1,8 +1,24 @@
+/**
+ * React component for specialist activation.
+ *
+ * @module SpecialistActivation
+ * @packageDocumentation
+ */
 'use client';
 import {useState} from 'react';
 import {downloadJSON} from '@/lib/graph';
 import type {SpecialistDesign} from '@/lib/specialist-design';
 import {executableReviewTasks,specialistActivationRequest,type ExecutableReviewTask} from '@/lib/specialist-activation';
+/**
+ * React component SpecialistActivation.
+ *
+ * @param {{design} design,specialistId,nodeId - Description of design,specialistId,nodeId.
+ *
+ * @example
+ * ```typescript
+ * const result = SpecialistActivation(...);
+ * ```
+ */
 export default function SpecialistActivation({design,specialistId,nodeId}:{design:SpecialistDesign;specialistId:string;nodeId:string}){
  const [tasks,setTasks]=useState<ExecutableReviewTask[]>([]),[taskId,setTaskId]=useState(''),[worker,setWorker]=useState(''),[action,setAction]=useState('read'),[toolIndex,setToolIndex]=useState(0),[message,setMessage]=useState(''),[error,setError]=useState('');
  const agent=design.agents.find(item=>item.id===specialistId),task=tasks.find(item=>item.id===taskId);

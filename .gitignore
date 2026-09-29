@@ -1,12 +1,53 @@
+# Dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
 .next/
+dist/
+build/
+*.tsbuildinfo
+.turbo/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+
+# Environment
 .env
 .env.*
 !.env.example
-.integration-sources/
-__pycache__/
-*.pyc
-*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Runtime
 .runtime/
 *.sqlite*
-.DS_Store
+*.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Reports
+reports/*.json
+reports/*.md
+!reports/.gitkeep
+
+# Test artifacts
+test-results/
+playwright-report/

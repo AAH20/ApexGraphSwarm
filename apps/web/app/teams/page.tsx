@@ -1,3 +1,12 @@
 import AppShell from '@/components/AppShell';
 import SpecialistDesigner from '@/components/SpecialistDesigner';
+/**
+ * React component Page.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Page } from './module';
+ * ```
+ */
 export default function Page(){return <AppShell active="teams"><div className="apex-page"><header className="apex-section-heading"><span className="eyebrow">SPECIALIST TEAMS / CAPABILITIES · IDENTITY · SCOPE</span><h1>Design the team. Bound its authority.</h1><p>Assign precise skills, tools and identity policies to specialists. Connect their swarms to a zoomable hierarchy, from repository nodes to future data-center and physical-fleet scopes.</p></header><SpecialistDesigner/></div></AppShell>;}

@@ -1,10 +1,73 @@
 import {ROLES,type Role,type Analysis,reconcile} from './analysis';
 import {describeSnapshot,type Snapshot,type SnapshotDescriptor} from './graph';
+/**
+ * Constant MAX_RUN_TIMEOUT_MS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { MAX_RUN_TIMEOUT_MS } from './module';
+ * ```
+ */
 export const MAX_RUN_TIMEOUT_MS=45_000;
+/**
+ * Type TaskStatus.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { TaskStatus } from './module';
+ * ```
+ */
 export type TaskStatus='queued'|'running'|'complete'|'failed'|'canceled';
+/**
+ * Type Task.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Task } from './module';
+ * ```
+ */
 export type Task={role:Role;status:TaskStatus;elapsedMs?:number;error?:string};
+/**
+ * Type RunEvent.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { RunEvent } from './module';
+ * ```
+ */
 export type RunEvent={at:string;role:string;message:string};
+/**
+ * Type RunState.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { RunState } from './module';
+ * ```
+ */
 export type RunState={id:string;snapshot:SnapshotDescriptor;status:'running'|'complete'|'canceled'|'partial';tasks:Task[];events:RunEvent[];results:Analysis[];report:ReturnType<typeof reconcile>|null};
+/**
+ * Core library module for orchestrator.ts functionality.
+ *
+ * @module orchestrator
+ * @packageDocumentation
+ */
+/**
+ * Function validAnalysis.
+ *
+ * @param value - Description of value.
+ * @param {Role} role - Description of role.
+ * @returns {value is Analysis} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = validAnalysis(..., ...);
+ * ```
+ */
 function validAnalysis(value:unknown,role:Role):value is Analysis{
  if(!value||typeof value!=='object')return false;
  const result=value as Analysis;

@@ -1,3 +1,9 @@
+/**
+ * React component for integrations panel.
+ *
+ * @module IntegrationsPanel
+ * @packageDocumentation
+ */
 'use client';
 import Link from 'next/link';
 import {useCallback,useEffect,useMemo,useRef,useState} from 'react';
@@ -8,12 +14,49 @@ import ExecutionEconomics from './ExecutionEconomics';
 import type {ExecutionEstimate} from '@/lib/execution-economics';
 import {getHarness,type HarnessId,type ProviderMode} from '@/lib/harness-catalog';
 
+/**
+ * Type Field.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Field } from './module';
+ * ```
+ */
 type Field={id:string;label:string;type:string;required?:boolean;options?:({value:string;label:string}|string)[];defaultValue?:string|number;description?:string};
+/**
+ * Type Integration.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Integration } from './module';
+ * ```
+ */
 type Integration={id:string;label:string;category:string;mode:string;configured:boolean;modelId?:string;capability:string;statusText:string;operations:{id:string;label:string;description?:string;inputFields?:Field[]}[];inputFields?:Field[]};
+/**
+ * Type Job.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Job } from './module';
+ * ```
+ */
 type Job={id:string;status:'queued'|'running'|'succeeded'|'failed'|'cancelled';integrationId:string;operation:string;createdAt:string;updatedAt:string;result?:unknown;error?:string;usage?:unknown};
 const harnesses=[['codex','Codex'],['claude-code','Claude Code'],['cursor','Cursor'],['antigravity','Antigravity'],['opencode','OpenCode'],['hermes','Hermes']];
 const terminal=new Set(['succeeded','failed','cancelled']);
 
+/**
+ * React component IntegrationsPanel.
+ *
+ * @param {{graph} graph,viewGraph - Description of graph,viewGraph.
+ *
+ * @example
+ * ```typescript
+ * const result = IntegrationsPanel(...);
+ * ```
+ */
 export default function IntegrationsPanel({graph,viewGraph}:{graph:Snapshot;viewGraph?:Snapshot}){
  const [items,setItems]=useState<Integration[]>([]),[selected,setSelected]=useState('kernel-suite'),[operation,setOperation]=useState(''),[parameters,setParameters]=useState<Record<string,string>>({});
  const [harnessId,setHarnessId]=useState<HarnessId>('codex' as HarnessId),[provider,setProvider]=useState<ProviderMode>('openrouter' as ProviderMode),[estimate,setEstimate]=useState<ExecutionEstimate|null>(null);

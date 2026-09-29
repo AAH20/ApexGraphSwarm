@@ -1,15 +1,22 @@
 """Reproducible local analytics fixture; no providers, network, or production DB writes."""
 from __future__ import annotations
+
 import argparse
 from contextlib import closing
 from datetime import datetime, timezone
 import json
-from pathlib import Path
 import platform
 import sqlite3
+import sys
 import tempfile
 import time
 import tracemalloc
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from apexgraphswarm.analytics import build_analytics
 
 

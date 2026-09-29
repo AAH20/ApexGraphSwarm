@@ -1,11 +1,55 @@
+/**
+ * Constant workloadProfiles.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { workloadProfiles } from './module';
+ * ```
+ */
 export const workloadProfiles = [
+/**
+ * Core library module for architecture benchmark.ts functionality.
+ *
+ * @module architecture-benchmark
+ * @packageDocumentation
+ */
   {id:'repository-change',name:'Repository engineering',baseline:'One agent, the same model/tools, lexical repository search, no delegation.',metrics:['Held-out task success with executable acceptance tests','Wall-clock p50/p95/p99, including queue wait','Actual model/tool/compute USD per accepted change','Duplicate side effects and conflict/rework rate','Tokens and tool calls per attempt, including failed attempts']},
   {id:'multi-hop-retrieval',name:'GraphRAG & retrieval',baseline:'Lexical retrieval and vector-only retrieval on the same corpus snapshot; graph expansion disabled.',metrics:['Recall@10 and nDCG@10 against held-out relevance labels','Answer correctness and citation support under the same generation model','Filtered query p50/p95/p99 at matched recall and concurrency','Ingest/index/update time, peak RAM and index size','USD per verified answer, including amortized ingest and reindexing']},
   {id:'long-running-operations',name:'Durable agent operations',baseline:'One durable worker with the same task DAG, failure schedule and tool permissions.',metrics:['Completion rate under injected timeout/restart failures','Queue wait, lease recovery and resume p50/p95/p99','Duplicate external side effects and unresolved usage receipts','Budget overshoot, throttle rate and cancellation latency','Actual USD per successful operation, including idle capacity']},
 ] as const;
+/**
+ * Type WorkloadId.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { WorkloadId } from './module';
+ * ```
+ */
 export type WorkloadId = typeof workloadProfiles[number]['id'];
+/**
+ * Type BenchmarkDraft.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { BenchmarkDraft } from './module';
+ * ```
+ */
 export type BenchmarkDraft = {workload:WorkloadId;candidateIds:string[];modelRevision:string;datasetRevision:string;environment:string;priceEvidence:string;componentPins:string;trials:number;taskCount:number;activeWorkers:number;budgetUsd:number|null;minimumSuccessRate:number|null;maxP95Seconds:number|null;maxUsdPerSuccess:number|null};
 const fields = ['modelRevision','datasetRevision','environment','priceEvidence','componentPins'] as const;
+/**
+ * Function createArchitectureBenchmark.
+ *
+ * @param {BenchmarkDraft} input - Description of input.
+ * @param {readonly string[]} allowedIds - Description of allowedIds.
+ *
+ * @example
+ * ```typescript
+ * const result = createArchitectureBenchmark(..., ...);
+ * ```
+ */
 export function createArchitectureBenchmark(input:BenchmarkDraft, allowedIds:readonly string[]) {
  const profile=workloadProfiles.find(item=>item.id===input.workload);
  if(!profile)throw new Error('Choose a known workload.');

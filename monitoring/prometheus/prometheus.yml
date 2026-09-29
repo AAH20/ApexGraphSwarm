@@ -1,0 +1,41 @@
+# Prometheus configuration for ApexGraphSwarm monitoring
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: apexgraphswarm
+    environment: production
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+# Load alerting rules
+rule_files:
+  - "alert_rules.yml"
+
+scrape_configs:
+  # ApexGraphSwarm custom exporter
+  - job_name: apexgraphswarm
+    static_configs:
+      - targets:
+          - exporter:8000
+    metrics_path: /metrics
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # Prometheus self-monitoring
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - localhost:9090
+
+  # Node exporter (if available on host)
+  - job_name: node
+    static_configs:
+      - targets:
+          - node-exporter:9100
+    scrape_interval: 30s

@@ -1,3 +1,9 @@
+/**
+ * React component for analytics visual.
+ *
+ * @module AnalyticsVisual
+ * @packageDocumentation
+ */
 'use client';
 import {useId,type ReactNode} from 'react';
 import ChartTooltip,{type ChartTooltipDetail} from './ChartTooltip';
@@ -6,15 +12,52 @@ import {percentShare,stackedAttemptShares,visualTooltipDetails} from '@/lib/char
 import {pieSegments,type AnalyticsMetric,type ChartDatum,type VisualKind,visualSupport} from '@/lib/analytics-visuals';
 import styles from './AnalyticsVisual.module.css';
 
+/**
+ * Type AnalyticsVisualProps.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { AnalyticsVisualProps } from './module';
+ * ```
+ */
 export type AnalyticsVisualProps={kind:VisualKind;rows:ChartDatum[];metric:AnalyticsMetric;onSelect?:(id:string)=>void;selected?:string|null;target?:number;partial?:boolean;omitted?:number;totalValue?:number;filteredTotalValue?:number;compact?:boolean};
 const colors=['#276e68','#4b7fa5','#bc7732','#785c9c','#4d8060','#ae5360','#52737e','#a98a25','#6875a7','#875f48','#397f91','#9d5e8d','#568047','#ba684e','#4d6d9d','#9e8233','#477d7a','#8c5d5d','#6a7180','#a56637'];
 const metricName=(metric:AnalyticsMetric)=>metric==='knownCostMicrousd'?'known recorded cost':metric==='succeeded'?'successful attempts':'attempts';
 const format=(value:number,metric:AnalyticsMetric)=>metric==='knownCostMicrousd'?dollars(value):new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(value);
 const polar=(cx:number,cy:number,r:number,angle:number)=>({x:cx+r*Math.cos(angle*Math.PI/180),y:cy+r*Math.sin(angle*Math.PI/180)});
+/**
+ * Function arcPath.
+ *
+ * @param {number} cx - Description of cx.
+ * @param {number} cy - Description of cy.
+ * @param {number} r - Description of r.
+ * @param {number} start - Description of start.
+ * @param {number} end - Description of end.
+ * @returns {string} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = arcPath(..., ..., ..., ..., ...);
+ * ```
+ */
 function arcPath(cx:number,cy:number,r:number,start:number,end:number):string{
  const first=polar(cx,cy,r,start),last=polar(cx,cy,r,end),large=Math.abs(end-start)>180?1:0;
  return `M ${first.x} ${first.y} A ${r} ${r} 0 ${large} 1 ${last.x} ${last.y}`;
 }
+/**
+ * Function piePath.
+ *
+ * @param {{startAngle:number;endAngle:number}} segment - Description of segment.
+ * @param {number} radius - Description of radius.
+ * @param {number} inner - Description of inner.
+ * @returns {string} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = piePath(..., ..., ...);
+ * ```
+ */
 function piePath(segment:{startAngle:number;endAngle:number},radius:number,inner:number):string{
  const start=polar(150,135,radius,segment.startAngle),end=polar(150,135,radius,segment.endAngle);
  const outerLarge=segment.endAngle-segment.startAngle>180?1:0;
@@ -22,7 +65,29 @@ function piePath(segment:{startAngle:number;endAngle:number},radius:number,inner
  const innerEnd=polar(150,135,inner,segment.endAngle),innerStart=polar(150,135,inner,segment.startAngle);
  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${outerLarge} 1 ${end.x} ${end.y} L ${innerEnd.x} ${innerEnd.y} A ${inner} ${inner} 0 ${outerLarge} 0 ${innerStart.x} ${innerStart.y} Z`;
 }
+/**
+ * Function total.
+ *
+ * @param {ChartDatum[]} rows - Description of rows.
+ * @returns {number} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = total(...);
+ * ```
+ */
 function total(rows:ChartDatum[]):number{return rows.reduce((sum,row)=>sum+row.value,0);}
+/**
+ * Function chartRows.
+ *
+ * @param {ChartDatum[]} rows - Description of rows.
+ * @returns {string|null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = chartRows(...);
+ * ```
+ */
 function chartRows(rows:ChartDatum[]):string|null{
  if(!Array.isArray(rows)||rows.length>20)return 'Select at most 20 categories to draw this chart.';
  const ids=new Set<string>();
@@ -63,8 +128,29 @@ function Segmented({rows,metric,kind,displayedTotal,filteredTotal,partial,onSele
   {stacked&&<g className={styles.legend}><rect x="12" y={viewHeight-17} width="9" height="9" fill="#276e68"/><text x="26" y={viewHeight-9}>Succeeded</text><rect x="105" y={viewHeight-17} width="9" height="9" fill="#bdc8cc"/><text x="119" y={viewHeight-9}>Other attempts</text></g>}
  </svg>;
 }
+/**
+ * Function short.
+ *
+ * @param {string} label - Description of label.
+ * @param max - Description of max.
+ *
+ * @example
+ * ```typescript
+ * const result = short(..., ...);
+ * ```
+ */
 function short(label:string,max=16){return label.length>max?`${label.slice(0,max-1)}…`:label;}
 
+/**
+ * React component AnalyticsVisual.
+ *
+ * @param {AnalyticsVisualProps} kind,rows,metric,onSelect,selected,target,partial=false,omitted=0,totalValue,filteredTotalValue,compact=false - Description of kind,rows,metric,onSelect,selected,target,partial=false,omitted=0,totalValue,filteredTotalValue,compact=false.
+ *
+ * @example
+ * ```typescript
+ * const result = AnalyticsVisual(...);
+ * ```
+ */
 export default function AnalyticsVisual({kind,rows,metric,onSelect,selected,target,partial=false,omitted=0,totalValue,filteredTotalValue,compact=false}:AnalyticsVisualProps){
  const id=useId(),titleId=`${id}-title`,descriptionId=`${id}-description`,invalid=chartRows(rows),visual=visualSupport(kind);
  const allTotal=totalValue??total(rows),frameClass=`${styles.root} ${compact?styles.compact:''}`;

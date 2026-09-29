@@ -1,3 +1,9 @@
+/**
+ * React component for delegation planner.
+ *
+ * @module DelegationPlanner
+ * @packageDocumentation
+ */
 'use client';
 
 import { useMemo, useState } from 'react';
@@ -10,6 +16,15 @@ const valueOrEmpty = (value: number | null) => value === null ? '' : String(valu
 const money = (value: number | null | undefined) => value === null || value === undefined ? 'Unknown' : new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 6 }).format(value);
 const starters = createStarterCandidates();
 
+/**
+ * React component DelegationPlanner.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { DelegationPlanner } from './module';
+ * ```
+ */
 export default function DelegationPlanner() {
   const [taskClass, setTaskClass] = useState('repository-analysis');
   const [goal, setGoal] = useState('');

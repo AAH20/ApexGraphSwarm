@@ -1,0 +1,57 @@
+# Artillery Spike Test - Sudden burst to 10K RPS
+# Validates system resilience to traffic spikes
+
+config:
+  target: "{{ $processEnvironment.BASE_URL || 'http://127.0.0.1:3010' }}"
+  phases:
+    - name: "Baseline"
+      duration: 30
+      arrivalRate: 1000
+    - name: "Sudden spike"
+      duration: 10
+      arrivalRate: 1000
+      rampTo: 10000
+    - name: "Sustained spike"
+      duration: 120
+      arrivalRate: 10000
+    - name: "Drop to baseline"
+      duration: 10
+      arrivalRate: 10000
+      rampTo: 1000
+    - name: "Recovery"
+      duration: 120
+      arrivalRate: 1000
+    - name: "Second spike"
+      duration: 10
+      arrivalRate: 1000
+      rampTo: 5000
+    - name: "Sustained second spike"
+      duration: 60
+      arrivalRate: 5000
+    - name: "Final recovery"
+      duration: 10
+      arrivalRate: 5000
+      rampTo: 0
+  defaults:
+    headers:
+      Content-Type: "application/json"
+  processor: "./artillery-helpers.js"
+
+scenarios:
+  - name: "Spike mix"
+    weight: 100
+    flow:
+      - get:
+          url: "/api/integrations"
+          expect:
+            - statusCode: 200
+      - think: 0.01
+      - get:
+          url: "/api/decisions"
+          expect:
+            - statusCode: 200
+      - think: 0.01
+      - get:
+          url: "/api/ecosystem/mcp"
+          expect:
+            - statusCode: 200

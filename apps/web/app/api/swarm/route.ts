@@ -4,9 +4,64 @@ import {NextResponse} from 'next/server';
 import {hasSafeOrigin,isAuthorized,isReviewEnabled,parseReviewInput,REVIEW_MAX_BYTES} from '../../../lib/model-review';
 import {MODEL_SWARM_CALL_OUTPUT_TOKENS,runModelSwarm,runToolLoopReview} from '../../../lib/model-swarm';
 
+/**
+ * Constant runtime.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { runtime } from './module';
+ * ```
+ */
 export const runtime='nodejs';
+/**
+ * Constant maxDuration.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { maxDuration } from './module';
+ * ```
+ */
 export const maxDuration=50;
+/**
+ * API route handler for swarm endpoints.
+ *
+ * @module route
+ * @packageDocumentation
+ */
+/**
+ * Function json.
+ *
+ * @param body - Description of body.
+ * @param status - Description of status.
+ *
+ * @example
+ * ```typescript
+ * const result = json(..., ...);
+ * ```
+ */
 function json(body:unknown,status=200){return NextResponse.json(body,{status,headers:{'Cache-Control':'no-store'}});}
+/**
+ * Function POST.
+ *
+ * @param {Request} request - Description of request.
+ *
+ * @example
+ * ```typescript
+ * const result = POST(...);
+ * ```
+ */
+/**
+ * API route handler for POST requests.
+ *
+ * @param {Request} request - Description of request.
+ *
+ * @example
+ * ```typescript
+ * const result = POST(...);
+ * ```
+ */
 export async function POST(request:Request){
  if(!hasSafeOrigin(request))return json({error:'Request origin is not allowed.'},403);
  if(!isAuthorized(request))return json({error:'Model review access token is missing or invalid.'},401);

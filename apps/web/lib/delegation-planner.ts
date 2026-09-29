@@ -5,7 +5,25 @@ import {
 } from './execution-economics';
 import { harnessCatalog, type HarnessId, type ProviderMode } from './harness-catalog';
 
+/**
+ * Type PrivacyRequirement.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { PrivacyRequirement } from './module';
+ * ```
+ */
 export type PrivacyRequirement = 'any' | 'no-training' | 'local-only';
+/**
+ * Type CandidatePrivacy.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { CandidatePrivacy } from './module';
+ * ```
+ */
 export type CandidatePrivacy = 'unknown' | 'provider-policy' | 'no-training' | 'local-only';
 export type Candidate = {
   id: string;
@@ -104,6 +122,18 @@ export function createStarterCandidates(): Candidate[] {
   return [...candidates, ...generic, ...verifiedOpenRouter];
 }
 
+/**
+ * Function estimateFor.
+ *
+ * @param {Candidate} candidate - Description of candidate.
+ * @param {PlannerRequest} request - Description of request.
+ * @returns {ExecutionEstimate} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = estimateFor(..., ...);
+ * ```
+ */
 function estimateFor(candidate: Candidate, request: PlannerRequest): ExecutionEstimate {
   return calculateExecutionEconomics({
     harnessId: candidate.harnessId,
@@ -131,6 +161,18 @@ function estimateFor(candidate: Candidate, request: PlannerRequest): ExecutionEs
   });
 }
 
+/**
+ * Function candidateBlockers.
+ *
+ * @param {Candidate} candidate - Description of candidate.
+ * @param {PlannerRequest} request - Description of request.
+ * @returns {string[]} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = candidateBlockers(..., ...);
+ * ```
+ */
 function candidateBlockers(candidate: Candidate, request: PlannerRequest): string[] {
   const blockers: string[] = [];
   if (!candidate.enabled) blockers.push('Candidate is disabled.');
@@ -148,6 +190,18 @@ function candidateBlockers(candidate: Candidate, request: PlannerRequest): strin
   return blockers;
 }
 
+/**
+ * Function assessCandidate.
+ *
+ * @param {Candidate} candidate - Description of candidate.
+ * @param {PlannerRequest} request - Description of request.
+ * @returns {CandidateAssessment} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = assessCandidate(..., ...);
+ * ```
+ */
 export function assessCandidate(candidate: Candidate, request: PlannerRequest): CandidateAssessment {
   const blockers = candidateBlockers(candidate, request);
   let estimate: ExecutionEstimate | null = null;
@@ -239,6 +293,17 @@ export function buildDelegationPlan(input: {
   };
 }
 
+/**
+ * Function isHttpSource.
+ *
+ * @param {string} value - Description of value.
+ * @returns {boolean} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = isHttpSource(...);
+ * ```
+ */
 function isHttpSource(value: string): boolean {
   try {
     const url = new URL(value);
@@ -246,6 +311,19 @@ function isHttpSource(value: string): boolean {
   } catch { return false; }
 }
 
+/**
+ * Function candidateWithRate.
+ *
+ * @param {Candidate} candidate - Description of candidate.
+ * @param {keyof TokenRates} key - Description of key.
+ * @param {number | null} value - Description of value.
+ * @returns {Candidate} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = candidateWithRate(..., ..., ...);
+ * ```
+ */
 export function candidateWithRate(candidate: Candidate, key: keyof TokenRates, value: number | null): Candidate {
   return { ...candidate, rates: { ...candidate.rates, [key]: value } };
 }

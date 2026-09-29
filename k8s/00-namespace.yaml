@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: apexgraphswarm
+  labels:
+    app.kubernetes.io/name: apexgraphswarm
+    app.kubernetes.io/managed-by: kubectl

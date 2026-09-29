@@ -1,12 +1,56 @@
 import {dollars} from './analytics-types';
 import type {AnalyticsMetric, ChartDatum} from './analytics-visuals';
 
+/**
+ * Type ChartTooltipDetail.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ChartTooltipDetail } from './module';
+ * ```
+ */
 export type ChartTooltipDetail = {label: string; value: string};
+/**
+ * Core library module for chart tooltip details.ts functionality.
+ *
+ * @module chart-tooltip-details
+ * @packageDocumentation
+ */
 const metricName=(metric:AnalyticsMetric)=>metric==='knownCostMicrousd'?'known recorded cost':metric==='succeeded'?'successful attempts':'attempts';
 const format=(value:number,metric:AnalyticsMetric)=>metric==='knownCostMicrousd'?dollars(value):new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(value);
 
+/**
+ * Function percentShare.
+ *
+ * @param {number} value - Description of value.
+ * @param {number|undefined} denominator - Description of denominator.
+ * @param {AnalyticsMetric} metric - Description of metric.
+ * @returns {string} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = percentShare(..., ..., ...);
+ * ```
+ */
 export function percentShare(value:number,denominator:number|undefined,metric:AnalyticsMetric='attempts'):string{return denominator===undefined?'Not supplied':denominator===0?'Not defined (denominator 0)':`${(100*value/denominator).toFixed(1)}% (${format(value,metric)} / ${format(denominator,metric)})`;}
 
+/**
+ * Function visualTooltipDetails.
+ *
+ * @param {ChartDatum} row - Description of row.
+ * @param {AnalyticsMetric} metric - Description of metric.
+ * @param {number} displayedTotal - Description of displayedTotal.
+ * @param {number} filteredTotal - Description of filteredTotal.
+ * @param partial - Description of partial.
+ * @param {ChartTooltipDetail[]} extras - Description of extras.
+ * @returns {ChartTooltipDetail[]} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = visualTooltipDetails(..., ..., ..., ..., ..., ...);
+ * ```
+ */
 export function visualTooltipDetails(row:ChartDatum,metric:AnalyticsMetric,displayedTotal:number,filteredTotal?:number,partial=false,extras:ChartTooltipDetail[]=[]):ChartTooltipDetail[]{
  const other=row.attempts-row.succeeded;
  const rate=row.attempts===0?'Not defined (0 attempts)':`${(100*row.succeeded/row.attempts).toFixed(1)}% (${format(row.succeeded,'attempts')} / ${format(row.attempts,'attempts')})`;

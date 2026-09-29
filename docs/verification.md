@@ -205,3 +205,12 @@ HTTP/UI integration behavior only, not model speed, accuracy or production scale
 - Generated a share snapshot from the authenticated local fixture endpoint and opened it from a fresh page. SHA-256 integrity validation passed and the page restored all five case measurements and the held-out gate. The encoded snapshot was 4,868 bytes before base64url encoding.
 - The page clearly labels snapshots unsigned, exposes that the complete benchmark output/environment/hashes are URL encoded, excludes the token, and does not claim a hosted leaderboard. No model or external provider calls were made.
 - Production preview at `http://127.0.0.1:3010/arena` was restarted with the normal local environment after end-to-end verification. Console errors: none.
+
+## Hierarchical orchestration and field-weighted evaluation — 2026-09-28
+
+- Python regression suite: 214 tests passed in 13.845 seconds; changed Python modules compiled cleanly.
+- Complete web regression suite: 183 tests passed in 15.414 seconds. The Optimization Lab API test exercised the newly added hierarchy example through the authenticated local dispatcher.
+- TypeScript typecheck, whitespace validation, and optimized production build passed. The build includes `/optimization` and `/presentations`.
+- The hierarchy planner rejects incomplete metric vectors, unversioned custom weights, dependency cycles, incompatible scopes/actions/data boundaries, exhausted capacities, unknown task costs, budget overruns, and missed critical-path estimates. It remains plan-only and does not mint grants or dispatch workers.
+- Regenerated `docs/benchmarks/optimization-local.json`: deterministic hierarchy construction measured about 0.15 ms for 4 tasks, 0.29 ms for 32, 0.99 ms for 128, and 3.25 ms for 200 on this local run. The 200-task fixture exposed the configured leader-capacity blocker. These are synthetic local timings, not agent execution or scale claims.
+- Presentation Studio files already present in the working tree were retained and included in the successful production build. No provider calls were made.

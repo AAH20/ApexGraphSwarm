@@ -1,8 +1,43 @@
 import {validateSpecialistDesign,previewSpecialistAccess,type SpecialistDesign,type ToolBinding} from './specialist-design';
 import {parseSnapshot} from './graph';
+/**
+ * Core library module for specialist activation.ts functionality.
+ *
+ * @module specialist-activation
+ * @packageDocumentation
+ */
+/**
+ * Type Row.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Row } from './module';
+ * ```
+ */
 type Row=Record<string,any>;
 const record=(value:unknown):value is Row=>!!value&&typeof value==='object'&&!Array.isArray(value);
+/**
+ * Type ExecutableReviewTask.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ExecutableReviewTask } from './module';
+ * ```
+ */
 export type ExecutableReviewTask={id:string;agentId:string;tool:string;resource:string;payload:Row};
+/**
+ * Function executableReviewTasks.
+ *
+ * @param value - Description of value.
+ * @returns {ExecutableReviewTask[]} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = executableReviewTasks(...);
+ * ```
+ */
 export function executableReviewTasks(value:unknown):ExecutableReviewTask[]{
  if(!record(value))throw Error('Import a compiled plan or Optimization Lab evidence export.');
  const plan=record(value.result)&&record(value.result.plan)?value.result.plan:record(value.plan)?value.plan:value;

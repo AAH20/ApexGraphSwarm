@@ -66,10 +66,13 @@ def dispatch(payload: dict[str, Any]) -> dict[str, Any]:
     if action == "evaluate":
         from .evaluation import evaluate
         return evaluate({key: value for key, value in payload.items() if key != "action"})
+    if action == "hierarchy":
+        from .hierarchy import plan_hierarchy
+        return plan_hierarchy({key: value for key, value in payload.items() if key != "action"})
     if action in {"schedule", "evidence", "waves", "capacity"}:
         from .optimization import optimize
         return optimize(payload)
-    raise ValueError("Choose schedule, evidence, waves, capacity, evaluate, evolve, compileDelegation, telemetry or benchmark.")
+    raise ValueError("Choose hierarchy, schedule, evidence, waves, capacity, evaluate, evolve, compileDelegation, telemetry or benchmark.")
 
 
 def main() -> int:

@@ -1,0 +1,168 @@
+# Prometheus alerting rules for ApexGraphSwarm
+groups:
+  - name: apexgraphswarm_availability
+    rules:
+      - alert: ApexGraphSwarmExporterDown
+        expr: up{job="apexgraphswarm"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "ApexGraphSwarm exporter is down"
+          description: "The ApexGraphSwarm metrics exporter has been unreachable for more than 1 minute."
+
+      - alert: ApexGraphSwarmExporterErrors
+        expr: rate(apexgraphswarm_exporter_errors_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "ApexGraphSwarm exporter error rate is high"
+          description: "The exporter is producing errors at a rate of {{ $value }} errors/sec."
+
+  - name: apexgraphswarm_execution
+    rules:
+      - alert: ApexGraphSwarmHighFailureRate
+        expr: |
+          (
+            rate(apexgraphswarm_attempts_total{outcome="failed"}[15m])
+            /
+            rate(apexgraphswarm_attempts_total[15m])
+          ) > 0.3
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High failure rate in ApexGraphSwarm"
+          description: "More than 30% of attempts are failing (current: {{ $value | humanizePercentage }})."
+
+      - alert: ApexGraphSwarmCriticalFailureRate
+        expr: |
+          (
+            rate(apexgraphswarm_attempts_total{outcome="failed"}[15m])
+            /
+            rate(apexgraphswarm_attempts_total[15m])
+          ) > 0.6
+        for: 5m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Critical failure rate in ApexGraphSwarm"
+          description: "More than 60% of attempts are failing (current: {{ $value | humanizePercentage }})."
+
+      - alert: ApexGraphSwarmHighLatency
+        expr: histogram_quantile(0.95, rate(apexgraphswarm_attempt_duration_seconds_bucket[10m])) > 300
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High attempt latency in ApexGraphSwarm"
+          description: "P95 attempt latency is above 300 seconds (current: {{ $value }}s)."
+
+      - alert: ApexGraphSwarmStalledAttempts
+        expr: |
+          (
+            apexgraphswarm_attempts_running
+            -
+            apexgraphswarm_attempts_running offset 10m
+          ) == 0
+          and
+          apexgraphswarm_attempts_running > 0
+        for: 10m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "ApexGraphSwarm attempts appear stalled"
+          description: "Running attempts count has not changed in 10 minutes despite active work."
+
+  - name: apexgraphswarm_budget
+    rules:
+      - alert: ApexGraphSwarmBudgetExceeded
+        expr: |
+          (
+            apexgraphswarm_spent_microusd
+            /
+            apexgraphswarm_budget_microusd
+          ) > 1.0
+        for: 1m
+        labels:
+          severity: critical
+          team: finance
+        annotations:
+          summary: "ApexGraphSwarm budget exceeded"
+          description: "Run {{ $labels.run_id }} has exceeded its budget (spent: {{ $value | humanizePercentage }})."
+
+      - alert: ApexGraphSwarmBudgetWarning
+        expr: |
+          (
+            apexgraphswarm_spent_microusd
+            /
+            apexgraphswarm_budget_microusd
+          ) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          team: finance
+        annotations:
+          summary: "ApexGraphSwarm budget usage above 80%"
+          description: "Run {{ $labels.run_id }} has used {{ $value | humanizePercentage }} of its budget."
+
+  - name: apexgraphswarm_resources
+    rules:
+      - alert: ApexGraphSwarmResourceExhaustion
+        expr: |
+          (
+            apexgraphswarm_resource_occupied
+            /
+            apexgraphswarm_resource_limit
+          ) > 0.9
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Resource near exhaustion"
+          description: "Resource {{ $labels.resource_id }} is at {{ $value | humanizePercentage }} capacity."
+
+      - alert: ApexGraphSwarmResourceStarvation
+        expr: |
+          (
+            apexgraphswarm_resource_occupied
+            /
+            apexgraphswarm_resource_limit
+          ) >= 1.0
+        for: 2m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Resource fully exhausted"
+          description: "Resource {{ $labels.resource_id }} is at 100% capacity. New tasks will be blocked."
+
+  - name: apexgraphswarm_tasks
+    rules:
+      - alert: ApexGraphSwarmTaskBacklog
+        expr: apexgraphswarm_tasks_pending > 50
+        for: 10m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Large task backlog in ApexGraphSwarm"
+          description: "{{ $value }} tasks are pending for more than 10 minutes."
+
+      - alert: ApexGraphSwarmBlockedTasks
+        expr: apexgraphswarm_tasks_blocked > 0
+        for: 15m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Blocked tasks in ApexGraphSwarm"
+          description: "{{ $value }} tasks are blocked (failed dependencies) for more than 15 minutes."

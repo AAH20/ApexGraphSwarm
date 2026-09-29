@@ -1,9 +1,25 @@
+/**
+ * React component for analytics charts.
+ *
+ * @module AnalyticsCharts
+ * @packageDocumentation
+ */
 'use client';
 import {useId,useState} from 'react';
 import type {AnalyticsReport} from '@/lib/analytics-types';
 import {dollars,decimal} from '@/lib/analytics-types';
 import ChartTooltip from '@/components/ChartTooltip';
 import styles from './AnalyticsStudio.module.css';
+/**
+ * Function TrendChart.
+ *
+ * @param {{report} report,metric='cost' - Description of report,metric='cost'.
+ *
+ * @example
+ * ```typescript
+ * const result = TrendChart(...);
+ * ```
+ */
 export function TrendChart({report,metric='cost'}:{report:AnalyticsReport;metric?:'cost'|'attempts'}){
  const [selectedIndex,setSelectedIndex]=useState<number|null>(null),id=useId(),rows=report.daily;
  const values=rows.map(row=>metric==='cost'?row.knownCostMicrousd:row.attempts),max=Math.max(1,...values);
@@ -12,20 +28,60 @@ export function TrendChart({report,metric='cost'}:{report:AnalyticsReport;metric
  const selected=rows[Math.min(selectedIndex??rows.length-1,rows.length-1)];
  return <div><svg viewBox="0 0 800 230" className={styles.chart} role="group" aria-labelledby={id}><title id={id}>{metric==='cost'?'Known recorded cost':'Attempt count'} by UTC start day. Focus or hover a point for exact values.</title>{[0,.5,1].map(t=><g key={t}><line x1="50" x2="750" y1={190-t*145} y2={190-t*145} stroke="#dde5e7"/><text x="45" y={194-t*145} textAnchor="end" fontSize="10" fill="#66757f">{metric==='cost'?dollars(max*t):Math.round(max*t)}</text></g>)}<polyline points={values.map((v,i)=>point(v,i).join(',')).join(' ')} fill="none" stroke="#237b70" strokeWidth="3"/>{rows.map((row,i)=>{const [x,y]=point(values[i],i);return <ChartTooltip key={row.date} title={`${row.date} UTC`} details={[{label:'Plotted series',value:metric==='cost'?'Known recorded cost':'Attempts'},{label:'Plotted value',value:metric==='cost'?dollars(row.knownCostMicrousd):`${row.attempts} attempts`},{label:'Attempts',value:String(row.attempts)},{label:'Succeeded',value:String(row.succeeded)},{label:'Known recorded cost',value:dollars(row.knownCostMicrousd)},{label:'Unknown-cost attempts',value:String(row.unknownCostRows)},{label:'Series range',value:metric==='cost'?`$0 to ${dollars(max)}`:`0 to ${max} attempts`},{label:'UTC date range',value:`${rows[0].date} to ${rows.at(-1)?.date}`}]}><circle cx={x} cy={y} r={selectedIndex===i?6:4} fill={row.unknownCostRows?'#b77826':'#237b70'} aria-label={`${row.date}: ${metric==='cost'?dollars(row.knownCostMicrousd):`${row.attempts} attempts`}`}/></ChartTooltip>;})}<text x="50" y="220" fontSize="11" fill="#66757f">{rows[0].date}</text><text x="750" y="220" textAnchor="end" fontSize="11" fill="#66757f">{rows.at(-1)?.date}</text></svg><label className={styles.scrubber}>Inspect a day<input aria-label="Inspect trend day" type="range" min="0" max={rows.length-1} value={selectedIndex??rows.length-1} onChange={event=>setSelectedIndex(Number(event.target.value))}/><output>{selected.date} UTC · {selected.attempts} attempts · {selected.succeeded} succeeded · {dollars(selected.knownCostMicrousd)} known cost · {selected.unknownCostRows} cost unknown</output></label></div>;
 }
+/**
+ * Function Histogram.
+ *
+ * @param {{report} report - Description of report.
+ *
+ * @example
+ * ```typescript
+ * const result = Histogram(...);
+ * ```
+ */
 export function Histogram({report}:{report:AnalyticsReport}){
  const rows=report.latency.histogram,max=Math.max(1,...rows.map(row=>row.count));
  const histogramN=rows.reduce((sum,row)=>sum+row.count,0);
  return <div className={styles.bars} role="group" aria-label="Settled attempt latency histogram">{rows.map((row,index)=><ChartTooltip key={row.label} title={`Latency bin ${row.label}`} details={[{label:'Reported latency-bin label',value:row.label},{label:'Label precision',value:'Displayed bounds are rounded to whole seconds.'},{label:'Interval convention',value:index===rows.length-1?'Lower-inclusive; last bucket includes the observed maximum.':'Lower-inclusive, upper-exclusive.'},{label:'Settled durations in bin',value:String(row.count)},{label:'Share of displayed histogram',value:histogramN?`${(row.count/histogramN*100).toFixed(1)}% (${row.count} of ${histogramN})`:'No observations'},{label:'Report latency observations',value:String(report.latency.count)},{label:'Tail sample status',value:report.latency.sampled?'Histogram derived from sampled latency records':'Histogram not marked as sampled'}]}><div className={styles.barRow}><span>{row.label}</span><div><span style={{width:`${row.count/max*100}%`}}/></div><strong>{row.count}</strong></div></ChartTooltip>)}{!rows.length&&<p>No settled durations are available.</p>}</div>;
 }
+/**
+ * Function ScatterChart.
+ *
+ * @param {{report} report - Description of report.
+ *
+ * @example
+ * ```typescript
+ * const result = ScatterChart(...);
+ * ```
+ */
 export function ScatterChart({report}:{report:AnalyticsReport}){
  const rows=report.scatter||[],id=useId(),maxX=Math.max(1,...rows.map(p=>p.latencySeconds)),maxY=Math.max(1,...rows.map(p=>p.costMicrousd));
  return <div><svg viewBox="0 0 600 260" className={styles.chart} role="group" aria-labelledby={id}><title id={id}>Settled duration versus known cost, bounded sample. Correlation is descriptive, not causal. Focus or hover a point for exact values.</title><line x1="65" y1="210" x2="570" y2="210" stroke="#9caeb5"/><line x1="65" y1="25" x2="65" y2="210" stroke="#9caeb5"/>{rows.map((p,i)=><ChartTooltip key={i} title={`Paired observation ${i+1}`} details={[{label:'Duration',value:`${p.latencySeconds} seconds`},{label:'Known cost',value:dollars(p.costMicrousd)},{label:'Display sample size',value:`${rows.length} points`},{label:'Paired observations in report',value:String(report.correlation.n)},{label:'Displayed duration range',value:`0 to ${maxX} seconds`},{label:'Displayed cost range',value:`$0 to ${dollars(maxY)}`}]}><circle cx={65+p.latencySeconds/maxX*490} cy={210-p.costMicrousd/maxY*170} r="4" fill="#487daf" opacity=".65" aria-label={`Duration ${p.latencySeconds} seconds, known cost ${dollars(p.costMicrousd)}`}/></ChartTooltip>)}<text x="315" y="248" textAnchor="middle" fontSize="12" fill="#66757f">Duration: 0–{decimal(maxX,' seconds')}</text><text x="68" y="17" fontSize="12" fill="#66757f">Cost: 0–{dollars(maxY)}</text></svg><p>Pearson r: <strong>{decimal(report.correlation.pearsonR)}</strong> · {report.correlation.n} paired observations. Points are a bounded display sample.</p></div>;
 }
+/**
+ * Function ActivityHeatmap.
+ *
+ * @param {{report} report - Description of report.
+ *
+ * @example
+ * ```typescript
+ * const result = ActivityHeatmap(...);
+ * ```
+ */
 export function ActivityHeatmap({report}:{report:AnalyticsReport}){
  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],lookup=new Map(report.heatmap.map(cell=>[`${cell.day}:${cell.hour}`,cell.count])),peak=Math.max(0,...report.heatmap.map(cell=>cell.count)),max=Math.max(1,peak);
  const total=report.heatmap.reduce((sum,cell)=>sum+cell.count,0);
  return <div className={styles.heatScroll}><div className={styles.heatmap} role="group" aria-label="Activity by UTC weekday and hour; darker squares indicate more attempts"><span/>{Array.from({length:24},(_,hour)=><small key={hour}>{hour%3===0?hour:''}</small>)}{days.map((day,index)=><div className={styles.heatRow} key={day}><small>{day}</small>{Array.from({length:24},(_,hour)=>{const count=lookup.get(`${index}:${hour}`)||0;return <ChartTooltip key={hour} title={`${day} ${hour.toString().padStart(2,'0')}:00 UTC`} details={[{label:'Attempts in this hour cell',value:String(count)},{label:'Share of heatmap attempts',value:total?`${(count/total*100).toFixed(1)}% (${count} of ${total})`:'No observations'},{label:'UTC grouping',value:'Attempt start weekday and hour'},{label:'Busiest displayed cell',value:`${peak} attempts`}]}><span aria-label={`${day} ${hour}:00 UTC, ${count} attempts`} style={{backgroundColor:`rgba(35,123,112,${.06+.94*count/max})`}}/></ChartTooltip>;})}</div>)}</div><p>UTC start times · {peak} attempts in the busiest hour cell. Focus or hover a cell for counts.</p><details><summary>Accessible activity counts</summary><ul>{report.heatmap.map(cell=><li key={`${cell.day}:${cell.hour}`}>{days[cell.day]} {cell.hour}:00 UTC: {cell.count}</li>)}</ul></details></div>;
 }
+/**
+ * Function ForecastChart.
+ *
+ * @param {{report} report - Description of report.
+ *
+ * @example
+ * ```typescript
+ * const result = ForecastChart(...);
+ * ```
+ */
 export function ForecastChart({report}:{report:AnalyticsReport}){
  const rows=report.forecast.points,id=useId(),max=Math.max(1,...rows.map(row=>row.upperMicrousd));
  if(!rows.length)return <p className={styles.empty}>Forecast withheld: {report.forecast.status}. Add sufficient complete daily cost history before using a predictive estimate.</p>;

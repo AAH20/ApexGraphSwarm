@@ -1,3 +1,9 @@
+/**
+ * React component for graph canvas.
+ *
+ * @module GraphCanvas
+ * @packageDocumentation
+ */
 "use client";
 
 import Graph from "graphology";
@@ -7,6 +13,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { GraphEdge, GraphNode } from "../lib/graph";
 import { bindRendererContextEvents } from "../lib/renderer-lifecycle";
 
+/**
+ * Type Layout.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Layout } from './module';
+ * ```
+ */
 type Layout = "grouped" | "force";
 export type GraphCanvasStatus = {
   renderer: string;
@@ -35,6 +50,16 @@ const COLORS: Record<GraphNode["kind"], string> = {
   external: "#9ba6b8",
 };
 
+/**
+ * Function groupedPositions.
+ *
+ * @param {GraphNode[]} nodes - Description of nodes.
+ *
+ * @example
+ * ```typescript
+ * const result = groupedPositions(...);
+ * ```
+ */
 function groupedPositions(nodes: GraphNode[]) {
   const groups = new Map<string, GraphNode[]>();
   for (const node of [...nodes].sort((a, b) => a.id.localeCompare(b.id))) {
@@ -163,19 +188,32 @@ export default function GraphCanvas({
       });
 
       renderer = new Sigma(graph, host, {
-        defaultNodeColor: COLORS.file,
-        defaultEdgeColor: "rgba(151, 167, 194, 0.22)",
-        defaultEdgeType: "arrow",
-        labelFont: "Inter, ui-sans-serif, system-ui, sans-serif",
-        labelSize: nodes.length <= 60 ? 13 : 11,
-        labelWeight: "500",
-        labelColor: { color: "#e5ebf6" },
-        labelRenderedSizeThreshold: labelsAlwaysVisible || nodes.length <= 60 ? 0 : 7,
-        labelDensity: labelsAlwaysVisible || nodes.length <= 60 ? 1 : 0.08,
-        stagePadding: 28,
-        minCameraRatio: 0.08,
-        maxCameraRatio: 8,
-        hideEdgesOnMove: true,
+        styles: {
+          nodes: {
+            x: { attribute: "x" },
+            y: { attribute: "y" },
+            size: { attribute: "size", defaultValue: 4 },
+            color: { attribute: "color", defaultValue: COLORS.file },
+            label: { attribute: "label" },
+            labelColor: "#e5ebf6",
+            labelFont: "Inter, ui-sans-serif, system-ui, sans-serif",
+            labelSize: nodes.length <= 60 ? 13 : 11,
+          },
+          edges: {
+            size: { attribute: "size", defaultValue: 1 },
+            color: { attribute: "color", defaultValue: "rgba(151, 167, 194, 0.22)" },
+            label: { attribute: "label" },
+            head: "arrow",
+          },
+        },
+        settings: {
+          labelRenderedSizeThreshold: labelsAlwaysVisible || nodes.length <= 60 ? 0 : 7,
+          labelDensity: labelsAlwaysVisible || nodes.length <= 60 ? 1 : 0.08,
+          stagePadding: 28,
+          minCameraRatio: 0.08,
+          maxCameraRatio: 8,
+          hideEdgesOnMove: true,
+        },
         nodeReducer: (key, data) => {
           if (!selectedRef.current || !graph!.hasNode(selectedRef.current)) return data;
           if (key === selectedRef.current) {

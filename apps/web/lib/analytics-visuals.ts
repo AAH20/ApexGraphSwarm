@@ -1,36 +1,155 @@
+/**
+ * Constant VISUAL_KINDS.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { VISUAL_KINDS } from './module';
+ * ```
+ */
 export const VISUAL_KINDS=['bar','column','stacked-bar','stacked-column','percent-bar','percent-column','pie','donut','line','area','stacked-area','combo','treemap','waterfall','funnel','gauge','kpi','table','matrix','ribbon'] as const;
+/**
+ * Type VisualKind.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { VisualKind } from './module';
+ * ```
+ */
 export type VisualKind=typeof VISUAL_KINDS[number];
+/**
+ * Type AnalyticsMetric.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { AnalyticsMetric } from './module';
+ * ```
+ */
 export type AnalyticsMetric='attempts'|'succeeded'|'knownCostMicrousd';
+/**
+ * Type AnalyticsDimension.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { AnalyticsDimension } from './module';
+ * ```
+ */
 export type AnalyticsDimension='tool'|'resource'|'day';
+/**
+ * Type ChartDatum.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ChartDatum } from './module';
+ * ```
+ */
 export type ChartDatum={id:string;label:string;value:number;attempts:number;succeeded:number};
 export type AnalyticsReportSource={
  quality:{truncated?:boolean;invalidRows?:number;unknownCostRows?:number};
  cohorts:{tool:string;resource:string;attempts:number;succeeded:number;knownCostMicrousd:number;unknownCostRows:number}[];
  daily:{date:string;attempts:number;succeeded:number;knownCostMicrousd:number;unknownCostRows:number}[];
 };
+/**
+ * Type VisualData.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { VisualData } from './module';
+ * ```
+ */
 export type VisualData={rows:ChartDatum[];totalValue:number;omitted:number;partial:boolean};
+/**
+ * Type PieSegment.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { PieSegment } from './module';
+ * ```
+ */
 export type PieSegment={id:string;label:string;value:number;startAngle:number;endAngle:number;fraction:number;fullCircle:boolean};
 export function visualSupport(kind:VisualKind):{supported:boolean;reason?:string}{
  if(kind==='ribbon')return {supported:false,reason:'Ribbon charts require per-category values across multiple dates; the current event aggregates do not include that series.'};
  if(!VISUAL_KINDS.includes(kind))return {supported:false,reason:'Unknown chart type.'};
  return {supported:true};
 }
+/**
+ * Type AggregateGroup.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { AggregateGroup } from './module';
+ * ```
+ */
 type AggregateGroup={id:string;label:string;attempts:number;succeeded:number;knownCostMicrousd:number};
 
+/**
+ * Class AnalyticsVisualDataError.
+ *
+ * @extends Error
+ *
+ * @example
+ * ```typescript
+ * const instance = new AnalyticsVisualDataError();
+ * ```
+ */
 export class AnalyticsVisualDataError extends Error{
  constructor(message:string){super(message);this.name='AnalyticsVisualDataError';}
 }
 
 const MAX_GROUPS=20;
 const METRICS:AnalyticsMetric[]=['attempts','succeeded','knownCostMicrousd'];
+/**
+ * Function requireCount.
+ *
+ * @param {number} value - Description of value.
+ * @param {string} label - Description of label.
+ * @returns {number} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = requireCount(..., ...);
+ * ```
+ */
 function requireCount(value:number,label:string):number{
  if(!Number.isSafeInteger(value)||value<0)throw new AnalyticsVisualDataError(`${label} must be a non-negative safe integer.`);
  return value;
 }
+/**
+ * Function add.
+ *
+ * @param {number} left - Description of left.
+ * @param {number} right - Description of right.
+ * @param {string} label - Description of label.
+ * @returns {number} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = add(..., ..., ...);
+ * ```
+ */
 function add(left:number,right:number,label:string):number{
  const sum=left+right;
  return requireCount(sum,label);
 }
+/**
+ * Function valueFor.
+ *
+ * @param {{attempts:number;succeeded:number;knownCostMicrousd:number}} row - Description of row.
+ * @param {AnalyticsMetric} metric - Description of metric.
+ * @returns {number} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = valueFor(..., ...);
+ * ```
+ */
 function valueFor(row:{attempts:number;succeeded:number;knownCostMicrousd:number},metric:AnalyticsMetric):number{
  if(!METRICS.includes(metric))throw new AnalyticsVisualDataError('Unsupported analytics metric.');
  return requireCount(row[metric],metric);
@@ -40,6 +159,21 @@ function safeDimension(label:string,dimension:AnalyticsDimension):{id:string;lab
  const normalized=label.trim()||`(unknown ${dimension})`;
  return {id:`${dimension}:${normalized}`,label:normalized};
 }
+/**
+ * Function buildVisualData.
+ *
+ * @param {AnalyticsReportSource} report - Description of report.
+ * @param {AnalyticsDimension} dimension - Description of dimension.
+ * @param {AnalyticsMetric} metric - Description of metric.
+ * @param limit - Description of limit.
+ * @param query - Description of query.
+ * @returns {VisualData} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = buildVisualData(..., ..., ..., ..., ...);
+ * ```
+ */
 export function buildVisualData(report:AnalyticsReportSource,dimension:AnalyticsDimension,metric:AnalyticsMetric,limit=12,query=''):VisualData{
  if(!report||!report.quality||!Array.isArray(report.cohorts)||!Array.isArray(report.daily))throw new AnalyticsVisualDataError('Analytics report shape is invalid.');
  if(!['tool','resource','day'].includes(dimension))throw new AnalyticsVisualDataError('Unsupported analytics dimension.');
@@ -93,6 +227,17 @@ export function buildVisualData(report:AnalyticsReportSource,dimension:Analytics
   partial:report.quality.truncated===true||invalidRows>0||(metric==='knownCostMicrousd'&&(unknownCostRows>0||qualityUnknownCostRows>0))};
 }
 
+/**
+ * Function pieSegments.
+ *
+ * @param {readonly ChartDatum[]} rows - Description of rows.
+ * @returns {PieSegment[]} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = pieSegments(...);
+ * ```
+ */
 export function pieSegments(rows:readonly ChartDatum[]):PieSegment[]{
  if(!Array.isArray(rows)||rows.length>MAX_GROUPS)throw new AnalyticsVisualDataError(`Pie data must contain at most ${MAX_GROUPS} categories.`);
  const ids=new Set<string>();

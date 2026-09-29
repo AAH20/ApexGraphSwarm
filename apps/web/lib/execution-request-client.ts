@@ -3,21 +3,95 @@ import {execFile} from 'node:child_process';
 import path from 'node:path';
 import {mkdir} from 'node:fs/promises';
 
+/**
+ * Core library module for execution request client.ts functionality.
+ *
+ * @module execution-request-client
+ * @packageDocumentation
+ */
+/**
+ * Type PublicJob.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { PublicJob } from './module';
+ * ```
+ */
 type PublicJob={id:string};
+/**
+ * Type RegistryResponse.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { RegistryResponse } from './module';
+ * ```
+ */
 type RegistryResponse={created:boolean;jobId:string};
+/**
+ * Type LocalEntry.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { LocalEntry } from './module';
+ * ```
+ */
 type LocalEntry={payloadDigest:string;jobId:string};
 const MAX_LOCAL_ENTRIES=1000;
 const known=new Map<string,LocalEntry>();
 const pending=new Map<string,{payloadDigest:string;promise:Promise<PublicJob>}>();
 
+/**
+ * Class ExecutionRequestConflictError.
+ *
+ * @extends Error
+ *
+ * @example
+ * ```typescript
+ * const instance = new ExecutionRequestConflictError();
+ * ```
+ */
 export class ExecutionRequestConflictError extends Error{
  constructor(){super('Idempotency-Key was already used for a different integration request.');this.name='ExecutionRequestConflictError';}
 }
+/**
+ * Class ExecutionRequestRecoveryError.
+ *
+ * @extends Error
+ *
+ * @example
+ * ```typescript
+ * const instance = new ExecutionRequestRecoveryError();
+ * ```
+ */
 export class ExecutionRequestRecoveryError extends Error{
  constructor(readonly jobId:string,readonly runId:string|null=null){super('This request was already registered, but its in-memory execution is unavailable. Recovery is required; automatic redispatch was refused.');this.name='ExecutionRequestRecoveryError';}
 }
 
+/**
+ * Function sha256.
+ *
+ * @param {string} value - Description of value.
+ *
+ * @example
+ * ```typescript
+ * const result = sha256(...);
+ * ```
+ */
 function sha256(value:string){return createHash('sha256').update(value).digest('hex');}
+/**
+ * Function canonical.
+ *
+ * @param value - Description of value.
+ * @returns {string} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = canonical(...);
+ * ```
+ */
 function canonical(value:unknown):string{
  if(value===null||typeof value==='string'||typeof value==='boolean')return JSON.stringify(value);
  if(typeof value==='number'){if(!Number.isFinite(value))throw new Error('Request body must contain finite JSON numbers.');return JSON.stringify(value);}
@@ -28,11 +102,34 @@ function canonical(value:unknown):string{
  }
  throw new Error('Request body must be canonical JSON data.');
 }
+/**
+ * Function dbConfiguration.
+ *
+ * @param {Record<string,string|undefined>} env - Description of env.
+ *
+ * @example
+ * ```typescript
+ * const result = dbConfiguration(...);
+ * ```
+ */
 function dbConfiguration(env:Record<string,string|undefined>){
  const root=path.resolve(process.cwd(),'../..');
  const dbPath=env.APEX_CONTROL_DB_PATH?path.resolve(env.APEX_CONTROL_DB_PATH):path.join(root,'.runtime','control.sqlite');
  return {root,dbPath};
 }
+/**
+ * Function registryCommand.
+ *
+ * @param {string} dbPath - Description of dbPath.
+ * @param {string} root - Description of root.
+ * @param {Record<string,unknown>} input - Description of input.
+ * @returns {Promise<T>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = registryCommand(..., ..., ...);
+ * ```
+ */
 async function registryCommand<T>(dbPath:string,root:string,input:Record<string,unknown>):Promise<T>{
  await mkdir(path.dirname(dbPath),{recursive:true,mode:0o700});
  return new Promise((resolve,reject)=>{
@@ -46,11 +143,39 @@ async function registryCommand<T>(dbPath:string,root:string,input:Record<string,
   }).stdin?.end(JSON.stringify({...input,dbPath}));
  });
 }
+/**
+ * Function register.
+ *
+ * @param {string} dbPath - Description of dbPath.
+ * @param {string} root - Description of root.
+ * @param {string} requestKeyHash - Description of requestKeyHash.
+ * @param {string} scopeHash - Description of scopeHash.
+ * @param {string} payloadDigest - Description of payloadDigest.
+ * @returns {Promise<RegistryResponse>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = register(..., ..., ..., ..., ...);
+ * ```
+ */
 async function register(dbPath:string,root:string,requestKeyHash:string,scopeHash:string,payloadDigest:string):Promise<RegistryResponse>{
  const response=await registryCommand<RegistryResponse>(dbPath,root,{action:'register',requestKeyHash,scopeHash,payloadDigest,candidateJobId:randomUUID()});
  if(typeof response.created!=='boolean'||typeof response.jobId!=='string')throw new Error('Local request registry returned an invalid registration.');
  return response;
 }
+/**
+ * Function lookupRunId.
+ *
+ * @param {string} dbPath - Description of dbPath.
+ * @param {string} root - Description of root.
+ * @param {string} jobId - Description of jobId.
+ * @returns {Promise<string|null>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = lookupRunId(..., ..., ...);
+ * ```
+ */
 async function lookupRunId(dbPath:string,root:string,jobId:string):Promise<string|null>{
  const response=await registryCommand<{runId:string|null}>(dbPath,root,{action:'lookupRun',jobId});
  if(response.runId!==null&&typeof response.runId!=='string')throw new Error('Local run lookup returned an invalid response.');
@@ -90,4 +215,13 @@ export async function startIdempotentIntegrationRequest(options:{
  finally{pending.delete(localKey);}
 }
 
+/**
+ * Function resetExecutionRequestClientForTests.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { resetExecutionRequestClientForTests } from './module';
+ * ```
+ */
 export function resetExecutionRequestClientForTests(){known.clear();pending.clear();}

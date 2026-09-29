@@ -24,34 +24,150 @@ const PROVIDERS: Record<DecisionProvider, {label: string; urlKey: string; tokenK
 const COVERAGE_WARNING = 'Provider context/token limits may truncate this input; repository-wide coverage is unverified.';
 const DANGEROUS_KEYS = new Set(['__proto__', 'prototype', 'constructor']);
 
+/**
+ * Type RuntimeEnv.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { RuntimeEnv } from './module';
+ * ```
+ */
 type RuntimeEnv = Record<string, string | undefined>;
+/**
+ * Type Fetcher.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { Fetcher } from './module';
+ * ```
+ */
 type Fetcher = typeof fetch;
+/**
+ * Type ProviderConfig.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { ProviderConfig } from './module';
+ * ```
+ */
 type ProviderConfig = {url: string; token: string; cost: number};
+/**
+ * Type NormalizedProviderAnswer.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { NormalizedProviderAnswer } from './module';
+ * ```
+ */
 type NormalizedProviderAnswer = Omit<DecisionAnswer, 'id' | 'reviewRequired'>;
 
+/**
+ * Class DecisionRuntimeError.
+ *
+ * @extends Error
+ *
+ * @example
+ * ```typescript
+ * const instance = new DecisionRuntimeError();
+ * ```
+ */
 export class DecisionRuntimeError extends Error {
   constructor(message: string) { super(message); this.name = 'DecisionRuntimeError'; }
 }
 
+/**
+ * Function isRecord.
+ *
+ * @param value - Description of value.
+ * @returns {value is Record<string, unknown>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = isRecord(...);
+ * ```
+ */
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
+/**
+ * Function exactKeys.
+ *
+ * @param {Record<string, unknown>} value - Description of value.
+ * @param {string[]} required - Description of required.
+ * @param {string[]} optional - Description of optional.
+ * @returns {boolean} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = exactKeys(..., ..., ...);
+ * ```
+ */
 function exactKeys(value: Record<string, unknown>, required: string[], optional: string[] = []): boolean {
   const keys = Object.keys(value);
   return required.every(key => Object.hasOwn(value, key)) && keys.every(key => required.includes(key) || optional.includes(key));
 }
+/**
+ * Function safeInteger.
+ *
+ * @param value - Description of value.
+ * @returns {value is number} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = safeInteger(...);
+ * ```
+ */
 function safeInteger(value: unknown): value is number {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
 }
+/**
+ * Function cleanString.
+ *
+ * @param value - Description of value.
+ * @param {number} max - Description of max.
+ * @param allowEmpty - Description of allowEmpty.
+ * @returns {value is string} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = cleanString(..., ..., ...);
+ * ```
+ */
 function cleanString(value: unknown, max: number, allowEmpty = false): value is string {
   return typeof value === 'string' && value.length <= max && (allowEmpty || value.trim().length > 0);
 }
+/**
+ * Function criteriaLabels.
+ *
+ * @param {DecisionQuestion} question - Description of question.
+ * @returns {string[] | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = criteriaLabels(...);
+ * ```
+ */
 function criteriaLabels(question: DecisionQuestion): string[] | null {
   if (Array.isArray(question.criteria)) return question.criteria as string[];
   if (isRecord(question.criteria)) return Object.keys(question.criteria);
   return null;
 }
 
+/**
+ * Function validateDecisionInput.
+ *
+ * @param raw - Description of raw.
+ * @returns {DecisionInput} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = validateDecisionInput(...);
+ * ```
+ */
 export function validateDecisionInput(raw: unknown): DecisionInput {
   if (!isRecord(raw) || !exactKeys(raw, ['providers', 'state', 'questions', 'threshold', 'maxCostMicrousd'])) {
     throw new DecisionRuntimeError('Request must contain only providers, state, questions, threshold, and maxCostMicrousd.');
@@ -102,12 +218,34 @@ export function validateDecisionInput(raw: unknown): DecisionInput {
   return result;
 }
 
+/**
+ * Function parseEstimate.
+ *
+ * @param {string | undefined} raw - Description of raw.
+ * @returns {number | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = parseEstimate(...);
+ * ```
+ */
 function parseEstimate(raw: string | undefined): number | null {
   if (raw === undefined || !/^(0|[1-9][0-9]*)$/.test(raw)) return null;
   const estimate = Number(raw);
   return safeInteger(estimate) ? estimate : null;
 }
 
+/**
+ * Function allowedEndpoint.
+ *
+ * @param {string | undefined} raw - Description of raw.
+ * @returns {string | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = allowedEndpoint(...);
+ * ```
+ */
 function allowedEndpoint(raw: string | undefined): string | null {
   if (!raw || raw.length > 2_048) return null;
   try {
@@ -118,6 +256,18 @@ function allowedEndpoint(raw: string | undefined): string | null {
   } catch { return null; }
 }
 
+/**
+ * Function providerConfig.
+ *
+ * @param {DecisionProvider} provider - Description of provider.
+ * @param {RuntimeEnv} env - Description of env.
+ * @returns {ProviderConfig | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = providerConfig(..., ...);
+ * ```
+ */
 function providerConfig(provider: DecisionProvider, env: RuntimeEnv): ProviderConfig | null {
   const keys = PROVIDERS[provider];
   const url = allowedEndpoint(env[keys.urlKey]);
@@ -127,6 +277,17 @@ function providerConfig(provider: DecisionProvider, env: RuntimeEnv): ProviderCo
   return {url, token, cost};
 }
 
+/**
+ * Function getDecisionProviders.
+ *
+ * @param {RuntimeEnv} env - Description of env.
+ * @returns {ProviderInfo[]} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = getDecisionProviders(...);
+ * ```
+ */
 export function getDecisionProviders(env: RuntimeEnv = process.env): ProviderInfo[] {
   return (['laya', 'anyjev'] as const).map(id => {
     const config = providerConfig(id, env);
@@ -140,9 +301,32 @@ export function getDecisionProviders(env: RuntimeEnv = process.env): ProviderInf
   });
 }
 
+/**
+ * Function validProbability.
+ *
+ * @param value - Description of value.
+ * @returns {value is number} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = validProbability(...);
+ * ```
+ */
 function validProbability(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 1;
 }
+/**
+ * Function validateDistribution.
+ *
+ * @param value - Description of value.
+ * @param {string[]} labels - Description of labels.
+ * @returns {Record<string, number> | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = validateDistribution(..., ...);
+ * ```
+ */
 function validateDistribution(value: unknown, labels?: string[]): Record<string, number> | null {
   if (!isRecord(value)) return null;
   const entries = Object.entries(value);
@@ -152,6 +336,18 @@ function validateDistribution(value: unknown, labels?: string[]): Record<string,
   if (Math.abs(sum - 1) > 0.025) return null;
   return Object.fromEntries(entries) as Record<string, number>;
 }
+/**
+ * Function normalizeAnswer.
+ *
+ * @param raw - Description of raw.
+ * @param {DecisionQuestion} question - Description of question.
+ * @returns {NormalizedProviderAnswer | null} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = normalizeAnswer(..., ...);
+ * ```
+ */
 function normalizeAnswer(raw: unknown, question: DecisionQuestion): NormalizedProviderAnswer | null {
   if (!isRecord(raw)) return null;
   if (raw.type !== question.type) return null;
@@ -202,6 +398,17 @@ function normalizeAnswer(raw: unknown, question: DecisionQuestion): NormalizedPr
   return {type, value: probability, confidence, distribution: {false: 1 - probability, true: probability}};
 }
 
+/**
+ * Function normalizeResponse.
+ *
+ * @param payload - Description of payload.
+ * @param {DecisionInput} input - Description of input.
+ *
+ * @example
+ * ```typescript
+ * const result = normalizeResponse(..., ...);
+ * ```
+ */
 function normalizeResponse(payload: unknown, input: DecisionInput): {model: string | null; answers: DecisionAnswer[]} | null {
   if (!isRecord(payload) || !isRecord(payload.answers)) return null;
   const questionIds = Object.keys(input.questions);
@@ -216,6 +423,17 @@ function normalizeResponse(payload: unknown, input: DecisionInput): {model: stri
   return {model: typeof payload.model === 'string' ? payload.model : null, answers};
 }
 
+/**
+ * Function readBoundedResponse.
+ *
+ * @param {Response} response - Description of response.
+ * @returns {Promise<unknown>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = readBoundedResponse(...);
+ * ```
+ */
 async function readBoundedResponse(response: Response): Promise<unknown> {
   const contentLength = response.headers.get('content-length');
   if (contentLength && (!/^\d+$/.test(contentLength) || Number(contentLength) > LIMITS.responseBytes)) throw new Error('response-too-large');
@@ -241,10 +459,39 @@ async function readBoundedResponse(response: Response): Promise<unknown> {
   return JSON.parse(new TextDecoder('utf-8', {fatal: true}).decode(bytes));
 }
 
+/**
+ * Function baseResult.
+ *
+ * @param {DecisionProvider} provider - Description of provider.
+ * @param {DecisionResult['status']} status - Description of status.
+ * @param {number | null} estimate - Description of estimate.
+ * @param {string} warning - Description of warning.
+ * @param {string} error - Description of error.
+ * @returns {DecisionResult} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = baseResult(..., ..., ..., ..., ...);
+ * ```
+ */
 function baseResult(provider: DecisionProvider, status: DecisionResult['status'], estimate: number | null, warning: string, error?: string): DecisionResult {
   return {provider, status, answers: [], elapsedMs: 0, estimatedCostMicrousd: estimate, actualCostMicrousd: null, model: null, ...(error ? {error} : {}), warnings: warning ? [warning] : []};
 }
 
+/**
+ * Function callProvider.
+ *
+ * @param {DecisionProvider} provider - Description of provider.
+ * @param {ProviderConfig} config - Description of config.
+ * @param {DecisionInput} input - Description of input.
+ * @param {Fetcher} fetcher - Description of fetcher.
+ * @returns {Promise<DecisionResult>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = callProvider(..., ..., ..., ...);
+ * ```
+ */
 async function callProvider(provider: DecisionProvider, config: ProviderConfig, input: DecisionInput, fetcher: Fetcher): Promise<DecisionResult> {
   const started = Date.now();
   const estimate = config.cost * Object.keys(input.questions).length;
@@ -282,6 +529,19 @@ async function callProvider(provider: DecisionProvider, config: ProviderConfig, 
   } finally { clearTimeout(timer); }
 }
 
+/**
+ * Function runDecisions.
+ *
+ * @param {DecisionInput | unknown} raw - Description of raw.
+ * @param {RuntimeEnv} env - Description of env.
+ * @param {Fetcher} fetcher - Description of fetcher.
+ * @returns {Promise<DecisionResult[]>} Description of return value.
+ *
+ * @example
+ * ```typescript
+ * const result = runDecisions(..., ..., ...);
+ * ```
+ */
 export async function runDecisions(raw: DecisionInput | unknown, env: RuntimeEnv = process.env, fetcher: Fetcher = fetch): Promise<DecisionResult[]> {
   const input = validateDecisionInput(raw);
   const configs = new Map<DecisionProvider, ProviderConfig | null>();
@@ -311,4 +571,13 @@ export async function runDecisions(raw: DecisionInput | unknown, env: RuntimeEnv
   }));
 }
 
+/**
+ * Constant decisionRuntimeLimits.
+ *
+ *
+ * @example
+ * ```typescript
+ * import { decisionRuntimeLimits } from './module';
+ * ```
+ */
 export const decisionRuntimeLimits = Object.freeze({...LIMITS});
