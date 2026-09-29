@@ -1,0 +1,9 @@
+{
+  "name": "apex-repository-evidence",
+  "version": "0.1.0",
+  "description": "Build a deterministic ApexGraphSwarm repository graph and produce source-grounded explanations with explicit evidence limits.",
+  "author": {
+    "name": "AAH20"
+  },
+  "license": "Apache-2.0"
+}
