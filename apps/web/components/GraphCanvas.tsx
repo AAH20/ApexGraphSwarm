@@ -163,19 +163,32 @@ export default function GraphCanvas({
       });
 
       renderer = new Sigma(graph, host, {
-        defaultNodeColor: COLORS.file,
-        defaultEdgeColor: "rgba(151, 167, 194, 0.22)",
-        defaultEdgeType: "arrow",
-        labelFont: "Inter, ui-sans-serif, system-ui, sans-serif",
-        labelSize: nodes.length <= 60 ? 13 : 11,
-        labelWeight: "500",
-        labelColor: { color: "#e5ebf6" },
-        labelRenderedSizeThreshold: labelsAlwaysVisible || nodes.length <= 60 ? 0 : 7,
-        labelDensity: labelsAlwaysVisible || nodes.length <= 60 ? 1 : 0.08,
-        stagePadding: 28,
-        minCameraRatio: 0.08,
-        maxCameraRatio: 8,
-        hideEdgesOnMove: true,
+        styles: {
+          nodes: {
+            x: { attribute: "x" },
+            y: { attribute: "y" },
+            size: { attribute: "size", defaultValue: 4 },
+            color: { attribute: "color", defaultValue: COLORS.file },
+            label: { attribute: "label" },
+            labelColor: "#e5ebf6",
+            labelFont: "Inter, ui-sans-serif, system-ui, sans-serif",
+            labelSize: nodes.length <= 60 ? 13 : 11,
+          },
+          edges: {
+            size: { attribute: "size", defaultValue: 1 },
+            color: { attribute: "color", defaultValue: "rgba(151, 167, 194, 0.22)" },
+            label: { attribute: "label" },
+            head: "arrow",
+          },
+        },
+        settings: {
+          labelRenderedSizeThreshold: labelsAlwaysVisible || nodes.length <= 60 ? 0 : 7,
+          labelDensity: labelsAlwaysVisible || nodes.length <= 60 ? 1 : 0.08,
+          stagePadding: 28,
+          minCameraRatio: 0.08,
+          maxCameraRatio: 8,
+          hideEdgesOnMove: true,
+        },
         nodeReducer: (key, data) => {
           if (!selectedRef.current || !graph!.hasNode(selectedRef.current)) return data;
           if (key === selectedRef.current) {
