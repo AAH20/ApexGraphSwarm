@@ -1,0 +1,197 @@
+name: Benchmark
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: "Run with debug logging"
+        required: false
+        default: "false"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  benchmark:
+    name: Performance Benchmarks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Project uses plain Python with no packaging; ensure root is importable
+          echo "PYTHONPATH=$PWD:${PYTHONPATH:-}" >> $GITHUB_ENV
+
+      - name: Install Node.js dependencies
+        run: |
+          cd apps/web && npm ci
+
+      - name: Run benchmarks
+        id: benchmark
+        run: |
+          python scripts/run_ci_benchmarks.py
+        continue-on-error: true
+
+      - name: Upload benchmark report
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-report-${{ github.run_id }}
+          path: |
+            reports/ci-benchmark-report.json
+            reports/ci-swarm.json
+          retention-days: 90
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request' && steps.benchmark.outcome != 'skipped'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            let report;
+            try {
+              report = JSON.parse(fs.readFileSync('reports/ci-benchmark-report.json', 'utf8'));
+            } catch (e) {
+              console.log('Could not read benchmark report');
+              return;
+            }
+
+            const status = report.status === 'pass' ? '✅ PASS' : '❌ FAIL';
+            const regressions = report.regressions || [];
+
+            let body = `## ${status} — Performance Benchmarks\n\n`;
+
+            // Benchmark results table
+            body += '| Benchmark | Status |\n';
+            body += '|-----------|--------|\n';
+            for (const [name, result] of Object.entries(report.benchmarks || {})) {
+              const icon = result.status === 'pass' ? '✅' : result.status === 'fail' ? '❌' : '⏭️';
+              body += `| ${name} | ${icon} ${result.status} |\n`;
+            }
+
+            // Regressions
+            if (regressions.length > 0) {
+              body += `\n### ⚠️ Performance Regressions (${regressions.length})\n\n`;
+              body += '| Scenario | Metric | Baseline | Current | Change | Threshold |\n';
+              body += '|----------|--------|----------|---------|--------|----------|\n';
+              for (const reg of regressions) {
+                const scenario = reg.scenario || reg.benchmark || 'unknown';
+                body += `| ${scenario} | ${reg.metric} | ${reg.baseline} | ${reg.current} | ${reg.changePercent}% | ${reg.threshold}% |\n`;
+              }
+            } else {
+              body += '\n### ✅ No performance regressions detected\n';
+            }
+
+            // Environment info
+            body += `\n<details><summary>Environment</summary>\n\n`;
+            body += `- **Python:** ${report.environment?.python || 'unknown'}\n`;
+            body += `- **Platform:** ${report.environment?.platform || 'unknown'}\n`;
+            body += `- **Run ID:** ${report.environment?.githubRunId || 'unknown'}\n`;
+            body += `- **Commit:** \`${report.environment?.githubSha || 'unknown'}\`\n`;
+            body += `\n</details>\n`;
+
+            // Find existing comment to update
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Performance Benchmarks')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body,
+              });
+            }
+
+      - name: Fail on regression
+        if: steps.benchmark.outcome == 'failure'
+        run: |
+          echo "::error::Performance regressions detected. See benchmark report for details."
+          exit 1
+
+  benchmark-summary:
+    name: Benchmark Summary
+    runs-on: ubuntu-latest
+    needs: benchmark
+    if: always() && needs.benchmark.result != 'skipped'
+
+    steps:
+      - name: Download benchmark report
+        uses: actions/download-artifact@v4
+        with:
+          name: benchmark-report-${{ github.run_id }}
+          path: reports
+
+      - name: Parse and display results
+        run: |
+          echo "## Benchmark Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f reports/ci-benchmark-report.json ]; then
+            python3 -c "
+            import json
+            import sys
+
+            with open('reports/ci-benchmark-report.json') as f:
+                report = json.load(f)
+
+            status = '✅ PASS' if report['status'] == 'pass' else '❌ FAIL'
+            print(f'### {status}')
+            print()
+            print('| Benchmark | Status |')
+            print('|-----------|--------|')
+            for name, result in report.get('benchmarks', {}).items():
+                icon = '✅' if result['status'] == 'pass' else '❌' if result['status'] == 'fail' else '⏭️'
+                print(f'| {name} | {icon} {result[\"status\"]} |')
+
+            regressions = report.get('regressions', [])
+            if regressions:
+                print()
+                print(f'### ⚠️ {len(regressions)} Performance Regression(s)')
+                print()
+                for reg in regressions:
+                    scenario = reg.get('scenario', reg.get('benchmark', 'unknown'))
+                    print(f'- **{scenario}**: {reg[\"metric\"]} {reg[\"changePercent\"]:+.1f}% (threshold: {reg[\"threshold\"]:+.1f}%)')
+            " >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No benchmark report found" >> $GITHUB_STEP_SUMMARY
+          fi
