@@ -1,0 +1,94 @@
+{
+  "capturedAt": "2026-09-27",
+  "sourceCommit": "d3a2008834b9f1c8bbd2e24efdd3e2effa5a5a93",
+  "source": "Local ApexGraphSwarm production preview; actual browser screenshots",
+  "editing": "Screenshots unretouched; GIF resizes and letterboxes them with separate captions. Edited walkthrough, not real-time video.",
+  "frameDurationSeconds": 4,
+  "frames": [
+    {
+      "file": "screenshots/01-modules.png",
+      "title": "Fullscreen module graph",
+      "caption": "Explore repository structure with filters, evidence and source inspection."
+    },
+    {
+      "file": "screenshots/02-files.png",
+      "title": "File relationships",
+      "caption": "Switch detail levels without losing the repository context."
+    },
+    {
+      "file": "screenshots/03-symbols.png",
+      "title": "Functions and classes",
+      "caption": "Inspect indexed symbols; graph coverage is bounded by the analyzer."
+    },
+    {
+      "file": "screenshots/04-search-calls.png",
+      "title": "Search and relationship filters",
+      "caption": "Narrow the graph to control-related symbols and call relationships."
+    },
+    {
+      "file": "screenshots/06-node-search.png",
+      "title": "Accessible node search",
+      "caption": "Find an exact function through the searchable node list."
+    },
+    {
+      "file": "screenshots/07-function-neighborhood.png",
+      "title": "Inspect a dependency neighborhood",
+      "caption": "Read the function summary, source location and relationship evidence."
+    },
+    {
+      "file": "screenshots/05-force-layout.png",
+      "title": "Force layout, zoom and fit",
+      "caption": "Inspect a bounded neighborhood using the background layout worker."
+    },
+    {
+      "file": "screenshots/08-evidence-direction.png",
+      "title": "Evidence and dependency direction",
+      "caption": "Choose observed evidence, neighborhood depth and incoming dependents."
+    },
+    {
+      "file": "screenshots/09-constraints.png",
+      "title": "Explicit graph constraints",
+      "caption": "Parser coverage, render budgets and unresolved references stay visible."
+    },
+    {
+      "file": "screenshots/10-directed-path.png",
+      "title": "Directed dependency paths",
+      "caption": "Trace semantic relationships; inventory edges are excluded."
+    },
+    {
+      "file": "screenshots/11-local-specialists.png",
+      "title": "Local analysis specialists",
+      "caption": "Three deterministic specialists completed; no model tokens were used."
+    },
+    {
+      "file": "screenshots/14-export-storage.png",
+      "title": "Export and optional Neo4j storage",
+      "caption": "Snapshot and Neo4j bundle exports; database storage requires configuration."
+    },
+    {
+      "file": "screenshots/12-integrations.png",
+      "title": "Frameworks, kernels and harnesses",
+      "caption": "Configuration UI only: no remote framework or paid model run is shown."
+    },
+    {
+      "file": "screenshots/13-economics.png",
+      "title": "Execution economics",
+      "caption": "Editable planning assumptions; unknown costs remain unknown."
+    },
+    {
+      "file": "screenshots/15-scope-hierarchy.png",
+      "title": "Specialist scope graph",
+      "caption": "Example data-center, Physical AI and IoT branches are design-only."
+    },
+    {
+      "file": "screenshots/16-scope-assignment.png",
+      "title": "Dedicated teams by scope",
+      "caption": "Explicit team assignment does not create a live permission grant."
+    },
+    {
+      "file": "screenshots/17-scope-drilldown.png",
+      "title": "Zoom into a dedicated scope",
+      "caption": "Navigate the hierarchy; infrastructure control remains unconnected."
+    }
+  ]
+}
