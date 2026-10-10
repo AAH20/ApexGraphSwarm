@@ -1,0 +1,147 @@
+{
+  "project": "apexgraphswarm-workbench",
+  "version": "0.1.0",
+  "auditDate": "2026-09-29",
+  "summary": {
+    "totalDependencies": 136,
+    "prodDependencies": 42,
+    "devDependencies": 55,
+    "optionalDependencies": 86,
+    "peerDependencies": 1,
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "outdatedPackages": 1,
+    "extraneousPackages": 2
+  },
+  "vulnerabilities": [],
+  "outdated": [
+    {
+      "package": "ai",
+      "current": "7.0.117",
+      "wanted": "7.0.117",
+      "latest": "7.0.122",
+      "severity": "patch",
+      "recommendation": "Update to 7.0.122 — patch release, low risk"
+    }
+  ],
+  "extraneous": [
+    {
+      "package": "@emnapi/runtime",
+      "version": "1.11.3",
+      "note": "Not in package.json — likely a transitive dep that can be pruned"
+    },
+    {
+      "package": "@img/sharp-wasm32",
+      "version": "0.35.4",
+      "note": "Not in package.json — likely a transitive dep that can be pruned"
+    }
+  ],
+  "directDependencies": {
+    "dependencies": [
+      { "name": "ai", "version": "7.0.117", "latest": "7.0.122", "status": "outdated" },
+      { "name": "graphology", "version": "0.26.0", "latest": "0.26.0", "status": "up-to-date" },
+      { "name": "graphology-communities-louvain", "version": "2.0.2", "latest": "2.0.2", "status": "up-to-date" },
+      { "name": "graphology-layout", "version": "0.6.1", "latest": "0.6.1", "status": "up-to-date" },
+      { "name": "graphology-layout-forceatlas2", "version": "0.10.1", "latest": "0.10.1", "status": "up-to-date" },
+      { "name": "graphology-metrics", "version": "2.4.2", "latest": "2.4.2", "status": "up-to-date" },
+      { "name": "lucide-react", "version": "1.48.0", "latest": "1.48.0", "status": "up-to-date" },
+      { "name": "next", "version": "16.3.6", "latest": "16.3.6", "status": "up-to-date" },
+      { "name": "react", "version": "19.3.0", "latest": "19.3.0", "status": "up-to-date" },
+      { "name": "react-dom", "version": "19.3.0", "latest": "19.3.0", "status": "up-to-date" },
+      { "name": "sigma", "version": "3.0.3", "latest": "3.0.3", "status": "up-to-date" },
+      { "name": "zod", "version": "4.6.5", "latest": "4.6.5", "status": "up-to-date" }
+    ],
+    "devDependencies": [
+      { "name": "@types/node", "version": "26.6.3", "latest": "26.6.3", "status": "up-to-date" },
+      { "name": "@types/react", "version": "19.3.0", "latest": "19.3.0", "status": "up-to-date" },
+      { "name": "@types/react-dom", "version": "19.3.0", "latest": "19.3.0", "status": "up-to-date" },
+      { "name": "tsx", "version": "4.23.15", "latest": "4.23.15", "status": "up-to-date" },
+      { "name": "typescript", "version": "7.0.2", "latest": "7.0.2", "status": "up-to-date" }
+    ]
+  },
+  "transitiveDependencies": {
+    "@ai-sdk/gateway": "4.0.95",
+    "@ai-sdk/provider": "4.0.18",
+    "@ai-sdk/provider-utils": "5.0.49",
+    "@emnapi/runtime": "1.11.3",
+    "@esbuild/darwin-arm64": "0.28.2",
+    "@img/colour": "1.1.0",
+    "@img/sharp-darwin-arm64": "0.35.4",
+    "@img/sharp-libvips-darwin-arm64": "1.3.3",
+    "@img/sharp-wasm32": "0.35.4",
+    "@next/env": "16.3.6",
+    "@next/swc-darwin-arm64": "16.3.6",
+    "@playwright/test": "*",
+    "@standard-schema/spec": "1.1.0",
+    "@swc/helpers": "0.5.23",
+    "@typescript/typescript-darwin-arm64": "7.0.2",
+    "@types/node": "26.6.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vercel/oidc": "3.2.0",
+    "@workflow/serde": "4.1.0",
+    "@yomguithereal/helpers": "1.1.1",
+    "babel-plugin-react-compiler": "*",
+    "baseline-browser-mapping": "2.11.26",
+    "caniuse-lite": "1.0.30001812",
+    "client-only": "0.0.1",
+    "csstype": "3.2.3",
+    "detect-libc": "2.1.2",
+    "esbuild": "0.28.2",
+    "events": "3.3.0",
+    "eventsource-parser": "3.1.1",
+    "fsevents": "2.3.3",
+    "graphology-indices": "0.17.0",
+    "graphology-shortest-path": "2.1.0",
+    "graphology-types": "0.24.8",
+    "graphology-utils": "2.5.2",
+    "json-schema": "0.4.0",
+    "mnemonist": "0.39.8",
+    "nanoid": "3.3.19",
+    "obliterator": "2.0.5",
+    "pandemonium": "2.4.1",
+    "picocolors": "1.1.1",
+    "postcss": "8.5.23",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "sass": "*",
+    "scheduler": "0.28.0",
+    "semver": "7.8.5",
+    "sharp": "0.35.4",
+    "source-map-js": "1.2.1",
+    "styled-jsx": "5.1.6",
+    "tslib": "2.8.1",
+    "typescript": "7.0.2",
+    "undici": "7.30.0",
+    "undici-types": "8.9.0",
+    "zod": "4.6.5"
+  },
+  "recommendations": [
+    {
+      "priority": "low",
+      "action": "update",
+      "package": "ai",
+      "from": "7.0.117",
+      "to": "7.0.122",
+      "reason": "Patch release with bug fixes; low risk update"
+    },
+    {
+      "priority": "low",
+      "action": "prune",
+      "package": "@emnapi/runtime",
+      "reason": "Extraneous package not in dependency tree; run npm prune to remove"
+    },
+    {
+      "priority": "low",
+      "action": "prune",
+      "package": "@img/sharp-wasm32",
+      "reason": "Extraneous package not in dependency tree; run npm prune to remove"
+    }
+  ]
+}

@@ -1,0 +1,1398 @@
+{
+  "version": 1,
+  "source": "demo",
+  "generatedAt": "2026-09-27T23:59:59Z",
+  "windowStart": "2026-08-29T00:00:00Z",
+  "quality": {
+    "scannedRows": 112,
+    "selectedRows": 112,
+    "unknownCostRows": 0,
+    "invalidRows": 0,
+    "truncated": false,
+    "selectionKnownCoverage": true,
+    "cohortsTruncated": false,
+    "toolsTruncated": false,
+    "scatterSampled": false,
+    "latencySampled": false,
+    "graphTruncated": false,
+    "message": null
+  },
+  "kpis": {
+    "attempts": 112,
+    "succeeded": 103,
+    "failed": 9,
+    "running": 0,
+    "knownCostMicrousd": 9886,
+    "costPerSuccessMicrousd": 96,
+    "successRate": 0.919643
+  },
+  "latency": {
+    "count": 112,
+    "p50": 78.0,
+    "p95": 144.0,
+    "mean": 79.5,
+    "stddev": 40.339,
+    "histogram": [
+      {
+        "label": "0-15s",
+        "count": 3
+      },
+      {
+        "label": "15-30s",
+        "count": 13
+      },
+      {
+        "label": "30-45s",
+        "count": 12
+      },
+      {
+        "label": "45-60s",
+        "count": 13
+      },
+      {
+        "label": "60-75s",
+        "count": 12
+      },
+      {
+        "label": "75-90s",
+        "count": 12
+      },
+      {
+        "label": "90-105s",
+        "count": 12
+      },
+      {
+        "label": "105-120s",
+        "count": 11
+      },
+      {
+        "label": "120-135s",
+        "count": 12
+      },
+      {
+        "label": "135-150s",
+        "count": 12
+      }
+    ],
+    "sampled": false
+  },
+  "daily": [
+    {
+      "date": "2026-08-29",
+      "attempts": 0,
+      "succeeded": 0,
+      "knownCostMicrousd": 0,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-08-30",
+      "attempts": 0,
+      "succeeded": 0,
+      "knownCostMicrousd": 0,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-08-31",
+      "attempts": 2,
+      "succeeded": 1,
+      "knownCostMicrousd": 39,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-01",
+      "attempts": 4,
+      "succeeded": 4,
+      "knownCostMicrousd": 246,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-02",
+      "attempts": 6,
+      "succeeded": 6,
+      "knownCostMicrousd": 621,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-03",
+      "attempts": 3,
+      "succeeded": 3,
+      "knownCostMicrousd": 264,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-04",
+      "attempts": 5,
+      "succeeded": 4,
+      "knownCostMicrousd": 650,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-05",
+      "attempts": 2,
+      "succeeded": 2,
+      "knownCostMicrousd": 229,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-06",
+      "attempts": 4,
+      "succeeded": 4,
+      "knownCostMicrousd": 456,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-07",
+      "attempts": 6,
+      "succeeded": 5,
+      "knownCostMicrousd": 511,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-08",
+      "attempts": 3,
+      "succeeded": 2,
+      "knownCostMicrousd": 209,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-09",
+      "attempts": 5,
+      "succeeded": 5,
+      "knownCostMicrousd": 275,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-10",
+      "attempts": 2,
+      "succeeded": 2,
+      "knownCostMicrousd": 79,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-11",
+      "attempts": 4,
+      "succeeded": 4,
+      "knownCostMicrousd": 326,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-12",
+      "attempts": 6,
+      "succeeded": 5,
+      "knownCostMicrousd": 571,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-13",
+      "attempts": 3,
+      "succeeded": 2,
+      "knownCostMicrousd": 324,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-14",
+      "attempts": 5,
+      "succeeded": 5,
+      "knownCostMicrousd": 580,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-15",
+      "attempts": 2,
+      "succeeded": 2,
+      "knownCostMicrousd": 269,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-16",
+      "attempts": 4,
+      "succeeded": 4,
+      "knownCostMicrousd": 366,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-17",
+      "attempts": 6,
+      "succeeded": 5,
+      "knownCostMicrousd": 461,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-18",
+      "attempts": 3,
+      "succeeded": 3,
+      "knownCostMicrousd": 99,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-19",
+      "attempts": 5,
+      "succeeded": 5,
+      "knownCostMicrousd": 375,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-20",
+      "attempts": 2,
+      "succeeded": 2,
+      "knownCostMicrousd": 119,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-21",
+      "attempts": 4,
+      "succeeded": 3,
+      "knownCostMicrousd": 406,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-22",
+      "attempts": 6,
+      "succeeded": 6,
+      "knownCostMicrousd": 521,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-23",
+      "attempts": 3,
+      "succeeded": 3,
+      "knownCostMicrousd": 384,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-24",
+      "attempts": 5,
+      "succeeded": 5,
+      "knownCostMicrousd": 510,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-25",
+      "attempts": 2,
+      "succeeded": 2,
+      "knownCostMicrousd": 309,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-26",
+      "attempts": 4,
+      "succeeded": 3,
+      "knownCostMicrousd": 276,
+      "unknownCostRows": 0
+    },
+    {
+      "date": "2026-09-27",
+      "attempts": 6,
+      "succeeded": 6,
+      "knownCostMicrousd": 411,
+      "unknownCostRows": 0
+    }
+  ],
+  "cohorts": [
+    {
+      "tool": "model:demo-small",
+      "resource": "demo-pool-a",
+      "attempts": 34,
+      "succeeded": 31,
+      "knownCostMicrousd": 2961,
+      "unknownCostRows": 0,
+      "meanLatencySeconds": 80.265
+    },
+    {
+      "tool": "integration:demo:review",
+      "resource": "demo-pool-a",
+      "attempts": 33,
+      "succeeded": 31,
+      "knownCostMicrousd": 3038,
+      "unknownCostRows": 0,
+      "meanLatencySeconds": 83.394
+    },
+    {
+      "tool": "integration:demo:review",
+      "resource": "demo-pool-b",
+      "attempts": 28,
+      "succeeded": 25,
+      "knownCostMicrousd": 2306,
+      "unknownCostRows": 0,
+      "meanLatencySeconds": 75.5
+    },
+    {
+      "tool": "model:demo-small",
+      "resource": "demo-pool-b",
+      "attempts": 17,
+      "succeeded": 16,
+      "knownCostMicrousd": 1581,
+      "unknownCostRows": 0,
+      "meanLatencySeconds": 77.0
+    }
+  ],
+  "heatmap": [
+    {
+      "day": 0,
+      "hour": 0,
+      "count": 2
+    },
+    {
+      "day": 0,
+      "hour": 2,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 3,
+      "count": 2
+    },
+    {
+      "day": 0,
+      "hour": 6,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 7,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 10,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 13,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 14,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 16,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 17,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 19,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 20,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 21,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 22,
+      "count": 1
+    },
+    {
+      "day": 0,
+      "hour": 23,
+      "count": 1
+    },
+    {
+      "day": 1,
+      "hour": 1,
+      "count": 2
+    },
+    {
+      "day": 1,
+      "hour": 4,
+      "count": 2
+    },
+    {
+      "day": 1,
+      "hour": 7,
+      "count": 2
+    },
+    {
+      "day": 1,
+      "hour": 8,
+      "count": 1
+    },
+    {
+      "day": 1,
+      "hour": 10,
+      "count": 2
+    },
+    {
+      "day": 1,
+      "hour": 11,
+      "count": 1
+    },
+    {
+      "day": 1,
+      "hour": 13,
+      "count": 1
+    },
+    {
+      "day": 1,
+      "hour": 14,
+      "count": 1
+    },
+    {
+      "day": 1,
+      "hour": 15,
+      "count": 1
+    },
+    {
+      "day": 1,
+      "hour": 18,
+      "count": 1
+    },
+    {
+      "day": 1,
+      "hour": 22,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 1,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 2,
+      "count": 2
+    },
+    {
+      "day": 2,
+      "hour": 5,
+      "count": 2
+    },
+    {
+      "day": 2,
+      "hour": 8,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 9,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 11,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 12,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 14,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 15,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 16,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 17,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 18,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 19,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 21,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 22,
+      "count": 1
+    },
+    {
+      "day": 2,
+      "hour": 23,
+      "count": 1
+    },
+    {
+      "day": 3,
+      "hour": 0,
+      "count": 1
+    },
+    {
+      "day": 3,
+      "hour": 2,
+      "count": 1
+    },
+    {
+      "day": 3,
+      "hour": 3,
+      "count": 2
+    },
+    {
+      "day": 3,
+      "hour": 5,
+      "count": 1
+    },
+    {
+      "day": 3,
+      "hour": 6,
+      "count": 2
+    },
+    {
+      "day": 3,
+      "hour": 8,
+      "count": 1
+    },
+    {
+      "day": 3,
+      "hour": 9,
+      "count": 2
+    },
+    {
+      "day": 3,
+      "hour": 10,
+      "count": 1
+    },
+    {
+      "day": 3,
+      "hour": 12,
+      "count": 1
+    },
+    {
+      "day": 3,
+      "hour": 13,
+      "count": 1
+    },
+    {
+      "day": 3,
+      "hour": 17,
+      "count": 1
+    },
+    {
+      "day": 3,
+      "hour": 20,
+      "count": 1
+    },
+    {
+      "day": 3,
+      "hour": 23,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 0,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 1,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 4,
+      "count": 2
+    },
+    {
+      "day": 4,
+      "hour": 7,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 10,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 11,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 13,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 14,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 16,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 17,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 18,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 20,
+      "count": 1
+    },
+    {
+      "day": 4,
+      "hour": 21,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 0,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 1,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 2,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 3,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 4,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 5,
+      "count": 2
+    },
+    {
+      "day": 5,
+      "hour": 7,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 8,
+      "count": 2
+    },
+    {
+      "day": 5,
+      "hour": 11,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 12,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 15,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 18,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 19,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 21,
+      "count": 1
+    },
+    {
+      "day": 5,
+      "hour": 22,
+      "count": 1
+    },
+    {
+      "day": 6,
+      "hour": 3,
+      "count": 1
+    },
+    {
+      "day": 6,
+      "hour": 6,
+      "count": 2
+    },
+    {
+      "day": 6,
+      "hour": 9,
+      "count": 2
+    },
+    {
+      "day": 6,
+      "hour": 12,
+      "count": 2
+    },
+    {
+      "day": 6,
+      "hour": 13,
+      "count": 1
+    },
+    {
+      "day": 6,
+      "hour": 15,
+      "count": 2
+    },
+    {
+      "day": 6,
+      "hour": 16,
+      "count": 1
+    },
+    {
+      "day": 6,
+      "hour": 18,
+      "count": 1
+    },
+    {
+      "day": 6,
+      "hour": 19,
+      "count": 1
+    },
+    {
+      "day": 6,
+      "hour": 20,
+      "count": 1
+    },
+    {
+      "day": 6,
+      "hour": 23,
+      "count": 1
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "resource:demo-pool-a",
+        "label": "demo-pool-a",
+        "kind": "resource"
+      },
+      {
+        "id": "resource:demo-pool-b",
+        "label": "demo-pool-b",
+        "kind": "resource"
+      },
+      {
+        "id": "tool:integration:demo:review",
+        "label": "integration:demo:review",
+        "kind": "tool"
+      },
+      {
+        "id": "tool:model:demo-small",
+        "label": "model:demo-small",
+        "kind": "tool"
+      }
+    ],
+    "edges": [
+      {
+        "source": "tool:model:demo-small",
+        "target": "resource:demo-pool-a",
+        "attempts": 34,
+        "knownCostMicrousd": 2961
+      },
+      {
+        "source": "tool:integration:demo:review",
+        "target": "resource:demo-pool-a",
+        "attempts": 33,
+        "knownCostMicrousd": 3038
+      },
+      {
+        "source": "tool:integration:demo:review",
+        "target": "resource:demo-pool-b",
+        "attempts": 28,
+        "knownCostMicrousd": 2306
+      },
+      {
+        "source": "tool:model:demo-small",
+        "target": "resource:demo-pool-b",
+        "attempts": 17,
+        "knownCostMicrousd": 1581
+      }
+    ]
+  },
+  "forecast": {
+    "status": "available",
+    "points": [
+      {
+        "date": "2026-09-27",
+        "predictedMicrousd": 367,
+        "lowerMicrousd": 32,
+        "upperMicrousd": 702
+      },
+      {
+        "date": "2026-09-28",
+        "predictedMicrousd": 368,
+        "lowerMicrousd": 33,
+        "upperMicrousd": 703
+      },
+      {
+        "date": "2026-09-29",
+        "predictedMicrousd": 369,
+        "lowerMicrousd": 34,
+        "upperMicrousd": 704
+      },
+      {
+        "date": "2026-09-30",
+        "predictedMicrousd": 370,
+        "lowerMicrousd": 35,
+        "upperMicrousd": 705
+      },
+      {
+        "date": "2026-10-01",
+        "predictedMicrousd": 371,
+        "lowerMicrousd": 36,
+        "upperMicrousd": 706
+      },
+      {
+        "date": "2026-10-02",
+        "predictedMicrousd": 372,
+        "lowerMicrousd": 37,
+        "upperMicrousd": 707
+      },
+      {
+        "date": "2026-10-03",
+        "predictedMicrousd": 373,
+        "lowerMicrousd": 38,
+        "upperMicrousd": 708
+      }
+    ],
+    "backtestMAE": 98.173,
+    "naiveMAE": 103.0,
+    "method": "OLS linear trend over daily known spend; 3-day holdout; 7-day horizon",
+    "trainingDates": [
+      "2026-08-31",
+      "2026-09-01",
+      "2026-09-02",
+      "2026-09-03",
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-06",
+      "2026-09-07",
+      "2026-09-08",
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20",
+      "2026-09-21",
+      "2026-09-22",
+      "2026-09-23"
+    ],
+    "holdoutDates": [
+      "2026-09-24",
+      "2026-09-25",
+      "2026-09-26"
+    ],
+    "limitations": [
+      "Prediction bands are heuristic residual bands, not confidence intervals."
+    ]
+  },
+  "anomalies": [],
+  "correlation": {
+    "n": 112,
+    "pearsonR": -0.043295
+  },
+  "scatter": [
+    {
+      "latencySeconds": 12.0,
+      "costMicrousd": 8
+    },
+    {
+      "latencySeconds": 13.0,
+      "costMicrousd": 147
+    },
+    {
+      "latencySeconds": 14.0,
+      "costMicrousd": 136
+    },
+    {
+      "latencySeconds": 15.0,
+      "costMicrousd": 85
+    },
+    {
+      "latencySeconds": 17.0,
+      "costMicrousd": 63
+    },
+    {
+      "latencySeconds": 18.0,
+      "costMicrousd": 162
+    },
+    {
+      "latencySeconds": 19.0,
+      "costMicrousd": 151
+    },
+    {
+      "latencySeconds": 21.0,
+      "costMicrousd": 89
+    },
+    {
+      "latencySeconds": 22.0,
+      "costMicrousd": 78
+    },
+    {
+      "latencySeconds": 23.0,
+      "costMicrousd": 27
+    },
+    {
+      "latencySeconds": 24.0,
+      "costMicrousd": 166
+    },
+    {
+      "latencySeconds": 25.0,
+      "costMicrousd": 155
+    },
+    {
+      "latencySeconds": 26.0,
+      "costMicrousd": 104
+    },
+    {
+      "latencySeconds": 27.0,
+      "costMicrousd": 93
+    },
+    {
+      "latencySeconds": 29.0,
+      "costMicrousd": 11
+    },
+    {
+      "latencySeconds": 29.0,
+      "costMicrousd": 31
+    },
+    {
+      "latencySeconds": 30.0,
+      "costMicrousd": 170
+    },
+    {
+      "latencySeconds": 32.0,
+      "costMicrousd": 108
+    },
+    {
+      "latencySeconds": 34.0,
+      "costMicrousd": 46
+    },
+    {
+      "latencySeconds": 34.0,
+      "costMicrousd": 86
+    },
+    {
+      "latencySeconds": 35.0,
+      "costMicrousd": 15
+    },
+    {
+      "latencySeconds": 37.0,
+      "costMicrousd": 123
+    },
+    {
+      "latencySeconds": 38.0,
+      "costMicrousd": 112
+    },
+    {
+      "latencySeconds": 39.0,
+      "costMicrousd": 101
+    },
+    {
+      "latencySeconds": 40.0,
+      "costMicrousd": 50
+    },
+    {
+      "latencySeconds": 42.0,
+      "costMicrousd": 8
+    },
+    {
+      "latencySeconds": 43.0,
+      "costMicrousd": 127
+    },
+    {
+      "latencySeconds": 44.0,
+      "costMicrousd": 116
+    },
+    {
+      "latencySeconds": 45.0,
+      "costMicrousd": 65
+    },
+    {
+      "latencySeconds": 46.0,
+      "costMicrousd": 34
+    },
+    {
+      "latencySeconds": 47.0,
+      "costMicrousd": 23
+    },
+    {
+      "latencySeconds": 48.0,
+      "costMicrousd": 142
+    },
+    {
+      "latencySeconds": 49.0,
+      "costMicrousd": 131
+    },
+    {
+      "latencySeconds": 51.0,
+      "costMicrousd": 69
+    },
+    {
+      "latencySeconds": 52.0,
+      "costMicrousd": 38
+    },
+    {
+      "latencySeconds": 54.0,
+      "costMicrousd": 146
+    },
+    {
+      "latencySeconds": 55.0,
+      "costMicrousd": 135
+    },
+    {
+      "latencySeconds": 56.0,
+      "costMicrousd": 84
+    },
+    {
+      "latencySeconds": 57.0,
+      "costMicrousd": 73
+    },
+    {
+      "latencySeconds": 59.0,
+      "costMicrousd": 31
+    },
+    {
+      "latencySeconds": 59.0,
+      "costMicrousd": 161
+    },
+    {
+      "latencySeconds": 60.0,
+      "costMicrousd": 150
+    },
+    {
+      "latencySeconds": 62.0,
+      "costMicrousd": 88
+    },
+    {
+      "latencySeconds": 63.0,
+      "costMicrousd": 57
+    },
+    {
+      "latencySeconds": 64.0,
+      "costMicrousd": 46
+    },
+    {
+      "latencySeconds": 65.0,
+      "costMicrousd": 165
+    },
+    {
+      "latencySeconds": 67.0,
+      "costMicrousd": 103
+    },
+    {
+      "latencySeconds": 68.0,
+      "costMicrousd": 92
+    },
+    {
+      "latencySeconds": 69.0,
+      "costMicrousd": 61
+    },
+    {
+      "latencySeconds": 70.0,
+      "costMicrousd": 10
+    },
+    {
+      "latencySeconds": 72.0,
+      "costMicrousd": 158
+    },
+    {
+      "latencySeconds": 73.0,
+      "costMicrousd": 107
+    },
+    {
+      "latencySeconds": 74.0,
+      "costMicrousd": 96
+    },
+    {
+      "latencySeconds": 76.0,
+      "costMicrousd": 14
+    },
+    {
+      "latencySeconds": 77.0,
+      "costMicrousd": 173
+    },
+    {
+      "latencySeconds": 78.0,
+      "costMicrousd": 122
+    },
+    {
+      "latencySeconds": 79.0,
+      "costMicrousd": 111
+    },
+    {
+      "latencySeconds": 80.0,
+      "costMicrousd": 80
+    },
+    {
+      "latencySeconds": 81.0,
+      "costMicrousd": 29
+    },
+    {
+      "latencySeconds": 82.0,
+      "costMicrousd": 18
+    },
+    {
+      "latencySeconds": 84.0,
+      "costMicrousd": 126
+    },
+    {
+      "latencySeconds": 85.0,
+      "costMicrousd": 115
+    },
+    {
+      "latencySeconds": 87.0,
+      "costMicrousd": 33
+    },
+    {
+      "latencySeconds": 89.0,
+      "costMicrousd": 11
+    },
+    {
+      "latencySeconds": 89.0,
+      "costMicrousd": 141
+    },
+    {
+      "latencySeconds": 90.0,
+      "costMicrousd": 130
+    },
+    {
+      "latencySeconds": 92.0,
+      "costMicrousd": 48
+    },
+    {
+      "latencySeconds": 93.0,
+      "costMicrousd": 37
+    },
+    {
+      "latencySeconds": 94.0,
+      "costMicrousd": 26
+    },
+    {
+      "latencySeconds": 95.0,
+      "costMicrousd": 145
+    },
+    {
+      "latencySeconds": 97.0,
+      "costMicrousd": 103
+    },
+    {
+      "latencySeconds": 98.0,
+      "costMicrousd": 52
+    },
+    {
+      "latencySeconds": 99.0,
+      "costMicrousd": 41
+    },
+    {
+      "latencySeconds": 100.0,
+      "costMicrousd": 160
+    },
+    {
+      "latencySeconds": 102.0,
+      "costMicrousd": 138
+    },
+    {
+      "latencySeconds": 103.0,
+      "costMicrousd": 67
+    },
+    {
+      "latencySeconds": 104.0,
+      "costMicrousd": 56
+    },
+    {
+      "latencySeconds": 106.0,
+      "costMicrousd": 164
+    },
+    {
+      "latencySeconds": 107.0,
+      "costMicrousd": 153
+    },
+    {
+      "latencySeconds": 109.0,
+      "costMicrousd": 71
+    },
+    {
+      "latencySeconds": 110.0,
+      "costMicrousd": 60
+    },
+    {
+      "latencySeconds": 111.0,
+      "costMicrousd": 9
+    },
+    {
+      "latencySeconds": 112.0,
+      "costMicrousd": 168
+    },
+    {
+      "latencySeconds": 114.0,
+      "costMicrousd": 86
+    },
+    {
+      "latencySeconds": 114.0,
+      "costMicrousd": 126
+    },
+    {
+      "latencySeconds": 115.0,
+      "costMicrousd": 75
+    },
+    {
+      "latencySeconds": 117.0,
+      "costMicrousd": 13
+    },
+    {
+      "latencySeconds": 119.0,
+      "costMicrousd": 161
+    },
+    {
+      "latencySeconds": 120.0,
+      "costMicrousd": 90
+    },
+    {
+      "latencySeconds": 122.0,
+      "costMicrousd": 28
+    },
+    {
+      "latencySeconds": 123.0,
+      "costMicrousd": 17
+    },
+    {
+      "latencySeconds": 124.0,
+      "costMicrousd": 176
+    },
+    {
+      "latencySeconds": 125.0,
+      "costMicrousd": 105
+    },
+    {
+      "latencySeconds": 127.0,
+      "costMicrousd": 83
+    },
+    {
+      "latencySeconds": 128.0,
+      "costMicrousd": 32
+    },
+    {
+      "latencySeconds": 129.0,
+      "costMicrousd": 21
+    },
+    {
+      "latencySeconds": 131.0,
+      "costMicrousd": 109
+    },
+    {
+      "latencySeconds": 132.0,
+      "costMicrousd": 98
+    },
+    {
+      "latencySeconds": 133.0,
+      "costMicrousd": 47
+    },
+    {
+      "latencySeconds": 134.0,
+      "costMicrousd": 36
+    },
+    {
+      "latencySeconds": 136.0,
+      "costMicrousd": 124
+    },
+    {
+      "latencySeconds": 137.0,
+      "costMicrousd": 113
+    },
+    {
+      "latencySeconds": 139.0,
+      "costMicrousd": 51
+    },
+    {
+      "latencySeconds": 140.0,
+      "costMicrousd": 40
+    },
+    {
+      "latencySeconds": 142.0,
+      "costMicrousd": 128
+    },
+    {
+      "latencySeconds": 144.0,
+      "costMicrousd": 66
+    },
+    {
+      "latencySeconds": 144.0,
+      "costMicrousd": 106
+    },
+    {
+      "latencySeconds": 145.0,
+      "costMicrousd": 55
+    },
+    {
+      "latencySeconds": 147.0,
+      "costMicrousd": 143
+    },
+    {
+      "latencySeconds": 148.0,
+      "costMicrousd": 132
+    },
+    {
+      "latencySeconds": 149.0,
+      "costMicrousd": 121
+    },
+    {
+      "latencySeconds": 150.0,
+      "costMicrousd": 70
+    }
+  ],
+  "limitations": [
+    "Demo timestamps are anchored to generatedAt and span 28 UTC dates.",
+    "Synthetic 28-day deterministic fixture; not observed execution data."
+  ],
+  "availableTools": [
+    "integration:demo:review",
+    "model:demo-small"
+  ]
+}

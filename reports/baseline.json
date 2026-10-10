@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-09-29T04:00:00Z",
+  "project": "ApexGraphSwarm",
+  "environment": {
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "python": "3.9.6",
+    "node": "v22.23.0",
+    "machine": "arm64"
+  },
+  "testSuites": {
+    "pythonUnittest": {
+      "command": "python3 -m unittest discover tests",
+      "totalTests": 214,
+      "passed": 214,
+      "failed": 0,
+      "errors": 0,
+      "durationSeconds": 36.35,
+      "status": "pass"
+    },
+    "webNpmTest": {
+      "command": "npm --prefix apps/web test",
+      "totalTests": 183,
+      "passed": 180,
+      "failed": 3,
+      "failures": [
+        {
+          "test": "actual adapter persists a pre-call checkpoint and normalized receipt in durable accounting",
+          "file": "apps/web/tests/durable-dispatch.test.ts",
+          "error": "Fixture did not settle",
+          "durationMs": 3295.06
+        },
+        {
+          "test": "unknown provider cost preserves output and reservation for reconciliation",
+          "file": "apps/web/tests/durable-dispatch.test.ts",
+          "error": "Fixture did not settle",
+          "durationMs": 4664.92
+        },
+        {
+          "test": "failed parallel model calls preserve the completed sibling receipt without dispatching a critic",
+          "file": "apps/web/tests/durable-dispatch.test.ts",
+          "error": "Fixture did not settle",
+          "durationMs": 5261.34
+        }
+      ],
+      "durationMs": 34094.47,
+      "status": "fail"
+    }
+  },
+  "benchmarks": {
+    "swarmQueue": {
+      "script": "scripts/benchmark_swarm.py",
+      "description": "Durable SQLite scheduler with deterministic SHA-256 fixture work",
+      "scenarios": [
+        {
+          "logicalAgents": 1,
+          "activeWorkerLimit": 1,
+          "observedPeakActive": 1,
+          "taskCount": 2,
+          "completed": 2,
+          "failed": 0,
+          "elapsedMs": 27.208,
+          "throughputTasksPerSecond": 73.507,
+          "latencyMs": {
+            "queueP50": null,
+            "queueP95": 23.671,
+            "serviceP50": null,
+            "serviceP95": null,
+            "endToEndP50": null,
+            "endToEndP95": null
+          },
+          "duplicateCompletions": 0,
+          "restartVerified": true,
+          "costConsistent": true,
+          "errors": []
+        },
+        {
+          "logicalAgents": 10,
+          "activeWorkerLimit": 10,
+          "observedPeakActive": 10,
+          "taskCount": 20,
+          "completed": 20,
+          "failed": 0,
+          "elapsedMs": 77.729,
+          "throughputTasksPerSecond": 257.304,
+          "latencyMs": {
+            "queueP50": null,
+            "queueP95": 48.322,
+            "serviceP50": null,
+            "serviceP95": null,
+            "endToEndP50": null,
+            "endToEndP95": null
+          },
+          "duplicateCompletions": 0,
+          "restartVerified": true,
+          "costConsistent": true,
+          "errors": []
+        },
+        {
+          "logicalAgents": 30,
+          "activeWorkerLimit": 30,
+          "observedPeakActive": 29,
+          "taskCount": 60,
+          "completed": 60,
+          "failed": 0,
+          "elapsedMs": 754.965,
+          "throughputTasksPerSecond": 79.474,
+          "latencyMs": {
+            "queueP50": null,
+            "queueP95": 237.428,
+            "serviceP50": null,
+            "serviceP95": null,
+            "endToEndP50": null,
+            "endToEndP95": null
+          },
+          "duplicateCompletions": 0,
+          "restartVerified": true,
+          "costConsistent": true,
+          "errors": []
+        },
+        {
+          "logicalAgents": 100,
+          "activeWorkerLimit": 32,
+          "observedPeakActive": 32,
+          "taskCount": 200,
+          "completed": 200,
+          "failed": 0,
+          "elapsedMs": 5892.217,
+          "throughputTasksPerSecond": 33.943,
+          "latencyMs": {
+            "queueP50": null,
+            "queueP95": 3341.831,
+            "serviceP50": null,
+            "serviceP95": null,
+            "endToEndP50": null,
+            "endToEndP95": null
+          },
+          "duplicateCompletions": 0,
+          "restartVerified": true,
+          "costConsistent": true,
+          "errors": []
+        },
+        {
+          "logicalAgents": 300,
+          "activeWorkerLimit": 32,
+          "observedPeakActive": 30,
+          "taskCount": 600,
+          "completed": 600,
+          "failed": 0,
+          "elapsedMs": 52545.124,
+          "throughputTasksPerSecond": 11.419,
+          "latencyMs": {
+            "queueP50": null,
+            "queueP95": 42638.491,
+            "serviceP50": null,
+            "serviceP95": null,
+            "endToEndP50": null,
+            "endToEndP95": null
+          },
+          "duplicateCompletions": 0,
+          "restartVerified": true,
+          "costConsistent": true,
+          "errors": []
+        }
+      ],
+      "config": {
+        "workersCap": 32,
+        "tasksPerAgent": 2,
+        "taskDelayMs": 2,
+        "seed": 20260927,
+        "fixture": "sha256-chain-v1-64 rounds + 2ms fixed local wait"
+      }
+    },
+    "optimization": {
+      "script": "scripts/benchmark_optimization.py",
+      "description": "Deterministic optimization helpers (synthetic fixtures)",
+      "cases": [
+        {
+          "id": "dag-scheduling",
+          "inputTasks": 4,
+          "elapsedMs": 0.606,
+          "algorithm": "bounded-exhaustive",
+          "result": {
+            "status": "feasible",
+            "exact": true,
+            "makespan": 3.75,
+            "total_cost_microusd": 32
+          }
+        },
+        {
+          "id": "evidence-selection",
+          "inputItems": 3,
+          "elapsedMs": 0.052,
+          "algorithm": "bounded-exhaustive",
+          "result": {
+            "exact": true,
+            "weighted_coverage": 8.0,
+            "tokens_used": 150
+          }
+        },
+        {
+          "id": "file-conflict-waves",
+          "inputTasks": 3,
+          "elapsedMs": 0.035,
+          "algorithm": "dependency-frontiers-with-file-serialization",
+          "result": {
+            "status": "planned",
+            "waves": [["api", "docs"], ["tests"]]
+          }
+        },
+        {
+          "id": "capacity-recommendation",
+          "inputTelemetrySamples": 3,
+          "elapsedMs": 0.012,
+          "algorithm": "measured-point-selection",
+          "result": {
+            "status": "recommended",
+            "recommended_concurrency": 2
+          }
+        },
+        {
+          "id": "paired-promotion-gate",
+          "elapsedMs": 27.086,
+          "result": {
+            "promote": false,
+            "selectedCandidateId": "candidate",
+            "failures": [
+              "heldout_quality_noninferiority_not_established",
+              "weighted_metric_score_noninferiority_not_established",
+              "cost_per_accepted_outcome_improvement_not_established"
+            ]
+          }
+        },
+        {
+          "id": "hierarchical-planner-scaling",
+          "measurementType": "local deterministic plan construction only",
+          "sizes": [
+            {"inputTasks": 4, "elapsedMs": 0.165, "clusterCount": 1},
+            {"inputTasks": 32, "elapsedMs": 0.577, "clusterCount": 2},
+            {"inputTasks": 128, "elapsedMs": 2.000, "clusterCount": 8},
+            {"inputTasks": 200, "elapsedMs": 4.893, "clusterCount": 13, "status": "not_plannable"}
+          ]
+        }
+      ]
+    },
+    "analytics": {
+      "script": "scripts/benchmark_analytics.py",
+      "description": "Local analytics fixture (synthetic SQLite)",
+      "rows": 50000,
+      "elapsedSeconds": 2.90239,
+      "peakPythonAllocationBytes": 79600262,
+      "selectedRows": 50000,
+      "truncated": false,
+      "knownCostMicrousd": 18224790,
+      "unknownCostRows": 516,
+      "forecastStatus": "blocked_incomplete_coverage"
+    },
+    "graphRendering": {
+      "script": "apps/web/scripts/graph-benchmark.mjs",
+      "description": "Graphology construction and synchronous ForceAtlas2",
+      "nodes": 1800,
+      "edges": 14400,
+      "iterations": 30,
+      "buildMs": 205.33,
+      "layoutMs": 837.45,
+      "checksum": -126934.9236,
+      "scope": "Graphology construction and synchronous ForceAtlas2 only; browser rendering is not measured"
+    }
+  },
+  "summary": {
+    "totalTestsRun": 397,
+    "totalPassed": 394,
+    "totalFailed": 3,
+    "testPassRate": 0.9925,
+    "benchmarkScriptsRun": 4,
+    "benchmarkScenarios": 11,
+    "notes": [
+      "All Python unit tests pass (214/214).",
+      "3 web tests fail in durable-dispatch.test.ts with 'Fixture did not settle' errors.",
+      "Swarm queue throughput degrades with scale: 257 tasks/s at 10 agents down to 11 tasks/s at 300 agents (32-worker cap).",
+      "Queue latency P95 grows from 23.7ms (1 agent) to 42.6s (300 agents) due to worker contention.",
+      "Analytics processes 50k rows in ~2.9s with 79.6MB peak Python allocation.",
+      "Graph layout of 1800 nodes / 14400 edges takes ~837ms (ForceAtlas2, 30 iterations).",
+      "All benchmarks use deterministic synthetic fixtures; no provider/network calls."
+    ]
+  }
+}

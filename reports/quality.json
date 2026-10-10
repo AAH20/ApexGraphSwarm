@@ -1,0 +1,116 @@
+{
+  "audit_date": "2026-09-29",
+  "project": "ApexGraphSwarm",
+  "summary": {
+    "overall_status": "FAIL",
+    "checks_run": 5,
+    "checks_passed": 2,
+    "checks_failed": 3
+  },
+  "results": {
+    "tsc_noEmit": {
+      "status": "PASS",
+      "command": "cd apps/web && npx tsc --noEmit",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    "npm_test": {
+      "status": "FAIL",
+      "command": "cd apps/web && npm test",
+      "exit_code": 1,
+      "tests_total": 183,
+      "tests_passed": 182,
+      "tests_failed": 1,
+      "failures": [
+        {
+          "test_number": 60,
+          "test_name": "actual adapter persists a pre-call checkpoint and normalized receipt in durable accounting",
+          "file": "apps/web/tests/durable-dispatch.test.ts",
+          "error": "Fixture did not settle",
+          "code": "ERR_TEST_FAILURE",
+          "duration_ms": 3201,
+          "stack": "settled (durable-dispatch.test.ts:19:246) → async TestContext.<anonymous> (durable-dispatch.test.ts:41:15)"
+        }
+      ]
+    },
+    "npm_build": {
+      "status": "FAIL",
+      "command": "cd apps/web && npm run build",
+      "exit_code": 1,
+      "errors": [
+        {
+          "file": "components/GraphCanvas.tsx",
+          "line": 166,
+          "column": 9,
+          "code": "TS2353",
+          "message": "Object literal may only specify known properties, and 'defaultNodeColor' does not exist in type '{ primitives?: PrimitivesDeclaration | undefined; styles?: StylesDeclaration<...> | undefined; ... }'"
+        },
+        {
+          "file": "components/GraphCanvasEnhanced.tsx",
+          "line": 240,
+          "column": 28,
+          "code": "TS2339",
+          "message": "Property 'getCanvases' does not exist on type 'Sigma<Attributes, Attributes, Attributes, {}, {}, {}, PrimitivesDeclaration>'"
+        },
+        {
+          "file": "components/GraphCanvasEnhanced.tsx",
+          "line": 331,
+          "column": 9,
+          "code": "TS2353",
+          "message": "Object literal may only specify known properties, and 'defaultNodeColor' does not exist in type '{ primitives?: PrimitivesDeclaration | undefined; styles?: StylesDeclaration<...> | undefined; ... }'"
+        },
+        {
+          "file": "components/GraphCanvasEnhanced.tsx",
+          "line": 438,
+          "column": 7,
+          "code": "TS2353",
+          "message": "Object literal may only specify known properties, and 'renderEdgeLabels' does not exist in type '{ primitives?: PrimitivesDeclaration | undefined; styles?: StylesDeclaration<...> | undefined; ... }'"
+        }
+      ]
+    },
+    "python_tests": {
+      "status": "PASS",
+      "command": "python -m pytest tests/ -v",
+      "exit_code": 0,
+      "tests_total": 214,
+      "tests_passed": 214,
+      "tests_failed": 0,
+      "subtests_passed": 27,
+      "duration_seconds": 28.05
+    },
+    "lint": {
+      "status": "NOT_CONFIGURED",
+      "command": "npx next lint",
+      "exit_code": 1,
+      "note": "No ESLint configuration found (.eslintrc* or eslint.config*). Next.js lint command failed with 'Invalid project directory provided'."
+    }
+  },
+  "issues": [
+    {
+      "severity": "HIGH",
+      "category": "build",
+      "description": "Production build fails with 4 TypeScript errors in GraphCanvas components",
+      "files": ["components/GraphCanvas.tsx", "components/GraphCanvasEnhanced.tsx"],
+      "details": "Three TS2353 errors for unknown properties (defaultNodeColor, renderEdgeLabels) and one TS2339 error for missing getCanvases method on Sigma type. These appear to be API mismatches with the graphology/sigma.js library version."
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "test",
+      "description": "One TypeScript test fails: durable-dispatch fixture does not settle",
+      "file": "apps/web/tests/durable-dispatch.test.ts",
+      "details": "Test 60 'actual adapter persists a pre-call checkpoint and normalized receipt in durable accounting' times out waiting for the fixture to settle. The settled() helper polls for 200 iterations at 10ms intervals (2s max) but the operation takes longer."
+    },
+    {
+      "severity": "LOW",
+      "category": "tooling",
+      "description": "No ESLint configuration present",
+      "details": "The project has no .eslintrc or eslint.config file. Linting is not enforced."
+    }
+  ],
+  "recommendations": [
+    "Fix GraphCanvas.tsx and GraphCanvasEnhanced.tsx to use correct sigma.js API (remove defaultNodeColor, renderEdgeLabels; replace getCanvases with correct method)",
+    "Investigate durable-dispatch test timeout — either increase the settled() timeout or optimize the fixture setup",
+    "Add ESLint configuration to enforce code quality"
+  ]
+}

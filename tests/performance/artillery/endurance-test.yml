@@ -1,0 +1,66 @@
+# Artillery Endurance Test - Sustained 10K RPS for 30 minutes
+# Validates system stability, memory leaks, and resource exhaustion
+
+config:
+  target: "{{ $processEnvironment.BASE_URL || 'http://127.0.0.1:3010' }}"
+  phases:
+    - name: "Warm up"
+      duration: 60
+      arrivalRate: 1000
+      rampTo: 10000
+    - name: "Sustained load"
+      duration: 1800
+      arrivalRate: 10000
+    - name: "Ramp down"
+      duration: 60
+      arrivalRate: 10000
+      rampTo: 0
+  defaults:
+    headers:
+      Content-Type: "application/json"
+  processor: "./artillery-helpers.js"
+
+scenarios:
+  - name: "Endurance read mix"
+    weight: 60
+    flow:
+      - get:
+          url: "/api/integrations"
+          expect:
+            - statusCode: 200
+      - think: 0.01
+      - get:
+          url: "/api/decisions"
+          expect:
+            - statusCode: 200
+      - think: 0.01
+      - get:
+          url: "/api/ecosystem/mcp"
+          expect:
+            - statusCode: 200
+
+  - name: "Endurance status checks"
+    weight: 30
+    flow:
+      - get:
+          url: "/api/review"
+          expect:
+            - statusCode: 200
+      - think: 0.01
+      - get:
+          url: "/api/graph-store"
+          expect:
+            - statusCode: 200
+
+  - name: "Endurance control ops"
+    weight: 10
+    flow:
+      - post:
+          url: "/api/control"
+          headers:
+            Authorization: "Bearer {{ $processEnvironment.AUTH_TOKEN }}"
+          json:
+            action: "status"
+            runId: "artillery-endurance-test"
+          expect:
+            - statusCode: 200

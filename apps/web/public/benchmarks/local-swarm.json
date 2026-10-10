@@ -1,0 +1,260 @@
+{
+  "classification": "deterministic_local_queue_fixture",
+  "config": {
+    "activeWorkerCap": 32,
+    "budget": "0 micro-USD known local fixture work",
+    "fixture": "sha256-chain-v1-64 rounds + 2ms fixed local wait",
+    "logicalAgentCounts": [
+      1,
+      10,
+      30,
+      100,
+      300
+    ],
+    "providerCalls": 0,
+    "restart": "Close and reopen SQLite after first task slice; separately verify expired-lease recovery and stale-token fencing with injected clock.",
+    "seed": 20260927,
+    "tasksPerLogicalAgent": 2
+  },
+  "measuredAt": "2026-09-27T06:19:17.360557+00:00",
+  "note": "Measured with the SQLite ControlStore and deterministic SHA-256 fixture work. No LLM, network, repository mutation, or provider calls. Timing varies by local machine and is not a model-quality result.",
+  "proposedTargets": [
+    {
+      "label": "Graph correctness",
+      "status": "unmeasured",
+      "value": "100% schema-valid and referentially valid on hidden deterministic fixtures"
+    },
+    {
+      "label": "Permission safety",
+      "status": "unmeasured",
+      "value": "Zero successful out-of-scope tool actions"
+    },
+    {
+      "label": "Held-out task quality",
+      "status": "unmeasured",
+      "value": "Non-inferior to single-agent quality at equal cost"
+    },
+    {
+      "label": "Fault recovery",
+      "status": "unmeasured",
+      "value": "At least 99% terminal transitions under fault injection"
+    },
+    {
+      "label": "Live model concurrency",
+      "status": "unmeasured",
+      "value": "Not tested by this local fixture; provider limits and cost approval required"
+    }
+  ],
+  "provenance": {
+    "controlPlane": "apexgraphswarm.control.ControlStore (SQLite)",
+    "controlSourceSha256": "b5159408681d58925ce5e8f1f24c43d0d2bf8221af3cbfcc8709a07bb7d5b779",
+    "machine": "arm64",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "python": "3.14.7",
+    "scriptSha256": "4db9b5dd6b73114a9d0d66df265ef120431abb3e423d45a2c6e84c6d72a46336",
+    "sqlite": "3.53.4"
+  },
+  "scenarios": [
+    {
+      "activeWorkerLimit": 1,
+      "completed": 2,
+      "cost": {
+        "actualMicrousd": 0,
+        "budgetMicrousd": 0,
+        "consistent": true,
+        "providerCalls": 0,
+        "reservedMicrousd": 0,
+        "spentMicrousd": 0
+      },
+      "duplicateCompletions": 0,
+      "elapsedMs": 12.443,
+      "errors": [],
+      "events": {
+        "taskCompleted": 2,
+        "taskLeaseExpired": 0,
+        "taskRequeued": 0
+      },
+      "failed": 0,
+      "latencyMs": {
+        "endToEndP50": 8.012,
+        "endToEndP95": 12.28,
+        "queueP50": 5.627,
+        "queueP95": 9.466,
+        "serviceP50": 2.065,
+        "serviceP95": 2.533
+      },
+      "logicalAgents": 1,
+      "observedPeakActive": 1,
+      "restart": {
+        "leaseRecoveries": 1,
+        "persistedCompleted": 1,
+        "recoveryTaskCompleted": 1,
+        "reopened": true,
+        "staleLeaseFenced": true
+      },
+      "taskCount": 2,
+      "throughputTasksPerSecond": 160.735
+    },
+    {
+      "activeWorkerLimit": 10,
+      "completed": 20,
+      "cost": {
+        "actualMicrousd": 0,
+        "budgetMicrousd": 0,
+        "consistent": true,
+        "providerCalls": 0,
+        "reservedMicrousd": 0,
+        "spentMicrousd": 0
+      },
+      "duplicateCompletions": 0,
+      "elapsedMs": 27.911,
+      "errors": [],
+      "events": {
+        "taskCompleted": 20,
+        "taskLeaseExpired": 0,
+        "taskRequeued": 0
+      },
+      "failed": 0,
+      "latencyMs": {
+        "endToEndP50": 18.096,
+        "endToEndP95": 23.478,
+        "queueP50": 14.652,
+        "queueP95": 17.647,
+        "serviceP50": 2.404,
+        "serviceP95": 2.544
+      },
+      "logicalAgents": 10,
+      "observedPeakActive": 10,
+      "restart": {
+        "leaseRecoveries": 1,
+        "persistedCompleted": 8,
+        "recoveryTaskCompleted": 1,
+        "reopened": true,
+        "staleLeaseFenced": true
+      },
+      "taskCount": 20,
+      "throughputTasksPerSecond": 716.556
+    },
+    {
+      "activeWorkerLimit": 30,
+      "completed": 60,
+      "cost": {
+        "actualMicrousd": 0,
+        "budgetMicrousd": 0,
+        "consistent": true,
+        "providerCalls": 0,
+        "reservedMicrousd": 0,
+        "spentMicrousd": 0
+      },
+      "duplicateCompletions": 0,
+      "elapsedMs": 114.299,
+      "errors": [],
+      "events": {
+        "taskCompleted": 60,
+        "taskLeaseExpired": 0,
+        "taskRequeued": 0
+      },
+      "failed": 0,
+      "latencyMs": {
+        "endToEndP50": 46.042,
+        "endToEndP95": 83.18,
+        "queueP50": 33.324,
+        "queueP95": 62.944,
+        "serviceP50": 2.526,
+        "serviceP95": 2.558
+      },
+      "logicalAgents": 30,
+      "observedPeakActive": 30,
+      "restart": {
+        "leaseRecoveries": 1,
+        "persistedCompleted": 18,
+        "recoveryTaskCompleted": 1,
+        "reopened": true,
+        "staleLeaseFenced": true
+      },
+      "taskCount": 60,
+      "throughputTasksPerSecond": 524.941
+    },
+    {
+      "activeWorkerLimit": 32,
+      "completed": 200,
+      "cost": {
+        "actualMicrousd": 0,
+        "budgetMicrousd": 0,
+        "consistent": true,
+        "providerCalls": 0,
+        "reservedMicrousd": 0,
+        "spentMicrousd": 0
+      },
+      "duplicateCompletions": 0,
+      "elapsedMs": 748.136,
+      "errors": [],
+      "events": {
+        "taskCompleted": 200,
+        "taskLeaseExpired": 0,
+        "taskRequeued": 0
+      },
+      "failed": 0,
+      "latencyMs": {
+        "endToEndP50": 292.119,
+        "endToEndP95": 613.381,
+        "queueP50": 251.208,
+        "queueP95": 558.46,
+        "serviceP50": 2.524,
+        "serviceP95": 2.642
+      },
+      "logicalAgents": 100,
+      "observedPeakActive": 32,
+      "restart": {
+        "leaseRecoveries": 1,
+        "persistedCompleted": 53,
+        "recoveryTaskCompleted": 1,
+        "reopened": true,
+        "staleLeaseFenced": true
+      },
+      "taskCount": 200,
+      "throughputTasksPerSecond": 267.331
+    },
+    {
+      "activeWorkerLimit": 32,
+      "completed": 600,
+      "cost": {
+        "actualMicrousd": 0,
+        "budgetMicrousd": 0,
+        "consistent": true,
+        "providerCalls": 0,
+        "reservedMicrousd": 0,
+        "spentMicrousd": 0
+      },
+      "duplicateCompletions": 0,
+      "elapsedMs": 6267.171,
+      "errors": [],
+      "events": {
+        "taskCompleted": 600,
+        "taskLeaseExpired": 0,
+        "taskRequeued": 0
+      },
+      "failed": 0,
+      "latencyMs": {
+        "endToEndP50": 3340.668,
+        "endToEndP95": 5711.943,
+        "queueP50": 3122.16,
+        "queueP95": 5694.61,
+        "serviceP50": 2.525,
+        "serviceP95": 2.652
+      },
+      "logicalAgents": 300,
+      "observedPeakActive": 32,
+      "restart": {
+        "leaseRecoveries": 1,
+        "persistedCompleted": 153,
+        "recoveryTaskCompleted": 1,
+        "reopened": true,
+        "staleLeaseFenced": true
+      },
+      "taskCount": 600,
+      "throughputTasksPerSecond": 95.737
+    }
+  ],
+  "schemaVersion": 1
+}

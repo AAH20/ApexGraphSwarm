@@ -1,0 +1,39 @@
+{
+  "name": "apexgraphswarm-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "assets": "node scripts/prepare-assets.mjs",
+    "predev": "npm run assets",
+    "dev": "next dev --hostname 127.0.0.1 --port 3010",
+    "prebuild": "npm run assets",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3010",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "worker:task": "node --import tsx scripts/run-planned-task.ts"
+  },
+  "dependencies": {
+    "ai": "7.0.117",
+    "graphology": "0.26.0",
+    "graphology-communities-louvain": "^2.0.2",
+    "graphology-layout": "^0.6.1",
+    "graphology-layout-forceatlas2": "0.10.1",
+    "graphology-metrics": "^2.4.2",
+    "lucide-react": "1.48.0",
+    "next": "16.3.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "sigma": "^4.0.0-alpha.7",
+    "zod": "4.6.5",
+    "@apexgraphswarm/governance": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  }
+}
