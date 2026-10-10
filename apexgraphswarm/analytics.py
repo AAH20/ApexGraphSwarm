@@ -14,7 +14,7 @@ import time
 from collections import Counter, defaultdict
 from datetime import date, datetime, time as dt_time, timedelta, timezone
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Tuple
 from urllib.parse import quote
 
 VERSION = 1

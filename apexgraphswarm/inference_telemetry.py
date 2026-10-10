@@ -13,7 +13,7 @@ import math
 import os
 import re
 import time
-from typing import Mapping
+from typing import Mapping, Tuple
 from urllib.error import HTTPError, URLError
 from urllib.parse import unquote, urlsplit
 from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
@@ -399,7 +399,7 @@ def _histogram_groups(snapshot: TelemetrySnapshot, base_name: str) -> tuple[dict
     return valid, invalid
 
 
-def _quantile_upper(buckets: tuple[tuple[float, float], ...], quantile: float, count: float) -> float | None:
+def _quantile_upper(buckets: Tuple[Tuple[float, float], ...], quantile: float, count: float) -> float | None:
     if count <= 0:
         return None
     rank = max(1.0, math.ceil(quantile * count))
