@@ -10,7 +10,7 @@ import {parseSnapshot, neighborhood, shortestPath, filterGraph, semanticEdges, i
 const evidenceArb = fc.constantFrom<Evidence>('parsed', 'observed', 'inferred', 'illustrative', 'aggregated');
 const kindArb = fc.constantFrom<Kind>('module', 'file', 'function', 'class', 'external');
 
-const nodeIdArb = fc.string({minLength: 1, maxLength: 32}).map(s => s.replace(/[^a-zA-Z0-9:._-]/g, '_'));
+const nodeIdArb = fc.string({minLength: 1, maxLength: 32}).map((s: string) => s.replace(/[^a-zA-Z0-9:._-]/g, '_'));
 
 const graphNodeArb: fc.Arbitrary<GraphNode> = fc.record({
   id: nodeIdArb,

@@ -395,7 +395,7 @@ test('swarm POST rejects graph with unresolved expression as undefined', async (
 
 // Integrations endpoint tests
 test('integrations GET returns catalog and limits', async () => {
-  const res = await IntegrationsGET();
+  const res = await IntegrationsGET(new Request('http://127.0.0.1:3010/api/integrations'));
   assert.equal(res.status, 200);
   const data = await res.json();
   assert.ok(Array.isArray(data.integrations));
