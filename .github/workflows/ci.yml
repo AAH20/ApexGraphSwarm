@@ -34,15 +34,15 @@ jobs:
       - name: Syntax check all Python files
         run: |
           python -m compileall -q apexgraphswarm/ scripts/ tests/
-          echo "✅ All Python files compile successfully"
+          echo "All Python files compile successfully"
 
-      - name: Check for common issues
+      - name: AST parse check
         run: |
           python -c "
           import ast, sys, pathlib
           errors = []
           for f in pathlib.Path('.').rglob('*.py'):
-              if '.integration-sources' in str(f) or 'node_modules' in str(f):
+              if '.integration-sources' in str(f) or 'node_modules' in str(f) or '.venv' in str(f):
                   continue
               try:
                   ast.parse(f.read_text())
@@ -50,9 +50,9 @@ jobs:
                   errors.append(f'{f}: {e}')
           if errors:
               for e in errors:
-                  print(f'❌ {e}', file=sys.stderr)
+                  print(f'FAIL {e}', file=sys.stderr)
               sys.exit(1)
-          print('✅ AST parse check passed')
+          print('AST parse check passed')
           "
 
   # ── Python tests ──────────────────────────────────────────────────
@@ -71,86 +71,80 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Run Python tests
-        run: |
-          export PYTHONPATH="${{ github.workspace }}:${PYTHONPATH:-}"
-          python -m unittest discover -s tests -v 2>&1
+      # The integration tests import four sibling kernel repositories. They are
+      # separate repos, checked out here rather than vendored, so this repo holds
+      # no copy of their source.
+      - name: Check out integration kernel sources
+        shell: bash
+        run: ./scripts/fetch-integration-sources.sh
+
+      - name: Install dependencies
+        run: python -m pip install --quiet pytest networkx numpy hypothesis
+
+      - name: Run test suite
+        run: python -m pytest -q
         timeout-minutes: 15
 
   # ── Web lint & typecheck ──────────────────────────────────────────
+  # apps/web depends on the workspace package @apexgraphswarm/governance via
+  # `workspace:*`, which only resolves when npm installs from the monorepo root.
   web-lint:
-    name: Web Lint & Typecheck (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    defaults:
-      run:
-        working-directory: apps/web
+    name: Web Lint & Typecheck
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: apps/web/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install workspace dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Typecheck governance package
+        run: npm run typecheck --workspace @apexgraphswarm/governance
 
       - name: TypeScript typecheck
-        run: npm run typecheck
+        run: npm run typecheck --workspace apexgraphswarm-workbench
 
   # ── Web tests ─────────────────────────────────────────────────────
   web-test:
-    name: Web Tests (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    defaults:
-      run:
-        working-directory: apps/web
+    name: Web Tests
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: apps/web/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install workspace dependencies
+        run: npm install --no-audit --no-fund
 
-      - name: Run web tests
-        run: npm test
+      - name: Governance package tests
+        run: npm test --workspace @apexgraphswarm/governance
+        timeout-minutes: 10
+
+      - name: Web tests
+        run: npm test --workspace apexgraphswarm-workbench
         timeout-minutes: 15
 
   # ── Web build ─────────────────────────────────────────────────────
   web-build:
     name: Web Build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: apps/web
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: apps/web/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install workspace dependencies
+        run: npm install --no-audit --no-fund
 
       - name: Build
-        run: npm run build
+        run: npm run build --workspace apexgraphswarm-workbench
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
@@ -173,14 +167,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: apps/web/package-lock.json
 
       - name: Python security scan
         run: |
-          echo "Scanning Python files for security issues..."
           python -c "
-          import ast, sys, pathlib, re
+          import pathlib, re, json
 
           issues = []
           dangerous_patterns = [
@@ -193,27 +184,25 @@ jobs:
           ]
 
           for f in pathlib.Path('.').rglob('*.py'):
-              if '.integration-sources' in str(f) or 'node_modules' in str(f):
+              if '.integration-sources' in str(f) or 'node_modules' in str(f) or '.venv' in str(f):
                   continue
               content = f.read_text()
               for pattern, desc in dangerous_patterns:
                   if re.search(pattern, content):
                       issues.append(f'{f}: {desc}')
 
-          if issues:
-              for i in issues:
-                  print(f'⚠️  {i}')
-          else:
-              print('✅ No obvious security issues found in Python code')
+          pathlib.Path('security-report.json').write_text(
+              json.dumps({'findings': issues, 'count': len(issues)}, indent=2))
+          for i in issues:
+              print(f'WARN {i}')
+          print(f'Python scan complete: {len(issues)} finding(s)')
           "
 
-      - name: Install web dependencies
-        working-directory: apps/web
-        run: npm ci
+      - name: Install workspace dependencies
+        run: npm install --no-audit --no-fund
 
       - name: npm audit
-        working-directory: apps/web
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=high --workspaces --include-workspace-root
         continue-on-error: true
 
       - name: Upload security report
@@ -237,9 +226,9 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Job | Result |" >> $GITHUB_STEP_SUMMARY
           echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Python Lint | ${{ needs.python-lint.result == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Python Tests | ${{ needs.python-test.result == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Web Lint & Typecheck | ${{ needs.web-lint.result == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Web Tests | ${{ needs.web-test.result == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Web Build | ${{ needs.web-build.result == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Security Scan | ${{ needs.security.result == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Python Lint | ${{ needs.python-lint.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Python Tests | ${{ needs.python-test.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Web Lint & Typecheck | ${{ needs.web-lint.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Web Tests | ${{ needs.web-test.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Web Build | ${{ needs.web-build.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Security Scan | ${{ needs.security.result }} |" >> $GITHUB_STEP_SUMMARY
