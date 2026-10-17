@@ -41,3 +41,7 @@ env/
 node_modules/
 out/
 venv/
+
+# The lockfile is generated per-platform (it pins a platform-specific
+# typescript binary); committing a darwin-arm64 lockfile breaks Linux CI.
+package-lock.json

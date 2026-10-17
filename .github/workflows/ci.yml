@@ -101,6 +101,12 @@ jobs:
       - name: Install workspace dependencies
         run: npm install --no-audit --no-fund
 
+      - name: Configure git for the runner
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config --global user.email "ci@example.invalid"
+          git config --global user.name "CI"
+
       - name: Typecheck governance package
         run: npm run typecheck --workspace @apexgraphswarm/governance
 
@@ -120,6 +126,15 @@ jobs:
 
       - name: Install workspace dependencies
         run: npm install --no-audit --no-fund
+
+      # The optimization route shells out to git. On a CI runner the workspace can
+      # trip git's dubious-ownership guard, and git needs an identity to run at all;
+      # without both, inspection exits 128 and the route answers 400.
+      - name: Configure git for the runner
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config --global user.email "ci@example.invalid"
+          git config --global user.name "CI"
 
       - name: Governance package tests
         run: npm test --workspace @apexgraphswarm/governance
