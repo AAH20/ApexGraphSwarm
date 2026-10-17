@@ -183,7 +183,10 @@ def validate_request(body: Any) -> dict[str, Any]:
 
 # The placeholder used by the shipped example profiles, e.g.
 # /ABSOLUTE/PATH/TO/TRUSTED/REPOSITORY. Documented, never enabled.
-_PLACEHOLDER_WORKSPACE = re.compile(r"/ABSOLUTE/PATH/TO/[A-Z_]+")
+_PLACEHOLDER_WORKSPACE = re.compile(r"/ABSOLUTE/PATH/TO/[A-Z_/]+")
+# NOTE: the placeholder has two segments after TO/ (TRUSTED/REPOSITORY,
+# OPENMANUS/CHECKOUT), so the character class must admit "/". Without it the
+# template still failed on Windows, where Path.is_absolute() rejects it too.
 
 
 def _known_secret_values(environment: dict[str, str], access_token: str) -> list[str]:

@@ -132,11 +132,15 @@ class SlidingWindowTests(unittest.TestCase):
         self.assertEqual(window.remaining, 4)
 
     def test_window_expires(self):
+        # Drive the window with explicit timestamps. The previous version slept
+        # 0.06s against a 0.05s window, so on a slow or coarse-clock runner the
+        # wall time between the first two calls already exceeded the window and
+        # the second allow() returned True. allow() takes `now`, so assert the
+        # expiry behaviour directly instead of racing the clock.
         window = SlidingWindow(max_requests=1, window_seconds=0.05)
-        self.assertTrue(window.allow())
-        self.assertFalse(window.allow())
-        time.sleep(0.06)
-        self.assertTrue(window.allow())  # Old request expired
+        self.assertTrue(window.allow(now=1000.0))
+        self.assertFalse(window.allow(now=1000.01))   # still inside the window
+        self.assertTrue(window.allow(now=1000.06))    # old request expired
 
     def test_allow_or_raise_success(self):
         window = SlidingWindow(max_requests=5, window_seconds=60.0)

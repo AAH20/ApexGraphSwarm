@@ -446,7 +446,11 @@ class ControlStore:
             FROM execution_attempts""" + where, args).fetchone()
         unresolved = (agg[1] or 0) + max(0, expected - total)
         rows = db.execute("SELECT * FROM execution_attempts" + where +
-                          " ORDER BY started_at DESC,attempt_id DESC LIMIT ?", (*args, limit)).fetchall()
+                          # attempt_number is monotonic per task, so it is a deterministic tiebreak.
+        # Ordering by started_at alone is unstable where the clock is coarse
+        # (Windows): two attempts inside one tick tie, and attempt_id decides
+        # the order arbitrarily, which reverses the ledger.
+        " ORDER BY started_at DESC,attempt_number DESC,attempt_id DESC LIMIT ?", (*args, limit)).fetchall()
         checkpoint_total = db.execute("SELECT COUNT(*) FROM worker_checkpoints" + where, args).fetchone()[0]
         checkpoint_rows = db.execute("SELECT task_id,attempt_number,checkpoint_id,value_sha256,byte_length "
                                       "FROM worker_checkpoints WHERE " +
