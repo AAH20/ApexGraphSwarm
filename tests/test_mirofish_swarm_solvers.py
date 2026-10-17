@@ -1,4 +1,4 @@
-"""SKIPPED: kernel source files are not available in this repo. Rename back to test_*.py to re-enable."""
+"""
 Comprehensive unit tests for MiroFish Swarm Optimizer solvers.
 Covers: Coalition Structure, Influence Maximization, Kemeny Consensus,
         Topology Sparsification, Attention Knapsack, Strategic CFR,

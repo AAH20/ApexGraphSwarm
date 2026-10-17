@@ -1,4 +1,4 @@
-"""SKIPPED: kernel source files are not available in this repo. Rename back to test_*.py to re-enable."""
+"""
 Comprehensive unit tests for GraphRAG NP-Hard Kernel solvers.
 Covers: PCST, Community Detection, Entity Resolution, Constrained Path,
         Submodular Summary, Temporal Isomorphism, Spectral Sparsification,

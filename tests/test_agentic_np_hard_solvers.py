@@ -1,4 +1,4 @@
-"""SKIPPED: kernel source files are not available in this repo. Rename back to test_*.py to re-enable."""
+"""
 Comprehensive unit tests for Agentic NP-Hard Kernel solvers.
 Covers: Tool Routing, Workflow DAG, Prefix-KV Cache, Speculative Tree Search,
         Fault-Tolerant DAG, Submodular Memory, Pareto Model Routing,

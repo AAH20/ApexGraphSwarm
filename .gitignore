@@ -1,46 +1,43 @@
-# Dependencies
-node_modules/
-.pnp
-.pnp.js
 
 # Build outputs
-.next/
-out/
-dist/
-build/
-*.tsbuildinfo
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-.venv/
-venv/
-env/
-*.egg-info/
-.pytest_cache/
-.hypothesis/
-.ruff_cache/
-.mypy_cache/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
+# Dependencies
 # Environment
-.env
-.env.local
-.env.*.local
-
+# IDE
+# OS
+# Python
 # Runtime
+*$py.class
+*.egg-info/
 *.log
 *.pid
+*.py[cod]
 *.seed
+*.so
+*.swo
+*.swp
+*.tsbuildinfo
+.DS_Store
+.Python
+.env
+.env.*.local
+.env.local
+.hypothesis/
+.idea/
+.integration-sources/
+.mypy_cache/
+.next/
+.pnp
+.pnp.js
+.pytest_cache/
+.ruff_cache/
+.runtime/
+.venv/
+.vscode/
+Thumbs.db
+__pycache__/
+build/
+dist/
+env/
+node_modules/
+out/
+venv/
