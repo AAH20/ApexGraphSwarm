@@ -180,11 +180,26 @@ class TestExecutionGraphStructure:
     @given(status=_status_mapping)
     @settings(max_examples=50, deadline=None)
     def test_no_lease_tokens_leak(self, status: dict[str, Any]) -> None:
-        """Lease tokens must never appear in the graph."""
+        """Lease tokens must never appear in the graph.
+
+        Assert on the projection's structured fields, not on a substring of the whole
+        encoded blob: the generator can legitimately produce an agent NAMED
+        'lease_token', and a substring search then fails on its own fixture rather
+        than on a leak.
+        """
         result = project_execution_graph(status)
-        encoded = json.dumps(result)
-        assert "leaseToken" not in encoded
-        assert "lease_token" not in encoded
+
+        def offending_keys(node: Any) -> list[str]:
+            if isinstance(node, dict):
+                found = [k for k in node if "leasetoken" in str(k).lower().replace("_", "")]
+                for value in node.values():
+                    found.extend(offending_keys(value))
+                return found
+            if isinstance(node, list):
+                return [k for item in node for k in offending_keys(item)]
+            return []
+
+        assert offending_keys(result) == [], "a lease token field survived projection"
 
     @given(status=_status_mapping)
     @settings(max_examples=200, deadline=None)
