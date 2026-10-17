@@ -7,7 +7,7 @@
       "name": "ApexGraphSwarm",
       "kind": "module",
       "path": ".",
-      "summary": "Directory grouping 565 indexed files, 3497 functions and 509 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 564 indexed files, 3498 functions and 509 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -70,16 +70,6 @@
       "summary": "Multi-pass Louvain optimization with Byzantine detection for ApexGraphSwarm. Contains 7 indexed functions and 0 classes.",
       "confidence": "parsed",
       "connections": 14
-    },
-    {
-      "id": "file:package-lock.json",
-      "name": "package-lock.json",
-      "kind": "file",
-      "path": "package-lock.json",
-      "line": 1,
-      "summary": "File inventory; source semantics not parsed for this language.",
-      "confidence": "observed",
-      "connections": 0
     },
     {
       "id": "file:package.json",
@@ -14552,7 +14542,7 @@
       "name": "tests",
       "kind": "module",
       "path": "tests",
-      "summary": "Directory grouping 91 indexed files, 1462 functions and 213 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 91 indexed files, 1463 functions and 213 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -14634,7 +14624,7 @@
       "line": 1,
       "summary": "Tests for VFS namespacing. Contains 29 indexed functions and 3 classes.",
       "confidence": "parsed",
-      "connections": 8
+      "connections": 9
     },
     {
       "id": "file:tests/test_agentic_graph_swarm_solvers.py",
@@ -15276,7 +15266,7 @@
       "name": "property",
       "kind": "module",
       "path": "tests/property",
-      "summary": "Directory grouping 3 indexed files, 32 functions and 6 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
+      "summary": "Directory grouping 3 indexed files, 33 functions and 6 classes (including subdirectories). Open its files to inspect implementation; directory membership alone is not a runtime dependency.",
       "confidence": "observed",
       "connections": 0
     },
@@ -15296,7 +15286,7 @@
       "kind": "file",
       "path": "tests/property/test_execution_graph_properties.py",
       "line": 1,
-      "summary": "Property-based tests for execution_graph invariants using hypothesis. Contains 22 indexed functions and 4 classes.",
+      "summary": "Property-based tests for execution_graph invariants using hypothesis. Contains 23 indexed functions and 4 classes.",
       "confidence": "parsed",
       "connections": 6
     },
@@ -33023,354 +33013,354 @@
       "connections": 0
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests@11",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests@12",
       "name": "MountPointTests",
       "kind": "class",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 11,
-      "end_line": 24,
-      "summary": "Class declared at tests/test_agent_hypervisor_vfs.py:11",
+      "line": 12,
+      "end_line": 25,
+      "summary": "Class declared at tests/test_agent_hypervisor_vfs.py:12",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_valid_mount_point@12",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_valid_mount_point@13",
       "name": "MountPointTests.test_valid_mount_point",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 12,
-      "end_line": 16,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:12",
+      "line": 13,
+      "end_line": 17,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:13",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_source_rejected@18",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_source_rejected@19",
       "name": "MountPointTests.test_empty_source_rejected",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 18,
-      "end_line": 20,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:18",
+      "line": 19,
+      "end_line": 21,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:19",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_target_rejected@22",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_target_rejected@23",
       "name": "MountPointTests.test_empty_target_rejected",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 22,
-      "end_line": 24,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:22",
+      "line": 23,
+      "end_line": 25,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:23",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
       "name": "VFSNamespaceTests",
       "kind": "class",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 27,
-      "end_line": 154,
-      "summary": "Class declared at tests/test_agent_hypervisor_vfs.py:27",
+      "line": 28,
+      "end_line": 160,
+      "summary": "Class declared at tests/test_agent_hypervisor_vfs.py:28",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.setUp@28",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.setUp@29",
       "name": "VFSNamespaceTests.setUp",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 28,
-      "end_line": 30,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:28",
+      "line": 29,
+      "end_line": 31,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:29",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.tearDown@32",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.tearDown@33",
       "name": "VFSNamespaceTests.tearDown",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 32,
-      "end_line": 33,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:32",
+      "line": 33,
+      "end_line": 39,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:33",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_create_namespace@35",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_create_namespace@41",
       "name": "VFSNamespaceTests.test_create_namespace",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 35,
-      "end_line": 38,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:35",
+      "line": 41,
+      "end_line": 44,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:41",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_write_and_read_file@40",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_write_and_read_file@46",
       "name": "VFSNamespaceTests.test_write_and_read_file",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 40,
-      "end_line": 43,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:40",
+      "line": 46,
+      "end_line": 49,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:46",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_path_traversal_rejected@45",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_path_traversal_rejected@51",
       "name": "VFSNamespaceTests.test_path_traversal_rejected",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 45,
-      "end_line": 52,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:45",
+      "line": 51,
+      "end_line": 58,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:51",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_null_bytes_rejected@54",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_null_bytes_rejected@60",
       "name": "VFSNamespaceTests.test_null_bytes_rejected",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 54,
-      "end_line": 57,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:54",
+      "line": 60,
+      "end_line": 63,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:60",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_list_dir@59",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_list_dir@65",
       "name": "VFSNamespaceTests.test_list_dir",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 59,
-      "end_line": 67,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:59",
+      "line": 65,
+      "end_line": 73,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:65",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_file@69",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_file@75",
       "name": "VFSNamespaceTests.test_delete_file",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 69,
-      "end_line": 74,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:69",
+      "line": 75,
+      "end_line": 80,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:75",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_directory@76",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_directory@82",
       "name": "VFSNamespaceTests.test_delete_directory",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 76,
-      "end_line": 80,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:76",
-      "confidence": "parsed",
-      "connections": 1
-    },
-    {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_nonexistent_file@82",
-      "name": "VFSNamespaceTests.test_read_nonexistent_file",
-      "kind": "function",
-      "path": "tests/test_agent_hypervisor_vfs.py",
       "line": 82,
-      "end_line": 85,
+      "end_line": 86,
       "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:82",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_exists@87",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_nonexistent_file@88",
+      "name": "VFSNamespaceTests.test_read_nonexistent_file",
+      "kind": "function",
+      "path": "tests/test_agent_hypervisor_vfs.py",
+      "line": 88,
+      "end_line": 91,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:88",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_exists@93",
       "name": "VFSNamespaceTests.test_exists",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 87,
-      "end_line": 91,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:87",
+      "line": 93,
+      "end_line": 97,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:93",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_only_mount@93",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_only_mount@99",
       "name": "VFSNamespaceTests.test_read_only_mount",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 93,
-      "end_line": 109,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:93",
+      "line": 99,
+      "end_line": 115,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:99",
       "confidence": "parsed",
       "connections": 2
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_writable_mount@111",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_writable_mount@117",
       "name": "VFSNamespaceTests.test_writable_mount",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 111,
-      "end_line": 120,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:111",
+      "line": 117,
+      "end_line": 126,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:117",
       "confidence": "parsed",
       "connections": 2
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_mount_size_limit@122",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_mount_size_limit@128",
       "name": "VFSNamespaceTests.test_mount_size_limit",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 122,
-      "end_line": 134,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:122",
+      "line": 128,
+      "end_line": 140,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:128",
       "confidence": "parsed",
       "connections": 2
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_namespace_total_size_limit@136",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_namespace_total_size_limit@142",
       "name": "VFSNamespaceTests.test_namespace_total_size_limit",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 136,
-      "end_line": 143,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:136",
+      "line": 142,
+      "end_line": 149,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:142",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_nested_path_resolution@145",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_nested_path_resolution@151",
       "name": "VFSNamespaceTests.test_nested_path_resolution",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 145,
-      "end_line": 148,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:145",
+      "line": 151,
+      "end_line": 154,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:151",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_dot_dot_normalization@150",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_dot_dot_normalization@156",
       "name": "VFSNamespaceTests.test_dot_dot_normalization",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 150,
-      "end_line": 154,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:150",
+      "line": 156,
+      "end_line": 160,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:156",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
       "name": "VFSTests",
       "kind": "class",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 157,
-      "end_line": 212,
-      "summary": "Class declared at tests/test_agent_hypervisor_vfs.py:157",
+      "line": 163,
+      "end_line": 223,
+      "summary": "Class declared at tests/test_agent_hypervisor_vfs.py:163",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.setUp@158",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.setUp@164",
       "name": "VFSTests.setUp",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 158,
-      "end_line": 160,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:158",
+      "line": 164,
+      "end_line": 166,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:164",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.tearDown@162",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.tearDown@168",
       "name": "VFSTests.tearDown",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 162,
-      "end_line": 163,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:162",
+      "line": 168,
+      "end_line": 174,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:168",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_create_and_get_namespace@165",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_create_and_get_namespace@176",
       "name": "VFSTests.test_create_and_get_namespace",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 165,
-      "end_line": 172,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:165",
+      "line": 176,
+      "end_line": 183,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:176",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_duplicate_namespace_rejected@174",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_duplicate_namespace_rejected@185",
       "name": "VFSTests.test_duplicate_namespace_rejected",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 174,
-      "end_line": 178,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:174",
+      "line": 185,
+      "end_line": 189,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:185",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_invalid_namespace_name@180",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_invalid_namespace_name@191",
       "name": "VFSTests.test_invalid_namespace_name",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 180,
-      "end_line": 185,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:180",
+      "line": 191,
+      "end_line": 196,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:191",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_destroy_namespace@187",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_destroy_namespace@198",
       "name": "VFSTests.test_destroy_namespace",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 187,
-      "end_line": 192,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:187",
+      "line": 198,
+      "end_line": 203,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:198",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_list_namespaces@194",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_list_namespaces@205",
       "name": "VFSTests.test_list_namespaces",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 194,
-      "end_line": 199,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:194",
+      "line": 205,
+      "end_line": 210,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:205",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_isolation_between_namespaces@201",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_isolation_between_namespaces@212",
       "name": "VFSTests.test_isolation_between_namespaces",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 201,
-      "end_line": 207,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:201",
+      "line": 212,
+      "end_line": 218,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:212",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_get_nonexistent_namespace@209",
+      "id": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_get_nonexistent_namespace@220",
       "name": "VFSTests.test_get_nonexistent_namespace",
       "kind": "function",
       "path": "tests/test_agent_hypervisor_vfs.py",
-      "line": 209,
-      "end_line": 212,
-      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:209",
+      "line": 220,
+      "end_line": 223,
+      "summary": "Function declared at tests/test_agent_hypervisor_vfs.py:220",
       "confidence": "parsed",
       "connections": 1
     },
@@ -45084,7 +45074,7 @@
       "kind": "class",
       "path": "tests/test_repository_conflicts.py",
       "line": 17,
-      "end_line": 201,
+      "end_line": 207,
       "summary": "Class declared at tests/test_repository_conflicts.py:17",
       "confidence": "parsed",
       "connections": 0
@@ -45106,107 +45096,107 @@
       "kind": "function",
       "path": "tests/test_repository_conflicts.py",
       "line": 33,
-      "end_line": 34,
+      "end_line": 40,
       "summary": "Function declared at tests/test_repository_conflicts.py:33",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "name": "RepositoryConflictTests._git",
       "kind": "function",
       "path": "tests/test_repository_conflicts.py",
-      "line": 36,
-      "end_line": 46,
-      "summary": "Function declared at tests/test_repository_conflicts.py:36",
+      "line": 42,
+      "end_line": 52,
+      "summary": "Function declared at tests/test_repository_conflicts.py:42",
       "confidence": "parsed",
       "connections": 18
     },
     {
-      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
       "name": "RepositoryConflictTests._write",
       "kind": "function",
       "path": "tests/test_repository_conflicts.py",
-      "line": 48,
-      "end_line": 51,
-      "summary": "Function declared at tests/test_repository_conflicts.py:48",
+      "line": 54,
+      "end_line": 57,
+      "summary": "Function declared at tests/test_repository_conflicts.py:54",
       "confidence": "parsed",
       "connections": 14
     },
     {
-      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
+      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
       "name": "RepositoryConflictTests._commit",
       "kind": "function",
       "path": "tests/test_repository_conflicts.py",
-      "line": 53,
-      "end_line": 56,
-      "summary": "Function declared at tests/test_repository_conflicts.py:53",
+      "line": 59,
+      "end_line": 62,
+      "summary": "Function declared at tests/test_repository_conflicts.py:59",
       "confidence": "parsed",
       "connections": 12
     },
     {
-      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@58",
+      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@64",
       "name": "RepositoryConflictTests._branch_from_base",
       "kind": "function",
       "path": "tests/test_repository_conflicts.py",
-      "line": 58,
-      "end_line": 59,
-      "summary": "Function declared at tests/test_repository_conflicts.py:58",
+      "line": 64,
+      "end_line": 65,
+      "summary": "Function declared at tests/test_repository_conflicts.py:64",
       "confidence": "parsed",
       "connections": 5
     },
     {
-      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance@61",
+      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance@67",
       "name": "RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance",
       "kind": "function",
       "path": "tests/test_repository_conflicts.py",
-      "line": 61,
-      "end_line": 94,
-      "summary": "Function declared at tests/test_repository_conflicts.py:61",
+      "line": 67,
+      "end_line": 100,
+      "summary": "Function declared at tests/test_repository_conflicts.py:67",
       "confidence": "parsed",
       "connections": 3
     },
     {
-      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@96",
+      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@102",
       "name": "RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag",
       "kind": "function",
       "path": "tests/test_repository_conflicts.py",
-      "line": 96,
-      "end_line": 117,
-      "summary": "Function declared at tests/test_repository_conflicts.py:96",
+      "line": 102,
+      "end_line": 123,
+      "summary": "Function declared at tests/test_repository_conflicts.py:102",
       "confidence": "parsed",
       "connections": 8
     },
     {
-      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@119",
+      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@125",
       "name": "RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified",
       "kind": "function",
       "path": "tests/test_repository_conflicts.py",
-      "line": 119,
-      "end_line": 133,
-      "summary": "Function declared at tests/test_repository_conflicts.py:119",
+      "line": 125,
+      "end_line": 139,
+      "summary": "Function declared at tests/test_repository_conflicts.py:125",
       "confidence": "parsed",
       "connections": 7
     },
     {
-      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
+      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
       "name": "RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics",
       "kind": "function",
       "path": "tests/test_repository_conflicts.py",
-      "line": 135,
-      "end_line": 174,
-      "summary": "Function declared at tests/test_repository_conflicts.py:135",
+      "line": 141,
+      "end_line": 180,
+      "summary": "Function declared at tests/test_repository_conflicts.py:141",
       "confidence": "parsed",
       "connections": 17
     },
     {
-      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
+      "id": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
       "name": "RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed",
       "kind": "function",
       "path": "tests/test_repository_conflicts.py",
-      "line": 176,
-      "end_line": 201,
-      "summary": "Function declared at tests/test_repository_conflicts.py:176",
+      "line": 182,
+      "end_line": 207,
+      "summary": "Function declared at tests/test_repository_conflicts.py:182",
       "confidence": "parsed",
       "connections": 14
     },
@@ -47394,7 +47384,7 @@
       "kind": "class",
       "path": "tests/property/test_execution_graph_properties.py",
       "line": 101,
-      "end_line": 212,
+      "end_line": 227,
       "summary": "project_execution_graph always produces a well-formed graph.",
       "confidence": "parsed",
       "connections": 0
@@ -47526,151 +47516,162 @@
       "kind": "function",
       "path": "tests/property/test_execution_graph_properties.py",
       "line": 182,
-      "end_line": 187,
-      "summary": "Lease tokens must never appear in the graph.",
+      "end_line": 202,
+      "summary": "Lease tokens must never appear in the graph.\n\nAssert on the projection's structured fields, not on a substring of the whole\nencoded blob: the generator can legitimately produce an agent NAMED\n'lease_token', and a substring search then fails on its own fixture rather\nthan on a leak.",
       "confidence": "parsed",
-      "connections": 1
+      "connections": 2
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_run_node_always_present@191",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_no_lease_tokens_leak.offending_keys@192",
+      "name": "TestExecutionGraphStructure.test_no_lease_tokens_leak.offending_keys",
+      "kind": "function",
+      "path": "tests/property/test_execution_graph_properties.py",
+      "line": 192,
+      "end_line": 200,
+      "summary": "Function declared at tests/property/test_execution_graph_properties.py:192",
+      "confidence": "parsed",
+      "connections": 5
+    },
+    {
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_run_node_always_present@206",
       "name": "TestExecutionGraphStructure.test_run_node_always_present",
       "kind": "function",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 191,
-      "end_line": 195,
-      "summary": "Function declared at tests/property/test_execution_graph_properties.py:191",
+      "line": 206,
+      "end_line": 210,
+      "summary": "Function declared at tests/property/test_execution_graph_properties.py:206",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_all_costs_resolved_is_boolean@199",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_all_costs_resolved_is_boolean@214",
       "name": "TestExecutionGraphStructure.test_all_costs_resolved_is_boolean",
       "kind": "function",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 199,
-      "end_line": 201,
-      "summary": "Function declared at tests/property/test_execution_graph_properties.py:199",
+      "line": 214,
+      "end_line": 216,
+      "summary": "Function declared at tests/property/test_execution_graph_properties.py:214",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_attempt_coverage_fields_present@205",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_attempt_coverage_fields_present@220",
       "name": "TestExecutionGraphStructure.test_attempt_coverage_fields_present",
       "kind": "function",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 205,
-      "end_line": 212,
-      "summary": "Function declared at tests/property/test_execution_graph_properties.py:205",
+      "line": 220,
+      "end_line": 227,
+      "summary": "Function declared at tests/property/test_execution_graph_properties.py:220",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds@219",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds@234",
       "name": "TestExecutionGraphBounds",
       "kind": "class",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 219,
-      "end_line": 244,
+      "line": 234,
+      "end_line": 259,
       "summary": "Custom max_nodes/max_edges are respected.",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_custom_bounds_respected@228",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_custom_bounds_respected@243",
       "name": "TestExecutionGraphBounds.test_custom_bounds_respected",
       "kind": "function",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 228,
-      "end_line": 233,
-      "summary": "Function declared at tests/property/test_execution_graph_properties.py:228",
+      "line": 243,
+      "end_line": 248,
+      "summary": "Function declared at tests/property/test_execution_graph_properties.py:243",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_small_max_nodes_truncates@240",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_small_max_nodes_truncates@255",
       "name": "TestExecutionGraphBounds.test_small_max_nodes_truncates",
       "kind": "function",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 240,
-      "end_line": 244,
-      "summary": "Function declared at tests/property/test_execution_graph_properties.py:240",
+      "line": 255,
+      "end_line": 259,
+      "summary": "Function declared at tests/property/test_execution_graph_properties.py:255",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger@251",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger@266",
       "name": "TestExecutionGraphLedger",
       "kind": "class",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 251,
-      "end_line": 284,
+      "line": 266,
+      "end_line": 299,
       "summary": "Ledger-derived summaries are consistent.",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_ledger_attempts_produce_attempt_nodes@256",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_ledger_attempts_produce_attempt_nodes@271",
       "name": "TestExecutionGraphLedger.test_ledger_attempts_produce_attempt_nodes",
       "kind": "function",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 256,
-      "end_line": 267,
-      "summary": "Function declared at tests/property/test_execution_graph_properties.py:256",
-      "confidence": "parsed",
-      "connections": 1
-    },
-    {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_known_actual_microusd_is_nonnegative@271",
-      "name": "TestExecutionGraphLedger.test_known_actual_microusd_is_nonnegative",
-      "kind": "function",
-      "path": "tests/property/test_execution_graph_properties.py",
       "line": 271,
-      "end_line": 276,
+      "end_line": 282,
       "summary": "Function declared at tests/property/test_execution_graph_properties.py:271",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_unknown_cost_attempts_is_nonnegative@280",
-      "name": "TestExecutionGraphLedger.test_unknown_cost_attempts_is_nonnegative",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_known_actual_microusd_is_nonnegative@286",
+      "name": "TestExecutionGraphLedger.test_known_actual_microusd_is_nonnegative",
       "kind": "function",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 280,
-      "end_line": 284,
-      "summary": "Function declared at tests/property/test_execution_graph_properties.py:280",
+      "line": 286,
+      "end_line": 291,
+      "summary": "Function declared at tests/property/test_execution_graph_properties.py:286",
       "confidence": "parsed",
       "connections": 1
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism@291",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_unknown_cost_attempts_is_nonnegative@295",
+      "name": "TestExecutionGraphLedger.test_unknown_cost_attempts_is_nonnegative",
+      "kind": "function",
+      "path": "tests/property/test_execution_graph_properties.py",
+      "line": 295,
+      "end_line": 299,
+      "summary": "Function declared at tests/property/test_execution_graph_properties.py:295",
+      "confidence": "parsed",
+      "connections": 1
+    },
+    {
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism@306",
       "name": "TestExecutionGraphDeterminism",
       "kind": "class",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 291,
-      "end_line": 307,
+      "line": 306,
+      "end_line": 322,
       "summary": "Same input always produces same output.",
       "confidence": "parsed",
       "connections": 0
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_output@296",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_output@311",
       "name": "TestExecutionGraphDeterminism.test_deterministic_output",
       "kind": "function",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 296,
-      "end_line": 299,
-      "summary": "Function declared at tests/property/test_execution_graph_properties.py:296",
+      "line": 311,
+      "end_line": 314,
+      "summary": "Function declared at tests/property/test_execution_graph_properties.py:311",
       "confidence": "parsed",
       "connections": 2
     },
     {
-      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_with_ledger@303",
+      "id": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_with_ledger@318",
       "name": "TestExecutionGraphDeterminism.test_deterministic_with_ledger",
       "kind": "function",
       "path": "tests/property/test_execution_graph_properties.py",
-      "line": 303,
-      "end_line": 307,
-      "summary": "Function declared at tests/property/test_execution_graph_properties.py:303",
+      "line": 318,
+      "end_line": 322,
+      "summary": "Function declared at tests/property/test_execution_graph_properties.py:318",
       "confidence": "parsed",
       "connections": 2
     },
@@ -50851,7 +50852,7 @@
       "path": "",
       "summary": "Import outside the indexed files or unresolved module",
       "confidence": "parsed",
-      "connections": 4
+      "connections": 5
     },
     {
       "id": "external:concurrent.futures",
@@ -76738,24 +76739,24 @@
     },
     {
       "source": "file:tests/property/test_execution_graph_properties.py",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds@219",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds@234",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 219
+      "line": 234
     },
     {
       "source": "file:tests/property/test_execution_graph_properties.py",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism@291",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism@306",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 291
+      "line": 306
     },
     {
       "source": "file:tests/property/test_execution_graph_properties.py",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger@251",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger@266",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 251
+      "line": 266
     },
     {
       "source": "file:tests/property/test_execution_graph_properties.py",
@@ -78295,77 +78296,84 @@
       "target": "external:pathlib",
       "relation": "imports",
       "confidence": "parsed",
-      "line": 4
+      "line": 5
     },
     {
       "source": "file:tests/test_agent_hypervisor_vfs.py",
-      "target": "external:tempfile",
+      "target": "external:shutil",
       "relation": "imports",
       "confidence": "parsed",
       "line": 2
     },
     {
       "source": "file:tests/test_agent_hypervisor_vfs.py",
-      "target": "external:unittest",
+      "target": "external:tempfile",
       "relation": "imports",
       "confidence": "parsed",
       "line": 3
     },
     {
       "source": "file:tests/test_agent_hypervisor_vfs.py",
+      "target": "external:unittest",
+      "relation": "imports",
+      "confidence": "parsed",
+      "line": 4
+    },
+    {
+      "source": "file:tests/test_agent_hypervisor_vfs.py",
       "target": "file:kernels/agent_hypervisor/vfs.py",
       "relation": "imports",
       "confidence": "parsed",
-      "line": 6
+      "line": 7
     },
     {
       "source": "file:tests/test_agent_hypervisor_vfs.py",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:MountPoint@23",
       "relation": "imports",
       "confidence": "parsed",
-      "line": 6
+      "line": 7
     },
     {
       "source": "file:tests/test_agent_hypervisor_vfs.py",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFS@204",
       "relation": "imports",
       "confidence": "parsed",
-      "line": 6
+      "line": 7
     },
     {
       "source": "file:tests/test_agent_hypervisor_vfs.py",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSError@18",
       "relation": "imports",
       "confidence": "parsed",
-      "line": 6
+      "line": 7
     },
     {
       "source": "file:tests/test_agent_hypervisor_vfs.py",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
       "relation": "imports",
       "confidence": "parsed",
-      "line": 6
+      "line": 7
     },
     {
       "source": "file:tests/test_agent_hypervisor_vfs.py",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests@11",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests@12",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 11
+      "line": 12
     },
     {
       "source": "file:tests/test_agent_hypervisor_vfs.py",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 27
+      "line": 28
     },
     {
       "source": "file:tests/test_agent_hypervisor_vfs.py",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 157
+      "line": 163
     },
     {
       "source": "file:tests/test_agentic_graph_swarm_solvers.py",
@@ -82150,13 +82158,6 @@
     {
       "source": "module:.",
       "target": "file:benchmark_multi_pass.py",
-      "relation": "contains",
-      "confidence": "observed",
-      "line": 0
-    },
-    {
-      "source": "module:.",
-      "target": "file:package-lock.json",
       "relation": "contains",
       "confidence": "observed",
       "line": 0
@@ -113683,130 +113684,130 @@
       "line": 489
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_custom_bounds_respected@228",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_custom_bounds_respected@243",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 231
+      "line": 246
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_small_max_nodes_truncates@240",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_small_max_nodes_truncates@255",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
+      "confidence": "parsed",
+      "line": 258
+    },
+    {
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds@234",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_custom_bounds_respected@243",
+      "relation": "defines",
       "confidence": "parsed",
       "line": 243
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds@219",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_custom_bounds_respected@228",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds@234",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_small_max_nodes_truncates@255",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 228
+      "line": 255
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds@219",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphBounds.test_small_max_nodes_truncates@240",
-      "relation": "defines",
-      "confidence": "parsed",
-      "line": 240
-    },
-    {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_output@296",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_output@311",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 297
+      "line": 312
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_output@296",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_output@311",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 298
+      "line": 313
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_with_ledger@303",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_with_ledger@318",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 305
+      "line": 320
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_with_ledger@303",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_with_ledger@318",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 306
+      "line": 321
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism@291",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_output@296",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism@306",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_output@311",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 296
+      "line": 311
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism@291",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_with_ledger@303",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism@306",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphDeterminism.test_deterministic_with_ledger@318",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 303
+      "line": 318
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_known_actual_microusd_is_nonnegative@271",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_known_actual_microusd_is_nonnegative@286",
+      "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 289
+    },
+    {
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_ledger_attempts_produce_attempt_nodes@271",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
       "line": 274
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_ledger_attempts_produce_attempt_nodes@256",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_unknown_cost_attempts_is_nonnegative@295",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 259
+      "line": 298
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_unknown_cost_attempts_is_nonnegative@280",
-      "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
-      "relation": "calls",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger@266",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_known_actual_microusd_is_nonnegative@286",
+      "relation": "defines",
       "confidence": "parsed",
-      "line": 283
+      "line": 286
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger@251",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_known_actual_microusd_is_nonnegative@271",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger@266",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_ledger_attempts_produce_attempt_nodes@271",
       "relation": "defines",
       "confidence": "parsed",
       "line": 271
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger@251",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_ledger_attempts_produce_attempt_nodes@256",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger@266",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_unknown_cost_attempts_is_nonnegative@295",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 256
+      "line": 295
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger@251",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphLedger.test_unknown_cost_attempts_is_nonnegative@280",
-      "relation": "defines",
-      "confidence": "parsed",
-      "line": 280
-    },
-    {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_all_costs_resolved_is_boolean@199",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_all_costs_resolved_is_boolean@214",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 200
+      "line": 215
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_attempt_coverage_fields_present@205",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_attempt_coverage_fields_present@220",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 206
+      "line": 221
     },
     {
       "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_edge_count_within_bounds@155",
@@ -113837,11 +113838,39 @@
       "line": 170
     },
     {
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_no_lease_tokens_leak.offending_keys@192",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_no_lease_tokens_leak.offending_keys@192",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 196
+    },
+    {
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_no_lease_tokens_leak.offending_keys@192",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_no_lease_tokens_leak.offending_keys@192",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 199
+    },
+    {
       "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_no_lease_tokens_leak@182",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 184
+      "line": 190
+    },
+    {
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_no_lease_tokens_leak@182",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_no_lease_tokens_leak.offending_keys@192",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 202
+    },
+    {
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_no_lease_tokens_leak@182",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_no_lease_tokens_leak.offending_keys@192",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 192
     },
     {
       "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_node_count_within_bounds@149",
@@ -113872,11 +113901,11 @@
       "line": 121
     },
     {
-      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_run_node_always_present@191",
+      "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_run_node_always_present@206",
       "target": "symbol:apexgraphswarm/execution_graph.py:project_execution_graph@34",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 192
+      "line": 207
     },
     {
       "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_summary_counts_match_actual@161",
@@ -113901,17 +113930,17 @@
     },
     {
       "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure@101",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_all_costs_resolved_is_boolean@199",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_all_costs_resolved_is_boolean@214",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 199
+      "line": 214
     },
     {
       "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure@101",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_attempt_coverage_fields_present@205",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_attempt_coverage_fields_present@220",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 205
+      "line": 220
     },
     {
       "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure@101",
@@ -113978,10 +114007,10 @@
     },
     {
       "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure@101",
-      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_run_node_always_present@191",
+      "target": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure.test_run_node_always_present@206",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 191
+      "line": 206
     },
     {
       "source": "symbol:tests/property/test_execution_graph_properties.py:TestExecutionGraphStructure@101",
@@ -117848,403 +117877,403 @@
       "line": 41
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_source_rejected@18",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_source_rejected@19",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:MountPoint@23",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 20
+      "line": 21
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_target_rejected@22",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_target_rejected@23",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:MountPoint@23",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 24
+      "line": 25
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_valid_mount_point@12",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_valid_mount_point@13",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:MountPoint@23",
       "relation": "calls",
+      "confidence": "parsed",
+      "line": 14
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests@12",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_source_rejected@19",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 19
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests@12",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_target_rejected@23",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 23
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests@12",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_valid_mount_point@13",
+      "relation": "defines",
       "confidence": "parsed",
       "line": 13
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests@11",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_source_rejected@18",
-      "relation": "defines",
-      "confidence": "parsed",
-      "line": 18
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests@11",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_empty_target_rejected@22",
-      "relation": "defines",
-      "confidence": "parsed",
-      "line": 22
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests@11",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:MountPointTests.test_valid_mount_point@12",
-      "relation": "defines",
-      "confidence": "parsed",
-      "line": 12
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_create_namespace@35",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_create_namespace@41",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 36
+      "line": 42
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_directory@76",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 77
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_file@69",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 70
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_dot_dot_normalization@150",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 151
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_exists@87",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 88
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_list_dir@59",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 60
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_mount_size_limit@122",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:MountPoint@23",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 127
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_mount_size_limit@122",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 123
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_namespace_total_size_limit@136",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 137
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_nested_path_resolution@145",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 146
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_null_bytes_rejected@54",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 55
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_path_traversal_rejected@45",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 46
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_nonexistent_file@82",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_directory@82",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
       "relation": "calls",
       "confidence": "parsed",
       "line": 83
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_only_mount@93",
-      "target": "symbol:kernels/agent_hypervisor/vfs.py:MountPoint@23",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_file@75",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 100
+      "line": 76
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_only_mount@93",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_dot_dot_normalization@156",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 157
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_exists@93",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
       "relation": "calls",
       "confidence": "parsed",
       "line": 94
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_writable_mount@111",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_list_dir@65",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 66
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_mount_size_limit@128",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:MountPoint@23",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 116
+      "line": 133
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_writable_mount@111",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_mount_size_limit@128",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 112
+      "line": 129
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_write_and_read_file@40",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_namespace_total_size_limit@142",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 41
+      "line": 143
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.setUp@28",
-      "relation": "defines",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_nested_path_resolution@151",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
+      "relation": "calls",
       "confidence": "parsed",
-      "line": 28
+      "line": 152
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.tearDown@32",
-      "relation": "defines",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_null_bytes_rejected@60",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
+      "relation": "calls",
       "confidence": "parsed",
-      "line": 32
+      "line": 61
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_create_namespace@35",
-      "relation": "defines",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_path_traversal_rejected@51",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
+      "relation": "calls",
       "confidence": "parsed",
-      "line": 35
+      "line": 52
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_directory@76",
-      "relation": "defines",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_nonexistent_file@88",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
+      "relation": "calls",
       "confidence": "parsed",
-      "line": 76
+      "line": 89
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_file@69",
-      "relation": "defines",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_only_mount@99",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:MountPoint@23",
+      "relation": "calls",
       "confidence": "parsed",
-      "line": 69
+      "line": 106
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_dot_dot_normalization@150",
-      "relation": "defines",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_only_mount@99",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
+      "relation": "calls",
       "confidence": "parsed",
-      "line": 150
+      "line": 100
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_exists@87",
-      "relation": "defines",
-      "confidence": "parsed",
-      "line": 87
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_list_dir@59",
-      "relation": "defines",
-      "confidence": "parsed",
-      "line": 59
-    },
-    {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_mount_size_limit@122",
-      "relation": "defines",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_writable_mount@117",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:MountPoint@23",
+      "relation": "calls",
       "confidence": "parsed",
       "line": 122
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_namespace_total_size_limit@136",
-      "relation": "defines",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_writable_mount@117",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
+      "relation": "calls",
       "confidence": "parsed",
-      "line": 136
+      "line": 118
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_nested_path_resolution@145",
-      "relation": "defines",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_write_and_read_file@46",
+      "target": "symbol:kernels/agent_hypervisor/vfs.py:VFSNamespace@36",
+      "relation": "calls",
       "confidence": "parsed",
-      "line": 145
+      "line": 47
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_null_bytes_rejected@54",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.setUp@29",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 54
+      "line": 29
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_path_traversal_rejected@45",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.tearDown@33",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 45
+      "line": 33
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_nonexistent_file@82",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_create_namespace@41",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 41
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_directory@82",
       "relation": "defines",
       "confidence": "parsed",
       "line": 82
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_only_mount@93",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_delete_file@75",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 75
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_dot_dot_normalization@156",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 156
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_exists@93",
       "relation": "defines",
       "confidence": "parsed",
       "line": 93
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_writable_mount@111",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_list_dir@65",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 111
+      "line": 65
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@27",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_write_and_read_file@40",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_mount_size_limit@128",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 40
+      "line": 128
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_create_and_get_namespace@165",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_namespace_total_size_limit@142",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 142
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_nested_path_resolution@151",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 151
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_null_bytes_rejected@60",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 60
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_path_traversal_rejected@51",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 51
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_nonexistent_file@88",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 88
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_read_only_mount@99",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 99
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_writable_mount@117",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 117
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests@28",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSNamespaceTests.test_write_and_read_file@46",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 46
+    },
+    {
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_create_and_get_namespace@176",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFS@204",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 166
+      "line": 177
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_destroy_namespace@187",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_destroy_namespace@198",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFS@204",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 188
+      "line": 199
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_duplicate_namespace_rejected@174",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_duplicate_namespace_rejected@185",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFS@204",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 175
+      "line": 186
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_get_nonexistent_namespace@209",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_get_nonexistent_namespace@220",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFS@204",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 210
+      "line": 221
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_invalid_namespace_name@180",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_invalid_namespace_name@191",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFS@204",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 181
+      "line": 192
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_isolation_between_namespaces@201",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_isolation_between_namespaces@212",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFS@204",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 202
+      "line": 213
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_list_namespaces@194",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_list_namespaces@205",
       "target": "symbol:kernels/agent_hypervisor/vfs.py:VFS@204",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 195
+      "line": 206
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.setUp@158",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.setUp@164",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 158
+      "line": 164
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.tearDown@162",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.tearDown@168",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 162
+      "line": 168
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_create_and_get_namespace@165",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_create_and_get_namespace@176",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 165
+      "line": 176
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_destroy_namespace@187",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_destroy_namespace@198",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 187
+      "line": 198
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_duplicate_namespace_rejected@174",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_duplicate_namespace_rejected@185",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 174
+      "line": 185
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_get_nonexistent_namespace@209",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_get_nonexistent_namespace@220",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 209
+      "line": 220
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_invalid_namespace_name@180",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_invalid_namespace_name@191",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 180
+      "line": 191
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_isolation_between_namespaces@201",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_isolation_between_namespaces@212",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 201
+      "line": 212
     },
     {
-      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@157",
-      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_list_namespaces@194",
+      "source": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests@163",
+      "target": "symbol:tests/test_agent_hypervisor_vfs.py:VFSTests.test_list_namespaces@205",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 194
+      "line": 205
     },
     {
       "source": "symbol:tests/test_agentic_graph_swarm_solvers.py:TestBudgetedAttentionRouting@383",
@@ -130959,473 +130988,473 @@
       "line": 78
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@58",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@64",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
-      "line": 59
+      "line": 65
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
-      "line": 54
+      "line": 60
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
-      "line": 55
+      "line": 61
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
-      "line": 56
+      "line": 62
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.setUp@18",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
       "relation": "calls",
       "confidence": "inferred",
       "line": 30
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.setUp@18",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
       "line": 22
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.setUp@18",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
       "line": 23
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.setUp@18",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
       "line": 24
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.setUp@18",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
       "line": 31
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.setUp@18",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
       "relation": "calls",
       "confidence": "inferred",
       "line": 25
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.setUp@18",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
       "relation": "calls",
       "confidence": "inferred",
       "line": 26
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.setUp@18",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
       "relation": "calls",
       "confidence": "inferred",
       "line": 27
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.setUp@18",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
       "relation": "calls",
       "confidence": "inferred",
       "line": 28
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.setUp@18",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
       "relation": "calls",
       "confidence": "inferred",
       "line": 29
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 178
+      "line": 184
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 180
+      "line": 186
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
-      "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 182
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
-      "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 185
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
       "relation": "calls",
       "confidence": "parsed",
       "line": 188
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 200
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 193
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 196
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
-      "relation": "calls",
-      "confidence": "inferred",
       "line": 191
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
+      "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
       "relation": "calls",
-      "confidence": "inferred",
+      "confidence": "parsed",
       "line": 194
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
+      "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 206
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 199
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 202
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
       "line": 197
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 200
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 203
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 204
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
       "relation": "calls",
       "confidence": "inferred",
       "line": 198
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
       "relation": "calls",
       "confidence": "inferred",
-      "line": 192
+      "line": 201
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 195
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance@61",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance@67",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 69
+      "line": 75
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance@61",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@58",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance@67",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@64",
       "relation": "calls",
       "confidence": "inferred",
-      "line": 62
+      "line": 68
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance@61",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance@67",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
       "relation": "calls",
       "confidence": "inferred",
-      "line": 67
+      "line": 73
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@96",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@102",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 110
+      "line": 116
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@96",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@58",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 97
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@96",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 99
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@96",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 104
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@96",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 101
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@96",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 102
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@96",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 98
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@96",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@102",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@64",
       "relation": "calls",
       "confidence": "inferred",
       "line": 103
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@102",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 105
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@102",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 110
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@102",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 107
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@102",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 108
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@102",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 104
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@102",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 109
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:_stable_plan_digest@393",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 163
+      "line": 169
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:_stable_plan_digest@393",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 171
+      "line": 177
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 139
+      "line": 145
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:apexgraphswarm/repository_conflicts.py:verify_repository_conflict_plan@243",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 142
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:verify_repository_conflict_plan@243",
       "relation": "calls",
       "confidence": "parsed",
       "line": 148
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:verify_repository_conflict_plan@243",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 155
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:apexgraphswarm/repository_conflicts.py:verify_repository_conflict_plan@243",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 164
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:apexgraphswarm/repository_conflicts.py:verify_repository_conflict_plan@243",
-      "relation": "calls",
-      "confidence": "parsed",
-      "line": 172
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@58",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 136
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 138
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 153
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 150
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 151
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
-      "relation": "calls",
-      "confidence": "inferred",
       "line": 154
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:apexgraphswarm/repository_conflicts.py:verify_repository_conflict_plan@243",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 161
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:apexgraphswarm/repository_conflicts.py:verify_repository_conflict_plan@243",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 170
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:apexgraphswarm/repository_conflicts.py:verify_repository_conflict_plan@243",
+      "relation": "calls",
+      "confidence": "parsed",
+      "line": 178
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@64",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 142
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 144
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 159
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 156
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 157
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
       "line": 160
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "calls",
       "confidence": "inferred",
-      "line": 137
+      "line": 166
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
       "relation": "calls",
       "confidence": "inferred",
-      "line": 152
+      "line": 143
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@119",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 158
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@125",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 124
+      "line": 130
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@119",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@125",
       "target": "symbol:apexgraphswarm/repository_conflicts.py:plan_repository_conflicts@128",
       "relation": "calls",
       "confidence": "parsed",
-      "line": 128
+      "line": 134
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@119",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@58",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 120
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@119",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 122
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@119",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
-      "relation": "calls",
-      "confidence": "inferred",
-      "line": 121
-    },
-    {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@119",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@125",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@64",
       "relation": "calls",
       "confidence": "inferred",
       "line": 126
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@119",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@125",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 128
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@125",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
       "relation": "calls",
       "confidence": "inferred",
       "line": 127
     },
     {
-      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@58",
-      "relation": "defines",
-      "confidence": "parsed",
-      "line": 58
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@125",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 132
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@125",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
+      "relation": "calls",
+      "confidence": "inferred",
+      "line": 133
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@53",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._branch_from_base@64",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 53
+      "line": 64
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@36",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._commit@59",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 36
+      "line": 59
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@48",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._git@42",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 48
+      "line": 42
+    },
+    {
+      "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests._write@54",
+      "relation": "defines",
+      "confidence": "parsed",
+      "line": 54
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
@@ -131443,38 +131472,38 @@
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@176",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_bad_revisions_paths_dependencies_and_unmerged_index_fail_closed@182",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 176
+      "line": 182
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance@61",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_derives_rename_delete_copy_and_git_object_provenance@67",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 61
+      "line": 67
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@96",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_prefix_conflicts_serialize_heads_without_losing_existing_dag@102",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 96
+      "line": 102
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@135",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_stale_verifier_detects_moved_refs_and_forged_semantics@141",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 135
+      "line": 141
     },
     {
       "source": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests@17",
-      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@119",
+      "target": "symbol:tests/test_repository_conflicts.py:RepositoryConflictTests.test_worktree_changes_are_ignored_and_declared_reads_are_base_verified@125",
       "relation": "defines",
       "confidence": "parsed",
-      "line": 119
+      "line": 125
     },
     {
       "source": "symbol:tests/test_repository_graph.py:RepositoryGraphTests.graph@8",
@@ -133403,12 +133432,12 @@
     }
   ],
   "summary": {
-    "files": 565,
+    "files": 564,
     "modules": 95,
-    "functions": 3497,
+    "functions": 3498,
     "classes": 509,
-    "relationships": 11701,
-    "unresolved": 15792,
+    "relationships": 11705,
+    "unresolved": 15801,
     "hubs": [
       "Control",
       "ControlStore",

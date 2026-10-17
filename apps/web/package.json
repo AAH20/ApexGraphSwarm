@@ -26,7 +26,7 @@
     "next": "16.3.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "sigma": "^4.0.0-alpha.7",
+    "sigma": "4.0.0-alpha.7",
     "zod": "4.6.5"
   },
   "devDependencies": {
@@ -39,6 +39,7 @@
     "pixelmatch": "^8.0.0",
     "pngjs": "^7.0.0",
     "tsx": "4.23.15",
-    "typescript": "7.0.2"
+    "typescript": "5.9.3",
+    "@playwright/test": "^1.56.0"
   }
 }
