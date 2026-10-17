@@ -143,6 +143,12 @@ class AuditTrail:
     def __init__(self, db_path: str | os.PathLike[str], *, clock=time.time):
         self._clock = clock
         self._lock = threading.RLock()
+        # Monotonic per-process counter, mixed into the evidence id. The id was
+        # derived from content hash + wall clock alone, so two stores of identical
+        # bytes within one clock tick produced the same primary key and the INSERT
+        # raised UNIQUE constraint failed. Windows' clock granularity is coarse
+        # enough to hit that; it is a real collision, not a platform quirk.
+        self._evidence_seq = 0
         path = str(db_path)
         if path != ":memory:":
             path = str(Path(path).expanduser().resolve())
@@ -299,8 +305,9 @@ class AuditTrail:
         with self._lock:
             now = self._now()
             content_hash = compute_content_hash(content)
+            self._evidence_seq += 1
             evidence_id = hashlib.sha256(
-                f"{content_hash}:{now}".encode("utf-8")
+                f"{content_hash}:{now}:{self._evidence_seq}".encode("utf-8")
             ).hexdigest()[:32]
             meta = metadata or {}
             self._db.execute(

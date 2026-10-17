@@ -174,6 +174,15 @@ def validate_request(body: Any) -> dict[str, Any]:
     return {**body, "requestId": request_id}
 
 
+# Variables a child process needs to start at all. Windows requires SystemRoot (and
+# usually TEMP/TMP/PATH) for the interpreter to initialise; POSIX needs almost nothing.
+_PLATFORM_ESSENTIAL_ENV = frozenset({
+    "SystemRoot", "SystemDrive", "windir", "COMSPEC",
+    "PATH", "PATHEXT", "TEMP", "TMP", "TMPDIR",
+    "HOME", "LANG", "LC_ALL", "PYTHONPATH", "PYTHONHOME",
+})
+
+
 def _known_secret_values(environment: dict[str, str], access_token: str) -> list[str]:
     values = {access_token}
     values.update(value for key, value in environment.items() if SECRET_NAME.search(key) and value)
@@ -212,7 +221,18 @@ class HarnessRunner:
         self.timeout_seconds = timeout_seconds
         self.max_output_bytes = max_output_bytes
         self.popen = popen
-        self.environment = dict(os.environ if environment is None else environment)
+        if environment is None:
+            self.environment = dict(os.environ)
+        else:
+            # A caller-supplied environment replaces the child's wholesale, which on
+            # Windows leaves the interpreter with no SystemRoot and it dies during
+            # startup ("_Py_HashRandomization_Init: failed to get random numbers").
+            # Carry the platform-critical variables through and let the caller's
+            # values win, so the child still starts and the injected secrets stay
+            # the only additions.
+            base = {k: v for k, v in os.environ.items() if k in _PLATFORM_ESSENTIAL_ENV}
+            base.update(environment)
+            self.environment = base
         self.secrets = _known_secret_values(self.environment, access_token)
         self._slots = threading.BoundedSemaphore(max_processes)
         self._lock = threading.RLock()
