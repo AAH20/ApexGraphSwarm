@@ -13,7 +13,7 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
-import selectors
+import threading
 import subprocess
 import time
 from typing import Any, Mapping, Sequence
@@ -77,52 +77,62 @@ class _GitSession:
         except (OSError, ValueError):
             raise RepositoryConflictError("Unable to start bounded Git inspection.") from None
         assert process.stdout is not None and process.stderr is not None
-        stdout_fd = process.stdout.fileno()
-        selector = selectors.DefaultSelector()
-        buffers: dict[int, bytearray] = {process.stdout.fileno(): bytearray(),
-                                         process.stderr.fileno(): bytearray()}
-        limits = {process.stdout.fileno(): stdout_limit,
-                  process.stderr.fileno(): MAX_STDERR_BYTES}
+        # Read both pipes on daemon threads rather than through selectors.
+        # selectors.DefaultSelector() is SelectSelector on Windows, which only
+        # accepts sockets; registering a subprocess pipe raises
+        # OSError [WinError 10038] "operation on something that is not a socket".
+        # Blocking reads on a thread work identically on both platforms.
+        buffers: dict[str, bytearray] = {"stdout": bytearray(), "stderr": bytearray()}
+        limits = {"stdout": stdout_limit, "stderr": MAX_STDERR_BYTES}
+        overrun: list[str] = []
+        readers: list[threading.Thread] = []
+
+        def _drain(stream: Any, name: str) -> None:
+            try:
+                while True:
+                    chunk = stream.read(65_536)
+                    if not chunk:
+                        return
+                    buffers[name].extend(chunk)
+                    if len(buffers[name]) > limits[name]:
+                        overrun.append(name)
+                        process.kill()
+                        return
+            except (OSError, ValueError):
+                return
+
         try:
-            os.set_blocking(process.stdout.fileno(), False)
-            os.set_blocking(process.stderr.fileno(), False)
-            selector.register(process.stdout, selectors.EVENT_READ)
-            selector.register(process.stderr, selectors.EVENT_READ)
-            while selector.get_map():
+            for stream, name in ((process.stdout, "stdout"), (process.stderr, "stderr")):
+                thread = threading.Thread(target=_drain, args=(stream, name), daemon=True)
+                thread.start()
+                readers.append(thread)
+
+            while any(thread.is_alive() for thread in readers):
                 remaining = min(call_deadline - time.monotonic(), self.deadline - time.monotonic())
                 if remaining <= 0:
                     process.kill()
                     process.wait()
                     raise RepositoryConflictError("Git command exceeded its time limit.")
-                for key, _ in selector.select(min(0.1, remaining)):
-                    stream = key.fileobj
-                    fd = stream.fileno()
-                    try:
-                        chunk = os.read(fd, 65_536)
-                    except BlockingIOError:
-                        continue
-                    if not chunk:
-                        selector.unregister(stream)
-                        continue
-                    buffers[fd].extend(chunk)
-                    if len(buffers[fd]) > limits[fd]:
-                        process.kill()
-                        process.wait()
-                        label = "stdout" if fd == process.stdout.fileno() else "stderr"
-                        raise RepositoryConflictError(f"Git {label} byte limit exceeded.")
-            return_code = process.wait(timeout=max(0.01, min(remaining, self.deadline-time.monotonic())))
+                if overrun:
+                    process.wait()
+                    raise RepositoryConflictError(
+                        f"Git {overrun[0]} byte limit exceeded.")
+                for thread in readers:
+                    thread.join(timeout=min(0.05, remaining))
+
+            return_code = process.wait(
+                timeout=max(0.01, min(remaining, self.deadline - time.monotonic())))
         except subprocess.TimeoutExpired:
             process.kill()
             process.wait()
             raise RepositoryConflictError("Git command exceeded its time limit.") from None
         finally:
-            selector.close()
             process.stdout.close()
             process.stderr.close()
         self.last_return_code = return_code
         if return_code not in allowed_return_codes:
             raise RepositoryConflictError(f"Git inspection failed (exit status {return_code}).")
-        return bytes(buffers[stdout_fd])
+        return bytes(buffers["stdout"])
 
 
 def plan_repository_conflicts(repo_path: str | os.PathLike[str], base_revision: str,
