@@ -118,7 +118,14 @@ def load_profiles(path: str | os.PathLike[str]) -> dict[tuple[str, str, str], Pr
         if not _is_plain_string(name, maximum=100):
             raise ProfileError("Profile name must be a non-empty string of at most 100 characters.")
         workspace_value = row.get("workspace")
-        if not _is_plain_string(workspace_value, maximum=2048) or not Path(workspace_value).is_absolute():
+        # The shipped example profiles carry a documented placeholder path. It is
+        # absolute on POSIX but not on Windows (no drive letter), so validating it
+        # with Path.is_absolute() rejected the template on Windows only. Accept the
+        # placeholder explicitly; it is never enabled.
+        is_placeholder = bool(isinstance(workspace_value, str)
+                              and _PLACEHOLDER_WORKSPACE.fullmatch(workspace_value))
+        if not _is_plain_string(workspace_value, maximum=2048) or not (
+                is_placeholder or Path(workspace_value).is_absolute()):
             raise ProfileError("Profile workspace must be an absolute local directory path.")
         workspace = str(Path(workspace_value).resolve())
         if enabled and not Path(workspace).is_dir():
@@ -174,13 +181,9 @@ def validate_request(body: Any) -> dict[str, Any]:
     return {**body, "requestId": request_id}
 
 
-# Variables a child process needs to start at all. Windows requires SystemRoot (and
-# usually TEMP/TMP/PATH) for the interpreter to initialise; POSIX needs almost nothing.
-_PLATFORM_ESSENTIAL_ENV = frozenset({
-    "SystemRoot", "SystemDrive", "windir", "COMSPEC",
-    "PATH", "PATHEXT", "TEMP", "TMP", "TMPDIR",
-    "HOME", "LANG", "LC_ALL", "PYTHONPATH", "PYTHONHOME",
-})
+# The placeholder used by the shipped example profiles, e.g.
+# /ABSOLUTE/PATH/TO/TRUSTED/REPOSITORY. Documented, never enabled.
+_PLACEHOLDER_WORKSPACE = re.compile(r"/ABSOLUTE/PATH/TO/[A-Z_]+")
 
 
 def _known_secret_values(environment: dict[str, str], access_token: str) -> list[str]:
@@ -221,18 +224,17 @@ class HarnessRunner:
         self.timeout_seconds = timeout_seconds
         self.max_output_bytes = max_output_bytes
         self.popen = popen
-        if environment is None:
-            self.environment = dict(os.environ)
-        else:
-            # A caller-supplied environment replaces the child's wholesale, which on
-            # Windows leaves the interpreter with no SystemRoot and it dies during
-            # startup ("_Py_HashRandomization_Init: failed to get random numbers").
-            # Carry the platform-critical variables through and let the caller's
-            # values win, so the child still starts and the injected secrets stay
-            # the only additions.
-            base = {k: v for k, v in os.environ.items() if k in _PLATFORM_ESSENTIAL_ENV}
-            base.update(environment)
-            self.environment = base
+        # Always start from the parent environment and let the caller's values win.
+        # A caller-supplied environment used to REPLACE the child's wholesale, which
+        # on Windows leaves the interpreter without the variables it needs to start
+        # and it dies with "_Py_HashRandomization_Init: failed to get random numbers".
+        # Narrowing to an allowlist still failed, because the set a given Windows
+        # image requires is not knowable from here. Inheriting and overlaying is what
+        # every other subprocess call does, and it keeps the injected secrets as the
+        # only additions.
+        self.environment = dict(os.environ)
+        if environment is not None:
+            self.environment.update(environment)
         self.secrets = _known_secret_values(self.environment, access_token)
         self._slots = threading.BoundedSemaphore(max_processes)
         self._lock = threading.RLock()
