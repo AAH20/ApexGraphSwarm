@@ -118,7 +118,11 @@ jobs:
     name: Web Tests
     runs-on: ubuntu-latest
     steps:
+      # The repositoryConflicts example inspects HEAD~1. A default checkout is
+      # shallow (depth 1), so that revision does not exist and git exits 128.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
