@@ -1,4 +1,5 @@
 """Tests for VFS namespacing."""
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -30,7 +31,12 @@ class VFSNamespaceTests(unittest.TestCase):
         self.root = Path(self._tmp.name)
 
     def tearDown(self):
-        self._tmp.cleanup()
+        # Windows can still hold handles on the fixture tree; a failed unlink is
+        # not a test failure.
+        try:
+            self._tmp.cleanup()
+        except OSError:
+            shutil.rmtree(self._tmp.name, ignore_errors=True)
 
     def test_create_namespace(self):
         ns = VFSNamespace(name="test", root=self.root / "test")
@@ -160,7 +166,12 @@ class VFSTests(unittest.TestCase):
         self.base = Path(self._tmp.name)
 
     def tearDown(self):
-        self._tmp.cleanup()
+        # Windows can still hold handles on the fixture tree; a failed unlink is
+        # not a test failure.
+        try:
+            self._tmp.cleanup()
+        except OSError:
+            shutil.rmtree(self._tmp.name, ignore_errors=True)
 
     def test_create_and_get_namespace(self):
         vfs = VFS(self.base)

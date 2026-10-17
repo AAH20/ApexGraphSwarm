@@ -37,17 +37,21 @@ jobs:
         with:
           node-version: "22"
           cache: "npm"
-          cache-dependency-path: apps/web/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
+          python -m pip install --quiet pytest networkx numpy hypothesis
           # Project uses plain Python with no packaging; ensure root is importable
           echo "PYTHONPATH=$PWD:${PYTHONPATH:-}" >> $GITHUB_ENV
 
+      - name: Check out integration kernel sources
+        shell: bash
+        run: ./scripts/fetch-integration-sources.sh
+
       - name: Install Node.js dependencies
-        run: |
-          cd apps/web && npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Run benchmarks
         id: benchmark

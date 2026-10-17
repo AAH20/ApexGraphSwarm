@@ -31,7 +31,13 @@ class RepositoryConflictTests(unittest.TestCase):
         self.base = self._git("rev-parse", "HEAD")
 
     def tearDown(self):
-        self.temporary.cleanup()
+        # On Windows a git process can still hold handles on the fixture tree, so
+        # cleanup raises even though every assertion passed. The fixture is
+        # disposable and the OS reclaims it; a failed unlink is not a test failure.
+        try:
+            self.temporary.cleanup()
+        except OSError:
+            shutil.rmtree(self.temporary.name, ignore_errors=True)
 
     def _git(self, *args, check=True, cwd=None, env=None):
         environment = os.environ.copy()

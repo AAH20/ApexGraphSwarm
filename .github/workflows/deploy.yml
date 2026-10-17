@@ -44,14 +44,20 @@ jobs:
         run: |
           export PYTHONPATH="${{ github.workspace }}:${PYTHONPATH:-}"
           python -m compileall -q apexgraphswarm/ scripts/ tests/
-          python -m unittest discover -s tests -v 2>&1
+          python -m pip install --quiet pytest networkx numpy hypothesis
+
+      - name: Check out integration kernel sources
+        shell: bash
+        run: ./scripts/fetch-integration-sources.sh
+
+      - name: Run test suite
+        run: python -m pytest -q
 
       - name: Verify web app
-        working-directory: apps/web
         run: |
-          npm ci
-          npm run typecheck
-          npm test
+          npm install --no-audit --no-fund
+          npm run typecheck --workspace apexgraphswarm-workbench
+          npm test --workspace apexgraphswarm-workbench
 
   # ── Build & package ───────────────────────────────────────────────
   build:
@@ -65,15 +71,13 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
-          cache-dependency-path: apps/web/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        working-directory: apps/web
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Build web app
-        working-directory: apps/web
-        run: npm run build
+        run: npm run build --workspace apexgraphswarm-workbench
 
       - name: Package Python control plane
         run: |
