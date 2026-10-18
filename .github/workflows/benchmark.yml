@@ -175,6 +175,11 @@ jobs:
     if: always() && needs.benchmark.result != 'skipped'
 
     steps:
+      # Required: the summary step runs a script from the repo, and without a
+      # checkout the workspace holds only the downloaded artifact, so python3
+      # exits 2 ("can't open file") and the job fails having summarised nothing.
+      - uses: actions/checkout@v4
+
       - name: Download benchmark report
         uses: actions/download-artifact@v4
         with:
