@@ -45,7 +45,10 @@ class RepositoryConflictTests(unittest.TestCase):
             environment.update(env)
         result = subprocess.run(["git", "-C", str(cwd or self.repo), *args],
                                 capture_output=True, check=False, env=environment,
-                                timeout=5)
+                                # Fixture plumbing, not a timing assertion. 5s was
+                                # tight enough that a slow Windows runner failed the
+                                # fixture rather than the behaviour under test.
+                                timeout=120)
         if check and result.returncode:
             self.fail(f"fixture git command failed ({result.returncode}): {args!r}: "
                       f"{result.stderr.decode('utf-8', 'replace')[:500]}")
@@ -148,7 +151,12 @@ class RepositoryConflictTests(unittest.TestCase):
         self.assertEqual(verify_repository_conflict_plan(self.repo, plan)["status"], "current")
         node_roundtrip = subprocess.run(
             ["node", "-e", "process.stdout.write(JSON.stringify(JSON.parse(require('fs').readFileSync(0, 'utf8'))))"],
-            input=json.dumps(plan), text=True, capture_output=True, check=True, timeout=5)
+            # This spawns node to prove the plan survives a JSON round-trip. It is a shape
+        # check, not a timing assertion, so the timeout is only a hang guard -- a
+        # 5s cap raced node's cold start on Windows and failed the suite
+        # (1 failed, 1300 passed) for a reason unrelated to the code under test.
+        input=json.dumps(plan), text=True, capture_output=True, check=True,
+        timeout=120)
         browser_plan = json.loads(node_roundtrip.stdout)
         self.assertIs(type(browser_plan["metadata"]["totalTimeLimitSeconds"]), int)
         self.assertEqual(verify_repository_conflict_plan(self.repo, browser_plan)["status"], "current")
