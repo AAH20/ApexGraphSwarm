@@ -187,31 +187,7 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
 
           if [ -f reports/ci-benchmark-report.json ]; then
-            python3 -c "
-            import json
-            import sys
-
-            with open('reports/ci-benchmark-report.json') as f:
-                report = json.load(f)
-
-            status = '✅ PASS' if report['status'] == 'pass' else '❌ FAIL'
-            print(f'### {status}')
-            print()
-            print('| Benchmark | Status |')
-            print('|-----------|--------|')
-            for name, result in report.get('benchmarks', {}).items():
-                icon = '✅' if result['status'] == 'pass' else '❌' if result['status'] == 'fail' else '⏭️'
-                print(f'| {name} | {icon} {result[\"status\"]} |')
-
-            regressions = report.get('regressions', [])
-            if regressions:
-                print()
-                print(f'### ⚠️ {len(regressions)} Performance Regression(s)')
-                print()
-                for reg in regressions:
-                    scenario = reg.get('scenario', reg.get('benchmark', 'unknown'))
-                    print(f'- **{scenario}**: {reg[\"metric\"]} {reg[\"changePercent\"]:+.1f}% (threshold: {reg[\"threshold\"]:+.1f}%)')
-            " >> $GITHUB_STEP_SUMMARY
+            python3 scripts/render_benchmark_summary.py >> $GITHUB_STEP_SUMMARY
           else
             echo "No benchmark report found" >> $GITHUB_STEP_SUMMARY
           fi
