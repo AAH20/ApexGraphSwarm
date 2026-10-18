@@ -111,6 +111,11 @@ jobs:
   deploy-web:
     name: Deploy Web (${{ github.event.inputs.environment || 'staging' }})
     runs-on: ubuntu-latest
+    # There is no real deployment target: the step below writes a placeholder URL
+    # (apexgraphswarm.example.com). An unconditional deploy therefore fails on every
+    # push at a step unrelated to the code. Gated on a repository variable so it
+    # activates the moment infrastructure exists -- set DEPLOY_ENABLED=true.
+    if: vars.DEPLOY_ENABLED == 'true'
     needs: build
     environment:
       name: ${{ github.event.inputs.environment || 'staging' }}

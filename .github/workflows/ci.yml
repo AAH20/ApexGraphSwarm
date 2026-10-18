@@ -38,22 +38,7 @@ jobs:
 
       - name: AST parse check
         run: |
-          python -c "
-          import ast, sys, pathlib
-          errors = []
-          for f in pathlib.Path('.').rglob('*.py'):
-              if '.integration-sources' in str(f) or 'node_modules' in str(f) or '.venv' in str(f):
-                  continue
-              try:
-                  ast.parse(f.read_text())
-              except SyntaxError as e:
-                  errors.append(f'{f}: {e}')
-          if errors:
-              for e in errors:
-                  print(f'FAIL {e}', file=sys.stderr)
-              sys.exit(1)
-          print('AST parse check passed')
-          "
+          python scripts/ast_parse_check.py
 
   # ── Python tests ──────────────────────────────────────────────────
   python-test:
