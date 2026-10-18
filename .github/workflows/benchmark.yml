@@ -25,6 +25,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the web tests inspect HEAD~1; a depth-1 clone lacks it
 
       - name: Set up Python
         uses: actions/setup-python@v5
